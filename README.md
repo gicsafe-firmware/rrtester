@@ -1,8 +1,3 @@
-# DIMBA
-## Diseño e Implementación del Monitor de Barreras
+# Monitor of railway relays tester
 
-El presente proyecto tiene por objetivo desarrollar el subsistema de Nivel Monitor, ubicado sobre cada paso a nivel, que sensará las señales de entrada y transferirá datos a una central remota de monitoreo correspondiente al Nivel de Gestión. El subsistema de Nivel de Gestión, ubicado en la central remota de monitoreo, queda fuera del alcance del presente proyecto.
-
-## Diagrama de Bloques Funcionales
-![Diagrama de Bloques Funcionales](../master/doc/BlockDiagram.png)
-
+The project's goal is to build a monitor of a railway relays test process by sensing both digital and current signals and reporting them to a remote server in order to verify the correct behavior of the relays under test.
