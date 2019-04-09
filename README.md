@@ -1,8 +1,4 @@
-# DIMBA
-## Diseño e Implementación del Monitor de Barreras
+# RRTESTER
+## Design and implementation of a Railway Relay Tester system
 
-El presente proyecto tiene por objetivo desarrollar el subsistema de Nivel Monitor, ubicado sobre cada paso a nivel, que sensará las señales de entrada y transferirá datos a una central remota de monitoreo correspondiente al Nivel de Gestión. El subsistema de Nivel de Gestión, ubicado en la central remota de monitoreo, queda fuera del alcance del presente proyecto.
-
-## Diagrama de Bloques Funcionales
-![Diagrama de Bloques Funcionales](../master/doc/BlockDiagram.png)
-
+The objective of this project is to develop the firmware operating a relay tester. The relays to work with are a specific type used only on railway systems.
