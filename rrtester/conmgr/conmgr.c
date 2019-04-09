@@ -5,14 +5,13 @@
 
 /* -------------------------- Development history -------------------------- */
 /*
- *  2018.05.15  DaBa  v1.0.01  Initial version
- *  2018.05.07  LeFr  v1.0.00  Initial version
  */
 
 /* -------------------------------- Authors -------------------------------- */
 /*
- *  DaBa  Dario Bali�a      db@vortexmakes.com
+ *  DaBa  Dario Baliña      db@vortexmakes.com
  *  LeFr  Leandro Francucci lf@vortexmakes.com
+ *  CaMa  Carlos Mancón     manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -24,7 +23,7 @@
 #include "modmgr.h"
 #include "modcmd.h"
 #include "mqttProt.h"
-#include "dimbaCfg.h"
+#include "rrtesterCfg.h"
 #include "signals.h"
 #include "rtime.h"
 #include "bsp.h"
@@ -640,8 +639,8 @@ storeImei(ConMgr *const me, RKH_EVT_T *pe)
     p = RKH_UPCAST(ImeiEvt, pe);
     strcpy(me->Imei, p->buf);
 
-    dimbaCfg_clientId(me->Imei + IMEI_SNR_OFFSET);
-    dimbaCfg_topic(me->Imei + IMEI_SNR_OFFSET);
+    rrtesterCfg_clientId(me->Imei + IMEI_SNR_OFFSET);
+    rrtesterCfg_topic(me->Imei + IMEI_SNR_OFFSET);
 }
 
 static void

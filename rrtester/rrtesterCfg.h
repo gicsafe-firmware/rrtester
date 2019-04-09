@@ -1,6 +1,6 @@
 /**
- *  \file       dimbaCfg.h
- *  \brief      Specification for configure Dimba.
+ *  \file       rrtesterCfg.h
+ *  \brief      Specification for configure rrtester.
  */
 
 /* -------------------------- Development history -------------------------- */
@@ -11,12 +11,13 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  DaBa  Dario Baliña       db@vortexmakes.com
+ *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
 /* --------------------------------- Module -------------------------------- */
-#ifndef __DIMBACFG_H__
-#define __DIMBACFG_H__
+#ifndef __RRTESTERCFG_H__
+#define __RRTESTERCFG_H__
 
 /* ----------------------------- Include files ----------------------------- */
 /* ---------------------- External C language linkage ---------------------- */
@@ -29,8 +30,8 @@ extern "C" {
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-void dimbaCfg_clientId(char *pid);
-void dimbaCfg_topic(char *topic);
+void rrtesterCfg_clientId(char *pid);
+void rrtesterCfg_topic(char *topic);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus

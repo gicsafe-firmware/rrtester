@@ -5,12 +5,12 @@
 
 /* -------------------------- Development history -------------------------- */
 /*
- *  2018.06.22  DaBa  v1.0.00  Initial version
  */
 
 /* -------------------------------- Authors -------------------------------- */
 /*
- *  DaBa Dar�o Bali�a  db@vortexmakes.com
+ *  DaBa  Darío Baliña      db@vortexmakes.com
+ *  CaMa  Carlos Mancón     manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -53,7 +53,7 @@ getNextPublishTime(int nSamples)
 
 /* ---------------------------- Global functions --------------------------- */
 rui16_t
-publishDimba(AppData *appMsg)
+publishrrtester(AppData *appMsg)
 {
     AnSampleSet anSet;
     IOChg ioChg[NUM_DI_SAMPLES_GET];

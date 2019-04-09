@@ -5,16 +5,13 @@
 
 /* -------------------------- Development history -------------------------- */
 /*
- *  2018.05.17  LeFr  Initial version
- *  2018.06.17  Daba  Publisher
- *  2019.03.19  Daba  Ethernet Connection Manager
- *  2019.03.29  Daba  FreeRtos integration
  */
 
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
- *  DaBa  Dario Bali#a       db@vortexmakes.com
+ *  DaBa  Dario Baliña       db@vortexmakes.com
+ *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -26,7 +23,7 @@
 #include "bsp.h"
 #include "signals.h"
 #include "mqttProt.h"
-#include "dimbaCfg.h"
+#include "rrtesterCfg.h"
 #include "ethMgr.h"
 #include "conmgr.h"
 #include "modmgr.h"
@@ -103,15 +100,15 @@ setupTraceFilters(void)
 
 /* ---------------------------- Global functions --------------------------- */
 void
-dimbaCfg_clientId(char *pid)
+rrtesterCfg_clientId(char *pid)
 {
     strcpy(mqttProtCfg.clientId, pid);
 }
 
 void
-dimbaCfg_topic(char *t)
+rrtesterCfg_topic(char *t)
 {
-    sprintf(mqttProtCfg.topic, "/dimba/%s", t);
+    sprintf(mqttProtCfg.topic, "/rrtester/%s", t);
 }
 
 void
@@ -132,7 +129,7 @@ rkh_startupTask(void *pvParameter)
     mqttProtCfg.qos = 1;
     strcpy(mqttProtCfg.clientId, "");
     strcpy(mqttProtCfg.topic, "");
-    MQTTProt_ctor(&mqttProtCfg, publishDimba);
+    MQTTProt_ctor(&mqttProtCfg, publishrrtester);
 
     RKH_SMA_ACTIVATE(conMgr, ConMgr_qsto, CONMGR_QSTO_SIZE,
                      ConMgrStack, CONMGR_STK_SIZE);

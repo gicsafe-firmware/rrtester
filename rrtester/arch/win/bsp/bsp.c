@@ -7,13 +7,13 @@
 
 /* -------------------------- Development history -------------------------- */
 /*
- *  2018.05.23  DaBa  v0.0.01  Initial version
  */
 
 /* -------------------------------- Authors -------------------------------- */
 /*
- *  DaBa  Dario Bali�a       db@vortexmakes.com
+ *  DaBa  Dario Baliña       db@vortexmakes.com
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
+ *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -44,7 +44,7 @@ RKH_THIS_MODULE
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
 #define ESC                 0x1B
-#define DIMBA_CFG_OPTIONS   "st:f:p:m:h"
+#define RRTESTER_CFG_OPTIONS   "st:f:p:m:h"
 
 #define TEST_TX_PACKET      "----o Ping"
 #define TEST_RX_PACKET      "o---- Pong"
@@ -60,7 +60,7 @@ static FILE *fGsmLog = NULL;
 /* ---------------------------- Local variables ---------------------------- */
 static rui8_t bsp;
 static ModCmdRcvHandler cmdParser;
-static char *opts = (char *)DIMBA_CFG_OPTIONS;
+static char *opts = (char *)RRTESTER_CFG_OPTIONS;
 static const char *helpMessage =
 {
     "\nOption usage:\n"
@@ -89,7 +89,7 @@ static SERIAL_CBACK_T ser_cback =
 static void
 printBanner(void)
 {
-    printf("DIMBA.\n\n");
+    printf("RRTESTER.\n\n");
     printf("RKH version      = %s\n", RKH_RELEASE);
     printf("Port version     = %s\n", rkhport_get_version());
     printf("Port description = %s\n\n", rkhport_get_desc());

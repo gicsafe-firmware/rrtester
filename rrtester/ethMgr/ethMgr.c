@@ -5,12 +5,12 @@
 
 /* -------------------------- Development history -------------------------- */
 /*
- *  2018.05.15  DaBa  v1.0.01  Initial version
  */
 
 /* -------------------------------- Authors -------------------------------- */
 /*
- *  DaBa  Dario Bali#a      db@vortexmakes.com
+ *  DaBa  Dario Baliña      db@vortexmakes.com
+ *  CaMa  Carlos Mancón     manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -19,7 +19,7 @@
 #include <string.h>
 #include "ethMgr.h"
 #include "mqttProt.h"
-#include "dimbaCfg.h"
+#include "rrtesterCfg.h"
 #include "signals.h"
 #include "bsp.h"
 

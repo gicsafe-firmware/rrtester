@@ -5,12 +5,12 @@
 
 /* -------------------------- Development history -------------------------- */
 /*
- *  2018.06.22  DaBa  v1.0.00  Initial version
  */
 
 /* -------------------------------- Authors -------------------------------- */
 /*
- *  DaBa DarÌo BaliÒa  db@vortexmakes.com
+ *  DaBa  Dar√≠o Bali√±a      db@vortexmakes.com
+ *  CaMa  Carlos Manc√≥n     manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -36,7 +36,7 @@ extern "C" {
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-rui16_t publishDimba(AppData *appMsg);
+rui16_t publishrrtester(AppData *appMsg);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus
