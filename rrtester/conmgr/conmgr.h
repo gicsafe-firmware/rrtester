@@ -11,8 +11,9 @@
 
 /* -------------------------------- Authors -------------------------------- */
 /*
- *  DaBa  Dario Bali�a      db@vortexmakes.com
+ *  DaBa  Dario Baliña      db@vortexmakes.com
  *  LeFr  Leandro Francucci lf@vortexmakes.com
+ *  CaMa  Carlos Mancón     manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -23,7 +24,7 @@
 /* ----------------------------- Include files ----------------------------- */
 #include "rkh.h"
 #include "epoch.h"
-#include "modMgr.h"
+#include "modmgr.h"
 
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus

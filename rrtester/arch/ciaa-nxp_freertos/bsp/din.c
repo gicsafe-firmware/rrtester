@@ -17,7 +17,7 @@
 /* ----------------------------- Include files ----------------------------- */
 #include "rkh.h"
 #include "sapi.h"
-#include "IOChgDet.h"
+#include "ioChgDet.h"
 #include "din.h"
 #include "mTimeCfg.h"
 

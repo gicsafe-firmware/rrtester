@@ -11,12 +11,13 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci lf@vortexmakes.com
+ *  CaMa  Carlos Mancón     manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
 #include <string.h>
-#include "IoChgDet.h"
+#include "ioChgDet.h"
 #include "CirBuffer.h"
 #include "epoch.h"
 
