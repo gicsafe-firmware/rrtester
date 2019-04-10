@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>dimba_freertos</name>
+	<name>rrtester_freertos</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -35,11 +35,6 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>src/dimba</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
 			<name>src/jWrite</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
@@ -51,6 +46,11 @@
 		</link>
 		<link>
 			<name>src/rkh</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
@@ -215,121 +215,6 @@
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/uartisr.h</locationURI>
 		</link>
 		<link>
-			<name>src/dimba/CirBuffer</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/adconv</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/adconv</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/anIn</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/anIn</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/anSampler</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/bsp.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/bsp.h</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/conmgr</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/conmgr</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/dIn</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/dIn</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/date</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/date</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/emaFilter</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/emaFilter</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/epoch</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/ethMgr</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/ethMgr</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/ioChgDet</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/mTime</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/mTime</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/main.c</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/main.c</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/modcmd</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/modcmd</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/modmgr</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/modmgr</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/mqttProt</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/mqttProt</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/parser</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/publisher</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/publisher</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/rkhcfg.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/rkhcfg.h</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/rtime</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/rtime</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/signals.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/signals.h</locationURI>
-		</link>
-		<link>
-			<name>src/dimba/sspcfg.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sspcfg.h</locationURI>
-		</link>
-		<link>
 			<name>src/jWrite/jWrite.c</name>
 			<type>1</type>
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/jWrite/jWrite/jWrite.c</locationURI>
@@ -408,6 +293,121 @@
 			<name>src/rkh/rkhtrc_stream.c</name>
 			<type>1</type>
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/trc/src/rkhtrc_stream.c</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/CirBuffer</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/adconv</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/adconv</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/anIn</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/anIn</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/anSampler</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/bsp.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/bsp.h</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/conmgr</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/conmgr</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/dIn</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/dIn</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/date</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/date</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/emaFilter</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/emaFilter</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/epoch</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/ethMgr</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ethMgr</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/ioChgDet</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/mTime</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/mTime</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/main.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/main.c</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/modcmd</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/modcmd</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/modmgr</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/modmgr</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/mqttProt</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/mqttProt</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/parser</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/publisher</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/publisher</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/rkhcfg.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/rkhcfg.h</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/rtime</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/rtime</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/signals.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/signals.h</locationURI>
+		</link>
+		<link>
+			<name>src/rrtester/sspcfg.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/sspcfg.h</locationURI>
 		</link>
 		<link>
 			<name>src/ssp/ssp.c</name>
@@ -555,52 +555,52 @@
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi_rtos/src/sapi_uart.c</locationURI>
 		</link>
 		<link>
-			<name>src/dimba/CirBuffer/CirBuffer.c</name>
+			<name>src/rrtester/CirBuffer/CirBuffer.c</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/CirBuffer/src/CirBuffer.c</locationURI>
 		</link>
 		<link>
-			<name>src/dimba/CirBuffer/CirBuffer.h</name>
+			<name>src/rrtester/CirBuffer/CirBuffer.h</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/CirBuffer/inc/CirBuffer.h</locationURI>
 		</link>
 		<link>
-			<name>src/dimba/anSampler/anSampler.c</name>
+			<name>src/rrtester/anSampler/anSampler.c</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/anSampler/src/anSampler.c</locationURI>
 		</link>
 		<link>
-			<name>src/dimba/anSampler/anSampler.h</name>
+			<name>src/rrtester/anSampler/anSampler.h</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/anSampler/inc/anSampler.h</locationURI>
 		</link>
 		<link>
-			<name>src/dimba/epoch/epoch.c</name>
+			<name>src/rrtester/epoch/epoch.c</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/epoch/src/epoch.c</locationURI>
 		</link>
 		<link>
-			<name>src/dimba/epoch/epoch.h</name>
+			<name>src/rrtester/epoch/epoch.h</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/epoch/inc/epoch.h</locationURI>
 		</link>
 		<link>
-			<name>src/dimba/ioChgDet/ioChgDet.c</name>
+			<name>src/rrtester/ioChgDet/ioChgDet.c</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/ioChgDet/src/ioChgDet.c</locationURI>
 		</link>
 		<link>
-			<name>src/dimba/ioChgDet/ioChgDet.h</name>
+			<name>src/rrtester/ioChgDet/ioChgDet.h</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/ioChgDet/inc/ioChgDet.h</locationURI>
 		</link>
 		<link>
-			<name>src/dimba/parser/sim900parser.c</name>
+			<name>src/rrtester/parser/sim900parser.c</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/parser/sim900/sim900parser.c</locationURI>
 		</link>
 		<link>
-			<name>src/dimba/parser/sim900parser.h</name>
+			<name>src/rrtester/parser/sim900parser.h</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/parser/sim900/sim900parser.h</locationURI>
 		</link>
@@ -608,15 +608,15 @@
 	<variableList>
 		<variable>
 			<name>copy_PARENT</name>
-			<value>file:/E:/vortex/trenes/dimba</value>
+			<value>file:/E:/vortex/trenes/rrtester</value>
 		</variable>
 		<variable>
 			<name>copy_PARENT1</name>
-			<value>$%7Bcopy_PARENT%7D/dimba/arch/ciaa-nxp_freertos</value>
+			<value>$%7Bcopy_PARENT%7D/rrtester/arch/ciaa-nxp_freertos</value>
 		</variable>
 		<variable>
 			<name>copy_PARENT12</name>
-			<value>$%7Bcopy_PARENT%7D/dimba</value>
+			<value>$%7Bcopy_PARENT%7D/rrtester</value>
 		</variable>
 	</variableList>
 </projectDescription>

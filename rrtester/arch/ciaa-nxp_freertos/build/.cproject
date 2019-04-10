@@ -106,7 +106,7 @@
 								<option id="com.crt.advproject.link.gcc.multicore.master.1443381831" name="Multicore master" superClass="com.crt.advproject.link.gcc.multicore.master" useByScannerDiscovery="false"/>
 								<option id="com.crt.advproject.link.gcc.multicore.master.userobjs.1061522281" name="Slave Objects (not visible)" superClass="com.crt.advproject.link.gcc.multicore.master.userobjs" useByScannerDiscovery="false" valueType="userObjs"/>
 								<option id="com.crt.advproject.link.arch.2015653506" name="Architecture" superClass="com.crt.advproject.link.arch" useByScannerDiscovery="false" value="com.crt.advproject.link.target.cm4" valueType="enumerated"/>
-								<option id="com.crt.advproject.link.script.1980150676" name="Linker script" superClass="com.crt.advproject.link.script" useByScannerDiscovery="false" value="&quot;dimba_freertos_Debug.ld&quot;" valueType="string"/>
+								<option id="com.crt.advproject.link.script.1980150676" name="Linker script" superClass="com.crt.advproject.link.script" useByScannerDiscovery="false" value="&quot;rrtester_freertos_Debug.ld&quot;" valueType="string"/>
 								<option id="com.crt.advproject.link.manage.570933948" name="Manage linker script" superClass="com.crt.advproject.link.manage" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option id="gnu.c.link.option.nostdlibs.1734164758" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option id="gnu.c.link.option.other.1370005670" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" useByScannerDiscovery="false" valueType="stringList">
@@ -126,7 +126,7 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="com.crt.advproject.config.exe.debug.1287796118.623727187" name="CirBuffer.c" rcbsApplicability="disable" resourcePath="src/dimba/CirBuffer/CirBuffer.c" toolsToInvoke="com.crt.advproject.gcc.exe.debug.110044005.1460941935">
+					<fileInfo id="com.crt.advproject.config.exe.debug.1287796118.623727187" name="CirBuffer.c" rcbsApplicability="disable" resourcePath="src/rrtester/CirBuffer/CirBuffer.c" toolsToInvoke="com.crt.advproject.gcc.exe.debug.110044005.1460941935">
 						<tool id="com.crt.advproject.gcc.exe.debug.110044005.1460941935" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.debug.110044005"/>
 					</fileInfo>
 					<sourceEntries>
@@ -241,7 +241,7 @@
 								<option id="com.crt.advproject.link.gcc.multicore.master.1300725781" name="Multicore master" superClass="com.crt.advproject.link.gcc.multicore.master" useByScannerDiscovery="false"/>
 								<option id="com.crt.advproject.link.gcc.multicore.master.userobjs.761860408" name="Slave Objects (not visible)" superClass="com.crt.advproject.link.gcc.multicore.master.userobjs" useByScannerDiscovery="false" valueType="userObjs"/>
 								<option id="com.crt.advproject.link.arch.1185060931" name="Architecture" superClass="com.crt.advproject.link.arch" useByScannerDiscovery="false" value="com.crt.advproject.link.target.cm4" valueType="enumerated"/>
-								<option id="com.crt.advproject.link.script.1821745044" name="Linker script" superClass="com.crt.advproject.link.script" useByScannerDiscovery="false" value="&quot;dimba_Release.ld&quot;" valueType="string"/>
+								<option id="com.crt.advproject.link.script.1821745044" name="Linker script" superClass="com.crt.advproject.link.script" useByScannerDiscovery="false" value="&quot;rrtester_Release.ld&quot;" valueType="string"/>
 								<option id="com.crt.advproject.link.manage.1429101189" name="Manage linker script" superClass="com.crt.advproject.link.manage" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option id="gnu.c.link.option.nostdlibs.1992524094" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option id="gnu.c.link.option.other.1432597896" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" useByScannerDiscovery="false" valueType="stringList">
@@ -362,10 +362,10 @@
 	<storageModule moduleId="refreshScope" versionNumber="2">
 		<configuration configurationName="Debug_rtos"/>
 		<configuration configurationName="Debug">
-			<resource resourceType="PROJECT" workspacePath="/dimba"/>
+			<resource resourceType="PROJECT" workspacePath="/rrtester"/>
 		</configuration>
 		<configuration configurationName="Release">
-			<resource resourceType="PROJECT" workspacePath="/dimba"/>
+			<resource resourceType="PROJECT" workspacePath="/rrtester"/>
 		</configuration>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
