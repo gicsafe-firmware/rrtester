@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\..\main.c">
-      <Filter>dimba</Filter>
+      <Filter>rrtester</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_bittbl.c">
       <Filter>rkh</Filter>
@@ -74,19 +74,19 @@
       <Filter>ssp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\modmgr\modmgr.c">
-      <Filter>dimba\modmgr</Filter>
+      <Filter>rrtester\modmgr</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\conmgr\conmgr.c">
-      <Filter>dimba\conmgr</Filter>
+      <Filter>rrtester\conmgr</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\parser\sim900\sim900parser.c">
-      <Filter>dimba\parser</Filter>
+      <Filter>rrtester\parser</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\modcmd\modcmdSim900.c">
-      <Filter>dimba\modcmd</Filter>
+      <Filter>rrtester\modcmd</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\mqttProt\mqttProt.c">
-      <Filter>dimba\mqttProt</Filter>
+      <Filter>rrtester\mqttProt</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\third-party\MQTT-C\src\mqtt.c">
       <Filter>MQTT-C</Filter>
@@ -97,19 +97,19 @@
     <ClCompile Include="..\bsp\dIn.c">
       <Filter>bsp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\ioChgDet\ioChgDet.c">
+    <ClCompile Include="..\..\..\ioChgDet\src\ioChgDet.c">
       <Filter>ioChgDet</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\CirBuffer\CirBuffer.c">
+    <ClCompile Include="..\..\..\CirBuffer\src\CirBuffer.c">
       <Filter>CirBuffer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\anSampler\anSampler.c">
+    <ClCompile Include="..\..\..\anSampler\src\anSampler.c">
       <Filter>anSampler</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\adconv\adconv.c">
       <Filter>adconv</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\epoch\epoch.c">
+    <ClCompile Include="..\..\..\epoch\src\epoch.c">
       <Filter>epoch</Filter>
     </ClCompile>
     <ClCompile Include="..\bsp\rtime.c">
@@ -153,37 +153,37 @@
     <Filter Include="ssp">
       <UniqueIdentifier>{86704938-4163-4798-ab82-811df96cd54d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="dimba">
+    <Filter Include="rrtester">
       <UniqueIdentifier>{569708bf-8a07-44eb-af49-1b64ee9a9e98}</UniqueIdentifier>
     </Filter>
-    <Filter Include="dimba\modmgr">
+    <Filter Include="rrtester\modmgr">
       <UniqueIdentifier>{c1a6b20c-627f-4c68-a831-9222b6abc2a0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="dimba\conmgr">
+    <Filter Include="rrtester\conmgr">
       <UniqueIdentifier>{6c74171c-7547-4bab-8478-d886a7adb11a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="dimba\modcmd">
+    <Filter Include="rrtester\modcmd">
       <UniqueIdentifier>{ce828ad4-e2e1-4623-88a3-f1d4386844fb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="dimba\parser">
+    <Filter Include="rrtester\parser">
       <UniqueIdentifier>{fe14fea3-8785-4a4d-8be0-f5e70d94a5f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="dimba\mqttProt">
+    <Filter Include="rrtester\mqttProt">
       <UniqueIdentifier>{ea3a0de7-30de-4c7a-a2b3-da537c3bbe1c}</UniqueIdentifier>
     </Filter>
     <Filter Include="MQTT-C">
       <UniqueIdentifier>{3eb97c3d-dd65-405e-bc99-f43ad7a1d496}</UniqueIdentifier>
     </Filter>
-    <Filter Include="epoch">
+    <Filter Include="epoch\inc">
       <UniqueIdentifier>{5c666b64-01b7-4fca-9537-4c583a32bc6d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CirBuffer">
+    <Filter Include="CirBuffer\inc">
       <UniqueIdentifier>{add1b628-dbb7-480b-a20f-58b2a5959442}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ioChgDet">
+    <Filter Include="ioChgDet\inc">
       <UniqueIdentifier>{34edcf4d-42ca-4630-986e-151e66ec3860}</UniqueIdentifier>
     </Filter>
-    <Filter Include="anSampler">
+    <Filter Include="anSampler\inc">
       <UniqueIdentifier>{761e4ea1-f378-497b-a4bf-90632bc7aaa1}</UniqueIdentifier>
     </Filter>
     <Filter Include="mTime">
@@ -207,10 +207,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\rkhcfg.h">
-      <Filter>dimba</Filter>
+      <Filter>rrtester</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\bsp.h">
-      <Filter>dimba</Filter>
+      <Filter>rrtester</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\mTime\mTime.h">
       <Filter>mTime</Filter>
