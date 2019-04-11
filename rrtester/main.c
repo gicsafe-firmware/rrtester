@@ -49,15 +49,15 @@
 
 /* ------------------------------- Constants ------------------------------- */
 #ifdef __NO_OFFICIAL_PORT__
-#define modmgr_stk_size         512
-#define conmgr_stk_size         512
-#define mqttprot_stk_size       512
-#define ethmgr_stk_size         512
+#define MODMGR_STK_SIZE         512
+#define CONMGR_STK_SIZE         512
+#define MQTTPROT_STK_SIZE       512
+#define ETHMGR_STK_SIZE         512
 #else
-#define modmgr_stk_size         0
-#define conmgr_stk_size         0
-#define mqttprot_stk_size       0
-#define ethmgr_stk_size         0
+#define MODMGR_STK_SIZE         0
+#define CONMGR_STK_SIZE         0
+#define MQTTPROT_STK_SIZE       0
+#define ETHMGR_STK_SIZE         0
 #endif
 
 /* ---------------------------- Local data types --------------------------- */
