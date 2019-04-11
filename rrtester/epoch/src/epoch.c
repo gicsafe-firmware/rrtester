@@ -79,7 +79,7 @@ updStep_start(void)
 
     currTime = rtime_get();
     isValid = verifyTime(currTime);
-    nextTime = (isValid == 0) ? *currTime : (Time)dftTime;
+    nextTime = (isValid == 0) ? *currTime : dftTime;
     updatingEpoch = 0;
     return updatingEpoch;
 }

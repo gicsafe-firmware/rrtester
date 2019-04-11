@@ -126,9 +126,6 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="com.crt.advproject.config.exe.debug.1287796118.623727187" name="CirBuffer.c" rcbsApplicability="disable" resourcePath="src/rrtester/CirBuffer/CirBuffer.c" toolsToInvoke="com.crt.advproject.gcc.exe.debug.110044005.1460941935">
-						<tool id="com.crt.advproject.gcc.exe.debug.110044005.1460941935" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.debug.110044005"/>
-					</fileInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>

@@ -276,6 +276,11 @@ ser_tx_isr( void )
 }
 
 void
+bsp_eth_open(void)
+{
+}
+
+void
 bsp_serial_open(int ch)
 {
 	if ((fGsmLog = fopen("UartGSM.log","w+b")) == NULL)

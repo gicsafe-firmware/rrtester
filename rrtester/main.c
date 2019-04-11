@@ -48,24 +48,36 @@
 #define SIZEOF_EP2_BLOCK    sizeof(ModMgrEvt)
 
 /* ------------------------------- Constants ------------------------------- */
-#define MODMGR_STK_SIZE         512
-#define CONMGR_STK_SIZE         512
-#define MQTTPROT_STK_SIZE       512
-#define ETHMGR_STK_SIZE         512
+#ifdef __NO_OFFICIAL_PORT__
+#define modmgr_stk_size         512
+#define conmgr_stk_size         512
+#define mqttprot_stk_size       512
+#define ethmgr_stk_size         512
+#else
+#define modmgr_stk_size         0
+#define conmgr_stk_size         0
+#define mqttprot_stk_size       0
+#define ethmgr_stk_size         0
+#endif
 
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
+#ifdef __NO_OFFICIAL_PORT__
 static RKH_THREAD_STK_TYPE ModMgrStack[MODMGR_STK_SIZE];
-static RKH_EVT_T *ModMgr_qsto[MODMGR_QSTO_SIZE];
-
 static RKH_THREAD_STK_TYPE ConMgrStack[CONMGR_STK_SIZE];
-static RKH_EVT_T *ConMgr_qsto[CONMGR_QSTO_SIZE];
-
 static RKH_THREAD_STK_TYPE EthMGRStack[ETHMGR_STK_SIZE];
-static RKH_EVT_T *EthMgr_qsto[CONMGR_QSTO_SIZE];
-
 static RKH_THREAD_STK_TYPE MQTTProtStack[MQTTPROT_STK_SIZE];
+#else
+#define ModMgrStack     0
+#define ConMgrStack     0
+#define EthMGRStack     0
+#define MQTTProtStack   0
+#endif
+
+static RKH_EVT_T *ModMgr_qsto[MODMGR_QSTO_SIZE];
+static RKH_EVT_T *ConMgr_qsto[CONMGR_QSTO_SIZE];
+static RKH_EVT_T *EthMgr_qsto[CONMGR_QSTO_SIZE];
 static RKH_EVT_T *MQTTProt_qsto[MQTTPROT_QSTO_SIZE];
 
 static rui8_t evPool0Sto[SIZEOF_EP0STO],
@@ -76,6 +88,9 @@ static RKH_ROM_STATIC_EVENT(e_Open, evOpen);
 static MQTTProtCfg mqttProtCfg;
 
 /* ----------------------- Local function prototypes ----------------------- */
+static void setupTraceFilters(void);
+static void rrtesterStartup(void);
+
 /* ---------------------------- Local functions ---------------------------- */
 static void
 setupTraceFilters(void)
@@ -98,21 +113,8 @@ setupTraceFilters(void)
     RKH_FILTER_OFF_ALL_SIGNALS();
 }
 
-/* ---------------------------- Global functions --------------------------- */
-void
-rrtesterCfg_clientId(char *pid)
-{
-    strcpy(mqttProtCfg.clientId, pid);
-}
-
-void
-rrtesterCfg_topic(char *t)
-{
-    sprintf(mqttProtCfg.topic, "/rrtester/%s", t);
-}
-
-void
-rkh_startupTask(void *pvParameter)
+static void
+rrtesterStartup(void)
 {
     setupTraceFilters();
 
@@ -142,11 +144,32 @@ rkh_startupTask(void *pvParameter)
 
     RKH_SMA_POST_FIFO(conMgr, &e_Open, 0);
     RKH_SMA_POST_FIFO(ethMgr, &e_Open, 0);
+}
+
+/* ---------------------------- Global functions --------------------------- */
+void
+rrtesterCfg_clientId(char *pid)
+{
+    strcpy(mqttProtCfg.clientId, pid);
+}
+
+void
+rrtesterCfg_topic(char *t)
+{
+    sprintf(mqttProtCfg.topic, "/rrtester/%s", t);
+}
+
+#ifdef __NO_OFFICIAL_PORT__
+void
+rkh_startupTask(void *pvParameter)
+{
+    rrtesterStartup();
 
     rkh_fwk_enter();
 
     vTaskDelete(NULL);
 }
+#endif
 
 int
 main(int argc, char *argv[])
@@ -160,7 +183,15 @@ main(int argc, char *argv[])
 
     rkh_fwk_init();
 
+#ifdef __NO_OFFICIAL_PORT__
     vTaskStartScheduler();
+#else
+    rrtesterStartup();
+    
+    rkh_fwk_enter();
+
+    RKH_TRC_CLOSE();
+#endif
 
     return 0;
 }

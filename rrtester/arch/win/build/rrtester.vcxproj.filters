@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\..\main.c">
-      <Filter>rrtester</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_bittbl.c">
       <Filter>rkh</Filter>
     </ClCompile>
@@ -97,20 +94,8 @@
     <ClCompile Include="..\bsp\dIn.c">
       <Filter>bsp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\ioChgDet\src\ioChgDet.c">
-      <Filter>ioChgDet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\CirBuffer\src\CirBuffer.c">
-      <Filter>CirBuffer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\anSampler\src\anSampler.c">
-      <Filter>anSampler</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\adconv\adconv.c">
       <Filter>adconv</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\epoch\src\epoch.c">
-      <Filter>epoch</Filter>
     </ClCompile>
     <ClCompile Include="..\bsp\rtime.c">
       <Filter>bsp</Filter>
@@ -139,6 +124,20 @@
     <ClCompile Include="..\bsp\modpwr.c">
       <Filter>bsp</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\ioChgDet\src\ioChgDet.c" />
+    <ClCompile Include="..\..\..\epoch\src\epoch.c" />
+    <ClCompile Include="..\..\..\CirBuffer\src\CirBuffer.c" />
+    <ClCompile Include="..\..\..\anSampler\src\anSampler.c" />
+    <ClCompile Include="..\..\..\ethMgr\ethMgr.c">
+      <Filter>rrtester\ethMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_rdygrp.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_pubsub.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\main.c" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="rkh">
@@ -174,18 +173,6 @@
     <Filter Include="MQTT-C">
       <UniqueIdentifier>{3eb97c3d-dd65-405e-bc99-f43ad7a1d496}</UniqueIdentifier>
     </Filter>
-    <Filter Include="epoch\inc">
-      <UniqueIdentifier>{5c666b64-01b7-4fca-9537-4c583a32bc6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="CirBuffer\inc">
-      <UniqueIdentifier>{add1b628-dbb7-480b-a20f-58b2a5959442}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ioChgDet\inc">
-      <UniqueIdentifier>{34edcf4d-42ca-4630-986e-151e66ec3860}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="anSampler\inc">
-      <UniqueIdentifier>{761e4ea1-f378-497b-a4bf-90632bc7aaa1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="mTime">
       <UniqueIdentifier>{3fe071f9-30e9-44f6-b455-66e9857303d4}</UniqueIdentifier>
     </Filter>
@@ -203,6 +190,9 @@
     </Filter>
     <Filter Include="publisher">
       <UniqueIdentifier>{dfd773b9-6e97-48f1-a9d9-c4f5fcaebfa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="rrtester\ethMgr">
+      <UniqueIdentifier>{b1b317bd-0dec-461f-91dc-716b85f85bed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
