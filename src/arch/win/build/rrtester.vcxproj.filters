@@ -128,9 +128,6 @@
     <ClCompile Include="..\..\..\epoch\src\epoch.c" />
     <ClCompile Include="..\..\..\CirBuffer\src\CirBuffer.c" />
     <ClCompile Include="..\..\..\anSampler\src\anSampler.c" />
-    <ClCompile Include="..\..\..\ethMgr\ethMgr.c">
-      <Filter>src\ethMgr</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_rdygrp.c">
       <Filter>rkh</Filter>
     </ClCompile>
@@ -138,6 +135,18 @@
       <Filter>rkh</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\main.c" />
+    <ClCompile Include="..\..\..\conMgrEth\ConMgrEth.c">
+      <Filter>src\conMgrEth</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\conMgrEth\ConMgrEthAct.c">
+      <Filter>src\conMgrEth</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\conMgrEth\ConMgrEthActAccces.c">
+      <Filter>src\conMgrEth</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsp\eth.c">
+      <Filter>bsp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="rkh">
@@ -191,8 +200,8 @@
     <Filter Include="publisher">
       <UniqueIdentifier>{dfd773b9-6e97-48f1-a9d9-c4f5fcaebfa5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\ethMgr">
-      <UniqueIdentifier>{b1b317bd-0dec-461f-91dc-716b85f85bed}</UniqueIdentifier>
+    <Filter Include="src\conMgrEth">
+      <UniqueIdentifier>{236c7aef-8f71-4e6b-9098-5ed1f2d40bfc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +225,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\publisher\publisher.h">
       <Filter>publisher</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\conMgrEth\ConMgrEth.h">
+      <Filter>src\conMgrEth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\conMgrEth\ConMgrEthAct.h">
+      <Filter>src\conMgrEth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\conMgrEth\ConMgrEthActRequired.h">
+      <Filter>src\conMgrEth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\conMgrEth\ConMgrEthActAccess.h">
+      <Filter>src\conMgrEth</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

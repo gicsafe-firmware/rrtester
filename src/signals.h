@@ -83,7 +83,9 @@ enum Signals
     evImei,
     evOper,
     evSigLevel,
-    evRestart
+    evRestart,
+    evEthLinkConnect,
+    evEthLinkDisconnect,
 };
 
 /* ------------------------------- Data types ------------------------------ */

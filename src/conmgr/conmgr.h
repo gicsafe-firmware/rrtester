@@ -25,6 +25,7 @@
 #include "rkh.h"
 #include "epoch.h"
 #include "modmgr.h"
+#include "events.h"
 
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
@@ -100,24 +101,6 @@ extern "C" {
 #define MAX_CONSTATUS_NORESP 2
 
 /**
- * Specifies sizeof send / receive buffers.
- */
-#define SEND_BUFF_SIZE      1024
-#define RECV_BUFF_SIZE      1024
-
-/**
- *  ImeiEvt process definitions
- */
-#define IMEI_LENGTH         15
-#define IMEI_BUF_SIZE       IMEI_LENGTH + 1
-
-/**
- *  ImeiEvt process definitions
- */
-#define OPER_LENGTH         10
-#define OPER_BUF_SIZE       OPER_LENGTH + 1
-
-/**
  * GSM Network Provider and Connection specific configurations.
  */
 /* .................................. APN .................................. */
@@ -161,50 +144,6 @@ extern "C" {
 RKH_SMA_DCLR(conMgr);
 
 /* ------------------------------- Data types ------------------------------ */
-typedef struct SendEvt SendEvt;
-struct SendEvt
-{
-    RKH_EVT_T evt;
-    unsigned char buf[SEND_BUFF_SIZE];
-    ruint size;
-};
-
-typedef struct ReceivedEvt ReceivedEvt;
-struct ReceivedEvt
-{
-    RKH_EVT_T evt;
-    unsigned char buf[RECV_BUFF_SIZE];
-    ruint size;
-};
-
-typedef struct LocalTimeEvt LocalTimeEvt;
-struct LocalTimeEvt
-{
-    ModMgrResp e;
-    Time time;
-};
-
-typedef struct ImeiEvt ImeiEvt;
-struct ImeiEvt
-{
-    ModMgrResp e;
-    char buf[IMEI_BUF_SIZE];
-};
-
-typedef struct OperEvt OperEvt;
-struct OperEvt
-{
-    ModMgrResp e;
-    char buf[OPER_BUF_SIZE];
-};
-
-typedef struct SigLevelEvt SigLevelEvt;
-struct SigLevelEvt
-{
-    ModMgrResp e;
-    int value;
-};
-
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
 ReceivedEvt * ConMgr_ReceiveDataGetRef(void);

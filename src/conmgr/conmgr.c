@@ -25,6 +25,7 @@
 #include "mqttProt.h"
 #include "rrtesterCfg.h"
 #include "signals.h"
+#include "events.h"
 #include "rtime.h"
 #include "bsp.h"
 

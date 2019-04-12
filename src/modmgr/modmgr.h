@@ -36,22 +36,6 @@ extern "C" {
 RKH_SMA_DCLR(modMgr);
 
 /* ------------------------------- Data types ------------------------------ */
-typedef struct ModMgrEvt ModMgrEvt;
-struct ModMgrEvt
-{
-    ModCmd args;
-    char cmd[MODMGR_MAX_SIZEOF_CMDSTR];
-    unsigned char *data;
-    ruint nData;
-};
-
-typedef struct ModMgrResp ModMgrResp;
-struct ModMgrResp
-{
-    RKH_EVT_T evt;
-    RKH_SIG_T fwdEvt;
-};
-
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
 /* -------------------- External C language linkage end -------------------- */

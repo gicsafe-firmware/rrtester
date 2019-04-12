@@ -12,8 +12,8 @@
 
 /* -------------------------------- Authors -------------------------------- */
 /*
+ *  DaBa  Dario Baliña       db@vortexmakes.com
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
- *  DaBa  Dario Bali�a       dariosb@gmail.com
  */
 
 /* --------------------------------- Module -------------------------------- */
@@ -21,6 +21,8 @@
 #define __BSP_H__
 
 /* ----------------------------- Include files ----------------------------- */
+#include "rkhtrc.h"
+
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
 extern "C" {
@@ -39,7 +41,7 @@ enum
 };
 
 /*
- * User trace events id�s
+ * User trace events id's
  */
 enum
 {
@@ -48,7 +50,7 @@ enum
 };
 
 /*
- * Status Led�s
+ * Status Led's
  */
 typedef enum
 {
@@ -60,7 +62,7 @@ typedef enum
 } Status_t;
 
 /*
- * Status Led�s
+ * Status Led's
  */
 
 /* ------------------------------- Data types ------------------------------ */

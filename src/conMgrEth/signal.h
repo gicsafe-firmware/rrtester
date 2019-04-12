@@ -1,23 +1,28 @@
 /**
- *  \file       eth.h
+ *  \file       signal.h
  *  \brief
  */
 
 /* -------------------------- Development history -------------------------- */
+/*
+ */
+
 /* -------------------------------- Authors -------------------------------- */
 /*
- *  DaBa  Dario Baliña db@vortexmakes.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
 /* --------------------------------- Module -------------------------------- */
-#ifndef __ETH_H__
-#define __ETH_H__
+#ifndef __SIGNAL_H__
+#define __SIGNAL_H__
 
 /* ----------------------------- Include files ----------------------------- */
+#include "bsp.h"
+#include "signals.h"
+
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
-extern "C" {
+	extern "C" {
 #endif
 
 /* --------------------------------- Macros -------------------------------- */
@@ -25,10 +30,6 @@ extern "C" {
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-void eth_init(void);
-void eth_socketSend(void);
-void eth_socketRead(void);
-
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus
 }

@@ -1,23 +1,28 @@
 /**
- *  \file       eth.h
+ *  \file       ConMgrEthActRequired.h
  *  \brief
  */
 
 /* -------------------------- Development history -------------------------- */
+/*
+ */
+
 /* -------------------------------- Authors -------------------------------- */
 /*
- *  DaBa  Dario Baliña db@vortexmakes.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
 /* --------------------------------- Module -------------------------------- */
-#ifndef __ETH_H__
-#define __ETH_H__
+#ifndef __CONMGRETHACTREQUIRED_H__
+#define __CONMGRETHACTREQUIRED_H__
 
 /* ----------------------------- Include files ----------------------------- */
+#include "rkhtype.h"
+#include "ConMgrEthActAccess.h"
+
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
-extern "C" {
+	extern "C" {
 #endif
 
 /* --------------------------------- Macros -------------------------------- */
@@ -25,9 +30,14 @@ extern "C" {
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-void eth_init(void);
-void eth_socketSend(void);
+void init(void);
+void eth_socketOpen(void);
+void eth_socketWrite(void);
 void eth_socketRead(void);
+void recvOk(void);
+void sendOk(void);
+void recvFail(void);
+void sendFail(void);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus

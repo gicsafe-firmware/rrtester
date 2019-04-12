@@ -1,20 +1,26 @@
 /**
- *  \file       eth.h
- *  \brief
+ *  \file       ConMgrEth.h
+ *  \brief      Active object's action specifications.
  */
 
 /* -------------------------- Development history -------------------------- */
+/*
+ */
+
 /* -------------------------------- Authors -------------------------------- */
 /*
- *  DaBa  Dario Baliña db@vortexmakes.com
+ *
  */
 
 /* --------------------------------- Notes --------------------------------- */
 /* --------------------------------- Module -------------------------------- */
-#ifndef __ETH_H__
-#define __ETH_H__
+#ifndef __CONMGRETHACT_H__
+#define __CONMGRETHACT_H__
 
 /* ----------------------------- Include files ----------------------------- */
+#include "rkh.h"
+#include "ConMgrEth.h"
+
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
 extern "C" {
@@ -25,9 +31,23 @@ extern "C" {
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-void eth_init(void);
-void eth_socketSend(void);
-void eth_socketRead(void);
+/* ........................ Declares effect actions ........................ */
+void ConMgrEth_ToinactiveExt0(ConMgrEth *const me, RKH_EVT_T *pe);
+void ConMgrEth_idleToreceivingExt7(ConMgrEth *const me, RKH_EVT_T *pe);
+void ConMgrEth_idleTosendingExt8(ConMgrEth *const me, RKH_EVT_T *pe);
+void ConMgrEth_receivingToidleExt10(ConMgrEth *const me, RKH_EVT_T *pe);
+void ConMgrEth_sendingToidleExt11(ConMgrEth *const me, RKH_EVT_T *pe);
+void ConMgrEth_inactiveToinactiveLoc0(ConMgrEth *const me, RKH_EVT_T *pe);
+void ConMgrEth_inactiveToinactiveLoc1(ConMgrEth *const me, RKH_EVT_T *pe);
+void ConMgrEth_activeToactiveLoc2(ConMgrEth *const me, RKH_EVT_T *pe);
+void ConMgrEth_activeToactiveLoc3(ConMgrEth *const me, RKH_EVT_T *pe);
+
+/* ......................... Declares entry actions ........................ */
+void ConMgrEth_enwaitServer(ConMgrEth *const me);
+
+/* ......................... Declares exit actions ......................... */
+
+/* ............................ Declares guards ............................ */
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus

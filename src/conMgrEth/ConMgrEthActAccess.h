@@ -1,23 +1,25 @@
 /**
- *  \file       eth.h
+ *  \file       ConMgrEthActAccess.h
  *  \brief
  */
 
 /* -------------------------- Development history -------------------------- */
+/*
+ */
+
 /* -------------------------------- Authors -------------------------------- */
 /*
- *  DaBa  Dario Baliña db@vortexmakes.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
 /* --------------------------------- Module -------------------------------- */
-#ifndef __ETH_H__
-#define __ETH_H__
+#ifndef __CONMGRETHACTACCESS_H__
+#define __CONMGRETHACTACCESS_H__
 
 /* ----------------------------- Include files ----------------------------- */
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
-extern "C" {
+	extern "C" {
 #endif
 
 /* --------------------------------- Macros -------------------------------- */
@@ -25,10 +27,6 @@ extern "C" {
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-void eth_init(void);
-void eth_socketSend(void);
-void eth_socketRead(void);
-
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus
 }
