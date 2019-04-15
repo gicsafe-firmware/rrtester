@@ -20,8 +20,10 @@
 #include <stdio.h>
 #include "rkh.h"
 #include "rkhfwk_dynevt.h"
+#include "rkhfwk_pubsub.h"
 #include "bsp.h"
 #include "signals.h"
+#include "topics.h"
 #include "mqttProt.h"
 #include "rrtesterCfg.h"
 #include "ConMgrEth.h"
@@ -143,10 +145,8 @@ rrtesterStartup(void)
 #endif
     RKH_SMA_ACTIVATE(mqttProt, MQTTProt_qsto, MQTTPROT_QSTO_SIZE,
                      MQTTProtStack, MQTTPROT_STK_SIZE);
-#ifdef GSM 
-    RKH_SMA_POST_FIFO(conMgr, &e_Open, 0);
-#endif
-    RKH_SMA_POST_FIFO(conMgrEth, &e_Open, 0);
+
+    ConnectionTopic_publish(&e_Open, 0);
 }
 
 /* ---------------------------- Global functions --------------------------- */

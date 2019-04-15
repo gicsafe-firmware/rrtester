@@ -20,6 +20,7 @@
 /* ----------------------------- Include files ----------------------------- */
 #include <stdio.h>
 #include "rkh.h"
+#include "rkhfwk_pubsub.h"
 #include "bsp.h"
 #include "getopt.h"
 #include "trace_io_cfg.h"
@@ -27,6 +28,7 @@
 #include "wserdefs.h"
 
 #include "signals.h"
+#include "topics.h"
 #include "modcmd.h"
 #include "modmgr.h"
 #include "conmgr.h"
@@ -178,7 +180,7 @@ send_signalsFrame(void)
     printf("Write GPRS Socket:\r\n");
     printf("%s\r\n", e_Send.buf);
 
-    RKH_SMA_POST_FIFO(conMgr, RKH_UPCAST(RKH_EVT_T, &e_Send), &bsp);
+    ConnectionTopic_publish(&e_Send, &bsp);
 }
 
 /* ---------------------------- Global functions --------------------------- */
@@ -203,23 +205,22 @@ bsp_keyParser(int c)
     switch(c)
     {
         case ESC:
-            RKH_SMA_POST_FIFO(modMgr, &e_Term, &bsp);
             rkhport_fwk_stop();
             break;
 
         case 'o':
             printf("Open GPRS Socket\r\n");
-            RKH_SMA_POST_FIFO(conMgr, &e_Open, &bsp);
+            ConnectionTopic_publish(&e_Open, &bsp);
             break;
 
         case 'c':
             printf("Close GPRS Socket\r\n");
-            RKH_SMA_POST_FIFO(conMgr, &e_Close, &bsp);
+            ConnectionTopic_publish(&e_Close, &bsp);
             break;
 
         case 'r':
             printf("Read GPRS Socket\r\n");
-            RKH_SMA_POST_FIFO(conMgr, &e_Recv, &bsp);
+            ConnectionTopic_publish(&e_Recv, &bsp);
             break;
 
         case 's':
@@ -230,7 +231,7 @@ bsp_keyParser(int c)
 
             printf("Write GPRS Socket:\r\n");
 
-            RKH_SMA_POST_FIFO(conMgr, RKH_UPCAST(RKH_EVT_T, &e_Send), &bsp);
+            ConnectionTopic_publish(&e_Send, &bsp);
             break;
 
         case 'a':

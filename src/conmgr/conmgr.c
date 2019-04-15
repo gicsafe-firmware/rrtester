@@ -17,6 +17,7 @@
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
 #include "rkh.h"
+#include "rkhfwk_pubsub.h"
 #include <string.h>
 #include "conmgr.h"
 #include "modpwr.h"
@@ -26,6 +27,7 @@
 #include "rrtesterCfg.h"
 #include "signals.h"
 #include "events.h"
+#include "topics.h"
 #include "rtime.h"
 #include "bsp.h"
 
@@ -489,6 +491,8 @@ init(ConMgr *const me, RKH_EVT_T *pe)
 {
 	(void)pe;
 
+    ConnectionTopic_subscribe(me);
+
     RKH_TR_FWK_AO(me);
 
     RKH_TR_FWK_TIMER(&me->timer);
@@ -785,7 +789,7 @@ sendOk(ConMgr *const me, RKH_EVT_T *pe)
     (void)me;
 
     me->retryCount = 0;
-    RKH_SMA_POST_FIFO(mqttProt, &e_Sent, conMgr);
+    ConnectionTopic_publish(&e_Sent, me);
 }
 
 static void
@@ -795,7 +799,7 @@ recvOk(ConMgr *const me, RKH_EVT_T *pe)
     (void)me;
 
     me->retryCount = 0;
-    RKH_SMA_POST_FIFO(mqttProt, RKH_UPCAST(RKH_EVT_T, &e_Received), conMgr);
+    ConnectionTopic_publish(&e_Received, me);
 }
 
 static void
@@ -804,7 +808,7 @@ sendFail(ConMgr *const me, RKH_EVT_T *pe)
     (void)pe;
     (void)me;
 
-    RKH_SMA_POST_FIFO(mqttProt, &e_SendFail, conMgr);
+    ConnectionTopic_publish(&e_SendFail, me);
 	ModCmd_init();
 }
 
@@ -814,7 +818,7 @@ recvFail(ConMgr *const me, RKH_EVT_T *pe)
     (void)pe;
     (void)me;
 
-    RKH_SMA_POST_FIFO(mqttProt, &e_RecvFail, conMgr);
+    ConnectionTopic_publish(&e_RecvFail, me);
 	ModCmd_init();
 }
 
@@ -987,7 +991,7 @@ socketConnected(ConMgr *const me)
     (void)me;
 
     me->retryCount = 0;
-    RKH_SMA_POST_FIFO(mqttProt, &e_NetConnected, conMgr);
+    ConnectionTopic_publish(&e_NetConnected, me);
     bsp_netStatus(ConnectedSt);
 }
 
@@ -1079,7 +1083,7 @@ socketDisconnected(ConMgr *const me)
 {
     (void)me;
 
-    RKH_SMA_POST_FIFO(mqttProt, &e_NetDisconnected, conMgr);
+    ConnectionTopic_publish(&e_NetDisconnected, me);
     bsp_netStatus(DisconnectedSt);
 }
 

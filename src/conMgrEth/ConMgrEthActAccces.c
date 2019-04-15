@@ -12,8 +12,10 @@
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
 #include "rkh.h"
+#include "rkhfwk_pubsub.h"
 #include "signals.h"
 #include "events.h"
+#include "topics.h"
 #include "ConMgrEth.h"
 #include "MqttProt.h"
 #include "ConMgrEthActAccess.h"
@@ -34,31 +36,31 @@ ReceivedEvt e_Received;
 void
 init(void)
 {
-
+    ConnectionTopic_subscribe(conMgrEth);
 }
 
 void
 recvFail(void)
 {
-    RKH_SMA_POST_FIFO(mqttProt, &e_RecvFail, conMgrEth);
+    ConnectionTopic_publish(&e_RecvFail, conMgrEth);
 }
 
 void
 sendFail(void)
 {
-    RKH_SMA_POST_FIFO(mqttProt, &e_SendFail, conMgrEth);
+    ConnectionTopic_publish(&e_SendFail, conMgrEth);
 }
 
 void
 sendOk(void)
 {
-    RKH_SMA_POST_FIFO(mqttProt, &e_Sent, conMgrEth);
+    ConnectionTopic_publish(&e_Sent, conMgrEth);
 }
 
 void
 recvOk(void)
 {
-    RKH_SET_STATIC_EVENT(RKH_UPCAST(RKH_EVT_T, &e_Received), evReceived);
+    ConnectionTopic_publish(&e_Received, conMgrEth);
 }
 
 /* ------------------------------ End of file ------------------------------ */
