@@ -55,6 +55,7 @@
 #include "rkh.h"
 #include "bsp.h"
 #include "din.h"
+#include "eth.h"
 
 RKH_THIS_MODULE
 

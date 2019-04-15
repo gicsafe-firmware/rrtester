@@ -65,7 +65,9 @@ ConMgrEth_ToinactiveExt0(ConMgrEth *const me, RKH_EVT_T *pe)
 		RKH_TR_FWK_OBJ_NAME(ConMgrEth_inactiveToinactiveLoc1, "inactiveToinactiveLoc1");
 		RKH_TR_FWK_OBJ_NAME(ConMgrEth_activeToactiveLoc2, "activeToactiveLoc2");
 		RKH_TR_FWK_OBJ_NAME(ConMgrEth_activeToactiveLoc3, "activeToactiveLoc3");
+		RKH_TR_FWK_OBJ_NAME(ConMgrEth_enconnected, "enconnected");
 		RKH_TR_FWK_OBJ_NAME(ConMgrEth_enwaitServer, "enwaitServer");
+		RKH_TR_FWK_OBJ_NAME(ConMgrEth_exconnected, "exconnected");
 	#endif
 	
 	init();
@@ -121,12 +123,24 @@ ConMgrEth_activeToactiveLoc3(ConMgrEth *const me, RKH_EVT_T *pe)
 
 /* ............................. Entry actions ............................. */
 void 
+ConMgrEth_enconnected(ConMgrEth *const me)
+{
+	eth_socketConnected();
+}
+
+void 
 ConMgrEth_enwaitServer(ConMgrEth *const me)
 {
 	eth_socketOpen();
 }
 
 /* ............................. Exit actions .............................. */
+void 
+ConMgrEth_exconnected(ConMgrEth *const me)
+{
+	eth_socketDisconnected();
+}
+
 /* ................................ Guards ................................. */
 /* ---------------------------- Global functions --------------------------- */
 /* ------------------------------ End of file ------------------------------ */

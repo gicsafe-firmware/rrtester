@@ -43,9 +43,11 @@ void ConMgrEth_activeToactiveLoc2(ConMgrEth *const me, RKH_EVT_T *pe);
 void ConMgrEth_activeToactiveLoc3(ConMgrEth *const me, RKH_EVT_T *pe);
 
 /* ......................... Declares entry actions ........................ */
+void ConMgrEth_enconnected(ConMgrEth *const me);
 void ConMgrEth_enwaitServer(ConMgrEth *const me);
 
 /* ......................... Declares exit actions ......................... */
+void ConMgrEth_exconnected(ConMgrEth *const me);
 
 /* ............................ Declares guards ............................ */
 

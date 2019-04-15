@@ -26,7 +26,11 @@ extern "C" {
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
 void eth_init(void);
-void eth_socketSend(void);
+void eth_deinit(void);
+void eth_updateStatus(void);
+void eth_socketConnected(void);
+void eth_socketDisconnected(void);
+void eth_socketWrite(void);
 void eth_socketRead(void);
 
 /* -------------------- External C language linkage end -------------------- */

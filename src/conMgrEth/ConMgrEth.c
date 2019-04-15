@@ -40,7 +40,7 @@ RKH_CREATE_COMP_REGION_STATE(plugged ,NULL ,NULL ,&active, &waitIp, NULL, RKH_NO
 
 RKH_CREATE_COMP_REGION_STATE(connecting ,NULL ,NULL ,&plugged, &waitServer, NULL, RKH_NO_HISTORY, NULL, NULL, NULL, NULL);
 
-RKH_CREATE_COMP_REGION_STATE(connected ,NULL ,NULL ,&connecting, &idle, NULL, RKH_NO_HISTORY, NULL, NULL, NULL, NULL);
+RKH_CREATE_COMP_REGION_STATE(connected ,ConMgrEth_enconnected ,ConMgrEth_exconnected ,&connecting, &idle, NULL, RKH_NO_HISTORY, NULL, NULL, NULL, NULL);
 
 RKH_CREATE_TRANS_TABLE(inactive)
 RKH_TRREG(evOpen, NULL, NULL, &active),

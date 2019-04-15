@@ -39,6 +39,7 @@
 #include "anSampler.h"
 #include "mTime.h"
 #include "publisher.h"
+#include "eth.h"
 
 
 RKH_THIS_MODULE
@@ -197,6 +198,8 @@ bsp_init(int argc, char *argv[])
     modPwr_init();
     dIn_init();
 	anIn_init();
+
+    eth_init();
 }
 
 void

@@ -34,6 +34,8 @@ void init(void);
 void eth_socketOpen(void);
 void eth_socketWrite(void);
 void eth_socketRead(void);
+void eth_socketConnected(void);
+void eth_socketDisconnected(void);
 void recvOk(void);
 void sendOk(void);
 void recvFail(void);

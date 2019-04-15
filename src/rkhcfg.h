@@ -47,7 +47,7 @@
  *	Specify the maximum number of event signals to be used by the
  *	application.
  */
-#define RKH_CFG_FWK_MAX_SIGNALS         48u
+#define RKH_CFG_FWK_MAX_SIGNALS         64u
 
 /**
  *  Specify the data type of event size. The valid values [in bits] are
