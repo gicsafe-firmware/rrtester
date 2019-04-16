@@ -39,6 +39,8 @@
 #include "rtime.h"
 #include "eth.h"
 
+#include <cr_section_macros.h>
+
 RKH_THIS_MODULE
 
 /* ----------------------------- Local macros ------------------------------ */
@@ -54,8 +56,8 @@ RKH_THIS_MODULE
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
-static RKH_TS_T tstamp;
-static ModCmdRcvHandler cmdParser;
+__BSS(RAM2) static RKH_TS_T tstamp;
+__BSS(RAM2) static ModCmdRcvHandler cmdParser;
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */

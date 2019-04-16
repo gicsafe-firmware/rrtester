@@ -20,6 +20,8 @@
 #include "CirBuffer.h"
 #include "epoch.h"
 
+#include <cr_section_macros.h>
+
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
 /* ---------------------------- Local data types --------------------------- */
@@ -32,7 +34,7 @@ struct IOChgDet
 
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
-static IOChgDet ioChgDet;
+__BSS(RAM2) static IOChgDet ioChgDet;
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */

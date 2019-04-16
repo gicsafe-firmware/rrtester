@@ -28,6 +28,8 @@
 #include "lwip/timers.h"
 #include "netif/etharp.h"
 
+#include <cr_section_macros.h>
+
 #if LWIP_DHCP
 #include "lwip/dhcp.h"
 #endif
@@ -44,7 +46,7 @@
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
-static struct netif lpc_netif;
+__BSS(RAM2) static struct netif lpc_netif;
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */

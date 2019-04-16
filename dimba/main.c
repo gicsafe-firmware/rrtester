@@ -37,6 +37,8 @@
 #include "CirBuffer.h"
 #include "publisher.h"
 
+#include <cr_section_macros.h>
+
 /* ----------------------------- Local macros ------------------------------ */
 #define MQTTPROT_QSTO_SIZE  16
 #define ETHMGR_QSTO_SIZE    8
@@ -59,24 +61,24 @@
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
-static RKH_THREAD_STK_TYPE ModMgrStack[MODMGR_STK_SIZE];
-static RKH_EVT_T *ModMgr_qsto[MODMGR_QSTO_SIZE];
+__BSS(RAM2) static RKH_THREAD_STK_TYPE ModMgrStack[MODMGR_STK_SIZE];
+__BSS(RAM2) static RKH_EVT_T *ModMgr_qsto[MODMGR_QSTO_SIZE];
 
-static RKH_THREAD_STK_TYPE ConMgrStack[CONMGR_STK_SIZE];
-static RKH_EVT_T *ConMgr_qsto[CONMGR_QSTO_SIZE];
+__BSS(RAM2) static RKH_THREAD_STK_TYPE ConMgrStack[CONMGR_STK_SIZE];
+__BSS(RAM2) static RKH_EVT_T *ConMgr_qsto[CONMGR_QSTO_SIZE];
 
-static RKH_THREAD_STK_TYPE EthMGRStack[ETHMGR_STK_SIZE];
-static RKH_EVT_T *EthMgr_qsto[CONMGR_QSTO_SIZE];
+__BSS(RAM2) static RKH_THREAD_STK_TYPE EthMGRStack[ETHMGR_STK_SIZE];
+__BSS(RAM2) static RKH_EVT_T *EthMgr_qsto[CONMGR_QSTO_SIZE];
 
-static RKH_THREAD_STK_TYPE MQTTProtStack[MQTTPROT_STK_SIZE];
-static RKH_EVT_T *MQTTProt_qsto[MQTTPROT_QSTO_SIZE];
+__BSS(RAM2) static RKH_THREAD_STK_TYPE MQTTProtStack[MQTTPROT_STK_SIZE];
+__BSS(RAM2) static RKH_EVT_T *MQTTProt_qsto[MQTTPROT_QSTO_SIZE];
 
 static rui8_t evPool0Sto[SIZEOF_EP0STO],
               evPool1Sto[SIZEOF_EP1STO],
               evPool2Sto[SIZEOF_EP2STO];
 
 static RKH_ROM_STATIC_EVENT(e_Open, evOpen);
-static MQTTProtCfg mqttProtCfg;
+__BSS(RAM2) static MQTTProtCfg mqttProtCfg;
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */

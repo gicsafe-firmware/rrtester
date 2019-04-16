@@ -55,6 +55,8 @@
 #include "FreeRTOSConfig.h"
 #include "FreeRTOS.h"
 
+#include <cr_section_macros.h>
+
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
 RKH_MODULE_NAME(rkhport)
@@ -71,8 +73,8 @@ static rui8_t running;
 
 static StaticQueue_t QueueBuff[RKH_CFG_FWK_MAX_SMA];
 
-static StaticTask_t startupTask;
-static StackType_t startupTaskStack[RKH_STARTUP_STACK_SIZE];
+__BSS(RAM2) static StaticTask_t startupTask;
+__BSS(RAM2) static StackType_t startupTaskStack[RKH_STARTUP_STACK_SIZE];
 
 /* ----------------------- Local function prototypes ----------------------- */
 static void thread_function(void *arg);

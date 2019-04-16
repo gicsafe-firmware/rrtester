@@ -35,6 +35,7 @@
 #include "rkh.h"
 #include "task.h"
 #include "chip.h"
+#include <cr_section_macros.h>
 
 /*****************************************************************************
  * Private types/enumerations/variables
@@ -66,8 +67,8 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer,
 /* If the buffers to be provided to the Idle task are declared inside this
 function then they must be declared static - otherwise they will be allocated on
 the stack and so not exists after this function exits. */
-static StaticTask_t xIdleTaskTCB;
-static StackType_t uxIdleTaskStack[ configMINIMAL_STACK_SIZE ];
+	__BSS(RAM2) static StaticTask_t xIdleTaskTCB;
+	__BSS(RAM2) static StackType_t uxIdleTaskStack[ configMINIMAL_STACK_SIZE ];
 
     /* Pass out a pointer to the StaticTask_t structure in which the Idle task's
     state will be stored. */

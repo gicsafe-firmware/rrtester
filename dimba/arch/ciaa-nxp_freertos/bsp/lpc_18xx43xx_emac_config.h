@@ -56,10 +56,10 @@ extern "C"
 #define PHY_USE_100MBS 1
 
 /* Defines the number of descriptors used for RX */
-#define LPC_NUM_BUFF_RXDESCS 8
+#define LPC_NUM_BUFF_RXDESCS 4
 
 /* Defines the number of descriptors used for TX */
-#define LPC_NUM_BUFF_TXDESCS 8
+#define LPC_NUM_BUFF_TXDESCS 4
 
 /* Disable slow speed memory buffering */
 #define LPC_CHECK_SLOWMEM 1

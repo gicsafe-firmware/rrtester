@@ -49,7 +49,7 @@
 /* pbuf buffers in pool. In zero-copy mode, these buffers are
  * located in peripheral RAM. In copied mode, they are located in
  * internal IRAM */
-#define PBUF_POOL_SIZE                  48
+#define PBUF_POOL_SIZE                  8 //48
 
 /* No padding needed */
 #define ETH_PAD_SIZE                    0
@@ -74,7 +74,7 @@
 
 /* Non-static memory, used with DMA pool */
 #ifdef __CODE_RED
-#define MEM_SIZE                        (64 * 1024)
+#define MEM_SIZE                        (20 * 1024)
 #else
 #define MEM_SIZE                        (24 * 1024)
 #endif
@@ -122,8 +122,8 @@
 #define DEFAULT_THREAD_STACKSIZE        (512)
 #define DEFAULT_ACCEPTMBOX_SIZE         6
 #define DEFAULT_ACCEPTMBOX_SIZE         6
-#define DEFAULT_TCP_RECVMBOX_SIZE       6
-#define DEFAULT_UDP_RECVMBOX_SIZE       6
+#define DEFAULT_TCP_RECVMBOX_SIZE       4
+#define DEFAULT_UDP_RECVMBOX_SIZE       4
 
 /* TCPIP thread must run at higher priority than MAC threads! */
 #define TCPIP_THREAD_PRIO               (configMAX_PRIORITIES - 1)
@@ -132,35 +132,35 @@
 
 #define TCPIP_MBOX_SIZE                 6
 
-#define MEM_LIBC_MALLOC                 1
-#define MEMP_MEM_MALLOC                 1
+#define MEM_LIBC_MALLOC                 0
+#define MEMP_MEM_MALLOC                 0
 
 /* Required for malloc/free */
-#include <stdlib.h>
-#include <stdint.h>
-#include <string.h>
-#include "lpc_types.h"
+//#include <stdlib.h>
+//#include <stdint.h>
+//#include <string.h>
+//#include "lpc_types.h"
 #include "FreeRTOS.h"
 
-/* Reentrant Free */
-#define mem_free vPortFree
-
-/* Reentrant Malloc */
-#define mem_malloc  pvPortMalloc
-
-/* Reentrant Calloc */
-STATIC INLINE void *
-pvPortCalloc(size_t nmemb, size_t size)
-{
-    void *x = mem_malloc(nmemb * size);
-    if (x != NULL)
-    {
-        memset(x, 0, nmemb * size);
-    }
-    return x;
-}
-
-#define mem_calloc pvPortCalloc
+///* Reentrant Free */
+//#define mem_free vPortFree
+//
+///* Reentrant Malloc */
+//#define mem_malloc  pvPortMalloc
+//
+///* Reentrant Calloc */
+//STATIC INLINE void *
+//pvPortCalloc(size_t nmemb, size_t size)
+//{
+//    void *x = mem_malloc(nmemb * size);
+//    if (x != NULL)
+//    {
+//        memset(x, 0, nmemb * size);
+//    }
+//    return x;
+//}
+//
+//#define mem_calloc pvPortCalloc
 
 #endif /* __LWIPOPTS_H_ */
 

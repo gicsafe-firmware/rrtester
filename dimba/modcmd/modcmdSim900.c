@@ -26,7 +26,7 @@
 #include "signals.h"
 #include <string.h>
 #include <stdio.h>
-
+#include <cr_section_macros.h>
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
 /* ---------------------------- Local data types --------------------------- */
@@ -57,7 +57,7 @@ struct CmdTbl
 
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
-static SSP sim900Parser;
+__BSS(RAM2) static SSP sim900Parser;
 
 static const CmdTbl cmdTbl =
 {

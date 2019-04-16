@@ -28,6 +28,8 @@
 #include "epoch.h"
 #include "date.h"
 
+#include <cr_section_macros.h>
+
 /* ----------------------------- Local macros ------------------------------ */
 /* ......................... Declares active object ........................ */
 typedef struct MQTTProt MQTTProt;
@@ -299,10 +301,10 @@ static RKH_ROM_STATIC_EVENT(evDeactivateObj, evDeactivate);
 static RKH_ROM_STATIC_EVENT(evConnAcceptedObj, evConnAccepted);
 static RKH_ROM_STATIC_EVENT(evUnlockedObj, evUnlocked);
 static RKH_ROM_STATIC_EVENT(evRestartObj, evRestart);
-static SendEvt evSendObj;
-static ConnRefusedEvt evConnRefusedObj;
-static LocalSendAll localSend;
-static LocalRecvAll localRecv;
+__BSS(RAM2) static SendEvt evSendObj;
+__BSS(RAM2) static ConnRefusedEvt evConnRefusedObj;
+__BSS(RAM2) static LocalSendAll localSend;
+__BSS(RAM2) static LocalRecvAll localRecv;
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */

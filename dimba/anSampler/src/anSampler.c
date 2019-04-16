@@ -35,6 +35,8 @@
 #include "epoch.h"
 #include "adconv.h"
 
+#include <cr_section_macros.h>
+
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
 /* ---------------------------- Local data types --------------------------- */
@@ -54,7 +56,7 @@ struct AnSampler
 
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
-static AnSampler anSampler;
+__BSS(RAM2) static AnSampler anSampler;
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */

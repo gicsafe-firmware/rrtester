@@ -29,6 +29,8 @@
 #include "rtime.h"
 #include "bsp.h"
 
+#include <cr_section_macros.h>
+
 /* ----------------------------- Local macros ------------------------------ */
 #define SIZEOF_QDEFER   1
 
@@ -449,8 +451,8 @@ static RKH_ROM_STATIC_EVENT(e_SendFail, evSendFail);
 static RKH_ROM_STATIC_EVENT(e_RecvFail, evRecvFail);
 ReceivedEvt e_Received;
 
-static RKH_QUEUE_T qDefer;
-static RKH_EVT_T *qDefer_sto[SIZEOF_QDEFER];
+__BSS(RAM2) static RKH_QUEUE_T qDefer;
+__BSS(RAM2) static RKH_EVT_T *qDefer_sto[SIZEOF_QDEFER];
 
 static Operator operTable[] =
 {
