@@ -18,6 +18,7 @@
 
 /* ----------------------------- Include files ----------------------------- */
 #include "rkhtype.h"
+#include "events.h"
 #include "ConMgrEthActAccess.h"
 
 /* ---------------------- External C language linkage ---------------------- */
@@ -32,7 +33,7 @@
 /* -------------------------- Function prototypes -------------------------- */
 void init(void);
 void eth_socketOpen(void);
-void eth_socketWrite(void);
+#define eth_socketWrite()   _eth_socketWrite(RKH_UPCAST(SendEvt, pe))
 void eth_socketRead(void);
 void eth_socketConnected(void);
 void eth_socketDisconnected(void);

@@ -15,6 +15,8 @@
 #define __ETH_H__
 
 /* ----------------------------- Include files ----------------------------- */
+#include "events.h"
+
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
 extern "C" {
@@ -30,7 +32,7 @@ void eth_deinit(void);
 void eth_updateStatus(void);
 void eth_socketConnected(void);
 void eth_socketDisconnected(void);
-void eth_socketWrite(void);
+void _eth_socketWrite(SendEvt *p);
 void eth_socketRead(void);
 
 /* -------------------- External C language linkage end -------------------- */

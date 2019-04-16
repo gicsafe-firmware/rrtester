@@ -38,7 +38,7 @@
 
 /* ----------------------------- Local macros ------------------------------ */
 #define MQTTPROT_QSTO_SIZE  16
-#define CONMGRETH_QSTO_SIZE    8
+#define CONMGRETH_QSTO_SIZE 8
 #define CONMGR_QSTO_SIZE    8
 #define MODMGR_QSTO_SIZE    8
 

@@ -21,6 +21,8 @@
 #include "conmgr.h"
 
 //#include <winsock2.h>
+#include <winsock.h>
+#include <stdint.h>
 #include <iphlpapi.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -47,12 +49,15 @@ static unsigned adapter[9] = { Unplugged_st, Unplugged_st, Unplugged_st,
                                Unplugged_st, Unplugged_st, Unplugged_st,
                                Unplugged_st, Unplugged_st, Unplugged_st };
 
-static RKH_STATIC_EVENT(e_linkConnected, evEthLinkConnect);
-static RKH_STATIC_EVENT(e_linkDisconnect, evEthLinkDisconnect);
-static RKH_STATIC_EVENT(e_ipStatus, evIPStatus);
-static RKH_STATIC_EVENT(e_connected, evConnected);
+static RKH_ROM_STATIC_EVENT(e_Ok, evOk);
+static RKH_ROM_STATIC_EVENT(e_linkConnected, evEthLinkConnect);
+static RKH_ROM_STATIC_EVENT(e_linkDisconnect, evEthLinkDisconnect);
+static RKH_ROM_STATIC_EVENT(e_ipStatus, evIPStatus);
+static RKH_ROM_STATIC_EVENT(e_connected, evConnected);
+static RKH_ROM_STATIC_EVENT(e_disconnected, evDisconnected);
 static RKH_ROM_STATIC_EVENT(e_NetConnected, evNetConnected);
 static RKH_ROM_STATIC_EVENT(e_NetDisconnected, evNetDisconnected);
+ReceivedEvt e_Received;
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
@@ -164,7 +169,9 @@ check_adapterStatus(PIP_ADAPTER_INFO p, unsigned int i)
 {
 
     if( (p->IpAddressList.IpAddress.String != NULL) && 
-        (p->GatewayList.IpAddress.String != NULL) 
+		(strcmp(p->IpAddressList.IpAddress.String, "0.0.0.0") != 0) &&
+        (p->GatewayList.IpAddress.String != NULL) && 
+		(strcmp(p->GatewayList.IpAddress.String, "0.0.0.0") != 0)
       )
     {
         if(adapter[i] == Unplugged_st )
@@ -172,15 +179,16 @@ check_adapterStatus(PIP_ADAPTER_INFO p, unsigned int i)
             adapter[i] = Plugged_st;
             RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_linkConnected), &eth);
             RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_ipStatus), &eth);
+            printf("Using Ethernet Adapter: %d\n", i);
+            print_adapterInfo(p);
         }
 
-//        retval = getsockopt (socket_fd, SOL_SOCKET, SO_ERROR, &error, &len)int retval = getsockopt (socket_fd, SOL_SOCKET, SO_ERROR, &error, &len)
     }
     else
     {
         if(adapter[i] == Plugged_st )
         {
-            adapter[i] = Plugged_st;
+            adapter[i] = Unplugged_st;
             RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_linkDisconnect),
 						      &eth);
         }
@@ -215,8 +223,12 @@ ethThread(LPVOID par)
 
     for(;;)
     {
+		Sleep(1000);
         if ((dwRetVal = GetAdaptersInfo(pAdapterInfo, &ulOutBufLen)) == NO_ERROR) {
+
             pAdapter = pAdapterInfo;
+			i = 0;
+
             while (pAdapter) {
                 check_adapterStatus(pAdapter, i++);
                 pAdapter = pAdapter->Next;
@@ -224,8 +236,6 @@ ethThread(LPVOID par)
         } else {
             printf("GetAdaptersInfo failed with error: %d\n", dwRetVal);
         }
-        
-	    Sleep(1000);
     }
 
     if (pAdapterInfo)
@@ -239,10 +249,11 @@ eth_init(void)
     DWORD ethId;
     HANDLE ethTh;
 
-
     ethTh = CreateThread(NULL, 1024, &ethThread, 0, 0, &ethId);
     RKH_ASSERT(ethTh != (HANDLE)0);
     SetThreadPriority(ethTh, THREAD_PRIORITY_NORMAL);
+
+    RKH_SET_STATIC_EVENT(RKH_UPCAST(RKH_EVT_T, &e_Received), evReceived);
 }
 
 void
@@ -255,7 +266,6 @@ eth_socketOpen(void)
     char *p;
     int err;
 
-    /* --- INITIALIZATION ----------------------------------- */
     wVersionRequested = MAKEWORD(1, 1);
     err = WSAStartup(wVersionRequested, &wsaData);
     s = INVALID_SOCKET;
@@ -266,26 +276,20 @@ eth_socketOpen(void)
         WSACleanup();
         exit(EXIT_FAILURE);
     }
-    /* ------------------------------------------------------ */
 
-    /* ---- build address structure to bind to socket.-------- */
-    target.sin_family = AF_INET;
+	target.sin_family = AF_INET;
     port = strtol(AZURE_PORT, &p, 10);
     target.sin_port = htons(port);
-    target.sin_addr.s_addr = inet_addr(AZURE_SERVER);
-    /* ------------------------------------------------------ */
-
-    /* ---- create SOCKET-------------------------------------- */
-    s = socket (AF_INET, SOCK_STREAM, IPPROTO_TCP);
+	target.sin_addr.s_addr = inet_addr("127.0.0.1");//AZURE_SERVER);
+    
+	s = socket (AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (s == INVALID_SOCKET)
     {
         printf("socket error %ld", WSAGetLastError());
         WSACleanup();
         exit(EXIT_FAILURE);
     }
-    /* ------------------------------------------------------ */
 
-    /* ---- try CONNECT ----------------------------------------- */
     if (connect(s, (SOCKADDR*)&target, sizeof(target)) == SOCKET_ERROR)
     {
         printf("connect error %ld", WSAGetLastError());
@@ -309,15 +313,39 @@ eth_socketDisconnected(void)
 }
 
 void
-eth_socketWrite(void)
+_eth_socketWrite(SendEvt *p)
 {
-
+    send(s, p->buf, p->size, 0);
+	RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
 }
 
 void
 eth_socketRead(void)
 {
+    int ret;
+    u_long mode;
 
+    mode = 1;  // 1 to enable non-blocking socket
+    ioctlsocket(s, FIONBIO, &mode);
+
+    ret = recv(s, e_Received.buf, sizeof(e_Received.buf), 0);
+
+    if(ret == SOCKET_ERROR)
+    {
+        ret = WSAGetLastError();
+        recvFail();
+
+		ret = 0;
+	}
+    
+	RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
+        
+    mode = 0;  // 0 to enable blocking socket
+    ioctlsocket(s, FIONBIO, &mode);
+
+    e_Received.size = ret;
+
+    ConnectionTopic_publish(&e_Received, conMgrEth);
 }
 
 /* ------------------------------ End of file ------------------------------ */
