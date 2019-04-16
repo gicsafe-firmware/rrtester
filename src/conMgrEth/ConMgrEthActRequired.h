@@ -31,12 +31,13 @@
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-void init(void);
-void eth_socketOpen(void);
-#define eth_socketWrite()   _eth_socketWrite(RKH_UPCAST(SendEvt, pe))
-void eth_socketRead(void);
-void eth_socketConnected(void);
-void eth_socketDisconnected(void);
+#define init()                  _init(me)
+#define socketOpen(ip,port)     _socketOpen(ip,port)
+#define socketWrite()           _socketWrite(RKH_UPCAST(SendEvt, pe))
+#define socketRead()            _socketRead(me)
+#define socketConnected()       _socketConnected(me)
+#define socketDisconnected()    _socketDisconnected(me)
+
 void recvOk(void);
 void sendOk(void);
 void recvFail(void);

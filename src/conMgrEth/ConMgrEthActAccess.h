@@ -27,6 +27,12 @@
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
+void _init(ConMgrEth *const me);
+void _socketOpen(char *ip, char *port);
+void _socketConnected(ConMgrEth *const me);
+void _socketDisconnected(ConMgrEth *const me);
+void _socketWrite(SendEvt *p);
+
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus
 }

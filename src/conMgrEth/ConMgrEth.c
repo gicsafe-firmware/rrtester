@@ -76,14 +76,16 @@ RKH_END_TRANS_TABLE
 
 RKH_CREATE_TRANS_TABLE(receiving)
 RKH_TRREG(evOk, NULL, ConMgrEth_receivingToidleExt10, &idle),
+RKH_TRREG(evError, NULL, ConMgrEth_receivingToidleExt11, &idle),
 RKH_END_TRANS_TABLE
 
 RKH_CREATE_TRANS_TABLE(sending)
-RKH_TRREG(evOk, NULL, ConMgrEth_sendingToidleExt11, &idle),
+RKH_TRREG(evOk, NULL, ConMgrEth_sendingToidleExt12, &idle),
 RKH_END_TRANS_TABLE
 
 RKH_CREATE_TRANS_TABLE(waitServer)
 RKH_TRREG(evConnected, NULL, NULL, &connected),
+RKH_TRREG(evError, NULL, NULL, &connecting),
 RKH_END_TRANS_TABLE
 
 RKH_CREATE_TRANS_TABLE(waitIp)

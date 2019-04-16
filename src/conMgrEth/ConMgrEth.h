@@ -26,6 +26,8 @@ typedef struct ConMgrEth ConMgrEth;
 struct ConMgrEth
 {
     RKH_SMA_T sma;      /* base structure */
+    char * ip;
+    char * port;
 };
 
 /* -------------------------- External variables --------------------------- */

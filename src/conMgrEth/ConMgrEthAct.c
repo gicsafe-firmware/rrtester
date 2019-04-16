@@ -31,7 +31,6 @@
 void 
 ConMgrEth_ToinactiveExt0(ConMgrEth *const me, RKH_EVT_T *pe)
 {
-		
 	RKH_TR_FWK_AO(me);
 	RKH_TR_FWK_QUEUE(&RKH_UPCAST(RKH_SMA_T, me)->equeue);
 	RKH_TR_FWK_STATE(me, &inactive);
@@ -48,6 +47,7 @@ ConMgrEth_ToinactiveExt0(ConMgrEth *const me, RKH_EVT_T *pe)
 	RKH_TR_FWK_SIG(evOpen);
 	RKH_TR_FWK_SIG(evClose);
 	RKH_TR_FWK_SIG(evOk);
+	RKH_TR_FWK_SIG(evError);
 	RKH_TR_FWK_SIG(evEthLinkConnect);
 	RKH_TR_FWK_SIG(evEthLinkDisconnect);
 	RKH_TR_FWK_SIG(evIPStatus);
@@ -60,7 +60,8 @@ ConMgrEth_ToinactiveExt0(ConMgrEth *const me, RKH_EVT_T *pe)
 		RKH_TR_FWK_OBJ_NAME(ConMgrEth_idleToreceivingExt7, "idleToreceivingExt7");
 		RKH_TR_FWK_OBJ_NAME(ConMgrEth_idleTosendingExt8, "idleTosendingExt8");
 		RKH_TR_FWK_OBJ_NAME(ConMgrEth_receivingToidleExt10, "receivingToidleExt10");
-		RKH_TR_FWK_OBJ_NAME(ConMgrEth_sendingToidleExt11, "sendingToidleExt11");
+		RKH_TR_FWK_OBJ_NAME(ConMgrEth_receivingToidleExt11, "receivingToidleExt11");
+		RKH_TR_FWK_OBJ_NAME(ConMgrEth_sendingToidleExt12, "sendingToidleExt12");
 		RKH_TR_FWK_OBJ_NAME(ConMgrEth_inactiveToinactiveLoc0, "inactiveToinactiveLoc0");
 		RKH_TR_FWK_OBJ_NAME(ConMgrEth_inactiveToinactiveLoc1, "inactiveToinactiveLoc1");
 		RKH_TR_FWK_OBJ_NAME(ConMgrEth_activeToactiveLoc2, "activeToactiveLoc2");
@@ -76,13 +77,13 @@ ConMgrEth_ToinactiveExt0(ConMgrEth *const me, RKH_EVT_T *pe)
 void 
 ConMgrEth_idleToreceivingExt7(ConMgrEth *const me, RKH_EVT_T *pe)
 {
-	eth_socketRead();
+	socketRead();
 }
 
 void 
 ConMgrEth_idleTosendingExt8(ConMgrEth *const me, RKH_EVT_T *pe)
 {
-	eth_socketWrite();
+	socketWrite();
 }
 
 void 
@@ -92,7 +93,13 @@ ConMgrEth_receivingToidleExt10(ConMgrEth *const me, RKH_EVT_T *pe)
 }
 
 void 
-ConMgrEth_sendingToidleExt11(ConMgrEth *const me, RKH_EVT_T *pe)
+ConMgrEth_receivingToidleExt11(ConMgrEth *const me, RKH_EVT_T *pe)
+{
+	recvFail();
+}
+
+void 
+ConMgrEth_sendingToidleExt12(ConMgrEth *const me, RKH_EVT_T *pe)
 {
 	sendOk();
 }
@@ -125,20 +132,20 @@ ConMgrEth_activeToactiveLoc3(ConMgrEth *const me, RKH_EVT_T *pe)
 void 
 ConMgrEth_enconnected(ConMgrEth *const me)
 {
-	eth_socketConnected();
+	socketConnected();
 }
 
 void 
 ConMgrEth_enwaitServer(ConMgrEth *const me)
 {
-	eth_socketOpen();
+	socketOpen(me->ip, me->port);
 }
 
 /* ............................. Exit actions .............................. */
 void 
 ConMgrEth_exconnected(ConMgrEth *const me)
 {
-	eth_socketDisconnected();
+	socketDisconnected();
 }
 
 /* ................................ Guards ................................. */

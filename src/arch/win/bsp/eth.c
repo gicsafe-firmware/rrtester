@@ -18,7 +18,6 @@
 #include "signals.h"
 #include "topics.h"
 #include "ConMgrEth.h"
-#include "conmgr.h"
 
 //#include <winsock2.h>
 #include <winsock.h>
@@ -50,14 +49,12 @@ static unsigned adapter[9] = { Unplugged_st, Unplugged_st, Unplugged_st,
                                Unplugged_st, Unplugged_st, Unplugged_st };
 
 static RKH_ROM_STATIC_EVENT(e_Ok, evOk);
+static RKH_ROM_STATIC_EVENT(e_Error, evError);
 static RKH_ROM_STATIC_EVENT(e_linkConnected, evEthLinkConnect);
 static RKH_ROM_STATIC_EVENT(e_linkDisconnect, evEthLinkDisconnect);
 static RKH_ROM_STATIC_EVENT(e_ipStatus, evIPStatus);
 static RKH_ROM_STATIC_EVENT(e_connected, evConnected);
 static RKH_ROM_STATIC_EVENT(e_disconnected, evDisconnected);
-static RKH_ROM_STATIC_EVENT(e_NetConnected, evNetConnected);
-static RKH_ROM_STATIC_EVENT(e_NetDisconnected, evNetDisconnected);
-ReceivedEvt e_Received;
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
@@ -221,6 +218,9 @@ ethThread(LPVOID par)
         }
     }
 
+    rrtesterCfg_clientId("3002334");
+    rrtesterCfg_topic("3002334");
+
     for(;;)
     {
 		Sleep(1000);
@@ -253,16 +253,15 @@ eth_init(void)
     RKH_ASSERT(ethTh != (HANDLE)0);
     SetThreadPriority(ethTh, THREAD_PRIORITY_NORMAL);
 
-    RKH_SET_STATIC_EVENT(RKH_UPCAST(RKH_EVT_T, &e_Received), evReceived);
 }
 
 void
-eth_socketOpen(void)
+eth_socketOpen(char *ip, char *port)
 {
     WORD wVersionRequested;
     WSADATA wsaData;
-    SOCKADDR_IN target; /* Socket address information */
-    unsigned short port;
+    SOCKADDR_IN target;
+    unsigned short lport;
     char *p;
     int err;
 
@@ -272,55 +271,50 @@ eth_socketOpen(void)
 
     if (err != 0)
     {
-        printf("WSAStartup error %ld", WSAGetLastError());
+        printf("WSAStartup error %ld\n", WSAGetLastError());
         WSACleanup();
         exit(EXIT_FAILURE);
     }
 
 	target.sin_family = AF_INET;
-    port = strtol(AZURE_PORT, &p, 10);
-    target.sin_port = htons(port);
-	target.sin_addr.s_addr = inet_addr("127.0.0.1");//AZURE_SERVER);
+    lport = strtol(port, &p, 10);
+    target.sin_port = htons(lport);
+	target.sin_addr.s_addr = inet_addr(ip);
     
 	s = socket (AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (s == INVALID_SOCKET)
     {
-        printf("socket error %ld", WSAGetLastError());
+        printf("socket error %ld\n", WSAGetLastError());
         WSACleanup();
-        exit(EXIT_FAILURE);
+        RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Error), &eth);
+        return;
     }
 
     if (connect(s, (SOCKADDR*)&target, sizeof(target)) == SOCKET_ERROR)
     {
-        printf("connect error %ld", WSAGetLastError());
+        printf("connect error %ld\n", WSAGetLastError());
         WSACleanup();
-        exit(EXIT_FAILURE);
+        RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Error), &eth);
+        return;
     }
 
     RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_connected), &eth);
 }
 
 void
-eth_socketConnected(void)
+eth_socketWrite(char *p, ruint size)
 {
-    ConnectionTopic_publish(&e_NetConnected, conMgrEth);
-}
+    u_long mode;
 
-void
-eth_socketDisconnected(void)
-{
-    ConnectionTopic_publish(&e_NetDisconnected, conMgrEth);
-}
+    mode = 0;  // 0 to enable blocking socket
+    ioctlsocket(s, FIONBIO, &mode);
 
-void
-_eth_socketWrite(SendEvt *p)
-{
-    send(s, p->buf, p->size, 0);
+    send(s, p, size, 0);
 	RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
 }
 
-void
-eth_socketRead(void)
+ruint
+eth_socketRead(char *p, ruint size)
 {
     int ret;
     u_long mode;
@@ -328,24 +322,35 @@ eth_socketRead(void)
     mode = 1;  // 1 to enable non-blocking socket
     ioctlsocket(s, FIONBIO, &mode);
 
-    ret = recv(s, e_Received.buf, sizeof(e_Received.buf), 0);
+    ret = recv(s, p, size, 0);
 
-    if(ret == SOCKET_ERROR)
+    if(ret == 0) 
+    {
+        RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_disconnected), &eth);
+        return 0;
+    }
+    else if(ret == SOCKET_ERROR)
     {
         ret = WSAGetLastError();
-        recvFail();
+        switch(ret)
+        {
+            case WSAEWOULDBLOCK:
+                RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
+                break;
 
-		ret = 0;
+            default:
+                RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Error), &eth);
+                break;
+             
+        }
+		return 0;
+
 	}
-    
-	RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
-        
-    mode = 0;  // 0 to enable blocking socket
-    ioctlsocket(s, FIONBIO, &mode);
 
-    e_Received.size = ret;
 
-    ConnectionTopic_publish(&e_Received, conMgrEth);
+    RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
+
+    return ret;
 }
 
 /* ------------------------------ End of file ------------------------------ */

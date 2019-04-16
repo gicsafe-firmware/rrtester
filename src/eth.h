@@ -29,11 +29,11 @@ extern "C" {
 /* -------------------------- Function prototypes -------------------------- */
 void eth_init(void);
 void eth_deinit(void);
-void eth_updateStatus(void);
+void eth_socketOpen(char *ip, char *port);
 void eth_socketConnected(void);
 void eth_socketDisconnected(void);
-void _eth_socketWrite(SendEvt *p);
-void eth_socketRead(void);
+void eth_socketWrite(char *p, ruint size);
+ruint eth_socketRead(char *p, ruint size);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus
