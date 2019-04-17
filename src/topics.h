@@ -1,24 +1,18 @@
 /**
- *  \file       signals.h
- *  \brief      Event signal definitions.
+ *  \file       topics.h
+ *  \brief      Event topics definitions.
  */
 
 /* -------------------------- Development history -------------------------- */
-/*
- *  2018.05.02  DaBa  v1.0.00  Initial version
- *  2018.05.11  LeFr  v1.0.01
- */
-
 /* -------------------------------- Authors -------------------------------- */
 /*
- *  DaBa  Dario Bali�a db@vortexmakes.com
- *  LeFr  Leandro Francucci lf@vortexmakes.com
+ *  DaBa  Dario Baliña db@vortexmakes.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
 /* --------------------------------- Module -------------------------------- */
-#ifndef __SIGNALS_H__
-#define __SIGNALS_H__
+#ifndef __TOPICS_H__
+#define __TOPICS_H__
 
 /* ----------------------------- Include files ----------------------------- */
 #include "rkh.h"
@@ -29,63 +23,19 @@ extern "C" {
 #endif
 
 /* --------------------------------- Macros -------------------------------- */
+#define ConnectionTopic_subscribe(me)   rkh_pubsub_subscribe(ConnectionTopic, \
+                                                RKH_UPCAST(RKH_SMA_T, (me)))
+
+#define ConnectionTopic_publish(ev, me) rkh_pubsub_publish(ConnectionTopic, \
+                                                RKH_UPCAST(RKH_EVT_T, (ev)), \
+                                                RKH_UPCAST(RKH_SMA_T, (me)))
+
 /* -------------------------------- Constants ------------------------------ */
 /* ................................ Signals ................................ */
-typedef enum Signals Signals;
-enum Signals
+typedef enum Topics Topics;
+enum Topics
 {
-    evOpen,
-    evClose,
-    evCmd,
-    evResponse,
-    evNoResponse,
-    evURC,
-    evTimeout,
-    evRegTimeout,
-    evToutWaitResponse,
-    evOk,
-    evError,
-    evToutDelay,
-    evSimReady,
-    evSimPin,
-    evSimError,
-    evNoReg,
-    evReg,
-    evIP,
-    evIPInitial,
-    evIPStart,
-    evIPStatus,
-    evIPGprsAct,
-    evConnecting,
-    evClosed,
-    evConnected,
-    evSend,
-    evSendFail,
-    evSent,
-    evRecv,
-    evRecvFail,
-    evReceived,
-    evNetConnected,
-    evNetDisconnected,
-    evDisconnected,
-    evTerminate,     /* press the key escape on the keyboard */
-    evConnRefused,
-    evWaitConnectTout,
-    evWaitPublishTout,
-    evWaitSyncTout,
-    evConnAccepted,
-    evActivate,
-    evDeactivate,
-    evSyncTout,
-    evNetClockSync,
-    evLocalTime,
-    evUnlocked,
-    evImei,
-    evOper,
-    evSigLevel,
-    evRestart,
-    evEthLinkConnect,
-    evEthLinkDisconnect,
+	ConnectionTopic,
 };
 
 /* ------------------------------- Data types ------------------------------ */

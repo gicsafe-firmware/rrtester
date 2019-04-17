@@ -1,6 +1,6 @@
 /**
- *  \file       conmgr.h
- *  \brief      Specification of connection and protocol manager.
+ *  \file       ConMgrGsm.h
+ *  \brief      Specification of GSM connection and protocol manager.
  */
 
 /* -------------------------- Development history -------------------------- */
@@ -13,18 +13,18 @@
 /*
  *  DaBa  Dario Baliña      db@vortexmakes.com
  *  LeFr  Leandro Francucci lf@vortexmakes.com
- *  CaMa  Carlos Mancón     manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
 /* --------------------------------- Module -------------------------------- */
-#ifndef __CONMGR_H__
-#define __CONMGR_H__
+#ifndef __CONMGRGSM_H__
+#define __CONMGRGSM_H__
 
 /* ----------------------------- Include files ----------------------------- */
 #include "rkh.h"
 #include "epoch.h"
 #include "modmgr.h"
+#include "events.h"
 
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
@@ -100,24 +100,6 @@ extern "C" {
 #define MAX_CONSTATUS_NORESP 2
 
 /**
- * Specifies sizeof send / receive buffers.
- */
-#define SEND_BUFF_SIZE      1024
-#define RECV_BUFF_SIZE      1024
-
-/**
- *  ImeiEvt process definitions
- */
-#define IMEI_LENGTH         15
-#define IMEI_BUF_SIZE       IMEI_LENGTH + 1
-
-/**
- *  ImeiEvt process definitions
- */
-#define OPER_LENGTH         10
-#define OPER_BUF_SIZE       OPER_LENGTH + 1
-
-/**
  * GSM Network Provider and Connection specific configurations.
  */
 /* .................................. APN .................................. */
@@ -140,77 +122,17 @@ extern "C" {
 #define SIM_PIN_NUMBER          9474
 
 /* ................................. Server ................................ */
-#define MOSQUITTO_SERVER        "test.mosquitto.org"
-#define MOSQUITTO_PORT          "1883"
-
-#define LINSSE_SERVER           "linsse.com.ar"
-#define LINSSE_PORT             "2000"
-
-#define AZURE_SERVER            "191.239.243.244"
-#define AZURE_PORT              "1883"
-
-#define DOCKLIGHT_SERVER        "181.230.72.86"
-#define DOCKLIGHT_PORT          "33498"
-
-#define CONNECTION_PROT         "TCP"
-#define CONNECTION_DOMAIN       AZURE_SERVER
-#define CONNECTION_PORT         AZURE_PORT
-
 /* ................................ Signals ................................ */
 /* ........................ Declares active object ......................... */
-RKH_SMA_DCLR(conMgr);
+RKH_SMA_DCLR(conMgrGsm);
 
 /* ------------------------------- Data types ------------------------------ */
-typedef struct SendEvt SendEvt;
-struct SendEvt
-{
-    RKH_EVT_T evt;
-    unsigned char buf[SEND_BUFF_SIZE];
-    ruint size;
-};
-
-typedef struct ReceivedEvt ReceivedEvt;
-struct ReceivedEvt
-{
-    RKH_EVT_T evt;
-    unsigned char buf[RECV_BUFF_SIZE];
-    ruint size;
-};
-
-typedef struct LocalTimeEvt LocalTimeEvt;
-struct LocalTimeEvt
-{
-    ModMgrResp e;
-    Time time;
-};
-
-typedef struct ImeiEvt ImeiEvt;
-struct ImeiEvt
-{
-    ModMgrResp e;
-    char buf[IMEI_BUF_SIZE];
-};
-
-typedef struct OperEvt OperEvt;
-struct OperEvt
-{
-    ModMgrResp e;
-    char buf[OPER_BUF_SIZE];
-};
-
-typedef struct SigLevelEvt SigLevelEvt;
-struct SigLevelEvt
-{
-    ModMgrResp e;
-    int value;
-};
-
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-ReceivedEvt * ConMgr_ReceiveDataGetRef(void);
-char * ConMgr_imei(void);
-char * ConMgr_imeiSNR(void);
-int ConMgr_sigLevel(void);
+ReceivedEvt * ConMgrGsm_ReceiveDataGetRef(void);
+char * ConMgrGsm_imei(void);
+char * ConMgrGsm_imeiSNR(void);
+int ConMgrGsm_sigLevel(void);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus

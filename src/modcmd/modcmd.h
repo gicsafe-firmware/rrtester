@@ -20,6 +20,7 @@
 
 /* ----------------------------- Include files ----------------------------- */
 #include "rkh.h"
+#include "events.h"
 
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
@@ -32,17 +33,6 @@ extern "C" {
 /* ........................ Declares active object ......................... */
 /* ------------------------------- Data types ------------------------------ */
 typedef void (*ModCmdRcvHandler)(unsigned char c);
-
-typedef struct ModCmd ModCmd;
-struct ModCmd
-{
-    RKH_EVT_T evt;
-    const char *fmt;            /** contains a format string of AT command */
-    RKH_SMA_T * const *aoDest;   /** pointer to SMA that receive the modem */
-                                /*  response */
-    RKH_TNT_T waitResponseTime; /** timeout waiting for modem response */
-    RKH_TNT_T interCmdTime;     /** inter-command delay */
-};
 
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */

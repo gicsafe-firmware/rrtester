@@ -28,7 +28,6 @@
 #include "modpwr.h"
 #include "modmgr.h"
 #include "modcmd.h"
-#include "conmgr.h"
 #include "CirBuffer.h"
 #include "mTime.h"
 #include "din.h"
@@ -45,10 +44,10 @@ RKH_THIS_MODULE
 #define ModStatus_init()    gpioConfig(DO5, GPIO_OUTPUT)
 #define ModStatus(b)        gpioWrite(DO5, b)
 #define ModStatus_toggle()  gpioToggle(DO5)
-#define RegStatus_init()    gpioConfig(DO6, GPIO_OUTPUT)
-#define RegStatus(b)        gpioWrite(DO6, b)
-#define NetStatus_init()    gpioConfig(DO7, GPIO_OUTPUT)
-#define NetStatus(b)        gpioWrite(DO7, b)
+#define LinkStatus_init()   gpioConfig(DO6, GPIO_OUTPUT)
+#define LinkStatus(b)       gpioWrite(DO6, b)
+#define SocketStatus_init() gpioConfig(DO7, GPIO_OUTPUT)
+#define SocketStatus(b)     gpioWrite(DO7, b)
 
 /* ------------------------------- Constants ------------------------------- */
 /* ---------------------------- Local data types --------------------------- */
@@ -69,9 +68,9 @@ bsp_init(int argc, char *argv[])
     boardConfig();
     ModStatus_init();
     ModStatus(0);
-    RegStatus(UnregisteredSt);
-    NetStatus_init();
-    NetStatus(DisconnectedSt);
+    LinkStatus(UnregisteredSt);
+    SocketStatus_init();
+    SocketStatus(DisconnectedSt);
 
     modPwr_init();
 
@@ -149,15 +148,15 @@ bsp_serial_putnchar(int ch, unsigned char *p, ruint ndata)
 }
 
 void
-bsp_regStatus(Status_t status)
+bsp_linkStatus(NetType_t t, Status_t status)
 {
-    RegStatus(status);
+    LinkStatus(status);
 }
 
 void
-bsp_netStatus(Status_t status)
+bsp_socketStatus(NetType_t t, Status_t status)
 {
-    NetStatus(status);
+    SocketStatus(status);
 }
 
 void

@@ -19,7 +19,7 @@
 #include "sim900parser.h"
 #include "signals.h"
 #include "modmgr.h"
-#include "conmgr.h"
+#include "ConMgrGsm.h"
 #include <stdlib.h>
 
 /* ----------------------------- Local macros ------------------------------ */
@@ -594,7 +594,7 @@ data_init(unsigned char c)
 {
     (void)c;
 
-    precv = ConMgr_ReceiveDataGetRef();
+    precv = ConMgrGsm_ReceiveDataGetRef();
     precv->size = 0;
     prx = precv->buf;
 }

@@ -10,7 +10,6 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  DaBa  Darío Baliña      db@vortexmakes.com
- *  CaMa  Carlos Mancón     manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -18,10 +17,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include "publisher.h"
+#include "config.h"
 #include "ioChgDet.h"
 #include "anSampler.h"
 #include "jWrite.h"
-#include "conmgr.h"
 
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
@@ -63,8 +62,8 @@ publishrrtester(AppData *appMsg)
     jwOpen( dataBuf, sizeof(dataBuf), JW_OBJECT, JW_COMPACT );
 
     
-    jwObj_int("id", atoi(ConMgr_imeiSNR()));
-    jwObj_int("sl", ConMgr_sigLevel());
+    jwObj_int("id", atoi(MQTT_CLIENT_ID));
+    jwObj_int("sl", 11);
 
     n = anSampler_getSet(&anSet, NUM_AN_SAMPLES_GET);
 

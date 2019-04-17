@@ -11,7 +11,6 @@
 /*
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
  *  DaBa  Dario Baliña       db@vortexmakes.com
- *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -20,12 +19,14 @@
 #include <stdio.h>
 #include "rkh.h"
 #include "rkhfwk_dynevt.h"
+#include "rkhfwk_pubsub.h"
 #include "bsp.h"
 #include "signals.h"
+#include "topics.h"
 #include "mqttProt.h"
-#include "rrtesterCfg.h"
-#include "ethMgr.h"
-#include "conmgr.h"
+#include "config.h"
+#include "ConMgrGsm.h"
+#include "ConMgrEth.h"
 #include "modmgr.h"
 #include "mTime.h"
 #include "epoch.h"
@@ -36,8 +37,8 @@
 
 /* ----------------------------- Local macros ------------------------------ */
 #define MQTTPROT_QSTO_SIZE  16
-#define ETHMGR_QSTO_SIZE    8
-#define CONMGR_QSTO_SIZE    8
+#define CONMGRETH_QSTO_SIZE 8
+#define CONMGRGSM_QSTO_SIZE 8
 #define MODMGR_QSTO_SIZE    8
 
 #define SIZEOF_EP0STO       16
@@ -52,7 +53,7 @@
 #define MODMGR_STK_SIZE         512
 #define CONMGR_STK_SIZE         512
 #define MQTTPROT_STK_SIZE       512
-#define ETHMGR_STK_SIZE         512
+#define CONMGRETH_STK_SIZE      512
 #else
 #define MODMGR_STK_SIZE         0
 #define CONMGR_STK_SIZE         0
@@ -66,7 +67,7 @@
 #ifdef __NO_OFFICIAL_PORT__
 static RKH_THREAD_STK_TYPE ModMgrStack[MODMGR_STK_SIZE];
 static RKH_THREAD_STK_TYPE ConMgrStack[CONMGR_STK_SIZE];
-static RKH_THREAD_STK_TYPE EthMGRStack[ETHMGR_STK_SIZE];
+static RKH_THREAD_STK_TYPE ConMgrEthStack[CONMGRETH_STK_SIZE];
 static RKH_THREAD_STK_TYPE MQTTProtStack[MQTTPROT_STK_SIZE];
 #else
 #define ModMgrStack     0
@@ -76,8 +77,8 @@ static RKH_THREAD_STK_TYPE MQTTProtStack[MQTTPROT_STK_SIZE];
 #endif
 
 static RKH_EVT_T *ModMgr_qsto[MODMGR_QSTO_SIZE];
-static RKH_EVT_T *ConMgr_qsto[CONMGR_QSTO_SIZE];
-static RKH_EVT_T *EthMgr_qsto[CONMGR_QSTO_SIZE];
+static RKH_EVT_T *ConMgrGsm_qsto[CONMGRGSM_QSTO_SIZE];
+static RKH_EVT_T *ConMgrEth_qsto[CONMGRETH_QSTO_SIZE];
 static RKH_EVT_T *MQTTProt_qsto[MQTTPROT_QSTO_SIZE];
 
 static rui8_t evPool0Sto[SIZEOF_EP0STO],
@@ -85,7 +86,6 @@ static rui8_t evPool0Sto[SIZEOF_EP0STO],
               evPool2Sto[SIZEOF_EP2STO];
 
 static RKH_ROM_STATIC_EVENT(e_Open, evOpen);
-static MQTTProtCfg mqttProtCfg;
 
 /* ----------------------- Local function prototypes ----------------------- */
 static void setupTraceFilters(void);
@@ -107,8 +107,8 @@ setupTraceFilters(void)
     /* RKH_FILTER_OFF_EVENT(RKH_TE_SM_TS_STATE); */
     RKH_FILTER_OFF_EVENT(RKH_TE_SM_DCH);
     RKH_FILTER_OFF_SMA(modMgr);
-    RKH_FILTER_OFF_SMA(conMgr);
-    RKH_FILTER_OFF_SMA(ethMgr);
+    RKH_FILTER_OFF_SMA(conMgrGsm);
+    RKH_FILTER_OFF_SMA(conMgrEth);
     RKH_FILTER_OFF_SMA(mqttProt);
     RKH_FILTER_OFF_ALL_SIGNALS();
 }
@@ -133,32 +133,21 @@ rrtesterStartup(void)
     strcpy(mqttProtCfg.topic, "");
     MQTTProt_ctor(&mqttProtCfg, publishrrtester);
 
-    RKH_SMA_ACTIVATE(conMgr, ConMgr_qsto, CONMGR_QSTO_SIZE,
+	RKH_SMA_ACTIVATE(conMgrEth, ConMgrEth_qsto, CONMGRETH_QSTO_SIZE,
+		ConMgrEthStack, CONMGRETH_STK_SIZE);
+#ifdef GSM 
+    RKH_SMA_ACTIVATE(conMgrGsm, ConMgrGsm_qsto, CONMGRGSM_QSTO_SIZE,
                      ConMgrStack, CONMGR_STK_SIZE);
-    RKH_SMA_ACTIVATE(ethMgr, EthMgr_qsto, ETHMGR_QSTO_SIZE,
-                     EthMGRStack, ETHMGR_STK_SIZE);
     RKH_SMA_ACTIVATE(modMgr, ModMgr_qsto, MODMGR_QSTO_SIZE,
                      ModMgrStack, MODMGR_STK_SIZE);
+#endif
     RKH_SMA_ACTIVATE(mqttProt, MQTTProt_qsto, MQTTPROT_QSTO_SIZE,
                      MQTTProtStack, MQTTPROT_STK_SIZE);
 
-    RKH_SMA_POST_FIFO(conMgr, &e_Open, 0);
-    RKH_SMA_POST_FIFO(ethMgr, &e_Open, 0);
+    ConnectionTopic_publish(&e_Open, 0);
 }
 
 /* ---------------------------- Global functions --------------------------- */
-void
-rrtesterCfg_clientId(char *pid)
-{
-    strcpy(mqttProtCfg.clientId, pid);
-}
-
-void
-rrtesterCfg_topic(char *t)
-{
-    sprintf(mqttProtCfg.topic, "/rrtester/%s", t);
-}
-
 #ifdef __NO_OFFICIAL_PORT__
 void
 rkh_startupTask(void *pvParameter)

@@ -12,7 +12,7 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci lf@vortexmakes.com
- *  DaBa  Dario Bali�a db@vortexmakes.com
+ *  DaBa  Dario Baliña db@vortexmakes.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -20,10 +20,12 @@
 #include <stdio.h>
 #include <string.h>
 #include "rkh.h"
+#include "rkhfwk_pubsub.h"
 #include "rkhtmr.h"
 #include "signals.h"
+#include "topics.h"
 #include "mqttProt.h"
-#include "conmgr.h"
+#include "events.h"
 #include "mqtt.h"
 #include "epoch.h"
 #include "date.h"
@@ -384,6 +386,8 @@ init(MQTTProt *const me, RKH_EVT_T *pe)
 {
 	(void)pe;
 
+    ConnectionTopic_subscribe(me);
+
     RKH_TR_FWK_AO(me);
     RKH_TR_FWK_AO(MQTTProt_syncRegion);
     RKH_TR_FWK_QUEUE(&RKH_UPCAST(RKH_SMA_T, me)->equeue);
@@ -618,7 +622,7 @@ reconnect(SyncRegion *const me, RKH_EVT_T *pe)
     MQTTProt *realMe;
 
     realMe = me->itsMQTTProt;
-    RKH_SMA_POST_FIFO(conMgr, &evRestartObj, realMe);
+    ConnectionTopic_publish(&evRestartObj, realMe);
 }
 
 static void 
@@ -671,7 +675,7 @@ recvAll(SyncRegion *const me, RKH_EVT_T *pe)
     MQTTProt *realMe;
 
     realMe = me->itsMQTTProt;
-    RKH_SMA_POST_FIFO(conMgr, &evRecvObj, realMe);
+    ConnectionTopic_publish(&evRecvObj, realMe);
 }
 
 static void 
@@ -682,7 +686,7 @@ sendAll(SyncRegion *const me, RKH_EVT_T *pe)
     realMe = me->itsMQTTProt;
     evSendObj.size = localSend.msg->size;
     memcpy(evSendObj.buf, localSend.msg->start, localSend.msg->size);
-    RKH_SMA_POST_FIFO(conMgr, RKH_UPCAST(RKH_EVT_T, &evSendObj), realMe);
+    ConnectionTopic_publish(&evSendObj, realMe);
 }
 
 static void 

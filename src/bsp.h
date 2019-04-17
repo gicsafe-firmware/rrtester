@@ -12,8 +12,8 @@
 
 /* -------------------------------- Authors -------------------------------- */
 /*
+ *  DaBa  Dario Baliña       db@vortexmakes.com
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
- *  DaBa  Dario Bali�a       dariosb@gmail.com
  */
 
 /* --------------------------------- Module -------------------------------- */
@@ -21,6 +21,8 @@
 #define __BSP_H__
 
 /* ----------------------------- Include files ----------------------------- */
+#include "rkhtrc.h"
+
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
 extern "C" {
@@ -39,7 +41,7 @@ enum
 };
 
 /*
- * User trace events id�s
+ * User trace events id's
  */
 enum
 {
@@ -48,7 +50,7 @@ enum
 };
 
 /*
- * Status Led�s
+ * Status Led's
  */
 typedef enum
 {
@@ -60,8 +62,13 @@ typedef enum
 } Status_t;
 
 /*
- * Status Led�s
+ * Network types
  */
+typedef enum
+{
+    GSMNetwork,
+    ETHNetwork
+} NetType_t;
 
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */
@@ -78,8 +85,8 @@ void bsp_serial_close(int ch);
 void bsp_serial_puts(int ch, char *p);
 void bsp_serial_putnchar(int ch, unsigned char *p, ruint ndata);
 
-void bsp_regStatus(Status_t status);
-void bsp_netStatus(Status_t status);
+void bsp_linkStatus(NetType_t t, Status_t status);
+void bsp_socketStatus(NetType_t t, Status_t status);
 void bsp_modStatusToggle();
 
 /* -------------------- External C language linkage end -------------------- */

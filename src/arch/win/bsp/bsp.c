@@ -13,13 +13,13 @@
 /*
  *  DaBa  Dario Baliña       db@vortexmakes.com
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
- *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
 #include <stdio.h>
 #include "rkh.h"
+#include "rkhfwk_pubsub.h"
 #include "bsp.h"
 #include "getopt.h"
 #include "trace_io_cfg.h"
@@ -27,9 +27,9 @@
 #include "wserdefs.h"
 
 #include "signals.h"
+#include "topics.h"
 #include "modcmd.h"
 #include "modmgr.h"
-#include "conmgr.h"
 #include "modpwr.h"
 #include "din.h"
 #include "anin.h"
@@ -37,6 +37,7 @@
 #include "anSampler.h"
 #include "mTime.h"
 #include "publisher.h"
+#include "eth.h"
 
 
 RKH_THIS_MODULE
@@ -178,7 +179,7 @@ send_signalsFrame(void)
     printf("Write GPRS Socket:\r\n");
     printf("%s\r\n", e_Send.buf);
 
-    RKH_SMA_POST_FIFO(conMgr, RKH_UPCAST(RKH_EVT_T, &e_Send), &bsp);
+    ConnectionTopic_publish(&e_Send, &bsp);
 }
 
 /* ---------------------------- Global functions --------------------------- */
@@ -195,6 +196,8 @@ bsp_init(int argc, char *argv[])
     modPwr_init();
     dIn_init();
 	anIn_init();
+
+    eth_init();
 }
 
 void
@@ -203,23 +206,22 @@ bsp_keyParser(int c)
     switch(c)
     {
         case ESC:
-            RKH_SMA_POST_FIFO(modMgr, &e_Term, &bsp);
             rkhport_fwk_stop();
             break;
 
         case 'o':
             printf("Open GPRS Socket\r\n");
-            RKH_SMA_POST_FIFO(conMgr, &e_Open, &bsp);
+            ConnectionTopic_publish(&e_Open, &bsp);
             break;
 
         case 'c':
             printf("Close GPRS Socket\r\n");
-            RKH_SMA_POST_FIFO(conMgr, &e_Close, &bsp);
+            ConnectionTopic_publish(&e_Close, &bsp);
             break;
 
         case 'r':
             printf("Read GPRS Socket\r\n");
-            RKH_SMA_POST_FIFO(conMgr, &e_Recv, &bsp);
+            ConnectionTopic_publish(&e_Recv, &bsp);
             break;
 
         case 's':
@@ -230,7 +232,7 @@ bsp_keyParser(int c)
 
             printf("Write GPRS Socket:\r\n");
 
-            RKH_SMA_POST_FIFO(conMgr, RKH_UPCAST(RKH_EVT_T, &e_Send), &bsp);
+            ConnectionTopic_publish(&e_Send, &bsp);
             break;
 
         case 'a':
@@ -329,16 +331,25 @@ bsp_serial_putnchar(int ch, unsigned char *p, ruint ndata)
 }
 
 void
-bsp_regStatus(Status_t status)
+bsp_linkStatus(NetType_t t, Status_t status)
 {
-    printf("\r\nGSM Network %s\r\n", 
-            status == ConnectedSt ? "Registered" : "Unregistered");
+    if(t == GSMNetwork)
+    {
+        printf("\r\nGSM Network %s\r\n", 
+            status == RegisteredSt ? "Registered" : "Unregistered");
+    }
+    else
+    {
+        printf("\r\nETH Link %s\r\n", 
+            status == ConnectedSt ? "Connected" : "Disconnected");
+    }
 }
 
 void 
-bsp_netStatus(Status_t status)
+bsp_socketStatus(NetType_t t, Status_t status)
 {
-    printf("\r\nGprs Socket %s\r\n", 
+    printf("\r\n%s Socket %s\r\n", 
+            t == GSMNetwork ? "GSM" : "ETH",
             status == ConnectedSt ? "Connected" : "Disconnected");
 }
 

@@ -21,7 +21,7 @@
 #include "rkhfwk_dynevt.h"
 #include "modcmd.h"
 #include "modmgr.h"
-#include "conmgr.h"
+#include "ConMgrGsm.h"
 #include "sim900parser.h"
 #include "signals.h"
 #include <string.h>
@@ -63,42 +63,42 @@ static const CmdTbl cmdTbl =
 {
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT\r\n", 
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(2000), RKH_TIME_MS(100)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "ATE1+CREG=1\r\n",
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(5000), RKH_TIME_MS(100)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT+CPIN?\r\n", 
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(1500), RKH_TIME_MS(100)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT+CPIN=%d\r\n", 
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(500), RKH_TIME_MS(100)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT+CREG?;+CSQ\r\n", 
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(300), RKH_TIME_MS(500)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT+CLTS=1;+COPS=3,2\r\n",
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(300), RKH_TIME_MS(100)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT+GSN\r\n",
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(500), RKH_TIME_MS(100)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT+CIPSHUT\r\n",
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(3000), RKH_TIME_MS(200)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
@@ -107,57 +107,57 @@ static const CmdTbl cmdTbl =
 #else
      "AT+CIPRXGET=1\r\n",
 #endif
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(300), RKH_TIME_MS(100)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT+CCLK?\r\n",
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(300), RKH_TIME_MS(100)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT+COPS?\r\n",
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(2000), RKH_TIME_MS(100)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT+CSTT=\"%s\",\"%s\",\"%s\"\r\n", 
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(1000), RKH_TIME_MS(500)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT+CIICR\r\n", 
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(30000), RKH_TIME_MS(200)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT+CIFSR\r\n", 
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(1000), RKH_TIME_MS(100)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT+CIPSTATUS;+CSQ\r\n", 
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(100), RKH_TIME_MS(100)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT+CIPSTART=\"%s\",\"%s\",\"%s\"\r\n", 
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(1000), RKH_TIME_MS(300)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT+CIPCLOSE\r\n", 
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(1000), RKH_TIME_MS(100)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT+CIPSEND=%d\r\n", 
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(3000), RKH_TIME_MS(100)},
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "\x1A\r\n", 
-     &conMgr, 
+     &conMgrGsm, 
 #ifdef GPRS_QUICK_SEND
      RKH_TIME_MS(10000), RKH_TIME_MS(100)},
 #else
@@ -166,7 +166,7 @@ static const CmdTbl cmdTbl =
 
     {RKH_INIT_STATIC_EVT(evCmd), 
      "AT+CIPRXGET=2,1024\r\n", 
-     &conMgr, 
+     &conMgrGsm, 
      RKH_TIME_MS(3000), RKH_TIME_MS(100)},
 };
 

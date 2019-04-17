@@ -235,6 +235,16 @@
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_evtpool.c</locationURI>
 		</link>
 		<link>
+			<name>rrtester/rkh/rkhfwk_pubsub.c</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_pubsub.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/rkh/rkhfwk_rdygrp.c</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_rdygrp.c</locationURI>
+		</link>
+		<link>
 			<name>rrtester/rkh/rkhfwk_sched.c</name>
 			<type>1</type>
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_sched.c</locationURI>
@@ -320,9 +330,19 @@
 			<locationURI>PARENT-3-PROJECT_LOC/bsp.h</locationURI>
 		</link>
 		<link>
-			<name>rrtester/src/conmgr</name>
+			<name>rrtester/src/conMgrEth</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/conmgr</locationURI>
+			<locationURI>PARENT-3-PROJECT_LOC/conMgrEth</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/conMgrGsm</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/conMgrGsm</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/config</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/config</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/dIn</name>
@@ -343,11 +363,6 @@
 			<name>rrtester/src/epoch</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>rrtester/src/ethMgr</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/ethMgr</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/ioChgDet</name>

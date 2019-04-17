@@ -73,9 +73,6 @@
     <ClCompile Include="..\..\..\modmgr\modmgr.c">
       <Filter>src\modmgr</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\conmgr\conmgr.c">
-      <Filter>src\conmgr</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\parser\sim900\sim900parser.c">
       <Filter>src\parser</Filter>
     </ClCompile>
@@ -128,9 +125,6 @@
     <ClCompile Include="..\..\..\epoch\src\epoch.c" />
     <ClCompile Include="..\..\..\CirBuffer\src\CirBuffer.c" />
     <ClCompile Include="..\..\..\anSampler\src\anSampler.c" />
-    <ClCompile Include="..\..\..\ethMgr\ethMgr.c">
-      <Filter>src\ethMgr</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_rdygrp.c">
       <Filter>rkh</Filter>
     </ClCompile>
@@ -138,6 +132,24 @@
       <Filter>rkh</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\main.c" />
+    <ClCompile Include="..\..\..\conMgrEth\ConMgrEth.c">
+      <Filter>src\conMgrEth</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\conMgrEth\ConMgrEthAct.c">
+      <Filter>src\conMgrEth</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\conMgrEth\ConMgrEthActAccces.c">
+      <Filter>src\conMgrEth</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsp\eth.c">
+      <Filter>bsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\config\config.c">
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\conMgrGsm\ConMgrGsm.c">
+      <Filter>src\conMgrGsm</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="rkh">
@@ -157,9 +169,6 @@
     </Filter>
     <Filter Include="src\modmgr">
       <UniqueIdentifier>{c1a6b20c-627f-4c68-a831-9222b6abc2a0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\conmgr">
-      <UniqueIdentifier>{6c74171c-7547-4bab-8478-d886a7adb11a}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\modcmd">
       <UniqueIdentifier>{ce828ad4-e2e1-4623-88a3-f1d4386844fb}</UniqueIdentifier>
@@ -191,8 +200,17 @@
     <Filter Include="publisher">
       <UniqueIdentifier>{dfd773b9-6e97-48f1-a9d9-c4f5fcaebfa5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\ethMgr">
-      <UniqueIdentifier>{b1b317bd-0dec-461f-91dc-716b85f85bed}</UniqueIdentifier>
+    <Filter Include="src\conMgrEth">
+      <UniqueIdentifier>{236c7aef-8f71-4e6b-9098-5ed1f2d40bfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{abb466bb-f57a-42ea-a855-a94bcb65a16f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="eth">
+      <UniqueIdentifier>{be0bdfce-4655-4d02-b21c-c7a192f6c56c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\conMgrGsm">
+      <UniqueIdentifier>{6c74171c-7547-4bab-8478-d886a7adb11a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +234,24 @@
     </ClInclude>
     <ClInclude Include="..\..\..\publisher\publisher.h">
       <Filter>publisher</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\conMgrEth\ConMgrEth.h">
+      <Filter>src\conMgrEth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\conMgrEth\ConMgrEthAct.h">
+      <Filter>src\conMgrEth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\conMgrEth\ConMgrEthActRequired.h">
+      <Filter>src\conMgrEth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\conMgrEth\ConMgrEthActAccess.h">
+      <Filter>src\conMgrEth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\config\config.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\eth\eth.h">
+      <Filter>eth</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
