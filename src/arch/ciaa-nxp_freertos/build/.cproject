@@ -82,12 +82,14 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../modpwr&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../date&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../publisher&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../config&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../eth&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/MQTT-C/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/jWrite/jWrite&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/amazon-freertos/lib/FreeRTOS/portable/GCC/ARM_CM4F&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/amazon-freertos/lib/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/amazon-freertos/lib/include/private&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../ethMgr&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../conMgrEth&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/lwip/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/lwip/include/ipv4&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../bsp/common&quot;"/>
@@ -128,13 +130,12 @@
 								<option defaultValue="com.crt.advproject.heapAndStack.lpcXpressoStyle" id="com.crt.advproject.link.memory.heapAndStack.style.1248651648" name="Heap and Stack placement" superClass="com.crt.advproject.link.memory.heapAndStack.style" useByScannerDiscovery="false" value="com.crt.advproject.heapAndStack.mcuXpressoStyle" valueType="enumerated"/>
 								<option id="com.crt.advproject.link.memory.load.image.907301736" name="Plain load image" superClass="com.crt.advproject.link.memory.load.image" value="" valueType="string"/>
 								<option id="com.crt.advproject.link.memory.data.83189042" name="Global data placement" superClass="com.crt.advproject.link.memory.data" value="" valueType="string"/>
-								<option id="com.crt.advproject.link.memory.sections.411623374" name="Extra linker script input sections" superClass="com.crt.advproject.link.memory.sections" valueType="stringList"/>
+								<option id="com.crt.advproject.link.memory.sections.411623374" name="Extra linker script input sections" superClass="com.crt.advproject.link.memory.sections"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.238585915" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
 								</inputType>
 							</tool>
-							<tool id="com.crt.advproject.tool.debug.debug.142530560" name="MCU Debugger" superClass="com.crt.advproject.tool.debug.debug"/>
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
@@ -220,12 +221,14 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../modpwr&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../date&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../publisher&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../config&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../eth&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/MQTT-C/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/jWrite/jWrite&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/amazon-freertos/lib/FreeRTOS/portable/GCC/ARM_CM4F&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/amazon-freertos/lib/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/amazon-freertos/lib/include/private&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../ethMgr&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../conMgrEth&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/lwip/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/lwip/include/ipv4&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../bsp/common&quot;"/>
@@ -263,13 +266,12 @@
 								<option id="com.crt.advproject.link.gcc.multicore.slave.2040645549" name="Multicore configuration" superClass="com.crt.advproject.link.gcc.multicore.slave" useByScannerDiscovery="false"/>
 								<option id="com.crt.advproject.link.memory.load.image.122593039" name="Plain load image" superClass="com.crt.advproject.link.memory.load.image" value="" valueType="string"/>
 								<option id="com.crt.advproject.link.memory.data.573729112" name="Global data placement" superClass="com.crt.advproject.link.memory.data" value="" valueType="string"/>
-								<option id="com.crt.advproject.link.memory.sections.884843569" name="Extra linker script input sections" superClass="com.crt.advproject.link.memory.sections" valueType="stringList"/>
+								<option id="com.crt.advproject.link.memory.sections.884843569" name="Extra linker script input sections" superClass="com.crt.advproject.link.memory.sections"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.1990670045" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
 								</inputType>
 							</tool>
-							<tool id="com.crt.advproject.tool.debug.release.1715960605" name="MCU Debugger" superClass="com.crt.advproject.tool.debug.release"/>
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>

@@ -18,7 +18,7 @@
 #include "signals.h"
 #include "events.h"
 #include "topics.h"
-#include "rrtesterCfg.h"
+#include "config.h"
 #include "ConMgrEth.h"
 #include "ConMgrEthActAccess.h"
 
@@ -33,7 +33,7 @@ static RKH_ROM_STATIC_EVENT(e_RecvFail, evRecvFail);
 static RKH_ROM_STATIC_EVENT(e_NetConnected, evNetConnected);
 static RKH_ROM_STATIC_EVENT(e_NetDisconnected, evNetDisconnected);
 
-ReceivedEvt e_Received;
+static ReceivedEvt e_Received;
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
@@ -51,15 +51,14 @@ _init(ConMgrEth *const me)
     RKH_TR_FWK_SIG(evSendFail);
     RKH_TR_FWK_SIG(evReceived);
     RKH_TR_FWK_SIG(evSent);
-
 }
 
 void
 _socketOpen(char *ip, char *port)
 {
-    bsp_regStatus(UnregisteredSt);
+    bsp_linkStatus(ETHNetwork, DisconnectedSt);
     eth_socketOpen(ip, port);
-    bsp_regStatus(RegisteredSt);
+    bsp_linkStatus(ETHNetwork, ConnectedSt);
 }
 
 void
@@ -90,14 +89,14 @@ void
 _socketConnected(ConMgrEth *const me)
 {
     ConnectionTopic_publish(&e_NetConnected, me);
-    bsp_netStatus(ConnectedSt);
+    bsp_socketStatus(ETHNetwork, ConnectedSt);
 }
 
 void
 _socketDisconnected(ConMgrEth *const me)
 {
     ConnectionTopic_publish(&e_NetDisconnected, me);
-    bsp_netStatus(DisconnectedSt);
+    bsp_socketStatus(ETHNetwork, DisconnectedSt);
 }
 
 void

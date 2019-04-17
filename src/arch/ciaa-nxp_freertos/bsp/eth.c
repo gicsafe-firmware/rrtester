@@ -231,4 +231,24 @@ eth_init(void)
                 (xTaskHandle *) NULL);
 }
 
+void
+eth_deinit(void)
+{
+}
+
+void
+eth_socketOpen(char *ip, char *port)
+{
+}
+
+void
+eth_socketWrite(rui8_t *p, ruint size)
+{
+}
+
+ruint
+eth_socketRead(rui8_t *p, ruint size)
+{
+}
+
 /* ------------------------------ End of file ------------------------------ */

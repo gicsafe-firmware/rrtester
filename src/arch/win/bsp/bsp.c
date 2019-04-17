@@ -333,16 +333,25 @@ bsp_serial_putnchar(int ch, unsigned char *p, ruint ndata)
 }
 
 void
-bsp_regStatus(Status_t status)
+bsp_linkStatus(NetType_t t, Status_t status)
 {
-    printf("\r\nGSM Network %s\r\n", 
-            status == ConnectedSt ? "Registered" : "Unregistered");
+    if(t == GSMNetwork)
+    {
+        printf("\r\nGSM Network %s\r\n", 
+            status == RegisteredSt ? "Registered" : "Unregistered");
+    }
+    else
+    {
+        printf("\r\nETH Link %s\r\n", 
+            status == ConnectedSt ? "Connected" : "Disconnected");
+    }
 }
 
 void 
-bsp_netStatus(Status_t status)
+bsp_socketStatus(NetType_t t, Status_t status)
 {
-    printf("\r\nGprs Socket %s\r\n", 
+    printf("\r\n%s Socket %s\r\n", 
+            t == GSMNetwork ? "GSM" : "ETH",
             status == ConnectedSt ? "Connected" : "Disconnected");
 }
 

@@ -147,6 +147,9 @@
     <ClCompile Include="..\bsp\eth.c">
       <Filter>bsp</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\config\config.c">
+      <Filter>config</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="rkh">
@@ -203,6 +206,12 @@
     <Filter Include="src\conMgrEth">
       <UniqueIdentifier>{236c7aef-8f71-4e6b-9098-5ed1f2d40bfc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{abb466bb-f57a-42ea-a855-a94bcb65a16f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="eth">
+      <UniqueIdentifier>{be0bdfce-4655-4d02-b21c-c7a192f6c56c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\rkhcfg.h">
@@ -237,6 +246,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\conMgrEth\ConMgrEthActAccess.h">
       <Filter>src\conMgrEth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\config\config.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\eth\eth.h">
+      <Filter>eth</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

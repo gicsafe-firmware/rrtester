@@ -17,7 +17,7 @@
 #include "bsp.h"
 #include "signals.h"
 #include "topics.h"
-#include "rrtesterCfg.h"
+#include "config.h"
 #include "ConMgrEth.h"
 
 #include <winsock.h>
@@ -252,8 +252,8 @@ ethThread(LPVOID par)
         }
     }
 
-    rrtesterCfg_clientId(MQTT_CLIENT_ID);
-    rrtesterCfg_topic(MQTT_CLIENT_ID);
+    config_clientId(MQTT_CLIENT_ID);
+    config_topic(MQTT_CLIENT_ID);
 
     while (running)
     {
@@ -371,8 +371,6 @@ eth_socketWrite(rui8_t *p, ruint size)
     }
     else
     {
-        printf("Bytes Sent: %d\n", ret);
-
         RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
     }
 }

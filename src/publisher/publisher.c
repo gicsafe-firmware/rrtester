@@ -18,7 +18,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "publisher.h"
-#include "rrtesterCfg.h"
+#include "config.h"
 #include "ioChgDet.h"
 #include "anSampler.h"
 #include "jWrite.h"
