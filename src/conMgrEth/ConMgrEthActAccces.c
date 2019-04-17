@@ -1,6 +1,6 @@
 /**
  *  \file       ConMgrEthAccess.c
- *  \brief     
+ *  \brief
  */
 
 /* -------------------------- Development history -------------------------- */
@@ -13,14 +13,14 @@
 /* ----------------------------- Include files ----------------------------- */
 #include "rkh.h"
 #include "rkhfwk_pubsub.h"
+#include "bsp.h"
+#include "eth.h"
 #include "signals.h"
 #include "events.h"
 #include "topics.h"
+#include "rrtesterCfg.h"
 #include "ConMgrEth.h"
 #include "ConMgrEthActAccess.h"
-#include "conmgr.h"
-#include "MqttProt.h"
-#include "eth.h"
 
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
@@ -41,18 +41,25 @@ ReceivedEvt e_Received;
 void
 _init(ConMgrEth *const me)
 {
-	//me->ip = "127.0.0.1";
-	me->ip = AZURE_SERVER;
-	me->port = AZURE_PORT;
-		
+    me->ip = CONNECTION_DOMAIN;
+    me->port = CONNECTION_PORT;
+
     ConnectionTopic_subscribe(conMgrEth);
     RKH_SET_STATIC_EVENT(RKH_UPCAST(RKH_EVT_T, &e_Received), evReceived);
+	
+    RKH_TR_FWK_SIG(evRecvFail);
+    RKH_TR_FWK_SIG(evSendFail);
+    RKH_TR_FWK_SIG(evReceived);
+    RKH_TR_FWK_SIG(evSent);
+
 }
 
-void 
+void
 _socketOpen(char *ip, char *port)
 {
+    bsp_regStatus(UnregisteredSt);
     eth_socketOpen(ip, port);
+    bsp_regStatus(RegisteredSt);
 }
 
 void
@@ -83,12 +90,14 @@ void
 _socketConnected(ConMgrEth *const me)
 {
     ConnectionTopic_publish(&e_NetConnected, me);
+    bsp_netStatus(ConnectedSt);
 }
 
 void
 _socketDisconnected(ConMgrEth *const me)
 {
     ConnectionTopic_publish(&e_NetDisconnected, me);
+    bsp_netStatus(DisconnectedSt);
 }
 
 void
@@ -100,6 +109,8 @@ _socketWrite(SendEvt *p)
 void
 _socketRead(ConMgrEth *const me)
 {
+    (void)me;
+
     e_Received.size = eth_socketRead(e_Received.buf, sizeof(e_Received.buf));
 }
 

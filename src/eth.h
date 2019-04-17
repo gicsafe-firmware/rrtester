@@ -32,8 +32,8 @@ void eth_deinit(void);
 void eth_socketOpen(char *ip, char *port);
 void eth_socketConnected(void);
 void eth_socketDisconnected(void);
-void eth_socketWrite(char *p, ruint size);
-ruint eth_socketRead(char *p, ruint size);
+void eth_socketWrite(rui8_t *p, ruint size);
+ruint eth_socketRead(rui8_t *p, ruint size);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus

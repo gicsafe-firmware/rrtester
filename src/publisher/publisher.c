@@ -18,6 +18,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "publisher.h"
+#include "rrtesterCfg.h"
 #include "ioChgDet.h"
 #include "anSampler.h"
 #include "jWrite.h"
@@ -63,8 +64,8 @@ publishrrtester(AppData *appMsg)
     jwOpen( dataBuf, sizeof(dataBuf), JW_OBJECT, JW_COMPACT );
 
     
-    jwObj_int("id", atoi(ConMgr_imeiSNR()));
-    jwObj_int("sl", ConMgr_sigLevel());
+    jwObj_int("id", atoi(MQTT_CLIENT_ID));
+    jwObj_int("sl", 11);
 
     n = anSampler_getSet(&anSet, NUM_AN_SAMPLES_GET);
 

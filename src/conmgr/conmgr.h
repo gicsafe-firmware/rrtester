@@ -123,22 +123,6 @@ extern "C" {
 #define SIM_PIN_NUMBER          9474
 
 /* ................................. Server ................................ */
-#define MOSQUITTO_SERVER        "test.mosquitto.org"
-#define MOSQUITTO_PORT          "1883"
-
-#define LINSSE_SERVER           "linsse.com.ar"
-#define LINSSE_PORT             "2000"
-
-#define AZURE_SERVER            "191.239.243.244"
-#define AZURE_PORT              "1883"
-
-#define DOCKLIGHT_SERVER        "181.230.72.86"
-#define DOCKLIGHT_PORT          "33498"
-
-#define CONNECTION_PROT         "TCP"
-#define CONNECTION_DOMAIN       AZURE_SERVER
-#define CONNECTION_PORT         AZURE_PORT
-
 /* ................................ Signals ................................ */
 /* ........................ Declares active object ......................... */
 RKH_SMA_DCLR(conMgr);

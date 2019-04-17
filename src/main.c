@@ -159,7 +159,7 @@ rrtesterCfg_clientId(char *pid)
 void
 rrtesterCfg_topic(char *t)
 {
-    sprintf(mqttProtCfg.topic, "/rrtester/%s", t);
+    sprintf(mqttProtCfg.topic, "/dimba/%s", t);
 }
 
 #ifdef __NO_OFFICIAL_PORT__
