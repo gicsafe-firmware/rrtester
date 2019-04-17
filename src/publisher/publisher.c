@@ -21,7 +21,6 @@
 #include "ioChgDet.h"
 #include "anSampler.h"
 #include "jWrite.h"
-#include "conmgr.h"
 
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */

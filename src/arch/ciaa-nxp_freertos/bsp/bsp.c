@@ -28,7 +28,6 @@
 #include "modpwr.h"
 #include "modmgr.h"
 #include "modcmd.h"
-#include "conmgr.h"
 #include "CirBuffer.h"
 #include "mTime.h"
 #include "din.h"

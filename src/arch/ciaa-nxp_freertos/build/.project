@@ -335,14 +335,14 @@
 			<locationURI>PARENT-3-PROJECT_LOC/conMgrEth</locationURI>
 		</link>
 		<link>
+			<name>rrtester/src/conMgrGsm</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/conMgrGsm</locationURI>
+		</link>
+		<link>
 			<name>rrtester/src/config</name>
 			<type>2</type>
 			<locationURI>PARENT-3-PROJECT_LOC/config</locationURI>
-		</link>
-		<link>
-			<name>rrtester/src/conmgr</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/conmgr</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/dIn</name>
