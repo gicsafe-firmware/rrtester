@@ -20,7 +20,7 @@
 #include "rkh.h"
 #include "signals.h"
 #include "modmgr.h"
-#include "conmgr.h"
+#include "ConMgrGsm.h"
 #include "bsp.h"
 
 /* ----------------------------- Local macros ------------------------------ */
@@ -181,7 +181,7 @@ notifyURC(ModMgr *const me, RKH_EVT_T *pe)
 {
     (void)me;
 
-    forwardModMgrEvt(conMgr, pe);
+    forwardModMgrEvt(conMgrGsm, pe);
 }
 
 static void

@@ -25,8 +25,8 @@
 #include "topics.h"
 #include "mqttProt.h"
 #include "config.h"
+#include "ConMgrGsm.h"
 #include "ConMgrEth.h"
-#include "conmgr.h"
 #include "modmgr.h"
 #include "mTime.h"
 #include "epoch.h"
@@ -38,7 +38,7 @@
 /* ----------------------------- Local macros ------------------------------ */
 #define MQTTPROT_QSTO_SIZE  16
 #define CONMGRETH_QSTO_SIZE 8
-#define CONMGR_QSTO_SIZE    8
+#define CONMGRGSM_QSTO_SIZE 8
 #define MODMGR_QSTO_SIZE    8
 
 #define SIZEOF_EP0STO       16
@@ -77,7 +77,7 @@ static RKH_THREAD_STK_TYPE MQTTProtStack[MQTTPROT_STK_SIZE];
 #endif
 
 static RKH_EVT_T *ModMgr_qsto[MODMGR_QSTO_SIZE];
-static RKH_EVT_T *ConMgr_qsto[CONMGR_QSTO_SIZE];
+static RKH_EVT_T *ConMgrGsm_qsto[CONMGRGSM_QSTO_SIZE];
 static RKH_EVT_T *ConMgrEth_qsto[CONMGRETH_QSTO_SIZE];
 static RKH_EVT_T *MQTTProt_qsto[MQTTPROT_QSTO_SIZE];
 
@@ -107,7 +107,7 @@ setupTraceFilters(void)
     /* RKH_FILTER_OFF_EVENT(RKH_TE_SM_TS_STATE); */
     RKH_FILTER_OFF_EVENT(RKH_TE_SM_DCH);
     RKH_FILTER_OFF_SMA(modMgr);
-    RKH_FILTER_OFF_SMA(conMgr);
+    RKH_FILTER_OFF_SMA(conMgrGsm);
     RKH_FILTER_OFF_SMA(conMgrEth);
     RKH_FILTER_OFF_SMA(mqttProt);
     RKH_FILTER_OFF_ALL_SIGNALS();
@@ -133,10 +133,10 @@ rrtesterStartup(void)
     strcpy(mqttProtCfg.topic, "");
     MQTTProt_ctor(&mqttProtCfg, publishrrtester);
 
-	RKH_SMA_ACTIVATE(conMgrEth, ConMgrEth_qsto, CONMGR_QSTO_SIZE,
+	RKH_SMA_ACTIVATE(conMgrEth, ConMgrEth_qsto, CONMGRETH_QSTO_SIZE,
 		ConMgrEthStack, CONMGRETH_STK_SIZE);
 #ifdef GSM 
-    RKH_SMA_ACTIVATE(conMgr, ConMgr_qsto, CONMGR_QSTO_SIZE,
+    RKH_SMA_ACTIVATE(conMgrGsm, ConMgrGsm_qsto, CONMGRGSM_QSTO_SIZE,
                      ConMgrStack, CONMGR_STK_SIZE);
     RKH_SMA_ACTIVATE(modMgr, ModMgr_qsto, MODMGR_QSTO_SIZE,
                      ModMgrStack, MODMGR_STK_SIZE);

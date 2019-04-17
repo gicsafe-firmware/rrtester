@@ -30,7 +30,6 @@
 #include "topics.h"
 #include "modcmd.h"
 #include "modmgr.h"
-#include "conmgr.h"
 #include "modpwr.h"
 #include "din.h"
 #include "anin.h"

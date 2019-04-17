@@ -1,6 +1,6 @@
 /**
- *  \file       conmgr.h
- *  \brief      Specification of connection and protocol manager.
+ *  \file       ConMgrGsm.h
+ *  \brief      Specification of GSM connection and protocol manager.
  */
 
 /* -------------------------- Development history -------------------------- */
@@ -17,8 +17,8 @@
 
 /* --------------------------------- Notes --------------------------------- */
 /* --------------------------------- Module -------------------------------- */
-#ifndef __CONMGR_H__
-#define __CONMGR_H__
+#ifndef __CONMGRGSM_H__
+#define __CONMGRGSM_H__
 
 /* ----------------------------- Include files ----------------------------- */
 #include "rkh.h"
@@ -124,15 +124,15 @@ extern "C" {
 /* ................................. Server ................................ */
 /* ................................ Signals ................................ */
 /* ........................ Declares active object ......................... */
-RKH_SMA_DCLR(conMgr);
+RKH_SMA_DCLR(conMgrGsm);
 
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-ReceivedEvt * ConMgr_ReceiveDataGetRef(void);
-char * ConMgr_imei(void);
-char * ConMgr_imeiSNR(void);
-int ConMgr_sigLevel(void);
+ReceivedEvt * ConMgrGsm_ReceiveDataGetRef(void);
+char * ConMgrGsm_imei(void);
+char * ConMgrGsm_imeiSNR(void);
+int ConMgrGsm_sigLevel(void);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus

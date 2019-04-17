@@ -73,9 +73,6 @@
     <ClCompile Include="..\..\..\modmgr\modmgr.c">
       <Filter>src\modmgr</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\conmgr\conmgr.c">
-      <Filter>src\conmgr</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\parser\sim900\sim900parser.c">
       <Filter>src\parser</Filter>
     </ClCompile>
@@ -150,6 +147,9 @@
     <ClCompile Include="..\..\..\config\config.c">
       <Filter>config</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\conMgrGsm\ConMgrGsm.c">
+      <Filter>src\conMgrGsm</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="rkh">
@@ -169,9 +169,6 @@
     </Filter>
     <Filter Include="src\modmgr">
       <UniqueIdentifier>{c1a6b20c-627f-4c68-a831-9222b6abc2a0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\conmgr">
-      <UniqueIdentifier>{6c74171c-7547-4bab-8478-d886a7adb11a}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\modcmd">
       <UniqueIdentifier>{ce828ad4-e2e1-4623-88a3-f1d4386844fb}</UniqueIdentifier>
@@ -211,6 +208,9 @@
     </Filter>
     <Filter Include="eth">
       <UniqueIdentifier>{be0bdfce-4655-4d02-b21c-c7a192f6c56c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\conMgrGsm">
+      <UniqueIdentifier>{6c74171c-7547-4bab-8478-d886a7adb11a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
