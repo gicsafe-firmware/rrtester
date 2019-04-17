@@ -1,0 +1,11 @@
+GeneratorModel for yakindu::c::rkh {
+
+	statechart ConMgrEth {
+
+		feature Outlet {
+			targetProject = "rrtester"
+			targetFolder = "src-gen-ConMgrEth"
+			libraryTargetFolder = "src-gen-ConMgrEth"
+		}
+	}
+}

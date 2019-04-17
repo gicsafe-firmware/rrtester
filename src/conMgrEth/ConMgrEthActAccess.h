@@ -32,6 +32,7 @@ void _socketOpen(char *ip, char *port);
 void _socketConnected(ConMgrEth *const me);
 void _socketDisconnected(ConMgrEth *const me);
 void _socketWrite(SendEvt *p);
+void _socketRead(ConMgrEth *const me);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus
