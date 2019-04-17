@@ -10,7 +10,6 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  DaBa  Darío Baliña      db@vortexmakes.com
- *  CaMa  Carlos Mancón     manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */

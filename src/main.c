@@ -11,7 +11,6 @@
 /*
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
  *  DaBa  Dario Baliña       db@vortexmakes.com
- *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -25,7 +24,7 @@
 #include "signals.h"
 #include "topics.h"
 #include "mqttProt.h"
-#include "rrtesterCfg.h"
+#include "config.h"
 #include "ConMgrEth.h"
 #include "conmgr.h"
 #include "modmgr.h"
@@ -87,7 +86,6 @@ static rui8_t evPool0Sto[SIZEOF_EP0STO],
               evPool2Sto[SIZEOF_EP2STO];
 
 static RKH_ROM_STATIC_EVENT(e_Open, evOpen);
-static MQTTProtCfg mqttProtCfg;
 
 /* ----------------------- Local function prototypes ----------------------- */
 static void setupTraceFilters(void);
@@ -150,18 +148,6 @@ rrtesterStartup(void)
 }
 
 /* ---------------------------- Global functions --------------------------- */
-void
-rrtesterCfg_clientId(char *pid)
-{
-    strcpy(mqttProtCfg.clientId, pid);
-}
-
-void
-rrtesterCfg_topic(char *t)
-{
-    sprintf(mqttProtCfg.topic, "/dimba/%s", t);
-}
-
 #ifdef __NO_OFFICIAL_PORT__
 void
 rkh_startupTask(void *pvParameter)

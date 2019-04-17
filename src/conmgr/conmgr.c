@@ -11,7 +11,6 @@
 /*
  *  DaBa  Dario Baliña      db@vortexmakes.com
  *  LeFr  Leandro Francucci lf@vortexmakes.com
- *  CaMa  Carlos Mancón     manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -24,7 +23,7 @@
 #include "modmgr.h"
 #include "modcmd.h"
 #include "mqttProt.h"
-#include "rrtesterCfg.h"
+#include "config.h"
 #include "signals.h"
 #include "events.h"
 #include "topics.h"
@@ -449,7 +448,7 @@ static RKH_ROM_STATIC_EVENT(e_NetDisconnected, evNetDisconnected);
 static RKH_ROM_STATIC_EVENT(e_Sent,     evSent);
 static RKH_ROM_STATIC_EVENT(e_SendFail, evSendFail);
 static RKH_ROM_STATIC_EVENT(e_RecvFail, evRecvFail);
-ReceivedEvt e_Received;
+static ReceivedEvt e_Received;
 
 static RKH_QUEUE_T qDefer;
 static RKH_EVT_T *qDefer_sto[SIZEOF_QDEFER];
@@ -644,8 +643,8 @@ storeImei(ConMgr *const me, RKH_EVT_T *pe)
     p = RKH_UPCAST(ImeiEvt, pe);
     strcpy(me->Imei, p->buf);
 
-    rrtesterCfg_clientId(me->Imei + IMEI_SNR_OFFSET);
-    rrtesterCfg_topic(me->Imei + IMEI_SNR_OFFSET);
+    config_clientId(me->Imei + IMEI_SNR_OFFSET);
+    config_topic(me->Imei + IMEI_SNR_OFFSET);
 }
 
 static void
@@ -903,7 +902,9 @@ unregEntry(ConMgr *const me)
 static void 
 regEntry(ConMgr *const me)
 {
-    bsp_regStatus(RegisteredSt);
+    (void)me;
+
+    bsp_linkStatus(GSMNetwork, RegisteredSt);
 }
 
 static void 
@@ -992,7 +993,7 @@ socketConnected(ConMgr *const me)
 
     me->retryCount = 0;
     ConnectionTopic_publish(&e_NetConnected, me);
-    bsp_netStatus(ConnectedSt);
+    bsp_socketStatus(ETHNetwork, ConnectedSt);
 }
 
 static void
@@ -1034,7 +1035,9 @@ unregExit(ConMgr *const me)
 static void 
 regExit(ConMgr *const me)
 {
-    bsp_regStatus(UnregisteredSt);
+    (void)me;
+
+    bsp_linkStatus(GSMNetwork, UnregisteredSt);
 }
 
 static void
@@ -1084,7 +1087,7 @@ socketDisconnected(ConMgr *const me)
     (void)me;
 
     ConnectionTopic_publish(&e_NetDisconnected, me);
-    bsp_netStatus(DisconnectedSt);
+    bsp_socketStatus(ETHNetwork, DisconnectedSt);
 }
 
 static void

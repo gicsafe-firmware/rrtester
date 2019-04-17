@@ -51,7 +51,7 @@ struct MQTTProtCfg
     rui16_t syncTime;       /* in secs */
     char clientId[23];
     rui16_t keepAlive;      /* in secs */
-    char topic[16];
+    char topic[20];
     rui8_t qos;             /* 0, 1 or 2 */
 };
 
