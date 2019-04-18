@@ -1,4 +1,4 @@
-	/*
+/*
  *  --------------------------------------------------------------------------
  *
  *                                Framework RKH
@@ -76,7 +76,7 @@ executeExpectOnList(const RKH_ST_T **stateList, int kindOfExpect)
 
     for (n = 0, state = stateList; *state; ++state, ++n)
     {
-        switch(kindOfExpect)
+        switch (kindOfExpect)
         {
             case EXPECT_TS_STATE:
                 sm_tsState_expect(RKH_STATE_CAST(*state));
@@ -101,7 +101,7 @@ getHistory(const RKH_SHIST_T *history)
     return *(history->target);
 }
 
-void 
+void
 setHistory(const RKH_SHIST_T *history, const RKH_ST_T *state)
 {
     *(history->target) = state;
@@ -114,11 +114,11 @@ setState(RKH_SMA_T *const me, const RKH_ST_T *state)
 }
 
 void
-setProfile(RKH_SMA_T *const me, const RKH_ST_T *dftSt, 
-           const RKH_ST_T *currentState, 
-           const RKH_ST_T *sourceState, const RKH_ST_T **targetStates, 
-           const RKH_ST_T **entryStates, const RKH_ST_T **exitStates, 
-           const RKH_ST_T *mainTargetState, int nExecEffectActions, 
+setProfile(RKH_SMA_T *const me, const RKH_ST_T *dftSt,
+           const RKH_ST_T *currentState,
+           const RKH_ST_T *sourceState, const RKH_ST_T **targetStates,
+           const RKH_ST_T **entryStates, const RKH_ST_T **exitStates,
+           const RKH_ST_T *mainTargetState, int nExecEffectActions,
            int kindOfTrn, int initStateMachine, const RKH_EVT_T *event,
            const RKH_ST_T *dispatchCurrentState)
 {
@@ -131,8 +131,8 @@ setProfile(RKH_SMA_T *const me, const RKH_ST_T *dftSt,
             expInitSm(me, RKH_STATE_CAST(dftSt));
         }
     }
-	sm_dch_expect(event->e, RKH_STATE_CAST(dispatchCurrentState));
-	sm_trn_expect(RKH_STATE_CAST(sourceState), RKH_STATE_CAST(*targetStates));
+    sm_dch_expect(event->e, RKH_STATE_CAST(dispatchCurrentState));
+    sm_trn_expect(RKH_STATE_CAST(sourceState), RKH_STATE_CAST(*targetStates));
 
     if (kindOfTrn == TRN_NOT_INTERNAL)
     {
@@ -140,7 +140,7 @@ setProfile(RKH_SMA_T *const me, const RKH_ST_T *dftSt,
         nExitStates = executeExpectOnList(exitStates, EXPECT_EXSTATE);
     }
 
-	/*sm_ntrnact_expect(nExecEffectActions, 1);*/
+    /*sm_ntrnact_expect(nExecEffectActions, 1);*/
 
     if (kindOfTrn == TRN_NOT_INTERNAL)
     {
@@ -148,21 +148,23 @@ setProfile(RKH_SMA_T *const me, const RKH_ST_T *dftSt,
         sm_nenex_expect(nEntryStates, nExitStates);
         sm_state_expect(RKH_STATE_CAST(mainTargetState));
     }
-	sm_evtProc_expect();
+    sm_evtProc_expect();
 
     if (initStateMachine)
     {
         rkh_sm_init((RKH_SM_T *)me);
     }
     if (currentState)
+    {
         setState(me, RKH_STATE_CAST(currentState));
+    }
 }
 
 void
-setProfileWoutUnitrazer(RKH_SMA_T *const me, 
-                        const RKH_ST_T *currentState, 
-                        const RKH_ST_T *sourceState, 
-                        const RKH_ST_T *mainTargetState, 
+setProfileWoutUnitrazer(RKH_SMA_T *const me,
+                        const RKH_ST_T *currentState,
+                        const RKH_ST_T *sourceState,
+                        const RKH_ST_T *mainTargetState,
                         int initStateMachine)
 {
     if (initStateMachine)
@@ -175,10 +177,10 @@ setProfileWoutUnitrazer(RKH_SMA_T *const me,
     }
 }
 
-void 
-trnStepExpect(RKH_SM_T *const me, const RKH_ST_T *currentState, 
-              const RKH_ST_T *sourceState, TargetEntrySt *tgEnSt, 
-              const RKH_ST_T **exitStates, 
+void
+trnStepExpect(RKH_SM_T *const me, const RKH_ST_T *currentState,
+              const RKH_ST_T *sourceState, TargetEntrySt *tgEnSt,
+              const RKH_ST_T **exitStates,
               const RKH_EVT_T *event)
 {
     TargetEntrySt *st;
@@ -194,8 +196,8 @@ trnStepExpect(RKH_SM_T *const me, const RKH_ST_T *currentState,
     {
         /* Start transition */
         sm_dch_expect(event->e, RKH_STATE_CAST(currentState));
-        sm_trn_expect(RKH_STATE_CAST(sourceState), 
-                                     RKH_STATE_CAST(tgEnSt[0].tgSt));
+        sm_trn_expect(RKH_STATE_CAST(sourceState),
+                      RKH_STATE_CAST(tgEnSt[0].tgSt));
 
         /* First step */
         sm_tsState_expect(RKH_STATE_CAST(tgEnSt[0].tgSt));

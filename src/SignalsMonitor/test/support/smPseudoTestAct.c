@@ -34,7 +34,7 @@
 
 /* ============================ Initial action ============================= */
 /* ============================ Effect actions ============================= */
-void 
+void
 smPT_trS2History(SmPseudoTest *const me, RKH_EVT_T *pe)
 {
     (void)me;
@@ -44,7 +44,7 @@ smPT_trS2History(SmPseudoTest *const me, RKH_EVT_T *pe)
 /* ============================= Entry actions ============================= */
 /* ============================= Exit actions ============================== */
 /* ================================ Guards ================================= */
-rbool_t 
+rbool_t
 smPT_trueGuard(SmPseudoTest *const me, RKH_EVT_T *pe)
 {
     (void)me;
