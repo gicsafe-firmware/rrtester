@@ -198,15 +198,16 @@ void
 test_transitionSimpleToSimpleAtEqualLevel(void)
 {
     UtrzProcessOut *p;
+    SmTest *sm = RKH_CAST(SmTest, smTest);
 
     stateList_create(targetStates, 1, &s1);
     stateList_create(entryStates, 1, &s1);
     stateList_create(exitStates, 1, &s0);
 
-    smTest_init_Expect(RKH_CAST(SmTest, smTest), (RKH_EVT_T *)&evCreation);
-    smTest_xS0_Expect(RKH_CAST(SmTest, smTest));
-    smTest_tr11_Expect(RKH_CAST(SmTest, smTest), &evA);
-    smTest_nS1_Expect(RKH_CAST(SmTest, smTest));
+    smTest_init_Expect(sm, (RKH_EVT_T *)&evCreation);
+    smTest_xS0_Expect(sm);
+    smTest_tr11_Expect(sm, &evA);
+    smTest_nS1_Expect(sm);
 
     setProfile(smTest, RKH_STATE_CAST(&waiting),
                RKH_STATE_CAST(&s0), RKH_STATE_CAST(&s0),
