@@ -58,6 +58,12 @@ struct TargetEntrySt
     const RKH_ST_T *enSt;
 };
 
+typedef struct SMFilterCfg SMFilterCfg;
+struct SMFilterCfg
+{
+    unsigned int init : 1;
+};
+
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
 const RKH_ST_T *getHistory(const RKH_SHIST_T *history);
@@ -82,6 +88,7 @@ void setState(RKH_SMA_T *const me, const RKH_ST_T *state);
 const RKH_ST_T *getState(RKH_SMA_T *const me);
 void stateList_create(const RKH_ST_T **list, int nElems, ...);
 void expInitSm(RKH_SMA_T *const me, const RKH_ST_T *dftSt);
+void SMFilterCfg_setFilter(SMFilterCfg *me);
 
 /* -------------------- External C language linkage end -------------------- */
 

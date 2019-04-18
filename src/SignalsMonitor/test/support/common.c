@@ -64,6 +64,8 @@
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
 /* ---------------------------- Local data types --------------------------- */
+static SMFilterCfg smFilterCfg;
+
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
 /* ----------------------- Local function prototypes ----------------------- */
@@ -254,13 +256,25 @@ expInitSm(RKH_SMA_T *const me, const RKH_ST_T *dftSt)
 {
     if (CB(RKH_SMA_ACCESS_CONST(me, istate))->type == RKH_BASIC)
     {
-        sm_init_expect(RKH_STATE_CAST(dftSt));
+        if (smFilterCfg.init == false) 
+        {
+            sm_init_expect(RKH_STATE_CAST(dftSt));
+        }
         sm_trn_expect(RKH_STATE_CAST(dftSt), RKH_STATE_CAST(dftSt));
         sm_tsState_expect(RKH_STATE_CAST(dftSt));
         sm_enstate_expect(RKH_STATE_CAST(dftSt));
         sm_nenex_expect(1, 0);
         sm_state_expect(RKH_STATE_CAST(dftSt));
         sm_evtProc_expect();
+    }
+}
+
+void 
+SMFilterCfg_setFilter(SMFilterCfg *me)
+{
+    if (me != (SMFilterCfg *)0)
+    {
+        smFilterCfg = *me;
     }
 }
 
