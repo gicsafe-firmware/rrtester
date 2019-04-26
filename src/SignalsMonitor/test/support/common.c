@@ -116,24 +116,30 @@ setState(RKH_SMA_T *const me, const RKH_ST_T *state)
 }
 
 void
-setProfile(RKH_SMA_T *const me, const RKH_ST_T *dftSt,
+setProfile(RKH_SMA_T *const me, 
+           const RKH_ST_T *dftSt,
            const RKH_ST_T *currentState,
-           const RKH_ST_T *sourceState, const RKH_ST_T **targetStates,
-           const RKH_ST_T **entryStates, const RKH_ST_T **exitStates,
-           const RKH_ST_T *mainTargetState, int nExecEffectActions,
-           int kindOfTrn, int initStateMachine, const RKH_EVT_T *event,
+           const RKH_ST_T *sourceState, 
+           const RKH_ST_T **targetStates,
+           const RKH_ST_T **entryStates, 
+           const RKH_ST_T **exitStates,
+           const RKH_ST_T *mainTargetState, 
+           int nExecEffectActions,
+           int kindOfTrn, 
+           int initStateMachine, 
+           const RKH_EVT_T *event,
            const RKH_ST_T *dispatchCurrentState)
 {
     int nExitStates, nEntryStates;
 
     if (initStateMachine)
     {
-        if (CB(RKH_SMA_ACCESS_CONST(me, istate))->type == RKH_BASIC)
-        {
-            expInitSm(me, RKH_STATE_CAST(dftSt));
-        }
+        expectedInitSm(me, RKH_STATE_CAST(dftSt));
     }
-    sm_dch_expect(event->e, RKH_STATE_CAST(dispatchCurrentState));
+    if (smFilterCfg.dch == true) 
+    {
+        sm_dch_expect(event->e, RKH_STATE_CAST(dispatchCurrentState));
+    }
     sm_trn_expect(RKH_STATE_CAST(sourceState), RKH_STATE_CAST(*targetStates));
 
     if (kindOfTrn == TRN_NOT_INTERNAL)
@@ -142,12 +148,18 @@ setProfile(RKH_SMA_T *const me, const RKH_ST_T *dftSt,
         nExitStates = executeExpectOnList(exitStates, EXPECT_EXSTATE);
     }
 
-    /*sm_ntrnact_expect(nExecEffectActions, 1);*/
+    if (smFilterCfg.nTrnAct == true) 
+    {
+        sm_ntrnact_expect(nExecEffectActions, 1);
+    }
 
     if (kindOfTrn == TRN_NOT_INTERNAL)
     {
         nEntryStates = executeExpectOnList(entryStates, EXPECT_ENSTATE);
-        sm_nenex_expect(nEntryStates, nExitStates);
+        if (smFilterCfg.nEnEx == true) 
+        {
+            sm_nenex_expect(nEntryStates, nExitStates);
+        }
         sm_state_expect(RKH_STATE_CAST(mainTargetState));
     }
     sm_evtProc_expect();
@@ -157,23 +169,6 @@ setProfile(RKH_SMA_T *const me, const RKH_ST_T *dftSt,
         rkh_sm_init((RKH_SM_T *)me);
     }
     if (currentState)
-    {
-        setState(me, RKH_STATE_CAST(currentState));
-    }
-}
-
-void
-setProfileWoutUnitrazer(RKH_SMA_T *const me,
-                        const RKH_ST_T *currentState,
-                        const RKH_ST_T *sourceState,
-                        const RKH_ST_T *mainTargetState,
-                        int initStateMachine)
-{
-    if (initStateMachine)
-    {
-        rkh_sm_init((RKH_SM_T *)me);
-    }
-    if (currentState && (currentState != ((RKH_SM_T *)smTest)->state))
     {
         setState(me, RKH_STATE_CAST(currentState));
     }
@@ -191,13 +186,16 @@ trnStepExpect(RKH_SM_T *const me, const RKH_ST_T *currentState,
     /* Init state machine */
     if (CB(RKH_SMA_ACCESS_CONST(me, istate))->type == RKH_BASIC)
     {
-        expInitSm((RKH_SMA_T *)me, RKH_STATE_CAST(currentState));
+        expectedInitSm((RKH_SMA_T *)me, RKH_STATE_CAST(currentState));
     }
 
     if (sourceState != (const RKH_ST_T *)0)
     {
         /* Start transition */
-        sm_dch_expect(event->e, RKH_STATE_CAST(currentState));
+        if (smFilterCfg.dch == true) 
+        {
+            sm_dch_expect(event->e, RKH_STATE_CAST(currentState));
+        }
         sm_trn_expect(RKH_STATE_CAST(sourceState),
                       RKH_STATE_CAST(tgEnSt[0].tgSt));
 
@@ -222,7 +220,10 @@ trnStepExpect(RKH_SM_T *const me, const RKH_ST_T *currentState,
         }
 
         /* End transition */
-        sm_nenex_expect(nEnSt, 1);
+        if (smFilterCfg.nEnEx == true) 
+        {
+            sm_nenex_expect(nEnSt, 1);
+        }
         sm_state_expect(RKH_STATE_CAST(tgEnSt[i].enSt));
         sm_evtProc_expect();
     }
@@ -252,30 +253,49 @@ stateList_create(const RKH_ST_T **list, int nElems, ...)
 }
 
 void
-expInitSm(RKH_SMA_T *const me, const RKH_ST_T *dftSt)
+expectedInitSm(RKH_SMA_T *const me, const RKH_ST_T *dftSt)
 {
     if (CB(RKH_SMA_ACCESS_CONST(me, istate))->type == RKH_BASIC)
     {
-        if (smFilterCfg.init == false) 
+        if (smFilterCfg.init == true) 
         {
             sm_init_expect(RKH_STATE_CAST(dftSt));
         }
         sm_trn_expect(RKH_STATE_CAST(dftSt), RKH_STATE_CAST(dftSt));
         sm_tsState_expect(RKH_STATE_CAST(dftSt));
         sm_enstate_expect(RKH_STATE_CAST(dftSt));
-        sm_nenex_expect(1, 0);
+        if (smFilterCfg.nEnEx == true) 
+        {
+            sm_nenex_expect(1, 0);
+        }
         sm_state_expect(RKH_STATE_CAST(dftSt));
         sm_evtProc_expect();
     }
 }
 
 void 
-SMFilterCfg_setFilter(SMFilterCfg *me)
+SMFilterCfg_set(SMFilterCfg *me)
 {
     if (me != (SMFilterCfg *)0)
     {
         smFilterCfg = *me;
     }
+}
+
+SMFilterCfg *
+SMFilterCfg_init(void)
+{
+    RKH_FILTER_OFF_ALL_SIGNALS();
+    RKH_FILTER_OFF_GROUP_ALL_EVENTS(RKH_TG_SM);
+    RKH_FILTER_OFF_SMA(smTest);
+    RKH_FILTER_OFF_EVENT(RKH_TE_FWK_ASSERT);
+
+    smFilterCfg.init = true;
+    smFilterCfg.nTrnAct = false;
+    smFilterCfg.dch = true;
+    smFilterCfg.nEnEx= true;
+
+    return &smFilterCfg;
 }
 
 /** @} doxygen end group definition */
