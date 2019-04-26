@@ -23,8 +23,7 @@
 #include "bsp.h"
 #include "getopt.h"
 #include "trace_io_cfg.h"
-#include "wserial.h"
-#include "wserdefs.h"
+#include "serial.h"
 
 #include "signals.h"
 #include "topics.h"
