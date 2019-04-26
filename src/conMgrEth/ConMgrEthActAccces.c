@@ -39,7 +39,7 @@ static ReceivedEvt e_Received;
 /* ---------------------------- Local functions ---------------------------- */
 /* ---------------------------- Global functions --------------------------- */
 void
-_init(ConMgrEth *const me)
+conMgrEthActAccess_init(ConMgrEth *const me)
 {
     me->ip = CONNECTION_DOMAIN;
     me->port = CONNECTION_PORT;
