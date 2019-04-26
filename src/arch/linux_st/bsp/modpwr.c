@@ -10,12 +10,12 @@
 
 /* -------------------------------- Authors -------------------------------- */
 /*
- *  DaBa  Dario Bali�a       db@vortexmakes.com
+ *  DaBa  Dario Baliña       db@vortexmakes.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
-#include "wserial.h"
+#include "serial.h"
 
 #include "rkh.h"
 #include "bsp.h"

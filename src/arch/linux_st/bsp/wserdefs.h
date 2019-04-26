@@ -17,7 +17,7 @@ typedef struct
 #ifdef __cplusplus
 extern "C" {
 #endif
-extern SERIAL_T serials[ NUM_CHANNELS ];
+//extern SERIAL_T serials[ NUM_CHANNELS ];
 #ifdef __cplusplus
 }
 #endif
