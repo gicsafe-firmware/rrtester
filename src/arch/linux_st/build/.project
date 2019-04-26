@@ -25,6 +25,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>rrtester</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>rrtester/MQTT-C</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
@@ -65,11 +70,6 @@
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/MQTT-C/src/mqtt_pal.c</locationURI>
 		</link>
 		<link>
-			<name>rrtester/bsp/Endianness.h</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/Endianness.h</locationURI>
-		</link>
-		<link>
 			<name>rrtester/bsp/anin.c</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/anin.c</locationURI>
@@ -95,14 +95,14 @@
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/eth.c</locationURI>
 		</link>
 		<link>
+			<name>rrtester/bsp/eth.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/eth.h</locationURI>
+		</link>
+		<link>
 			<name>rrtester/bsp/hook.c</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/hook.c</locationURI>
-		</link>
-		<link>
-			<name>rrtester/bsp/lwipopts.h</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/lwipopts.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/modpwr.c</name>
@@ -112,7 +112,7 @@
 		<link>
 			<name>rrtester/bsp/rkhport</name>
 			<type>2</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/rkhport</locationURI>
+			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/rtime.c</name>
@@ -120,14 +120,19 @@
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/rtime.c</locationURI>
 		</link>
 		<link>
-			<name>rrtester/bsp/tcpecho.c</name>
+			<name>rrtester/bsp/serial.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/tcpecho.c</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/serial.c</locationURI>
 		</link>
 		<link>
-			<name>rrtester/bsp/tcpecho.h</name>
+			<name>rrtester/bsp/serial.h</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/tcpecho.h</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/serial.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/bsp/sleep.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/sleep.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/trace_io.c</name>
@@ -135,14 +140,19 @@
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/trace_io.c</locationURI>
 		</link>
 		<link>
-			<name>rrtester/bsp/uartisr.c</name>
+			<name>rrtester/bsp/trace_io_cfg.h</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/uartisr.c</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/trace_io_cfg.h</locationURI>
 		</link>
 		<link>
-			<name>rrtester/bsp/uartisr.h</name>
+			<name>rrtester/bsp/trace_io_tcp.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/uartisr.h</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/trace_io_tcp.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/bsp/trace_io_tcp.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/trace_io_tcp.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/wserdefs.h</name>
@@ -247,12 +257,12 @@
 		<link>
 			<name>rrtester/src/adconv</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/adconv</locationURI>
+			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/anIn</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/anIn</locationURI>
+			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/anSampler</name>
@@ -267,32 +277,32 @@
 		<link>
 			<name>rrtester/src/conMgrEth</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/conMgrEth</locationURI>
+			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/conMgrGsm</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/conMgrGsm</locationURI>
+			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/config</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/config</locationURI>
+			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/dIn</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/dIn</locationURI>
+			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/date</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/date</locationURI>
+			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/emaFilter</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/emaFilter</locationURI>
+			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/epoch</name>
@@ -307,7 +317,7 @@
 		<link>
 			<name>rrtester/src/mTime</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/mTime</locationURI>
+			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/main.c</name>
@@ -317,17 +327,17 @@
 		<link>
 			<name>rrtester/src/modcmd</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/modcmd</locationURI>
+			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/modmgr</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/modmgr</locationURI>
+			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/mqttProt</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/mqttProt</locationURI>
+			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/parser</name>
@@ -337,7 +347,7 @@
 		<link>
 			<name>rrtester/src/publisher</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/publisher</locationURI>
+			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/rkhcfg.h</name>
@@ -347,7 +357,7 @@
 		<link>
 			<name>rrtester/src/rtime</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/rtime</locationURI>
+			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/signals.h</name>
@@ -370,6 +380,21 @@
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/ssp/src/ssp.h</locationURI>
 		</link>
 		<link>
+			<name>rrtester/bsp/rkhport/rkhport.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/rkhport/rkhport.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/bsp/rkhport/rkhport.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/rkhport/rkhport.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/bsp/rkhport/rkht.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/rkhport/rkht.h</locationURI>
+		</link>
+		<link>
 			<name>rrtester/src/CirBuffer/CirBuffer.c</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/CirBuffer/src/CirBuffer.c</locationURI>
@@ -380,6 +405,21 @@
 			<locationURI>PARENT-3-PROJECT_LOC/CirBuffer/inc/CirBuffer.h</locationURI>
 		</link>
 		<link>
+			<name>rrtester/src/adconv/adconv.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/adconv/adconv.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/adconv/adconv.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/adconv/adconv.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/anIn/anin.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/anIn/anin.h</locationURI>
+		</link>
+		<link>
 			<name>rrtester/src/anSampler/anSampler.c</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/anSampler/src/anSampler.c</locationURI>
@@ -388,6 +428,91 @@
 			<name>rrtester/src/anSampler/anSampler.h</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/anSampler/inc/anSampler.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/conMgrEth/ConMgrEth.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/conMgrEth/ConMgrEth.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/conMgrEth/ConMgrEth.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/conMgrEth/ConMgrEth.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/conMgrEth/ConMgrEthAct.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/conMgrEth/ConMgrEthAct.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/conMgrEth/ConMgrEthAct.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/conMgrEth/ConMgrEthAct.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/conMgrEth/ConMgrEthActAccces.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/conMgrEth/ConMgrEthActAccces.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/conMgrEth/ConMgrEthActAccess.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/conMgrEth/ConMgrEthActAccess.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/conMgrEth/ConMgrEthActRequired.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/conMgrEth/ConMgrEthActRequired.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/conMgrEth/signal.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/conMgrEth/signal.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/conMgrGsm/ConMgrGsm.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/conMgrGsm/ConMgrGsm.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/conMgrGsm/ConMgrGsm.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/conMgrGsm/ConMgrGsm.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/config/config.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/config/config.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/config/config.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/config/config.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/dIn/din.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/dIn/din.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/date/date.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/date/date.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/date/date.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/date/date.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/emaFilter/emaFilter.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/emaFilter/emaFilter.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/emaFilter/emaFilter.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/emaFilter/emaFilter.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/epoch/epoch.c</name>
@@ -410,24 +535,114 @@
 			<locationURI>PARENT-3-PROJECT_LOC/ioChgDet/inc/ioChgDet.h</locationURI>
 		</link>
 		<link>
-			<name>rrtester/src/parser/sim900parser.c</name>
+			<name>rrtester/src/mTime/mTime.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/mTime/mTime.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/mTime/mTime.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/mTime/mTime.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/mTime/mTimeCfg.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/mTime/mTimeCfg.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/mTime/mTimeTbl.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/mTime/mTimeTbl.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/modcmd/modcmd.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/modcmd/modcmd.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/modcmd/modcmdSim900.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/modcmd/modcmdSim900.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/modmgr/modmgr.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/modmgr/modmgr.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/modmgr/modmgr.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/modmgr/modmgr.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/mqttProt/mqttProt.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/mqttProt/mqttProt.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/mqttProt/mqttProt.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/mqttProt/mqttProt.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/parser/sim900</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/publisher/publisher.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/publisher/publisher.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/publisher/publisher.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/publisher/publisher.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/rtime/rtime.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/rtime/rtime.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/parser/sim900/sim900parser.c</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/parser/sim900/sim900parser.c</locationURI>
 		</link>
 		<link>
-			<name>rrtester/src/parser/sim900parser.h</name>
+			<name>rrtester/src/parser/sim900/sim900parser.h</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/parser/sim900/sim900parser.h</locationURI>
 		</link>
 	</linkedResources>
 	<variableList>
 		<variable>
+			<name>copy_PARENT</name>
+			<value>$%7BPARENT-1-PROJECT_LOC%7D/linux_st</value>
+		</variable>
+		<variable>
 			<name>copy_PARENT1</name>
-			<value>$%7Bcopy_PARENT%7D/src/arch/linux_st</value>
+			<value>$%7BPARENT-3-PROJECT_LOC%7D</value>
 		</variable>
 		<variable>
 			<name>copy_PARENT12</name>
-			<value>$%7Bcopy_PARENT%7D/src</value>
+			<value>$%7Bcopy_PARENT1%7D/src</value>
+		</variable>
+		<variable>
+			<name>copy_PARENT121</name>
+			<value>$%7Bcopy_PARENT12345%7D/src</value>
+		</variable>
+		<variable>
+			<name>copy_PARENT123</name>
+			<value>$%7BPARENT-1-copy_PARENT1%7D/GICSAFe-Firmware/rrtester</value>
+		</variable>
+		<variable>
+			<name>copy_PARENT1234</name>
+			<value>$%7Bcopy_PARENT123%7D/src/arch</value>
+		</variable>
+		<variable>
+			<name>copy_PARENT12345</name>
+			<value>$%7Bcopy_PARENT123%7D/src</value>
 		</variable>
 	</variableList>
 </projectDescription>

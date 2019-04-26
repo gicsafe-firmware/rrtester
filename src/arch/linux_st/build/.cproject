@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
 	<storageModule moduleId="org.eclipse.cdt.core.settings">
-		<cconfiguration id="com.crt.advproject.config.exe.debug.1287796118">
-			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.crt.advproject.config.exe.debug.1287796118" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+		<cconfiguration id="cdt.managedbuild.config.gnu.exe.debug.1370903238">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.exe.debug.1370903238" moduleId="org.eclipse.cdt.core.settings" name="Debug">
 				<externalSettings/>
 				<extensions>
 					<extension id="org.eclipse.cdt.core.GNU_ELF" point="org.eclipse.cdt.core.BinaryParser"/>
-					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactExtension="axf" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="rm -rf" description="Debug build" errorParsers="org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="com.crt.advproject.config.exe.debug.1287796118" name="Debug" parent="com.crt.advproject.config.exe.debug" postannouncebuildStep="Performing post-build steps" postbuildStep="arm-none-eabi-size &quot;${BuildArtifactFileName}&quot;; # arm-none-eabi-objcopy -v -O binary &quot;${BuildArtifactFileName}&quot; &quot;${BuildArtifactFileBaseName}.bin&quot; ; # checksum -p ${TargetChip} -d &quot;${BuildArtifactFileBaseName}.bin&quot;;  ">
-					<folderInfo id="com.crt.advproject.config.exe.debug.1287796118." name="/" resourcePath="">
-						<toolChain id="cdt.managedbuild.toolchain.gnu.base.751756064" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.base">
-							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.GNU_ELF" id="cdt.managedbuild.target.gnu.platform.base.1661090255" name="Debug Platform" osList="linux,hpux,aix,qnx" superClass="cdt.managedbuild.target.gnu.platform.base"/>
-							<builder buildPath="${workspace_loc:/rrtester_linux_st}/Debug" id="cdt.managedbuild.target.gnu.builder.base.853766536" keepEnvironmentInBuildfile="false" name="Gnu Make Builder" parallelBuildOn="true" parallelizationNumber="optimal" superClass="cdt.managedbuild.target.gnu.builder.base"/>
-							<tool id="cdt.managedbuild.tool.gnu.archiver.base.1511161874" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
-							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.1548634995" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base">
-								<option id="gnu.cpp.compiler.option.preprocessor.def.444637662" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def"/>
+				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.exe.debug.1370903238" name="Debug" parent="cdt.managedbuild.config.gnu.exe.debug">
+					<folderInfo id="cdt.managedbuild.config.gnu.exe.debug.1370903238." name="/" resourcePath="">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.exe.debug.2074862427" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.exe.debug">
+							<targetPlatform id="cdt.managedbuild.target.gnu.platform.exe.debug.2035643270" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.exe.debug"/>
+							<builder buildPath="${workspace_loc:/renameit}/Debug" id="cdt.managedbuild.target.gnu.builder.exe.debug.1011731279" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.exe.debug"/>
+							<tool id="cdt.managedbuild.tool.gnu.archiver.base.161636867" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1906609293" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug">
+								<option id="gnu.cpp.compiler.exe.debug.option.optimization.level.638032992" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.1236008558" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 							</tool>
-							<tool id="cdt.managedbuild.tool.gnu.c.compiler.base.1961661115" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.base">
-								<option id="gnu.c.compiler.option.include.paths.2079592600" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1681826987" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug">
+								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.exe.debug.option.optimization.level.1819319739" name="Optimization Level" superClass="gnu.c.compiler.exe.debug.option.optimization.level" useByScannerDiscovery="false" valueType="enumerated"/>
+								<option id="gnu.c.compiler.exe.debug.option.debugging.level.636886153" name="Debug Level" superClass="gnu.c.compiler.exe.debug.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.max" valueType="enumerated"/>
+								<option id="gnu.c.compiler.option.include.paths.1646562784" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../bsp&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../bsp/rkhport&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../&quot;"/>
@@ -60,7 +63,7 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/jWrite/jWrite&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/ssp/src&quot;"/>
 								</option>
-								<option id="gnu.c.compiler.option.preprocessor.def.symbols.132067340" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+								<option id="gnu.c.compiler.option.preprocessor.def.symbols.2121232734" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="GPRS_QUICK_SEND=1"/>
 									<listOptionValue builtIn="false" value="MODPWR_CTRL_ENABLE=1"/>
 									<listOptionValue builtIn="false" value="CIPSHUT_ON_INIT=1"/>
@@ -69,283 +72,84 @@
 									<listOptionValue builtIn="false" value="CONSOLE=1"/>
 									<listOptionValue builtIn="false" value="__LNXGNU__"/>
 								</option>
-								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1195880118" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+								<option id="gnu.c.compiler.option.pthread.907781209" name="Support for pthread (-pthread)" superClass="gnu.c.compiler.option.pthread" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1840231535" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
-							<tool id="cdt.managedbuild.tool.gnu.c.linker.base.173924342" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.base">
-								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.1028487669" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
+							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1918603335" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug">
+								<option id="gnu.c.link.option.pthread.426294900" name="Support for pthread (-pthread)" superClass="gnu.c.link.option.pthread" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.2088759733" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
 								</inputType>
 							</tool>
-							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.base.762926626" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.base"/>
-							<tool id="cdt.managedbuild.tool.gnu.assembler.base.123193838" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.base">
-								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1331251647" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.71151048" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug"/>
+							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.549567904" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1337980322" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<sourceEntries>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="rrtester"/>
-					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 		</cconfiguration>
-		<cconfiguration id="com.crt.advproject.config.exe.release.587497307">
-			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.crt.advproject.config.exe.release.587497307" moduleId="org.eclipse.cdt.core.settings" name="Release">
+		<cconfiguration id="cdt.managedbuild.config.gnu.exe.release.392206674">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.exe.release.392206674" moduleId="org.eclipse.cdt.core.settings" name="Release">
 				<externalSettings/>
 				<extensions>
-					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
 					<extension id="org.eclipse.cdt.core.GNU_ELF" point="org.eclipse.cdt.core.BinaryParser"/>
-					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactExtension="axf" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="rm -rf" description="Release build" errorParsers="org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" id="com.crt.advproject.config.exe.release.587497307" name="Release" parent="com.crt.advproject.config.exe.release" postannouncebuildStep="Performing post-build steps" postbuildStep="arm-none-eabi-size &quot;${BuildArtifactFileName}&quot;; # arm-none-eabi-objcopy -v -O binary &quot;${BuildArtifactFileName}&quot; &quot;${BuildArtifactFileBaseName}.bin&quot; ; # checksum -p ${TargetChip} -d &quot;${BuildArtifactFileBaseName}.bin&quot;;  ">
-					<folderInfo id="com.crt.advproject.config.exe.release.587497307." name="/" resourcePath="">
-						<toolChain id="com.crt.advproject.toolchain.exe.release.810875682" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release">
-							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF;org.eclipse.cdt.core.GNU_ELF" id="com.crt.advproject.platform.exe.release.197507884" name="ARM-based MCU (Release)" superClass="com.crt.advproject.platform.exe.release"/>
-							<builder buildPath="${workspace_loc:/blinky}/Release" id="com.crt.advproject.builder.exe.release.63183366" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
-							<tool id="com.crt.advproject.cpp.exe.release.1071872915" name="MCU C++ Compiler" superClass="com.crt.advproject.cpp.exe.release"/>
-							<tool id="com.crt.advproject.gcc.exe.release.66117631" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
-								<option id="com.crt.advproject.gcc.thumb.499395876" name="Thumb mode" superClass="com.crt.advproject.gcc.thumb" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-								<option id="com.crt.advproject.gcc.arch.825510719" name="Architecture" superClass="com.crt.advproject.gcc.arch" useByScannerDiscovery="false" value="com.crt.advproject.gcc.target.cm4" valueType="enumerated"/>
-								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1000227059" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
-									<listOptionValue builtIn="false" value="__CODE_RED"/>
-									<listOptionValue builtIn="false" value="CORE_M4"/>
-									<listOptionValue builtIn="false" value="__LPC43XX__"/>
-									<listOptionValue builtIn="false" value="__REDLIB__"/>
-									<listOptionValue builtIn="false" value="__MULTICORE_NONE"/>
-									<listOptionValue builtIn="false" value="__USE_LPCOPEN"/>
-									<listOptionValue builtIn="false" value="__CIAA_SAPI__=1"/>
-									<listOptionValue builtIn="false" value="MODPWR_CTRL_ENABLE=1"/>
-									<listOptionValue builtIn="false" value="__CIAA_NXP__=1"/>
-									<listOptionValue builtIn="false" value="ARCH_LITTLE_ENDIAN"/>
-									<listOptionValue builtIn="false" value="DEBUG=1"/>
-									<listOptionValue builtIn="false" value="GPRS_QUICK_SEND=1"/>
-									<listOptionValue builtIn="false" value="__NO_OFFICIAL_PORT__"/>
-								</option>
-								<option id="gnu.c.compiler.option.misc.other.989585946" name="Other flags" superClass="gnu.c.compiler.option.misc.other" useByScannerDiscovery="false" value="-c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -fsingle-precision-constant" valueType="string"/>
-								<option id="gnu.c.compiler.option.optimization.flags.184349289" name="Other optimization flags" superClass="gnu.c.compiler.option.optimization.flags" useByScannerDiscovery="false" value="-fno-common" valueType="string"/>
-								<option id="com.crt.advproject.gcc.hdrlib.1549842938" name="Library headers" superClass="com.crt.advproject.gcc.hdrlib" useByScannerDiscovery="false" value="com.crt.advproject.gcc.hdrlib.codered" valueType="enumerated"/>
-								<option id="com.crt.advproject.gcc.specs.528004089" name="Specs" superClass="com.crt.advproject.gcc.specs" useByScannerDiscovery="false" value="com.crt.advproject.gcc.specs.codered" valueType="enumerated"/>
-								<option id="com.crt.advproject.gcc.fpu.597330360" name="Floating point" superClass="com.crt.advproject.gcc.fpu" useByScannerDiscovery="false" value="com.crt.advproject.gcc.fpu.fpv4" valueType="enumerated"/>
-								<option id="gnu.c.compiler.option.include.paths.1075921380" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../bsp&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../bsp/rkhport&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/LPCOpen/lpc_chip_43xx/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/LPCOpen/lpc_board_ciaa_edu_4337/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/sapi_rtos/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/ssp/src&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../conMgrGsm&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../modcmd&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../modmgr&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../mqttProt&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/fwk/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/mempool/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/queue/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/sm/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/sma/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/tmr/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/trc/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../parser/sim900&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../adconv&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../anIn&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../anSampler/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../CirBuffer/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../dIn&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../emaFilter&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../epoch/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../ioChgDet/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../mTime&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../rtime&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../modpwr&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../date&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../publisher&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../config&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../eth&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/MQTT-C/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/jWrite/jWrite&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/amazon-freertos/lib/FreeRTOS/portable/GCC/ARM_CM4F&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/amazon-freertos/lib/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/amazon-freertos/lib/include/private&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../conMgrEth&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/lwip/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/lwip/include/ipv4&quot;"/>
-								</option>
-								<inputType id="com.crt.advproject.compiler.input.1126606754" superClass="com.crt.advproject.compiler.input"/>
+				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.exe.release.392206674" name="Release" parent="cdt.managedbuild.config.gnu.exe.release">
+					<folderInfo id="cdt.managedbuild.config.gnu.exe.release.392206674." name="/" resourcePath="">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.exe.release.779669537" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.exe.release">
+							<targetPlatform id="cdt.managedbuild.target.gnu.platform.exe.release.1042987344" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.exe.release"/>
+							<builder buildPath="${workspace_loc:/renameit}/Release" id="cdt.managedbuild.target.gnu.builder.exe.release.1188518395" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.exe.release"/>
+							<tool id="cdt.managedbuild.tool.gnu.archiver.base.1795566152" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.1373303829" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release">
+								<option id="gnu.cpp.compiler.exe.release.option.optimization.level.1266731921" name="Optimization Level" superClass="gnu.cpp.compiler.exe.release.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.exe.release.option.debugging.level.88742813" name="Debug Level" superClass="gnu.cpp.compiler.exe.release.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 							</tool>
-							<tool id="com.crt.advproject.gas.exe.release.1296001641" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
-								<option id="com.crt.advproject.gas.thumb.414090071" name="Thumb mode" superClass="com.crt.advproject.gas.thumb" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-								<option id="com.crt.advproject.gas.arch.2069344529" name="Architecture" superClass="com.crt.advproject.gas.arch" useByScannerDiscovery="false" value="com.crt.advproject.gas.target.cm4" valueType="enumerated"/>
-								<option id="gnu.both.asm.option.flags.crt.864366258" name="Assembler flags" superClass="gnu.both.asm.option.flags.crt" useByScannerDiscovery="false" value="-c -x assembler-with-cpp -DNDEBUG -D__CODE_RED -DCORE_M4 -D__LPC43XX__ -D__REDLIB__ -D__MULTICORE_NONE" valueType="string"/>
-								<option id="com.crt.advproject.gas.hdrlib.1901122935" name="Library headers" superClass="com.crt.advproject.gas.hdrlib" useByScannerDiscovery="false" value="com.crt.advproject.gas.hdrlib.codered" valueType="enumerated"/>
-								<option id="com.crt.advproject.gas.specs.761937829" name="Specs" superClass="com.crt.advproject.gas.specs" useByScannerDiscovery="false" value="com.crt.advproject.gas.specs.codered" valueType="enumerated"/>
-								<option id="com.crt.advproject.gas.fpu.1497831544" name="Floating point" superClass="com.crt.advproject.gas.fpu" useByScannerDiscovery="false" value="com.crt.advproject.gas.fpu.fpv4" valueType="enumerated"/>
-								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.201823258" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
-								<inputType id="com.crt.advproject.assembler.input.1178298719" name="Additional Assembly Source Files" superClass="com.crt.advproject.assembler.input"/>
+							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.release.475708835" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.release">
+								<option defaultValue="gnu.c.optimization.level.most" id="gnu.c.compiler.exe.release.option.optimization.level.1765175664" name="Optimization Level" superClass="gnu.c.compiler.exe.release.option.optimization.level" useByScannerDiscovery="false" valueType="enumerated"/>
+								<option id="gnu.c.compiler.exe.release.option.debugging.level.1840152982" name="Debug Level" superClass="gnu.c.compiler.exe.release.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.none" valueType="enumerated"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.644254748" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
-							<tool id="com.crt.advproject.link.cpp.exe.release.1647397405" name="MCU C++ Linker" superClass="com.crt.advproject.link.cpp.exe.release"/>
-							<tool id="com.crt.advproject.link.exe.release.1179485892" name="MCU Linker" superClass="com.crt.advproject.link.exe.release">
-								<option id="com.crt.advproject.link.thumb.829603185" name="Thumb mode" superClass="com.crt.advproject.link.thumb" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-								<option id="com.crt.advproject.link.memory.heapAndStack.682461649" name="Heap and Stack options" superClass="com.crt.advproject.link.memory.heapAndStack" useByScannerDiscovery="false" value="&amp;Heap:Default;Post Data;Default&amp;Stack:Default;End;Default" valueType="string"/>
-								<option id="com.crt.advproject.link.gcc.multicore.master.1300725781" name="Multicore master" superClass="com.crt.advproject.link.gcc.multicore.master" useByScannerDiscovery="false"/>
-								<option id="com.crt.advproject.link.gcc.multicore.master.userobjs.761860408" name="Slave Objects (not visible)" superClass="com.crt.advproject.link.gcc.multicore.master.userobjs" useByScannerDiscovery="false" valueType="userObjs"/>
-								<option id="com.crt.advproject.link.arch.1185060931" name="Architecture" superClass="com.crt.advproject.link.arch" useByScannerDiscovery="false" value="com.crt.advproject.link.target.cm4" valueType="enumerated"/>
-								<option id="com.crt.advproject.link.script.1821745044" name="Linker script" superClass="com.crt.advproject.link.script" useByScannerDiscovery="false" value="&quot;rrtester_Release.ld&quot;" valueType="string"/>
-								<option id="com.crt.advproject.link.manage.1429101189" name="Manage linker script" superClass="com.crt.advproject.link.manage" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-								<option id="gnu.c.link.option.nostdlibs.1992524094" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-								<option id="gnu.c.link.option.other.1432597896" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" useByScannerDiscovery="false" valueType="stringList">
-									<listOptionValue builtIn="false" value="-Map=&quot;${BuildArtifactFileBaseName}.map&quot;"/>
-									<listOptionValue builtIn="false" value="--gc-sections"/>
-									<listOptionValue builtIn="false" value="-print-memory-usage"/>
-								</option>
-								<option id="com.crt.advproject.link.gcc.hdrlib.1216496424" name="Library" superClass="com.crt.advproject.link.gcc.hdrlib" useByScannerDiscovery="false" value="com.crt.advproject.gcc.link.hdrlib.codered.semihost" valueType="enumerated"/>
-								<option id="com.crt.advproject.link.fpu.831398969" name="Floating point" superClass="com.crt.advproject.link.fpu" useByScannerDiscovery="false" value="com.crt.advproject.link.fpu.fpv4" valueType="enumerated"/>
-								<option id="com.crt.advproject.link.crpenable.1512830932" name="Enable automatic placement of Code Read Protection field in image" superClass="com.crt.advproject.link.crpenable" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-								<option id="com.crt.advproject.link.gcc.multicore.slave.2040645549" name="Multicore configuration" superClass="com.crt.advproject.link.gcc.multicore.slave" useByScannerDiscovery="false"/>
-								<option id="com.crt.advproject.link.memory.load.image.122593039" name="Plain load image" superClass="com.crt.advproject.link.memory.load.image" value="" valueType="string"/>
-								<option id="com.crt.advproject.link.memory.data.573729112" name="Global data placement" superClass="com.crt.advproject.link.memory.data" value="" valueType="string"/>
-								<option id="com.crt.advproject.link.memory.sections.884843569" name="Extra linker script input sections" superClass="com.crt.advproject.link.memory.sections" valueType="stringList"/>
-								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.1990670045" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
+							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.release.563054602" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.release">
+								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.603270407" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
 								</inputType>
 							</tool>
-							<tool id="com.crt.advproject.tool.debug.release.2122513982" name="MCU Debugger" superClass="com.crt.advproject.tool.debug.release"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.2072412309" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.release"/>
+							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.release.1699821402" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.release">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.2078190524" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
 						</toolChain>
 					</folderInfo>
-					<sourceEntries>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="rrtester"/>
-					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-		<project id="blinky.com.crt.advproject.projecttype.exe.2095381306" name="Executable" projectType="com.crt.advproject.projecttype.exe"/>
+		<project id="renameit.cdt.managedbuild.target.gnu.exe.736586800" name="Executable" projectType="cdt.managedbuild.target.gnu.exe"/>
 	</storageModule>
-	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="com.crt.config">
-		<projectStorage>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;TargetConfig&gt;
-&lt;Properties property_0="None" property_2="LPC18x7_43x7_2x512_BootA.cfx" property_3="NXP" property_4="LPC4337" property_count="5" version="100300"/&gt;
-&lt;infoList vendor="NXP"&gt;
-&lt;info chip="LPC4337" flash_driver="LPC18x7_43x7_2x512_BootA.cfx" match_id="0x0" name="LPC4337" resetscript="LPC18LPC43InternalFLASHBootResetscript.scp" stub="crt_emu_lpc18_43_nxp"&gt;
-&lt;chip&gt;
-&lt;name&gt;LPC4337&lt;/name&gt;
-&lt;family&gt;LPC43xx&lt;/family&gt;
-&lt;vendor&gt;NXP (formerly Philips)&lt;/vendor&gt;
-&lt;reset board="None" core="Real" sys="Real"/&gt;
-&lt;clock changeable="TRUE" freq="20MHz" is_accurate="TRUE"/&gt;
-&lt;memory can_program="true" id="Flash" is_ro="true" type="Flash"/&gt;
-&lt;memory id="RAM" type="RAM"/&gt;
-&lt;memory id="Periph" is_volatile="true" type="Peripheral"/&gt;
-&lt;memoryInstance derived_from="Flash" id="MFlashA512" location="0x1a000000" size="0x80000"/&gt;
-&lt;memoryInstance derived_from="Flash" id="MFlashB512" location="0x1b000000" size="0x80000"/&gt;
-&lt;memoryInstance derived_from="RAM" id="RamLoc32" location="0x10000000" size="0x8000"/&gt;
-&lt;memoryInstance derived_from="RAM" id="RamLoc40" location="0x10080000" size="0xa000"/&gt;
-&lt;memoryInstance derived_from="RAM" id="RamAHB32" location="0x20000000" size="0x8000"/&gt;
-&lt;memoryInstance derived_from="RAM" id="RamAHB16" location="0x20008000" size="0x4000"/&gt;
-&lt;memoryInstance derived_from="RAM" id="RamAHB_ETB16" location="0x2000c000" size="0x4000"/&gt;
-&lt;prog_flash blocksz="0x2000" location="0x1a000000" maxprgbuff="0x400" progwithcode="TRUE" size="0x10000"/&gt;
-&lt;prog_flash blocksz="0x10000" location="0x1a010000" maxprgbuff="0x400" progwithcode="TRUE" size="0x70000"/&gt;
-&lt;prog_flash blocksz="0x2000" location="0x1b000000" maxprgbuff="0x400" progwithcode="TRUE" size="0x10000"/&gt;
-&lt;prog_flash blocksz="0x10000" location="0x1b010000" maxprgbuff="0x400" progwithcode="TRUE" size="0x70000"/&gt;
-&lt;peripheralInstance derived_from="V7M_MPU" id="MPU" location="0xe000ed90"/&gt;
-&lt;peripheralInstance derived_from="V7M_NVIC" id="NVIC" location="0xe000e000"/&gt;
-&lt;peripheralInstance derived_from="V7M_DCR" id="DCR" location="0xe000edf0"/&gt;
-&lt;peripheralInstance derived_from="V7M_ITM" id="ITM" location="0xe0000000"/&gt;
-&lt;peripheralInstance derived_from="SCT" id="SCT" location="0x40000000"/&gt;
-&lt;peripheralInstance derived_from="GPDMA" id="GPDMA" location="0x40002000"/&gt;
-&lt;peripheralInstance derived_from="SPIFI" id="SPIFI" location="0x40003000"/&gt;
-&lt;peripheralInstance derived_from="SDMMC" id="SDMMC" location="0x40004000"/&gt;
-&lt;peripheralInstance derived_from="EMC" id="EMC" location="0x40005000"/&gt;
-&lt;peripheralInstance derived_from="USB0" id="USB0" location="0x40006000"/&gt;
-&lt;peripheralInstance derived_from="USB1" id="USB1" location="0x40007000"/&gt;
-&lt;peripheralInstance derived_from="EEPROM" id="EEPROM" location="0x4000e000"/&gt;
-&lt;peripheralInstance derived_from="ETHERNET" id="ETHERNET" location="0x40010000"/&gt;
-&lt;peripheralInstance derived_from="ATIMER" id="ATIMER" location="0x40040000"/&gt;
-&lt;peripheralInstance derived_from="REGFILE" id="REGFILE" location="0x40041000"/&gt;
-&lt;peripheralInstance derived_from="PMC" id="PMC" location="0x40042000"/&gt;
-&lt;peripheralInstance derived_from="CREG" id="CREG" location="0x40043000"/&gt;
-&lt;peripheralInstance derived_from="EVENTROUTER" id="EVENTROUTER" location="0x40044000"/&gt;
-&lt;peripheralInstance derived_from="RTC" id="RTC" location="0x40046000"/&gt;
-&lt;peripheralInstance derived_from="CGU" id="CGU" location="0x40050000"/&gt;
-&lt;peripheralInstance derived_from="CCU1" id="CCU1" location="0x40051000"/&gt;
-&lt;peripheralInstance derived_from="CCU2" id="CCU2" location="0x40052000"/&gt;
-&lt;peripheralInstance derived_from="RGU" id="RGU" location="0x40053000"/&gt;
-&lt;peripheralInstance derived_from="WWDT" id="WWDT" location="0x40080000"/&gt;
-&lt;peripheralInstance derived_from="USART0" id="USART0" location="0x40081000"/&gt;
-&lt;peripheralInstance derived_from="USART2" id="USART2" location="0x400c1000"/&gt;
-&lt;peripheralInstance derived_from="USART3" id="USART3" location="0x400c2000"/&gt;
-&lt;peripheralInstance derived_from="UART1" id="UART1" location="0x40082000"/&gt;
-&lt;peripheralInstance derived_from="SSP0" id="SSP0" location="0x40083000"/&gt;
-&lt;peripheralInstance derived_from="SSP1" id="SSP1" location="0x400c5000"/&gt;
-&lt;peripheralInstance derived_from="TIMER0" id="TIMER0" location="0x40084000"/&gt;
-&lt;peripheralInstance derived_from="TIMER1" id="TIMER1" location="0x40085000"/&gt;
-&lt;peripheralInstance derived_from="TIMER2" id="TIMER2" location="0x400c3000"/&gt;
-&lt;peripheralInstance derived_from="TIMER3" id="TIMER3" location="0x400c4000"/&gt;
-&lt;peripheralInstance derived_from="SCU" id="SCU" location="0x40086000"/&gt;
-&lt;peripheralInstance derived_from="GPIO-PIN-INT" id="GPIO-PIN-INT" location="0x40087000"/&gt;
-&lt;peripheralInstance derived_from="GPIO-GROUP-INT0" id="GPIO-GROUP-INT0" location="0x40088000"/&gt;
-&lt;peripheralInstance derived_from="GPIO-GROUP-INT1" id="GPIO-GROUP-INT1" location="0x40089000"/&gt;
-&lt;peripheralInstance derived_from="MCPWM" id="MCPWM" location="0x400a0000"/&gt;
-&lt;peripheralInstance derived_from="I2C0" id="I2C0" location="0x400a1000"/&gt;
-&lt;peripheralInstance derived_from="I2C1" id="I2C1" location="0x400e0000"/&gt;
-&lt;peripheralInstance derived_from="I2S0" id="I2S0" location="0x400a2000"/&gt;
-&lt;peripheralInstance derived_from="I2S1" id="I2S1" location="0x400a3000"/&gt;
-&lt;peripheralInstance derived_from="C-CAN1" id="C-CAN1" location="0x400a4000"/&gt;
-&lt;peripheralInstance derived_from="RITIMER" id="RITIMER" location="0x400c0000"/&gt;
-&lt;peripheralInstance derived_from="QEI" id="QEI" location="0x400c6000"/&gt;
-&lt;peripheralInstance derived_from="GIMA" id="GIMA" location="0x400c7000"/&gt;
-&lt;peripheralInstance derived_from="DAC" id="DAC" location="0x400e1000"/&gt;
-&lt;peripheralInstance derived_from="C-CAN0" id="C-CAN0" location="0x400e2000"/&gt;
-&lt;peripheralInstance derived_from="ADC0" id="ADC0" location="0x400e3000"/&gt;
-&lt;peripheralInstance derived_from="ADC1" id="ADC1" location="0x400e4000"/&gt;
-&lt;peripheralInstance derived_from="GPIO-PORT" id="GPIO-PORT" location="0x400f4000"/&gt;
-&lt;peripheralInstance derived_from="SPI" id="SPI" location="0x40100000"/&gt;
-&lt;peripheralInstance derived_from="SGPIO" id="SGPIO" location="0x40101000"/&gt;
-&lt;/chip&gt;
-&lt;processor&gt;
-&lt;name gcc_name="cortex-m4"&gt;Cortex-M4&lt;/name&gt;
-&lt;family&gt;Cortex-M&lt;/family&gt;
-&lt;/processor&gt;
-&lt;link href="nxp_lpc43xx_peripheral.xme" show="embed" type="simple"/&gt;
-&lt;/info&gt;
-&lt;/infoList&gt;
-&lt;/TargetConfig&gt;</projectStorage>
-	</storageModule>
-	<storageModule moduleId="com.crt.advproject"/>
-	<storageModule moduleId="refreshScope" versionNumber="2">
-		<configuration configurationName="Debug_rtos"/>
-		<configuration configurationName="Debug">
-			<resource resourceType="PROJECT" workspacePath="/rrtester"/>
-		</configuration>
-		<configuration configurationName="Release">
-			<resource resourceType="PROJECT" workspacePath="/rrtester"/>
-		</configuration>
-	</storageModule>
-	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
-	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.debug.1287796118;com.crt.advproject.config.exe.debug.1287796118.;com.crt.advproject.gas.exe.debug.693662540;com.crt.advproject.assembler.input.1254139952">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.crt.advproject.GCCManagedMakePerProjectProfile"/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.release.392206674;cdt.managedbuild.config.gnu.exe.release.392206674.;cdt.managedbuild.tool.gnu.c.compiler.exe.release.475708835;cdt.managedbuild.tool.gnu.c.compiler.input.644254748">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.debug.1287796118;com.crt.advproject.config.exe.debug.1287796118.;com.crt.advproject.gcc.exe.debug.110044005;com.crt.advproject.compiler.input.1047996959">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.crt.advproject.GCCManagedMakePerProjectProfile"/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.release.587497307;com.crt.advproject.config.exe.release.587497307.;com.crt.advproject.gas.exe.release.1296001641;com.crt.advproject.assembler.input.1178298719">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.crt.advproject.GCCManagedMakePerProjectProfile"/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.release.587497307;com.crt.advproject.config.exe.release.587497307.;com.crt.advproject.gcc.exe.release.66117631;com.crt.advproject.compiler.input.1126606754">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.crt.advproject.GCCManagedMakePerProjectProfile"/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.debug.1370903238;cdt.managedbuild.config.gnu.exe.debug.1370903238.;cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1681826987;cdt.managedbuild.tool.gnu.c.compiler.input.1840231535">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 </cproject>
