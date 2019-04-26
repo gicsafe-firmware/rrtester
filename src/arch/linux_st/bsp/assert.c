@@ -71,7 +71,6 @@ rkh_assert(RKHROM char * const file, int line)
             "file\n", line, file);
     RKH_DIS_INTERRUPT();
     RKH_TR_FWK_ASSERT((RKHROM char *)file, __LINE__);
-    __debugbreak();
     rkh_fwk_exit();
 }
 
