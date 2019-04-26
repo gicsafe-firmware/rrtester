@@ -112,19 +112,19 @@ processCmdLineOpts(int argc, char **argv)
                 break;
 
 			case 's':
-                trace_io_silence();
+//TODO                trace_io_silence();
 				break;
 
             case 'f':
-                trace_io_setFileName(optarg);
+//TODO                trace_io_setFileName(optarg);
                 break;
 
             case 't':
-                trace_io_setTcpIpAddr(optarg);
+//TODO                trace_io_setTcpIpAddr(optarg);
                 break;
 
             case 'p':
-                trace_io_setTcpPort((short)atoi(optarg));
+//TODO                trace_io_setTcpPort((short)atoi(optarg));
                 break;
 
             case '?':
