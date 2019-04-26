@@ -68,13 +68,16 @@ extern "C" {
 #define TCP_TRC_PORT_DFT             6602
 
 /* ------------------------------- Data types ------------------------------ */
+typedef struct
+{
+    char ftbinName[FTBIN_NAME_STR_LEN];
+    char tcpIpAddr[TCP_IPADDR_STR_LEN];
+    short tcpPort;
+} TRACE_CFG_ST;
+
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-void trace_io_silence(void);
-void trace_io_setFileName(char *fname);
-void trace_io_setTcpIpAddr(char *ip);
-void trace_io_setTcpPort(short p);
-
+void trace_io_setConfig(int argc, char **argv);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus

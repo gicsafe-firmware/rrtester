@@ -46,103 +46,106 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
- *  DaBa  Dario BaliÃ±a       dariosb@gmail.com
+ *  DaBa  Dario Baliña       dariosb@gmail.com
  */
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
-#include <curses.h>//apt-get install libncurses5-dev
+#include <stdlib.h>
+#include <stdio.h>
+#include <termios.h>
+#include <pthread.h>
+#include <sys/time.h>
+
+#define _BSD_SOURCE
+#include <unistd.h>
 
 #include "rkh.h"
-#include "bsp.h"
-#include "din.h"
-#include "eth.h"
+#include "bsp_common.h"
 
 RKH_THIS_MODULE
 
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
+#define BSP_TICKS_PER_SEC   		100
+
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
-void keyb_dIn_parser(char c);
-
 /* ---------------------------- Local variables ---------------------------- */
-#if defined(RKH_USE_TRC_SENDER)
-static rui8_t rkhtick;
-#endif
-#ifdef OLD
-static DWORD tickMsec;
-#endif
+static unsigned short tick_msec;
+static struct termios orgt;
 
 /* ----------------------- Local function prototypes ----------------------- */
-#ifdef OLD
-static DWORD WINAPI isr_tmr_thread(LPVOID par);
-static DWORD WINAPI isr_kbd_thread(LPVOID par);
-#endif
-
 /* ---------------------------- Local functions ---------------------------- */
-#ifdef OLD
-static
-DWORD WINAPI
-isr_tmrThread(LPVOID par)      /* Win32 thread to emulate timer ISR */
+static int
+mygetch(void)
 {
-    (void)par;
+    struct termios newt;
+    int ch;
 
-	Sleep(tickMsec);
-    while (rkhport_fwk_is_running())
-    {
-        RKH_TIM_TICK(&rkhtick);
-        Sleep(tickMsec);
-    }
-    return 0;
+    tcgetattr(STDIN_FILENO, &orgt);
+    newt = orgt;
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    ch = getchar();
+    tcsetattr(STDIN_FILENO, TCSANOW, &orgt);
+    return ch;
 }
 
-static
-DWORD WINAPI
-isr_kbdThread(LPVOID par)      /* Win32 thread to emulate keyboard ISR */
+static void *
+isr_tmrThread(void *d)
 {
-    (void)par;
-	char c;
+    (void)d;
 
     while (rkhport_fwk_is_running())
     {
-		c = (char)_getch();
-        bsp_keyParser(c);
-		keyb_dIn_parser(c);
+        RKH_TIM_TICK(0);
+        usleep(tick_msec);
     }
-    return 0;
+    pthread_exit(NULL);
+    return NULL;    
 }
-#endif
+
+static void *
+isr_kbdThread(void *d) 
+{
+    (void)d;
+
+    while (rkhport_fwk_is_running())
+    {
+        bsp_keyParser(mygetch());
+    }
+    return NULL;
+}
 
 /* ---------------------------- Global functions --------------------------- */
 void
 rkh_hook_start(void)
 {
-#ifdef OLD
-    DWORD thtmrId, thkbdId;
-    HANDLE hthTmr, hthKbd;
+    pthread_t thtmr_id, thkbd_id;  /* thread identifiers */
+    pthread_attr_t threadAttr;
 
     /* set the desired tick rate */
-    tickMsec = RKH_TICK_RATE_MS;
+    tick_msec = 1000UL / BSP_TICKS_PER_SEC;
 
-    /* create the ISR timer thread */
-    hthTmr = CreateThread(NULL, 1024, &isr_tmrThread, 0, 0, &thtmrId);
-    RKH_ASSERT(hthTmr != (HANDLE)0);
-    SetThreadPriority(hthTmr, THREAD_PRIORITY_TIME_CRITICAL);
+    /* initialize the thread attribute */
+    pthread_attr_init(&threadAttr);
 
-    /* create the ISR keyboard thread */
-    hthKbd = CreateThread(NULL, 1024, &isr_kbdThread, 0, 0, &thkbdId);
-    RKH_ASSERT(hthKbd != (HANDLE)0);
-    SetThreadPriority(hthKbd, THREAD_PRIORITY_NORMAL);
+    /* Set the stack size of the thread */
+    pthread_attr_setstacksize(&threadAttr, 1024);
 
-    RKH_TR_FWK_ACTOR(&rkhtick, "rkhtick");
-#endif
+    /* Create the threads */
+    pthread_create(&thtmr_id, &threadAttr, isr_tmrThread, NULL);
+    pthread_create(&thkbd_id, &threadAttr, isr_kbdThread, NULL);
+
+    /* Destroy the thread attributes */
+    pthread_attr_destroy(&threadAttr);
 }
 
 void
 rkh_hook_exit(void)
 {
     RKH_TRC_FLUSH();
-	bsp_serial_close(GSM_PORT);
+    tcsetattr(STDIN_FILENO, TCSANOW, &orgt);
 }
 
 void

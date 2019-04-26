@@ -33,7 +33,7 @@
 
 /**
  *  \file       trace_io_tcp.c
- *  \brief      Socket TCP/IP support for 80x86 OS win32
+ *  \brief      Socket TCP/IP support for 80x86 OS Linux
  *
  *  \ingroup    bsp
  */
@@ -46,11 +46,21 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
- *  DaBa  Dario Baliï¿½a       dariosb@gmail.com
+ *  DaBa  Dario Baliña       dariosb@gmail.com
  */
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+
 #include "trace_io_tcp.h"
 #include "rkh.h"
 
@@ -63,75 +73,53 @@
 /* ---------------------------- Local functions ---------------------------- */
 /* ---------------------------- Global functions --------------------------- */
 int
-trace_io_tcp_open(unsigned short port, char *srv_ip, SOCKET *ps)
+trace_io_tcp_open(unsigned short port, char *srv_ip, int *ps)
 {
-#ifdef OLD
-    WORD wVersionRequested;
-    WSADATA wsaData;
-    SOCKADDR_IN target; /* Socket address information */
-    SOCKET s;
-    int err;
+    int s;
+    struct sockaddr_in serv_addr;
 
     /* --- INITIALIZATION ----------------------------------- */
-    wVersionRequested = MAKEWORD(1, 1);
-    err = WSAStartup(wVersionRequested, &wsaData);
-    *ps = INVALID_SOCKET;
+    *ps = 0;
 
-    if (err != 0)
-    {
-        printf("WSAStartup error %ld", WSAGetLastError());
-        WSACleanup();
-        return -1;
-    }
-    /* ------------------------------------------------------ */
-
-    /* ---- build address structure to bind to socket.-------- */
-    target.sin_family = AF_INET; /* address family Internet */
-    target.sin_port = htons(port);   /* Port to connect on */
-    target.sin_addr.s_addr = inet_addr (srv_ip); /* Server IP */
     /* ------------------------------------------------------ */
 
     /* ---- create SOCKET-------------------------------------- */
-    s = socket (AF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if (s == INVALID_SOCKET)
+    s = socket (AF_INET, SOCK_STREAM, IPPROTO_TCP); /* Create socket */
+    if (s < 0)
     {
-        printf("socket error %ld", WSAGetLastError());
-        WSACleanup();
+        printf("socket opening error\n");
         return -1; /* Couldn't create the socket */
     }
+
+    bzero((char *) &serv_addr, sizeof(serv_addr));
+    serv_addr.sin_family = AF_INET;
+
+    serv_addr.sin_addr.s_addr = inet_addr(srv_ip);  /* Normal Address */
+
+    serv_addr.sin_port = htons(port);
     /* ------------------------------------------------------ */
 
     /* ---- try CONNECT ----------------------------------------- */
-    if (connect(s, (SOCKADDR*)&target, sizeof(target)) == SOCKET_ERROR)
+    if (connect(s,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0)
     {
-        printf("connect error %ld", WSAGetLastError());
-        WSACleanup();
-        return -1; /* Couldn't connect */
+        printf("ERROR connecting \n");
+        return -1;
     }
+
     *ps = s;
-#endif
     return 0;
 }
 
 void
-trace_io_tcp_send(SOCKET s, const char *buf, int len)
+trace_io_tcp_send(int s, char c)
 {
-    send(s, buf, len, 0);
-}
-
-int
-trace_io_tcp_recv(SOCKET s, char *buf, int len)
-{
-    return recv(s, buf, len, 0);
+    write(s, &c, 1);
 }
 
 void
-trace_io_tcp_close(SOCKET s)
+trace_io_tcp_close(int s)
 {
-#ifdef OLD
-    closesocket(s);
-    WSACleanup();
-#endif
+    close(s);
 }
 
 /* ------------------------------ File footer ------------------------------ */

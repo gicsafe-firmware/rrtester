@@ -33,7 +33,7 @@
 
 /**
  *  \file       trace_io_tcp.h
- *  \brief      Socket TCP/IP support for 80x86 OS win32
+ *  \brief      Socket TCP/IP support for 80x86 OS Linux
  *
  *  \ingroup    bsp
  */
@@ -46,7 +46,7 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
- *  DaBa  Dario Baliï¿½a       dariosb@gmail.com
+ *  DaBa  Dario Baliña       dariosb@gmail.com
  */
 
 /* --------------------------------- Module -------------------------------- */
@@ -54,9 +54,6 @@
 #define __TRACE_IO_TCP_H__
 
 /* ----------------------------- Include files ----------------------------- */
-#include <sys/socket.h>//#include <winsock.h>
-#include "eth.h"
-
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
 extern "C" {
@@ -67,10 +64,9 @@ extern "C" {
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-int trace_io_tcp_open(unsigned short port, char *srvip, SOCKET *ps);
-void trace_io_tcp_send(SOCKET s, const char *buf, int len);
-int trace_io_tcp_recv(SOCKET s, char *buf, int len);
-void trace_io_tcp_close(SOCKET s);
+int trace_io_tcp_open(unsigned short port, char *srvip, int *ps);
+void trace_io_tcp_send(int s, char c);
+void trace_io_tcp_close(int s);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus

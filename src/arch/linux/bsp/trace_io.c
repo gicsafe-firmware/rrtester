@@ -33,7 +33,7 @@
 
 /**
  *  \file       trace_io.c
- *  \brief      Socket TCP/IP support for 80x86 OS win32
+ *  \brief      Socket TCP/IP support for 80x86 OS Linux
  *
  *  \ingroup    bsp
  */
@@ -46,7 +46,7 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
- *  DaBa  Dario BaliÃ±a       db@vortexmakes.com
+ *  DaBa  Dario Baliña       dariosb@gmail.com
  */
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
@@ -54,6 +54,8 @@
 
 #if RKH_CFG_TRC_EN == 1
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include "getopt.h"
 #include "trace_io_cfg.h"
@@ -69,60 +71,63 @@
  */
 #define BSP_TS_RATE_HZ              CLOCKS_PER_SEC
 
-/* ---------------------------- Local data types --------------------------- */
-typedef struct
-{
-    char ftbinName[FTBIN_NAME_STR_LEN];
-    char tcpIpAddr[TCP_IPADDR_STR_LEN];
-    short tcpPort;
-    char silence;
-} TRACE_CFG_ST;
+#define TRACE_CFG_CONSOLE_OPTIONS   "t:f:p:h"
 
+/* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
+static char *opts = (char *)TRACE_CFG_CONSOLE_OPTIONS;
+static const char *helpMessage =
+{
+    "\nOption usage:\n"
+    "\t -f File name for binary trace output\n"
+    "\t -t ipaddr of TCP trace client\n"
+    "\t -p port of TCP trace client\n"
+    "\t -h (help)\n"
+};
+
 static TRACE_CFG_ST config =
 {
-    "", TCP_TRC_IP_ADDR_DFT, TCP_TRC_PORT_DFT, 0
+    "", TCP_TRC_IP_ADDR_DFT, TCP_TRC_PORT_DFT
 };
 
 static FILE *ftbin = NULL;
-static SOCKET tsock;
+static int tsock;
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
 /* ---------------------------- Global functions --------------------------- */
 void
-trace_io_silence(void)
+trace_io_setConfig(int argc, char **argv)
 {
-    config.silence = 1;
-}
+    int c;
 
-void
-trace_io_setFileName(char *fname)
-{
-    strncpy(config.ftbinName, fname, FTBIN_NAME_STR_LEN);
-}
+    while ((c = getopt(argc, argv, opts)) != EOF)
+        switch (c)
+        {
+            case 'f':
+                strncpy(config.ftbinName, optarg, FTBIN_NAME_STR_LEN);
+                break;
 
-void
-trace_io_setTcpIpAddr(char *ip)
-{
-    strncpy(config.tcpIpAddr, ip, TCP_IPADDR_STR_LEN);
-}
+            case 't':
+                strncpy(config.tcpIpAddr, optarg, TCP_IPADDR_STR_LEN);
+                break;
 
-void
-trace_io_setTcpPort(short p)
-{
-    config.tcpPort=p;
+            case 'p':
+                config.tcpPort= (short)atoi(optarg);
+                break;
+
+            case '?':
+            case 'h':
+                printf(helpMessage);
+                break;
+        }
 }
 
 void
 rkh_trc_open(void)
 {
-#ifdef OLD
     rkh_trc_init();
-
-    if(config.silence == 1)
-        return;
 
     if (strlen(config.ftbinName) != 0)
     {
@@ -141,23 +146,17 @@ rkh_trc_open(void)
     }
 
     RKH_TRC_SEND_CFG(BSP_TS_RATE_HZ);
-#endif
 }
 
 void
 rkh_trc_close(void)
 {
-#ifdef OLD
-    if(config.silence == 1)
-        return;
-
     if (ftbin != NULL)
     {
         fclose(ftbin);
     }
 
     trace_io_tcp_close(tsock);
-#endif
 }
 
 RKH_TS_T
@@ -169,37 +168,16 @@ rkh_trc_getts(void)
 void
 rkh_trc_flush(void)
 {
-#ifdef OLD
-    rui8_t *blk;
-    TRCQTY_T nbytes;
-    RKH_SR_ALLOC();
+	rui8_t *d;
 
-    FOREVER
-    {
-        nbytes = 128;
-
-        RKH_ENTER_CRITICAL_();
-        blk = rkh_trc_get_block(&nbytes);
-        RKH_EXIT_CRITICAL_();
-
-		if (config.silence == 1)
-			break;
-
-        if ((blk != (rui8_t *)0))
+	while( ( d = rkh_trc_get() ) != ( rui8_t* )0 )
+	{
+        if (ftbin != NULL)
         {
-            if (ftbin != NULL)
-            {
-                fwrite(blk, 1, nbytes, ftbin);
-            }
-
-            trace_io_tcp_send(tsock, (char *)blk, nbytes);
+            fwrite(d, 1, 1, ftbin);
         }
-        else
-        {
-            break;
-        }
-    }
-#endif
+        trace_io_tcp_send(tsock, *d);
+	}
 }
 #endif
 
