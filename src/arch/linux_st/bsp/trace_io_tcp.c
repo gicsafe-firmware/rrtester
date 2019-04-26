@@ -46,7 +46,7 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
- *  DaBa  Dario Baliña       dariosb@gmail.com
+ *  DaBa  Dario Baliï¿½a       dariosb@gmail.com
  */
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
@@ -65,6 +65,7 @@
 int
 trace_io_tcp_open(unsigned short port, char *srv_ip, SOCKET *ps)
 {
+#ifdef OLD
     WORD wVersionRequested;
     WSADATA wsaData;
     SOCKADDR_IN target; /* Socket address information */
@@ -108,6 +109,7 @@ trace_io_tcp_open(unsigned short port, char *srv_ip, SOCKET *ps)
         return -1; /* Couldn't connect */
     }
     *ps = s;
+#endif
     return 0;
 }
 
@@ -126,8 +128,10 @@ trace_io_tcp_recv(SOCKET s, char *buf, int len)
 void
 trace_io_tcp_close(SOCKET s)
 {
+#ifdef OLD
     closesocket(s);
     WSACleanup();
+#endif
 }
 
 /* ------------------------------ File footer ------------------------------ */

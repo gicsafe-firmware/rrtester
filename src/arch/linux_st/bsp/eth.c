@@ -11,6 +11,7 @@
 
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
+#include "eth.h"
 #include "rkh.h"
 #include "rkhfwk_pubsub.h"
 #include "rkhfwk_dynevt.h"
@@ -20,9 +21,9 @@
 #include "config.h"
 #include "ConMgrEth.h"
 
-#include <winsock.h>
+#include <sys/socket.h>
 #include <stdint.h>
-#include <iphlpapi.h>
+//#include <iphlpapi.h>
 #include <stdio.h>
 #include <stdlib.h>
 #pragma comment(lib, "IPHLPAPI.lib")
@@ -60,6 +61,7 @@ static RKH_ROM_STATIC_EVENT(e_disconnected, evDisconnected);
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
+#ifdef OLD
 static void
 print_adapterInfo(PIP_ADAPTER_INFO p)
 {
@@ -284,11 +286,12 @@ ethThread(LPVOID par)
 
     return 0;
 }
-
+#endif
 /* ---------------------------- Global functions --------------------------- */
 void
 eth_init(void)
 {
+#ifdef OLD
     DWORD ethId;
     HANDLE ethTh;
 
@@ -297,6 +300,7 @@ eth_init(void)
     SetThreadPriority(ethTh, THREAD_PRIORITY_NORMAL);
 
     running = 1;
+#endif
 }
 
 void
@@ -308,6 +312,7 @@ eth_deinit(void)
 void
 eth_socketOpen(char *ip, char *port)
 {
+#ifdef OLD
     WORD wVersionRequested;
     WSADATA wsaData;
     SOCKADDR_IN target;
@@ -349,11 +354,13 @@ eth_socketOpen(char *ip, char *port)
     }
 
     RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_connected), &eth);
+#endif
 }
 
 void
 eth_socketWrite(rui8_t *p, ruint size)
 {
+#ifdef OLD
     u_long mode;
     int ret;
 
@@ -373,6 +380,7 @@ eth_socketWrite(rui8_t *p, ruint size)
     {
         RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
     }
+#endif
 }
 
 ruint
@@ -380,7 +388,7 @@ eth_socketRead(rui8_t *p, ruint size)
 {
     int ret;
     u_long mode;
-
+#ifdef OLD
     mode = 1;  /* 1 to enable non-blocking socket */
     ioctlsocket(s, FIONBIO, &mode);
 
@@ -409,7 +417,7 @@ eth_socketRead(rui8_t *p, ruint size)
     }
 
     RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
-
+#endif
     return ret;
 }
 

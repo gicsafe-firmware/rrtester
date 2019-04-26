@@ -46,7 +46,7 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
- *  DaBa  Dario Baliña       dariosb@gmail.com
+ *  DaBa  Dario Baliï¿½a       dariosb@gmail.com
  */
 
 /* --------------------------------- Module -------------------------------- */
@@ -54,7 +54,8 @@
 #define __TRACE_IO_TCP_H__
 
 /* ----------------------------- Include files ----------------------------- */
-#include <winsock.h>
+#include <sys/socket.h>//#include <winsock.h>
+#include "eth.h"
 
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus

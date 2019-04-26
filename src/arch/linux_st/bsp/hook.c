@@ -46,11 +46,11 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
- *  DaBa  Dario Bali�a       dariosb@gmail.com
+ *  DaBa  Dario Baliña       dariosb@gmail.com
  */
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
-#include <curses.h>//#include <conio.h>
+#include <curses.h>//apt-get install libncurses5-dev
 
 #include "rkh.h"
 #include "bsp.h"
@@ -69,13 +69,18 @@ void keyb_dIn_parser(char c);
 #if defined(RKH_USE_TRC_SENDER)
 static rui8_t rkhtick;
 #endif
+#ifdef OLD
 static DWORD tickMsec;
+#endif
 
 /* ----------------------- Local function prototypes ----------------------- */
+#ifdef OLD
 static DWORD WINAPI isr_tmr_thread(LPVOID par);
 static DWORD WINAPI isr_kbd_thread(LPVOID par);
+#endif
 
 /* ---------------------------- Local functions ---------------------------- */
+#ifdef OLD
 static
 DWORD WINAPI
 isr_tmrThread(LPVOID par)      /* Win32 thread to emulate timer ISR */
@@ -106,11 +111,13 @@ isr_kbdThread(LPVOID par)      /* Win32 thread to emulate keyboard ISR */
     }
     return 0;
 }
+#endif
 
 /* ---------------------------- Global functions --------------------------- */
 void
 rkh_hook_start(void)
 {
+#ifdef OLD
     DWORD thtmrId, thkbdId;
     HANDLE hthTmr, hthKbd;
 
@@ -128,6 +135,7 @@ rkh_hook_start(void)
     SetThreadPriority(hthKbd, THREAD_PRIORITY_NORMAL);
 
     RKH_TR_FWK_ACTOR(&rkhtick, "rkhtick");
+#endif
 }
 
 void

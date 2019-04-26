@@ -46,7 +46,7 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
- *  DaBa  Dario Baliña       db@vortexmakes.com
+ *  DaBa  Dario BaliÃ±a       db@vortexmakes.com
  */
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
@@ -118,6 +118,7 @@ trace_io_setTcpPort(short p)
 void
 rkh_trc_open(void)
 {
+#ifdef OLD
     rkh_trc_init();
 
     if(config.silence == 1)
@@ -140,11 +141,13 @@ rkh_trc_open(void)
     }
 
     RKH_TRC_SEND_CFG(BSP_TS_RATE_HZ);
+#endif
 }
 
 void
 rkh_trc_close(void)
 {
+#ifdef OLD
     if(config.silence == 1)
         return;
 
@@ -154,6 +157,7 @@ rkh_trc_close(void)
     }
 
     trace_io_tcp_close(tsock);
+#endif
 }
 
 RKH_TS_T
@@ -165,6 +169,7 @@ rkh_trc_getts(void)
 void
 rkh_trc_flush(void)
 {
+#ifdef OLD
     rui8_t *blk;
     TRCQTY_T nbytes;
     RKH_SR_ALLOC();
@@ -194,6 +199,7 @@ rkh_trc_flush(void)
             break;
         }
     }
+#endif
 }
 #endif
 
