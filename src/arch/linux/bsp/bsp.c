@@ -18,6 +18,7 @@
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
 #include <stdio.h>
+#include <string.h>
 #include "rkh.h"
 #include "rkhfwk_pubsub.h"
 #include "bsp.h"
@@ -94,7 +95,7 @@ printBanner(void)
     printf("Port version     = %s\n", rkhport_get_version());
     printf("Port description = %s\n\n", rkhport_get_desc());
 	printf("Description: \n\n"
-		"Sistema de monitoreo remoto de pasos a nivel\n");
+		"Sistema probador de relés ferroviarios\n");
 
     printf("1.- Press ESC to quit \n\n\n");
 }
@@ -112,19 +113,19 @@ processCmdLineOpts(int argc, char **argv)
                 break;
 
 			case 's':
-//TODO                trace_io_silence();
+				trace_io_silence();
 				break;
 
             case 'f':
-//TODO                trace_io_setFileName(optarg);
+                trace_io_setFileName(optarg);
                 break;
 
             case 't':
-//TODO                trace_io_setTcpIpAddr(optarg);
+                trace_io_setTcpIpAddr(optarg);
                 break;
 
             case 'p':
-//TODO                trace_io_setTcpPort((short)atoi(optarg));
+                trace_io_setTcpPort((short)atoi(optarg));
                 break;
 
             case '?':

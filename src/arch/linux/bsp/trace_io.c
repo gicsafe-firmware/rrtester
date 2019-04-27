@@ -46,7 +46,7 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
- *  DaBa  Dario Baliña       dariosb@gmail.com
+ *  DaBa  Dario Baliï¿½a       dariosb@gmail.com
  */
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
@@ -88,7 +88,7 @@ static const char *helpMessage =
 
 static TRACE_CFG_ST config =
 {
-    "", TCP_TRC_IP_ADDR_DFT, TCP_TRC_PORT_DFT
+    "", TCP_TRC_IP_ADDR_DFT, TCP_TRC_PORT_DFT, 0
 };
 
 static FILE *ftbin = NULL;
@@ -97,6 +97,30 @@ static int tsock;
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
 /* ---------------------------- Global functions --------------------------- */
+void
+trace_io_silence(void)
+{
+    config.silence = 1;
+}
+
+void
+trace_io_setFileName(char *fname)
+{
+    strncpy(config.ftbinName, fname, FTBIN_NAME_STR_LEN);
+}
+
+void
+trace_io_setTcpIpAddr(char *ip)
+{
+    strncpy(config.tcpIpAddr, ip, TCP_IPADDR_STR_LEN);
+}
+
+void
+trace_io_setTcpPort(short p)
+{
+    config.tcpPort=p;
+}
+
 void
 trace_io_setConfig(int argc, char **argv)
 {
