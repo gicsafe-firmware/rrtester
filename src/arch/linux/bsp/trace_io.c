@@ -153,6 +153,9 @@ rkh_trc_open(void)
 {
     rkh_trc_init();
 
+	if(config.silence == 1)
+		return;
+
     if (strlen(config.ftbinName) != 0)
     {
         if ((ftbin = fopen(config.ftbinName, "w+b")) == NULL)
@@ -175,6 +178,9 @@ rkh_trc_open(void)
 void
 rkh_trc_close(void)
 {
+	if(config.silence == 1)
+		return;
+
     if (ftbin != NULL)
     {
         fclose(ftbin);
