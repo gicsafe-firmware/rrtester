@@ -46,7 +46,8 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
- *  DaBa  Dario Bali�a       dariosb@gmail.com
+ *  DaBa  Dario Baliña       db@vortexmakes.com
+ *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
@@ -111,9 +112,15 @@ trace_io_tcp_open(unsigned short port, char *srv_ip, int *ps)
 }
 
 void
-trace_io_tcp_send(int s, char c)
+trace_io_tcp_send(SOCKET s, const char *buf, int len)
 {
-    write(s, &c, 1);
+    send(s, buf, len, 0);
+}
+
+int
+trace_io_tcp_recv(SOCKET s, char *buf, int len)
+{
+    return recv(s, buf, len, 0);
 }
 
 void

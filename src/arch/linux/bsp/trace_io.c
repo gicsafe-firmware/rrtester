@@ -198,16 +198,35 @@ rkh_trc_getts(void)
 void
 rkh_trc_flush(void)
 {
-	rui8_t *d;
+    rui8_t *blk;
+    TRCQTY_T nbytes;
+    RKH_SR_ALLOC();
 
-	while( ( d = rkh_trc_get() ) != ( rui8_t* )0 )
-	{
-        if (ftbin != NULL)
+    FOREVER
+    {
+        nbytes = 128;
+
+        RKH_ENTER_CRITICAL_();
+        blk = rkh_trc_get_block(&nbytes);
+        RKH_EXIT_CRITICAL_();
+
+		if (config.silence == 1)
+			break;
+
+        if ((blk != (rui8_t *)0))
         {
-            fwrite(d, 1, 1, ftbin);
+            if (ftbin != NULL)
+            {
+                fwrite(blk, 1, nbytes, ftbin);
+            }
+
+            trace_io_tcp_send(tsock, (char *)blk, nbytes);
         }
-        trace_io_tcp_send(tsock, *d);
-	}
+        else
+        {
+            break;
+        }
+    }
 }
 #endif
 
