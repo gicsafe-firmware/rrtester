@@ -33,6 +33,7 @@
 #define __ETH_H__
 
 /* ----------------------------- Include files ----------------------------- */
+#include <limits.h>
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
 extern "C" {
@@ -40,6 +41,7 @@ extern "C" {
 
 /* --------------------------------- Macros -------------------------------- */
 /* -------------------------------- Constants ------------------------------ */
+#define ETH_THREAD_STACK_SIZE PTHREAD_STACK_MIN
 /* ------------------------------- Data types ------------------------------ */
 typedef int SOCKET;
 /* -------------------------- External variables --------------------------- */

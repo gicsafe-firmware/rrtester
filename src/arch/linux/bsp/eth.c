@@ -23,10 +23,9 @@
 
 #include <sys/socket.h>
 #include <stdint.h>
-//#include <iphlpapi.h>
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
-#pragma comment(lib, "IPHLPAPI.lib")
 
 RKH_THIS_MODULE
 
@@ -222,11 +221,18 @@ check_adapterStatus(PIP_ADAPTER_INFO p, unsigned int i)
         }
     }
 }
-
+#endif
 static
-DWORD WINAPI
-ethThread(LPVOID par)
+void
+ethThread(void* par)
 {
+	printf("\nehtThread started\n");
+	for(;;)
+	{
+		// dummy
+		sleep(500);
+	}
+#ifdef OLD
     (void)par;
 
     PIP_ADAPTER_INFO pAdapterInfo;
@@ -283,24 +289,46 @@ ethThread(LPVOID par)
     {
         FREE(pAdapterInfo);
     }
-
-    return 0;
-}
 #endif
+    return;
+}
 /* ---------------------------- Global functions --------------------------- */
 void
 eth_init(void)
 {
-#ifdef OLD
-    DWORD ethId;
-    HANDLE ethTh;
-
-    ethTh = CreateThread(NULL, 1024, &ethThread, 0, 0, &ethId);
-    RKH_ASSERT(ethTh != (HANDLE)0);
-    SetThreadPriority(ethTh, THREAD_PRIORITY_NORMAL);
+	int ret;
+	pthread_t ethId;
+	pthread_attr_t thAtt;
+	pthread_attr_init(&thAtt);
+	ret = pthread_attr_setstacksize(&thAtt, ETH_THREAD_STACK_SIZE);
+	if (EINVAL == ret)
+	{
+		printf("\nStack size is less than PTHREAD_STACK_MIN (16384) \
+or not a multiple of the system page size. Used default size.\n");
+	}
+	ret = pthread_create(&ethId, NULL, &ethThread, NULL);
+	switch (ret) {
+		case EAGAIN:
+			printf("Insufficient resources to create another thread.");
+			break;
+		case EINVAL:
+			printf("Invalid settings in attributes.");
+			break;
+		case EPERM:
+			printf("No permission to set the scheduling policy \
+and parameters specified in attributes.");
+			break;
+		default:
+			if (0 != ret)
+			{
+				printf("Couldn't create a new thread for unknown reasons");
+			}
+		break;
+	}
+	RKH_ASSERT(ethId != (pthread_t)0);
 
     running = 1;
-#endif
+
 }
 
 void
