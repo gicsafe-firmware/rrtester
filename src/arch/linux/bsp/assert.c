@@ -33,7 +33,7 @@
 
 /**
  *  \file       assert.c
- *  \brief      RKH assert function for 80x86 OS win32
+ *  \brief      RKH assert function for 80x86 OS linux
  *
  *  \ingroup    bsp
  */
@@ -46,7 +46,8 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
- *  DaBa  Dario Bali�a       dariosb@gmail.com
+ *  DaBa  Dario Baliña       db@vortexmakes.com
+ *  CaMa  Carlos Mancòn      manconci@gmail.com
  */
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
@@ -58,6 +59,11 @@ RKH_THIS_MODULE
 
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
+
+/* The following is defined in <signal.h> (raise() also) but the header file
+ * has same name as src/conMgrEth/signal.h
+ */
+#define SIGINT 2
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
@@ -71,6 +77,7 @@ rkh_assert(RKHROM char * const file, int line)
             "file\n", line, file);
     RKH_DIS_INTERRUPT();
     RKH_TR_FWK_ASSERT((RKHROM char *)file, __LINE__);
+    raise(SIGINT);
     rkh_fwk_exit();
 }
 
