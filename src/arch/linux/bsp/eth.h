@@ -33,6 +33,11 @@
 #define __ETH_H__
 
 /* ----------------------------- Include files ----------------------------- */
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <net/if.h>
+#include <netdb.h>
+#include <ifaddrs.h>
 #include <limits.h>
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus

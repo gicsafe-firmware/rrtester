@@ -1,12 +1,13 @@
 /**
  *  \file       eth.c
- *  \brief      Win32 Ethernet socket abstraction.
+ *  \brief      Lnx Ethernet socket abstraction.
  */
 
 /* -------------------------- Development history -------------------------- */
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  DaBa  Dario Baliña       db@vortexmakes.com
+ *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -21,7 +22,6 @@
 #include "config.h"
 #include "ConMgrEth.h"
 
-#include <sys/socket.h>
 #include <stdint.h>
 #include <errno.h>
 #include <stdio.h>
@@ -29,16 +29,16 @@
 
 RKH_THIS_MODULE
 
+/* ----------------------------- Local macros ------------------------------ */
 #define MALLOC(x) HeapAlloc(GetProcessHeap(), 0, (x))
 #define FREE(x) HeapFree(GetProcessHeap(), 0, (x))
-
-/* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
 enum
 {
     Unplugged_st, Plugged_st
 };
-
+//#define ETH_THREAD_DEBUG
+static const int SLEEP_LAPSE_ETH_THREAD = 10;
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
@@ -189,107 +189,127 @@ print_adapterInfo(PIP_ADAPTER_INFO p)
     }
     printf("\n");
 }
-
-void
-check_adapterStatus(PIP_ADAPTER_INFO p, unsigned int i)
-{
-    if ((p->IpAddressList.IpAddress.String != NULL) &&
-        (strcmp(p->IpAddressList.IpAddress.String, "0.0.0.0") != 0) &&
-        (p->GatewayList.IpAddress.String != NULL) &&
-        (strcmp(p->GatewayList.IpAddress.String, "0.0.0.0") != 0)
-        )
-    {
-        if (adapter[i] == Unplugged_st)
-        {
-            adapter[i] = Plugged_st;
-            RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
-                                                    &e_linkConnected), &eth);
-            RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
-                                                    &e_ipStatus), &eth);
-            printf("Using Ethernet Adapter: %d\n", i);
-            print_adapterInfo(p);
-        }
-    }
-    else
-    {
-        if (adapter[i] == Plugged_st)
-        {
-            adapter[i] = Unplugged_st;
-            RKH_SMA_POST_FIFO(conMgrEth,
-                              RKH_UPCAST(RKH_EVT_T, &e_linkDisconnect),
-                              &eth);
-        }
-    }
-}
 #endif
+void
+plugAdapter(struct ifaddrs * p, int i)
+{
+	char host[NI_MAXHOST];
+	if (adapter[i] == Unplugged_st)
+	{
+		adapter[i] = Plugged_st;
+		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
+				&e_linkConnected), &eth);
+		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
+				&e_ipStatus), &eth);
+		printf("Using Ethernet Adapter: %d:%s\n", i, p->ifa_name);
+#ifdef ETH_THREAD_DEBUG
+		s = getnameinfo(p->ifa_addr,
+				(p->ifa_addr->sa_family == AF_INET) ? sizeof(struct sockaddr_in) :
+						sizeof(struct sockaddr_in6),
+						host, NI_MAXHOST,
+						NULL, 0, NI_NUMERICHOST);
+		printf("\t\taddres: <%s>\n", host);
+#endif
+//TODO            print_adapterInfo(p);
+	}
+}
+void
+unplugAdapter(int i)
+{
+	if (adapter[i] == Plugged_st)
+	{
+		adapter[i] = Unplugged_st;
+		RKH_SMA_POST_FIFO(conMgrEth,
+				RKH_UPCAST(RKH_EVT_T, &e_linkDisconnect),
+				&eth);
+		printf("Unplugged Adapter: %d\n", i);
+	}
+}
+void
+check_AdapterStatus(struct if_nameindex *if_ni, struct ifaddrs *pAdapterInfo)
+{
+	int family, n, currentIndex, plugged;
+	struct ifaddrs *pCurrentAdapter;
+	struct if_nameindex *intf;
+
+	for (intf = if_ni; intf->if_index != 0 || intf->if_name != NULL; intf++)
+	{
+
+		plugged = Unplugged_st;
+		for (pCurrentAdapter = pAdapterInfo, n = 0;
+				pCurrentAdapter != NULL;
+				pCurrentAdapter = pCurrentAdapter->ifa_next, n++)
+		{
+			if (pCurrentAdapter->ifa_addr != NULL)
+			{
+				family = pCurrentAdapter->ifa_addr->sa_family;
+				currentIndex = if_nametoindex(pCurrentAdapter->ifa_name);
+				if ((intf->if_index == currentIndex) && ((AF_INET == family)))
+						//||(AF_INET6 == family)))
+				{
+#ifdef ETH_THREAD_DEBUG
+					printf("%-8s %s (%d)\n",
+							pCurrentAdapter->ifa_name,
+							(family == AF_INET) ? "AF_INET" :
+									(family == AF_INET6) ? "AF_INET6" : "???",
+											family);
+#endif
+					plugged = Plugged_st;
+					plugAdapter(pCurrentAdapter, currentIndex);
+				}
+			}
+		}
+		if (Unplugged_st == plugged)
+		{
+			unplugAdapter(intf->if_index);
+		}
+	}
+}
 static
 void
 ethThread(void* par)
 {
+#ifdef ETH_THREAD_DEBUG
 	printf("\nehtThread started\n");
-	for(;;)
-	{
-		// dummy
-		sleep(500);
-	}
-#ifdef OLD
-    (void)par;
-
-    PIP_ADAPTER_INFO pAdapterInfo;
-    PIP_ADAPTER_INFO pAdapter = NULL;
-    LONG ulOutBufLen = sizeof (IP_ADAPTER_INFO);
-    DWORD dwRetVal = 0;
-    unsigned int i = 0;
-
-    pAdapterInfo = (IP_ADAPTER_INFO *) MALLOC(sizeof (IP_ADAPTER_INFO));
-    if (pAdapterInfo == NULL)
-    {
-        printf("Error allocating memory needed to call GetAdaptersinfo\n");
-        exit(EXIT_FAILURE);
-    }
-
-    if (GetAdaptersInfo(pAdapterInfo,
-                        (PULONG)&ulOutBufLen) == ERROR_BUFFER_OVERFLOW)
-    {
-        FREE(pAdapterInfo);
-        pAdapterInfo = (IP_ADAPTER_INFO *) MALLOC(ulOutBufLen);
-        if (pAdapterInfo == NULL)
-        {
-            printf("Error allocating memory needed to call GetAdaptersinfo\n");
-            exit(EXIT_FAILURE);
-        }
-    }
-
-    config_clientId(MQTT_CLIENT_ID);
-    config_topic(MQTT_CLIENT_ID);
-
-    while (running)
-    {
-        Sleep(1000);
-        if ((dwRetVal =
-                 GetAdaptersInfo(pAdapterInfo,
-                                 (PULONG)&ulOutBufLen)) == NO_ERROR)
-        {
-            pAdapter = pAdapterInfo;
-            i = 0;
-
-            while (pAdapter)
-            {
-                check_adapterStatus(pAdapter, i++);
-                pAdapter = pAdapter->Next;
-            }
-        }
-        else
-        {
-            printf("GetAdaptersInfo failed with error: %d\n", dwRetVal);
-        }
-    }
-
-    if (pAdapterInfo)
-    {
-        FREE(pAdapterInfo);
-    }
 #endif
+	struct if_nameindex *if_ni;
+	struct ifaddrs *pAdapterInfo;
+	int dwRetVal;
+
+	config_clientId(MQTT_CLIENT_ID);
+	config_topic(MQTT_CLIENT_ID);
+
+	while (running)
+	{
+		sleep(SLEEP_LAPSE_ETH_THREAD);
+		if_ni = if_nameindex();
+		if (if_ni != NULL) {
+#ifdef ETH_THREAD_DEBUG
+			struct if_nameindex *intf;
+			printf("\nAvailable interfaces:\n");
+			for (intf = if_ni; intf->if_index != 0 || intf->if_name != NULL; intf++)
+			{
+				printf("\t%s\n", intf->if_name);
+			}
+			printf("\n")
+#endif
+			if ((dwRetVal = getifaddrs(&pAdapterInfo)) == 0)
+			{
+				check_AdapterStatus(if_ni, pAdapterInfo);
+				freeifaddrs(pAdapterInfo);
+			}
+			else
+			{
+				printf("getifaddrs failed with error: %d\n", dwRetVal);
+			}
+			if_freenameindex(if_ni);
+		}
+		else
+		{
+			perror("if_nameindex");
+		}
+	}
+
     return;
 }
 /* ---------------------------- Global functions --------------------------- */
