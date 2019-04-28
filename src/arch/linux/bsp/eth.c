@@ -24,6 +24,7 @@
 
 #include <stdint.h>
 #include <unistd.h>
+#include <string.h>
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -379,56 +380,42 @@ eth_deinit(void)
 void
 eth_socketOpen(char *ip, char *port)
 {
-	printf("Called eth_socketOpen()");
-#ifdef OLD
-    WORD wVersionRequested;
-    WSADATA wsaData;
-    SOCKADDR_IN target;
-    unsigned short lport;
-    char *p;
-    int err;
+	int status;
+	struct addrinfo conf;
+	struct addrinfo *target;
+	memset(&conf, 0, sizeof conf);
 
-    wVersionRequested = MAKEWORD(1, 1);
-    err = WSAStartup(wVersionRequested, &wsaData);
-    s = INVALID_SOCKET;
+	conf.ai_family = AF_UNSPEC; 	// IPv6 friendly
+	conf.ai_socktype = SOCK_STREAM;
+	conf.ai_flags = AI_PASSIVE; 	// fill in my IP for me
+	conf.ai_protocol = IPPROTO_TCP;
+	if ((status = getaddrinfo(ip, port, &conf, &target)) != 0)
+	{
+		fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(status));
+		exit(EXIT_FAILURE);
+	}
 
-    if (err != 0)
+    s = socket (target->ai_family, target->ai_socktype, target->ai_protocol);
+    if (s == -1)
     {
-        printf("WSAStartup error %ld\n", WSAGetLastError());
-        WSACleanup();
-        exit(EXIT_FAILURE);
-    }
-
-    target.sin_family = AF_INET;
-    lport = (unsigned short)strtol(port, &p, 10);
-    target.sin_port = htons(lport);
-    target.sin_addr.s_addr = inet_addr(ip);
-
-    s = socket (AF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if (s == INVALID_SOCKET)
-    {
-        printf("socket error %ld\n", WSAGetLastError());
-        WSACleanup();
+        printf("socket error %d\n", errno);
         RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Error), &eth);
         return;
     }
 
-    if (connect(s, (SOCKADDR*)&target, sizeof(target)) == SOCKET_ERROR)
+    if (connect(s, target->ai_addr, target->ai_addrlen) == -1)
     {
-        printf("connect error %ld\n", WSAGetLastError());
-        WSACleanup();
+        printf("connect error %d\n", errno);
         RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Error), &eth);
         return;
     }
 
     RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_connected), &eth);
-#endif
 }
 
 void
 eth_socketWrite(rui8_t *p, ruint size)
 {
-	printf("Called eth_socketWrite()");
     int ret;
 
     /* enable blocking socket */
