@@ -23,6 +23,7 @@
 #include "ConMgrEth.h"
 
 #include <stdint.h>
+#include <unistd.h>
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -193,7 +194,6 @@ print_adapterInfo(PIP_ADAPTER_INFO p)
 void
 plugAdapter(struct ifaddrs * p, int i)
 {
-	char host[NI_MAXHOST];
 	if (adapter[i] == Unplugged_st)
 	{
 		adapter[i] = Plugged_st;
@@ -203,6 +203,7 @@ plugAdapter(struct ifaddrs * p, int i)
 				&e_ipStatus), &eth);
 		printf("Using Ethernet Adapter: %d:%s\n", i, p->ifa_name);
 #ifdef ETH_THREAD_DEBUG
+		char host[NI_MAXHOST];
 		s = getnameinfo(p->ifa_addr,
 				(p->ifa_addr->sa_family == AF_INET) ? sizeof(struct sockaddr_in) :
 						sizeof(struct sockaddr_in6),
@@ -266,7 +267,7 @@ check_AdapterStatus(struct if_nameindex *if_ni, struct ifaddrs *pAdapterInfo)
 	}
 }
 static
-void
+void *
 ethThread(void* par)
 {
 #ifdef ETH_THREAD_DEBUG
@@ -310,7 +311,7 @@ ethThread(void* par)
 		}
 	}
 
-    return;
+	return NULL;
 }
 /* ---------------------------- Global functions --------------------------- */
 void
@@ -360,6 +361,7 @@ eth_deinit(void)
 void
 eth_socketOpen(char *ip, char *port)
 {
+	printf("Called eth_socketOpen()");
 #ifdef OLD
     WORD wVersionRequested;
     WSADATA wsaData;
@@ -408,6 +410,7 @@ eth_socketOpen(char *ip, char *port)
 void
 eth_socketWrite(rui8_t *p, ruint size)
 {
+	printf("Called eth_socketWrite()");
 #ifdef OLD
     u_long mode;
     int ret;
@@ -435,10 +438,9 @@ ruint
 eth_socketRead(rui8_t *p, ruint size)
 {
     int ret;
-    u_long mode;
-#ifdef OLD
-    mode = 1;  /* 1 to enable non-blocking socket */
-    ioctlsocket(s, FIONBIO, &mode);
+
+    /* enable non-blocking socket */
+    fcntl(s, F_SETFL, fcntl(s, F_GETFL, 0) | O_NONBLOCK);
 
     ret = recv(s, (char *)p, size, 0);
     if (ret == 0)
@@ -447,12 +449,12 @@ eth_socketRead(rui8_t *p, ruint size)
                                                 &e_disconnected), &eth);
         return 0;
     }
-    else if (ret == SOCKET_ERROR)
+    else if (ret < 0 )
     {
-        ret = WSAGetLastError();
+        ret = errno;
         switch (ret)
         {
-            case WSAEWOULDBLOCK:
+            case EWOULDBLOCK:
                 RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
                 break;
 
@@ -465,7 +467,7 @@ eth_socketRead(rui8_t *p, ruint size)
     }
 
     RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
-#endif
+
     return ret;
 }
 
