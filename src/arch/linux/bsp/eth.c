@@ -313,6 +313,24 @@ ethThread(void* par)
 
 	return NULL;
 }
+
+int
+sendall(int s, char *buf, ruint *len)
+{
+	/*From Beej's Guide*/
+	int total = 0; // how many bytes we've sent
+	int bytesleft = *len; // how many we have left to send
+	int n;
+	while(total < *len) {
+		n = send(s, buf+total, bytesleft, 0);
+		if (n == -1) { break; }
+		total += n;
+		bytesleft -= n;
+	}
+	*len = total; // return number actually sent here
+	return n==-1?-1:0; // return -1 on failure, 0 on success
+}
+
 /* ---------------------------- Global functions --------------------------- */
 void
 eth_init(void)
@@ -411,19 +429,16 @@ void
 eth_socketWrite(rui8_t *p, ruint size)
 {
 	printf("Called eth_socketWrite()");
-#ifdef OLD
-    u_long mode;
     int ret;
 
-    mode = 0;  /* 0 to enable blocking socket */
-    ioctlsocket(s, FIONBIO, &mode);
+    /* enable blocking socket */
+    /* Does it really need to block?*/
 
-    ret = send(s, (char *)p, size, 0);
-    if (ret == SOCKET_ERROR)
+    ret = sendall(s, (char *)p, &size);
+    if (ret < 0)
     {
-        printf("send failed with error: %d\n", WSAGetLastError());
-        closesocket(s);
-        WSACleanup();
+        printf("send failed with error: %d\n", errno);
+        close(s);
         RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, 
                                             &e_disconnected), &eth);
     }
@@ -431,7 +446,6 @@ eth_socketWrite(rui8_t *p, ruint size)
     {
         RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
     }
-#endif
 }
 
 ruint
