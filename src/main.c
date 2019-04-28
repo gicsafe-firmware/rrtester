@@ -164,7 +164,7 @@ int
 main(int argc, char *argv[])
 {
     bsp_init(argc, argv);
-eth_socketOpen("127.0.0.1", "6602");
+
     anSampler_init();
     IOChgDet_init();
     epoch_init();
