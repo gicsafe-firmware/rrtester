@@ -29,6 +29,7 @@
 
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
+#include <stdio.h>
 #include "serial.h"
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
@@ -51,16 +52,20 @@ void tx_n_data( int device_no, char *p, char qty ){
 
 }
 void reset_rts( int device_no ){
-
+	ioctl(device_no, TIOCMBIC,TIOCM_RTS);
+	printf("reset_rts called on %d Device.\n", device_no);
 }
 void set_rts( int device_no ){
-
+	ioctl(device_no, TIOCMBIS, TIOCM_RTS);
+	printf("set_rts called on %d Device.\n", device_no);
 }
 void reset_dtr( int device_no ){
-
+	ioctl(device_no, TIOCMBIC, TIOCM_DTR);
+	printf("reset_dtr called on %d Device.\n", device_no);
 }
 void set_dtr( int device_no ){
-
+	ioctl(device_no, TIOCMBIS, TIOCM_DTR);
+	printf("set_dtr called on %d Device.\n", device_no);
 }
 void disconnect_serial( int device_no ){
 

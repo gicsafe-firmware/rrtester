@@ -34,6 +34,8 @@
 
 /* ----------------------------- Include files ----------------------------- */
 #include <termios.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
 #include <unistd.h>
 #include "wserdefs.h"
 /* ---------------------- External C language linkage ---------------------- */
