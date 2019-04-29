@@ -218,6 +218,7 @@ rkh_trc_flush(void)
             if (ftbin != NULL)
             {
                 fwrite(blk, 1, nbytes, ftbin);
+                fflush(ftbin);
             }
 
             trace_io_tcp_send(tsock, (char *)blk, nbytes);
