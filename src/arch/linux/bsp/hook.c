@@ -46,7 +46,7 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
- *  DaBa  Dario Baliña       dariosb@gmail.com
+ *  DaBa  Dario Baliï¿½a       dariosb@gmail.com
  */
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
@@ -60,7 +60,9 @@
 #include <unistd.h>
 
 #include "rkh.h"
+#include "bsp.h"
 #include "bsp_common.h"
+#include "din.h"
 
 RKH_THIS_MODULE
 
@@ -71,6 +73,9 @@ RKH_THIS_MODULE
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
+#if defined(RKH_USE_TRC_SENDER)
+static rui8_t rkhtick;
+#endif
 static unsigned short tick_msec;
 static struct termios orgt;
 
@@ -98,7 +103,7 @@ isr_tmrThread(void *d)
 
     while (rkhport_fwk_is_running())
     {
-        RKH_TIM_TICK(0);
+        RKH_TIM_TICK(&rkhtick);
         usleep(tick_msec);
     }
     pthread_exit(NULL);
@@ -109,10 +114,12 @@ static void *
 isr_kbdThread(void *d) 
 {
     (void)d;
-
+    char c;
     while (rkhport_fwk_is_running())
     {
-        bsp_keyParser(mygetch());
+    	c = mygetch();
+        bsp_keyParser(c);
+        keyb_dIn_parser(c);
     }
     return NULL;
 }
@@ -139,12 +146,15 @@ rkh_hook_start(void)
 
     /* Destroy the thread attributes */
     pthread_attr_destroy(&threadAttr);
+
+    RKH_TR_FWK_ACTOR(&rkhtick, "rkhtick");
 }
 
 void
 rkh_hook_exit(void)
 {
     RKH_TRC_FLUSH();
+    bsp_serial_close(GSM_PORT);
     tcsetattr(STDIN_FILENO, TCSANOW, &orgt);
 }
 
