@@ -70,7 +70,8 @@ RKH_MODULE_DESC(rkhport, "Linux 32-bits (single thread)")
 /* ---------------------------- Local variables ---------------------------- */
 pthread_mutex_t csection = PTHREAD_MUTEX_INITIALIZER;
 static sem_t sma_is_rdy;
-static rui8_t running;
+static rui8_t running = 0;
+static rui8_t starting = 1;
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
@@ -93,6 +94,12 @@ rui8_t
 rkhport_fwk_is_running(void)
 {
     return running;
+}
+
+rui8_t
+rkhport_fwk_is_starting(void)
+{
+    return starting;
 }
 
 void
@@ -152,9 +159,10 @@ rkh_fwk_enter(void)
     RKH_EVT_T *e;
     RKH_SR_ALLOC();
 
+    RKH_HOOK_START();
     RKH_TR_FWK_EN();
     running = 1;
-    RKH_HOOK_START();
+    starting = 0;
 
     while (running)
     {

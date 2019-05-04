@@ -100,6 +100,7 @@ static void *
 isr_tmrThread(void *d)
 {
     (void)d;
+    while (rkhport_fwk_is_starting());
 
     while (rkhport_fwk_is_running())
     {
@@ -115,6 +116,8 @@ isr_kbdThread(void *d)
 {
     (void)d;
     char c;
+    while (rkhport_fwk_is_starting());
+
     while (rkhport_fwk_is_running())
     {
     	c = mygetch();
