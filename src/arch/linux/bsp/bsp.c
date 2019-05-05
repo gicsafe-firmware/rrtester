@@ -25,6 +25,7 @@
 #include "getopt.h"
 #include "trace_io_cfg.h"
 #include "serial.h"
+#include "sleep.h"
 
 #include "signals.h"
 #include "topics.h"
@@ -292,7 +293,7 @@ bsp_serial_open(int ch)
     init_serial_hard(ch, &ser_cback );
     connect_serial(ch);
 	set_dtr(ch);
-	sleep(500);
+	Sleep(500);
     RKH_TR_FWK_ACTOR(&bsp, "bsp");
 }
 
