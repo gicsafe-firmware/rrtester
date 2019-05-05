@@ -33,11 +33,13 @@
 #define __SERIAL_H__
 
 /* ----------------------------- Include files ----------------------------- */
-#include <termios.h>
+#define _GNU_SOURCE
 #include <fcntl.h>
+#include <signal.h>
+#include <stdio.h>
 #include <sys/ioctl.h>
+#include <termios.h>
 #include <unistd.h>
-#include "wserdefs.h"
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
 extern "C" {
@@ -67,7 +69,20 @@ typedef struct
 	void (*serial_cd_on)( void );
 	void (*serial_cd_off)( void );
 } SERIAL_CBACK_T;
+
+typedef struct
+{
+	char com_name[20];
+	unsigned baud;
+	int bit_num;
+	int parity;
+	int stop_num;
+	int is_modem;
+	int fd; /* File descriptor for the port */
+	SERIAL_CBACK_T *cbacks;
+} SERIAL_T;
 /* -------------------------- External variables --------------------------- */
+extern SERIAL_T serials[];
 /* -------------------------- Function prototypes -------------------------- */
 void init_serial_hard( int device_no, SERIAL_CBACK_T *p );
 void connect_serial( int device_no );

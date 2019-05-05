@@ -55,7 +55,7 @@ RKH_THIS_MODULE
 /* ---------------------------- Global variables --------------------------- */
 SERIAL_T serials[ NUM_CHANNELS ] =
 {
-	{	"COM8",	19200, 8, PAR_NONE, STOP_1, 0 },	// COM1
+	{	"/dev/ttyUSB1",	19200, 8, PAR_NONE, STOP_1},
 };
 static FILE *fGsmLog = NULL;
 
@@ -241,11 +241,11 @@ bsp_keyParser(int c)
             break;
 
 		case 'j':
-			set_dtr(0);
+			modPwr_off();
 			break;
 
 		case 'k':
-			reset_dtr(0);
+			modPwr_on();
 			break;
 
         default:
