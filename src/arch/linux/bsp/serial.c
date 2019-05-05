@@ -326,9 +326,20 @@ void close_mserial( void ){
 }
 
 void ser_put_string( int ch, char * p ){
-
+	tx_n_data(ch, p, strlen(p)+1);
 }
-void ser_printf( char *fmt, ... ){
 
+void ser_printf( int ch, char *fmt, ... ){
+	char *buff = (char*) malloc(SERIAL_PRINTF_BUFFER_SIZE * sizeof(char));
+	va_list valist;
+
+	/* initialize valist for num number of arguments */
+	va_start(valist, fmt);
+	/* Format the string */
+	vsprintf(buff, fmt, valist);
+	/* Free the va_list */
+	va_end(valist);
+	/* Send the string */
+	ser_put_string(ch, buff);
 }
 /* ------------------------------ End of file ------------------------------ */

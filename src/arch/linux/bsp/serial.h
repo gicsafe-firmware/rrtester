@@ -37,6 +37,9 @@
 #include <fcntl.h>
 #include <signal.h>
 #include <stdio.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
 #include <sys/ioctl.h>
 #include <termios.h>
 #include <unistd.h>
@@ -47,6 +50,8 @@ extern "C" {
 
 /* --------------------------------- Macros -------------------------------- */
 /* -------------------------------- Constants ------------------------------ */
+#define SERIAL_PRINTF_BUFFER_SIZE 100
+
 /* ------------------------------- Data types ------------------------------ */
 
 enum
@@ -100,7 +105,7 @@ void init_serial( void (*prcv)(unsigned char byte) );
 void close_mserial( void );
 
 void ser_put_string( int ch, char * p );
-void ser_printf( char *fmt, ... );
+void ser_printf( int ch, char *fmt, ... );
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus
 }
