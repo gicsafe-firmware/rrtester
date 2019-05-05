@@ -155,11 +155,6 @@
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/trace_io_tcp.h</locationURI>
 		</link>
 		<link>
-			<name>rrtester/bsp/wserdefs.h</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/wserdefs.h</locationURI>
-		</link>
-		<link>
 			<name>rrtester/jWrite/jWrite.c</name>
 			<type>1</type>
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/jWrite/jWrite/jWrite.c</locationURI>
@@ -465,9 +460,9 @@
 			<locationURI>PARENT-3-PROJECT_LOC/conMgrEth/ConMgrEthActRequired.h</locationURI>
 		</link>
 		<link>
-			<name>rrtester/src/conMgrEth/signal.h</name>
+			<name>rrtester/src/conMgrEth/conMgrEth_signal.h</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/conMgrEth/signal.h</locationURI>
+			<locationURI>PARENT-3-PROJECT_LOC/conMgrEth/conMgrEth_signal.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/conMgrGsm/ConMgrGsm.c</name>
