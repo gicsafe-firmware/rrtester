@@ -68,8 +68,6 @@ RKH_THIS_MODULE
 
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
-#define BSP_TICKS_PER_SEC   		100
-
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
@@ -135,7 +133,7 @@ rkh_hook_start(void)
     pthread_attr_t threadAttr;
 
     /* set the desired tick rate */
-    tick_msec = 1000UL / BSP_TICKS_PER_SEC;
+    tick_msec = RKH_TICK_RATE_MS * 1000L;
 
     /* initialize the thread attribute */
     pthread_attr_init(&threadAttr);
