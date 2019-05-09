@@ -49,7 +49,7 @@ signal_handler_IO(int sig, siginfo_t *info, void *ucontext)
 		fd = serials[i].fd;
 		if (ch == fd)
 		{
-			while (read(fd, &c, 1))
+			while (0 < read(fd, &c, 1))
 			{
 				serials[i].cbacks->rx(c);
 			}
@@ -259,7 +259,7 @@ void connect_serial( int device_no ){
 		tcgetattr(fd, &options);
 		parseLineOptions(device_no, &options);
 		tcsetattr(fd, TCSANOW, &options);
-		fcntl(fd, F_SETFL,  O_ASYNC );
+		fcntl(fd, F_SETFL,  O_ASYNC | O_NONBLOCK);
 		fcntl(fd, F_SETSIG, SIGIO);
 	}
 }
