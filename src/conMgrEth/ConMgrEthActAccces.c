@@ -54,7 +54,7 @@ conMgrEthActAccess_init(ConMgrEth *const me)
 }
 
 void
-_socketOpen(char *ip, char *port)
+conMgrEthActAccess_socketOpen(char *ip, char *port)
 {
     bsp_linkStatus(ETHNetwork, DisconnectedSt);
     eth_socketOpen(ip, port);
@@ -86,27 +86,27 @@ recvOk(void)
 }
 
 void
-_socketConnected(ConMgrEth *const me)
+conMgrEthActAccess_socketConnected(ConMgrEth *const me)
 {
     ConnectionTopic_publish(&e_NetConnected, me);
     bsp_socketStatus(ETHNetwork, ConnectedSt);
 }
 
 void
-_socketDisconnected(ConMgrEth *const me)
+conMgrEthActAccess_socketDisconnected(ConMgrEth *const me)
 {
     ConnectionTopic_publish(&e_NetDisconnected, me);
     bsp_socketStatus(ETHNetwork, DisconnectedSt);
 }
 
 void
-_socketWrite(SendEvt *p)
+conMgrEthActAccess_socketWrite(SendEvt *p)
 {
     eth_socketWrite(p->buf, p->size);
 }
 
 void
-_socketRead(ConMgrEth *const me)
+conMgrEthActAccess_socketRead(ConMgrEth *const me)
 {
     (void)me;
 

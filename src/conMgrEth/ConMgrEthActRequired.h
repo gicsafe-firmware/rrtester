@@ -31,12 +31,12 @@
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-#define init()                  _init(me)
-#define socketOpen(ip,port)     _socketOpen(ip,port)
-#define socketWrite()           _socketWrite(RKH_UPCAST(SendEvt, pe))
-#define socketRead()            _socketRead(me)
-#define socketConnected()       _socketConnected(me)
-#define socketDisconnected()    _socketDisconnected(me)
+#define init()                  conMgrEthActAccess_init(me)
+#define socketOpen(ip,port)     conMgrEthActAccess_socketOpen(ip,port)
+#define socketWrite()           conMgrEthActAccess_socketWrite(RKH_UPCAST(SendEvt, pe))
+#define socketRead()            conMgrEthActAccess_socketRead(me)
+#define socketConnected()       conMgrEthActAccess_socketConnected(me)
+#define socketDisconnected()    conMgrEthActAccess_socketDisconnected(me)
 
 void recvOk(void);
 void sendOk(void);
