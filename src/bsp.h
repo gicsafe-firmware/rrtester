@@ -30,6 +30,10 @@ extern "C" {
 
 /* --------------------------------- Macros -------------------------------- */
 /* -------------------------------- Constants ------------------------------ */
+//#define USE_GSM	/* Comment to use Ethernet */
+#ifndef USE_GSM
+#define USE_ETH
+#endif
 /*
  * Serial Ports channels identifiers
  */

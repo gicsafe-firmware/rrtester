@@ -133,14 +133,15 @@ rrtesterStartup(void)
     strcpy(mqttProtCfg.topic, "");
     MQTTProt_ctor(&mqttProtCfg, publishrrtester);
 
-	RKH_SMA_ACTIVATE(conMgrEth, ConMgrEth_qsto, CONMGRETH_QSTO_SIZE,
-		ConMgrEthStack, CONMGRETH_STK_SIZE);
-#ifdef GSM 
+#ifdef USE_GSM
     RKH_SMA_ACTIVATE(conMgrGsm, ConMgrGsm_qsto, CONMGRGSM_QSTO_SIZE,
                      ConMgrStack, CONMGR_STK_SIZE);
-#endif
     RKH_SMA_ACTIVATE(modMgr, ModMgr_qsto, MODMGR_QSTO_SIZE,
                      ModMgrStack, MODMGR_STK_SIZE);
+#else
+    RKH_SMA_ACTIVATE(conMgrEth, ConMgrEth_qsto, CONMGRETH_QSTO_SIZE,
+    		ConMgrEthStack, CONMGRETH_STK_SIZE);
+#endif
     RKH_SMA_ACTIVATE(mqttProt, MQTTProt_qsto, MQTTPROT_QSTO_SIZE,
                      MQTTProtStack, MQTTPROT_STK_SIZE);
 

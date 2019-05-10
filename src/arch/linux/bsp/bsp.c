@@ -197,8 +197,9 @@ bsp_init(int argc, char *argv[])
     modPwr_init();
     dIn_init();
 	anIn_init();
-
+#ifdef USE_ETH
     eth_init();
+#endif
 }
 
 void
