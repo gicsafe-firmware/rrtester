@@ -23,7 +23,8 @@
     - +:test
     - -:test/support
   :source:
-    - src
+    - src/SigMon.c
+    - ../../third-party/rkh/source/sm/src
   :include:
     - inc
     - ../../third-party/rkh/source/fwk/inc
