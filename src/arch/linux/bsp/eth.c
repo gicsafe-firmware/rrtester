@@ -246,8 +246,9 @@ check_AdapterStatus(struct if_nameindex *if_ni, struct ifaddrs *pAdapterInfo)
 			{
 				family = pCurrentAdapter->ifa_addr->sa_family;
 				currentIndex = if_nametoindex(pCurrentAdapter->ifa_name);
-				if ((intf->if_index == currentIndex) && ((AF_INET == family)))
-						//||(AF_INET6 == family)))
+				if ( (intf->if_index == currentIndex) &&
+						((AF_INET == family)) //||(AF_INET6 == family)))
+						&& (strcmp("lo",pCurrentAdapter->ifa_name)) )
 				{
 #ifdef ETH_THREAD_DEBUG
 					printf("%-8s %s (%d)\n",
