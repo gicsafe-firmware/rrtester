@@ -40,6 +40,8 @@
 #include <netdb.h>
 #include <ifaddrs.h>
 #include <limits.h>
+
+#include "rkht.h"
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
 extern "C" {
@@ -52,6 +54,11 @@ extern "C" {
 typedef int SOCKET;
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
+void eth_init(void);
+void eth_deinit(void);
+void eth_socketOpen(char *ip, char *port);
+void eth_socketWrite(rui8_t *p, ruint size);
+ruint eth_socketRead(rui8_t *p, ruint size);
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus
 }
