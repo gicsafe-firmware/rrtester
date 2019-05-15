@@ -17,8 +17,9 @@ extern "C" {
 RKH_SMA_DCLR(sigMon);
 
 /* ................... Declares states and pseudostates .................... */
-RKH_DCLR_BASIC_STATE SigMon_Inactive, SigMon_WaitSyncSeq, SigMon_Seq0, SigMon_Seq2, SigMon_Seq3, SigMon_Seq4, SigMon_Seq5, SigMon_Seq11, SigMon_OutOfSeq, SigMon_Seq1, SigMon_Seq10, SigMon_Seq8, SigMon_Seq7, SigMon_Seq6, SigMon_Seq9;
-RKH_DCLR_COMP_STATE SigMon_Active;
+RKH_DCLR_BASIC_STATE SMInactive, WaitSyncSeq, Seq0, Seq2, Seq3, Seq4, Seq5, Seq11, OutOfSeq, Seq1, Seq10, Seq8, Seq7, Seq6, Seq9;
+RKH_DCLR_COMP_STATE SMActive;
+RKH_DCLR_FINAL_STATE SigMon_Final;
 
 /* ------------------------------- Data types ------------------------------ */
 /* ............................. Active object ............................. */

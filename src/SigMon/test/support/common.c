@@ -58,7 +58,7 @@
 #include "unitrazer.h"
 #include "rkh.h"
 #include "common.h"
-#include "smTestAct.h"
+#include "SigMon.h"
 #include <stdarg.h>
 
 /* ----------------------------- Local macros ------------------------------ */
@@ -287,7 +287,7 @@ SMFilterCfg_init(void)
 {
     RKH_FILTER_OFF_ALL_SIGNALS();
     RKH_FILTER_OFF_GROUP_ALL_EVENTS(RKH_TG_SM);
-    RKH_FILTER_OFF_SMA(smTest);
+    RKH_FILTER_OFF_SMA(sigMon);
     RKH_FILTER_OFF_EVENT(RKH_TE_FWK_ASSERT);
 
     smFilterCfg.init = true;

@@ -71,21 +71,28 @@ struct SMFilterCfg
 /* -------------------------- Function prototypes -------------------------- */
 const RKH_ST_T *getHistory(const RKH_SHIST_T *history);
 void setHistory(const RKH_SHIST_T *history, const RKH_ST_T *state);
-void setProfile(RKH_SMA_T *const me, const RKH_ST_T *dftSt, 
-           const RKH_ST_T *currentState, 
-           const RKH_ST_T *sourceState, const RKH_ST_T **targetStates, 
-           const RKH_ST_T **entryStates, const RKH_ST_T **exitStates, 
-           const RKH_ST_T *mainTargetState, int nExecEffectActions, 
-           int kindOfTrn, int initStateMachine, const RKH_EVT_T *event,
-           const RKH_ST_T *dispatchCurrentState);
-void trnStepExpect(RKH_SM_T *const me, const RKH_ST_T *currentState, 
+void setProfile(RKH_SMA_T *const me, 
+                const RKH_ST_T *dftSt, 
+                const RKH_ST_T *currentState, 
                 const RKH_ST_T *sourceState, 
-                TargetEntrySt *tgEnSt, const RKH_ST_T **exitStates, 
-                const RKH_EVT_T *event);
+                const RKH_ST_T **targetStates, 
+                const RKH_ST_T **entryStates, 
+                const RKH_ST_T **exitStates, 
+                const RKH_ST_T *mainTargetState, 
+                int nExecEffectActions, 
+                int kindOfTrn, 
+                int initStateMachine, 
+                const RKH_EVT_T *event,
+                const RKH_ST_T *dispatchCurrentState);
+void trnStepExpect(RKH_SM_T *const me, const RKH_ST_T *currentState, 
+                   const RKH_ST_T *sourceState, 
+                   TargetEntrySt *tgEnSt, const RKH_ST_T **exitStates, 
+                   const RKH_EVT_T *event);
 void setState(RKH_SMA_T *const me, const RKH_ST_T *state);
 const RKH_ST_T *getState(RKH_SMA_T *const me);
 void stateList_create(const RKH_ST_T **list, int nElems, ...);
 void expectedInitSm(RKH_SMA_T *const me, const RKH_ST_T *dftSt);
+
 void SMFilterCfg_set(SMFilterCfg *me);
 SMFilterCfg *SMFilterCfg_init(void);
 

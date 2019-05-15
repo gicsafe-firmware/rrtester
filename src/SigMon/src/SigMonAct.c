@@ -29,75 +29,57 @@
 /* ---------------------------- Local functions ---------------------------- */
 /* ............................ Effect actions ............................. */
 void 
-SigMon_SigMon_ActiveTo// TODO for FinaleStateExt3(SigMon *const me, RKH_EVT_T *pe)
+SigMon_SMActiveToSigMon_FinalExt3(SigMon *const me, RKH_EVT_T *pe)
 {
 	me->digIn = 0;
 }
 
 void 
-SigMon_SigMon_Seq2ToSigMon_Seq3Ext8(SigMon *const me, RKH_EVT_T *pe)
+SigMon_Seq2ToSeq3Ext8(SigMon *const me, RKH_EVT_T *pe)
 {
 	me->digIn = 0;
 }
 
 void 
-SigMon_SigMon_ActiveToSigMon_ActiveLoc2(SigMon *const me, RKH_EVT_T *pe)
+SigMon_SMActiveToSMActiveLoc2(SigMon *const me, RKH_EVT_T *pe)
 {
 	me->digIn = 0;
 }
 
 void 
-SigMon_SigMon_Seq0ToSigMon_Seq0Loc4(SigMon *const me, RKH_EVT_T *pe)
+SigMon_Seq0ToSeq0Loc4(SigMon *const me, RKH_EVT_T *pe)
 {
 	me->digIn = 0;
 }
 
 void 
-SigMon_SigMon_Seq2ToSigMon_Seq2Loc5(SigMon *const me, RKH_EVT_T *pe)
+SigMon_Seq2ToSeq2Loc5(SigMon *const me, RKH_EVT_T *pe)
 {
 	me->digIn = 0;
 }
 
 void 
-SigMon_SigMon_Seq1ToSigMon_Seq1Loc6(SigMon *const me, RKH_EVT_T *pe)
-{
-	me->digIn = 0;
-}
-
-void 
-SigMon_SigMon_Seq10ToSigMon_Seq10Loc7(SigMon *const me, RKH_EVT_T *pe)
-{
-	me->digIn = 0;
-}
-
-void 
-SigMon_SigMon_Seq8ToSigMon_Seq8Loc8(SigMon *const me, RKH_EVT_T *pe)
-{
-	me->digIn = 0;
-}
-
-void 
-SigMon_SigMon_Seq9ToSigMon_Seq9Loc9(SigMon *const me, RKH_EVT_T *pe)
+SigMon_Seq1ToSeq1Loc6(SigMon *const me, RKH_EVT_T *pe)
 {
 	me->digIn = 0;
 }
 
 /* ............................. Entry actions ............................. */
 void 
-SigMon_enSigMon_Active(SigMon *const me)
+SigMon_enSMActive(SigMon *const me)
 {
 	me->digIn = 0;
 }
 
 void 
-SigMon_enSigMon_Seq0(SigMon *const me)
+SigMon_enSeq0(SigMon *const me)
 {
 	me->digIn = 0;
 }
 
 /* ............................. Exit actions .............................. */
 void 
-SigMon_exSigMon_Active(SigMon *const me)
+SigMon_exSMActive(SigMon *const me)
 {
 	me->digIn = 0;
 }

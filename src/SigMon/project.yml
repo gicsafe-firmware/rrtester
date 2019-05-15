@@ -30,6 +30,7 @@
     - ../../third-party/rkh/source/fwk/inc
     - ../../third-party/rkh/source/mempool/inc
     - ../../third-party/rkh/source/queue/inc
+    - ../../third-party/rkh/source/sm/inc
     - ../../third-party/rkh/source/sma/inc
     - ../../third-party/rkh/source/tmr/inc
     - ../../third-party/rkh/source/trc/inc

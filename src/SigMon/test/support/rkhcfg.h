@@ -284,7 +284,7 @@ extern "C" {
  *  #RKH_CFG_SMA_MAX_HCAL_DEPTH cannot exceed 8.
  */
 
-#define RKH_CFG_SMA_MAX_HCAL_DEPTH      4u
+#define RKH_CFG_SMA_MAX_HCAL_DEPTH      8u
 
 /**
  *  Specify the maximum number of linked transition segments. The smaller
