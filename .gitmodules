@@ -1,7 +1,7 @@
 [submodule "third-party/rkh"]
 	path = third-party/rkh
    	url = https://github.com/vortexmakes/RKH.git
-	branch = master
+	branch = develop
 
 [submodule "third-party/ssp"]
 	path = third-party/ssp
