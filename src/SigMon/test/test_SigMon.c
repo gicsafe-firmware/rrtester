@@ -241,27 +241,27 @@ void
 test_Enable(void)
 {
     UtrzProcessOut *p;
+    int nExSt, nEnSt;
+    RKH_EVT_T event;
 
-    stateList_create(targetStates, 1, &SMActive);
-    stateList_create(entryStates, 2, &SMActive, &WaitSyncSeq);
-    stateList_create(exitStates, 1, &SMInactive);
+    nEnSt = 2;
+    nExSt = 1;
+    event.e = evEnable;
 
-    SigMon_enSeq0_Expect((SigMon *)sigMon);
+    SigMon_enSMActive_Expect((SigMon *)sigMon);
+    expectedInitSm((RKH_SMA_T *)sigMon, RKH_STATE_CAST(&SMInactive));
+	sm_dch_expect(event.e, RKH_STATE_CAST(&SMInactive));
+	sm_trn_expect(RKH_STATE_CAST(&SMInactive), RKH_STATE_CAST(&SMActive));
+    sm_tsState_expect(RKH_STATE_CAST(&SMActive));
+    sm_exstate_expect(RKH_STATE_CAST(&SMInactive));
+    sm_enstate_expect(RKH_STATE_CAST(&SMActive));
+    sm_tsState_expect(RKH_STATE_CAST(&WaitSyncSeq));
+    sm_enstate_expect(RKH_STATE_CAST(&WaitSyncSeq));
+    sm_nenex_expect(nEnSt, nExSt);
+    sm_state_expect(RKH_STATE_CAST(&WaitSyncSeq));
+	sm_evtProc_expect();
 
-    setProfile(sigMon, 
-               RKH_STATE_CAST(&SMInactive), 
-               RKH_STATE_CAST(&SMInactive), 
-               RKH_STATE_CAST(&SMInactive), 
-               targetStates, 
-               entryStates, 
-               exitStates, 
-               RKH_STATE_CAST(&SMActive), 
-               1, 
-               TRN_NOT_INTERNAL, 
-               INIT_STATE_MACHINE, 
-               &evEnableObj,
-               RKH_STATE_CAST(&SMInactive));
-
+    rkh_sm_init((RKH_SM_T *)sigMon);
     rkh_sm_dispatch((RKH_SM_T *)sigMon, &evEnableObj);
 
     p = unitrazer_getLastOut();
@@ -271,13 +271,66 @@ test_Enable(void)
 void
 test_Synchro(void)
 {
-    TEST_IGNORE();
+    UtrzProcessOut *p;
+    RKH_EVT_T *pEvt;
+
+    pEvt = &evSyncObj;
+    stateList_create(targetStates, 1, &SMActive);
+    stateList_create(entryStates, 0);
+    stateList_create(exitStates, 0);
+
+    SigMon_SMActiveToSMActiveLoc2_Expect(RKH_CAST(SigMon, sigMon), pEvt);
+    setProfile(sigMon, 
+               RKH_STATE_CAST(&SMInactive),
+               RKH_STATE_CAST(&WaitSyncSeq),
+               RKH_STATE_CAST(&SMActive),
+               targetStates, 
+               entryStates, 
+               exitStates, 
+               RKH_STATE_CAST(&WaitSyncSeq), 
+               1, 
+               TRN_INTERNAL, 
+               INIT_STATE_MACHINE,
+               pEvt, 
+               RKH_STATE_CAST(&WaitSyncSeq));
+
+    rkh_sm_dispatch((RKH_SM_T *)sigMon, pEvt);
+
+    p = unitrazer_getLastOut();
+    TEST_ASSERT_EQUAL(UT_PROC_SUCCESS, p->status);
 }
 
 void
 test_Failure(void)
 {
-    TEST_IGNORE();
+    UtrzProcessOut *p;
+    RKH_EVT_T *pEvt;
+
+    pEvt = &evFailureObj;
+    stateList_create(targetStates, 1, &SigMon_Final);
+    stateList_create(entryStates, 1, SigMon_Final);
+    stateList_create(exitStates, 2, &WaitSyncSeq, &SMActive);
+
+    SigMon_exSMActive_Expect(RKH_CAST(SigMon, sigMon));
+    SigMon_SMActiveToSigMon_FinalExt3_Expect(RKH_CAST(SigMon, sigMon), pEvt);
+    setProfile(sigMon, 
+               RKH_STATE_CAST(&SMInactive),
+               RKH_STATE_CAST(&WaitSyncSeq),
+               RKH_STATE_CAST(&SMActive),
+               targetStates, 
+               entryStates, 
+               exitStates, 
+               RKH_STATE_CAST(&SigMon_Final), 
+               1, 
+               TRN_NOT_INTERNAL, 
+               INIT_STATE_MACHINE,
+               pEvt, 
+               RKH_STATE_CAST(&WaitSyncSeq));
+
+    rkh_sm_dispatch((RKH_SM_T *)sigMon, pEvt);
+
+    p = unitrazer_getLastOut();
+    TEST_ASSERT_EQUAL(UT_PROC_SUCCESS, p->status);
 }
 
 void
