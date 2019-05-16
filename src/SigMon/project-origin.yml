@@ -11,7 +11,6 @@
   :which_ceedling: ../../third-party/ceedling
   :test_file_prefix: test_
   :options_paths: 
-  - .
 
 :environment: []
 
@@ -23,6 +22,8 @@
     - +:test
     - -:test/support
   :source:
+    - src/SigMon.c
+    - ../../third-party/rkh/source/sm/src
   :include:
     - inc
     - ../../third-party/rkh/source/fwk/inc
@@ -38,6 +39,7 @@
     - ../../third-party/rkh/third-party/unitrazer
     - ../../third-party/rkh/source/fwk/src
     - ../../third-party/rkh/source/trc/src
+
 :defines:
   :common: &common_defines [__TEST__]
   :test:

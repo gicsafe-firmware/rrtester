@@ -1,0 +1,12 @@
+#
+# Usage:
+#   $ sudo ceedling <clean> <clobber> options:project-action test:SigMonAct
+#
+
+:paths:
+  :test:
+  :source:
+    - src/SigMonAct.c
+  :include:
+  :support:
+
