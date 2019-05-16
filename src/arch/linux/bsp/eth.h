@@ -41,7 +41,7 @@
 #include <ifaddrs.h>
 #include <limits.h>
 
-#include "rkht.h"
+#include "rkh.h"
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
 extern "C" {

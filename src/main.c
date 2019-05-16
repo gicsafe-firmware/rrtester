@@ -129,8 +129,6 @@ rrtesterStartup(void)
     mqttProtCfg.syncTime = 4;
     mqttProtCfg.keepAlive = 400;
     mqttProtCfg.qos = 1;
-    strcpy(mqttProtCfg.clientId, "");
-    strcpy(mqttProtCfg.topic, "");
     MQTTProt_ctor(&mqttProtCfg, publishrrtester);
 
 #ifdef USE_GSM
