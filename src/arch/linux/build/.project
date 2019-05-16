@@ -110,11 +110,6 @@
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/modpwr.c</locationURI>
 		</link>
 		<link>
-			<name>rrtester/bsp/rkhport</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
 			<name>rrtester/bsp/rtime.c</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/rtime.c</locationURI>
@@ -198,6 +193,11 @@
 			<name>rrtester/rkh/rkhmempool.c</name>
 			<type>1</type>
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/mempool/src/rkhmempool.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/rkh/rkhport.c</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/portable/80x86/linux_st/gnu/rkhport.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhqueue.c</name>
@@ -373,21 +373,6 @@
 			<name>rrtester/ssp/ssp.h</name>
 			<type>1</type>
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/ssp/src/ssp.h</locationURI>
-		</link>
-		<link>
-			<name>rrtester/bsp/rkhport/rkhport.c</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/rkhport/rkhport.c</locationURI>
-		</link>
-		<link>
-			<name>rrtester/bsp/rkhport/rkhport.h</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/rkhport/rkhport.h</locationURI>
-		</link>
-		<link>
-			<name>rrtester/bsp/rkhport/rkht.h</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/rkhport/rkht.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/CirBuffer/CirBuffer.c</name>

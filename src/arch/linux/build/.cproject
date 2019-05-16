@@ -29,7 +29,6 @@
 								<option id="gnu.c.compiler.exe.debug.option.debugging.level.636886153" name="Debug Level" superClass="gnu.c.compiler.exe.debug.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.1646562784" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../bsp&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../bsp/rkhport&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../adconv&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../anIn&quot;"/>
@@ -150,6 +149,13 @@
 		</scannerConfigBuildInfo>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/rrtester_linux"/>
+		</configuration>
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/rrtester_linux"/>
+		</configuration>
+	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 </cproject>
