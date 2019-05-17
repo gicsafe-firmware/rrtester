@@ -1,16 +1,18 @@
 /**
  *  \file       eth.c
- *  \brief      Win32 Ethernet socket abstraction.
+ *  \brief      Lnx Ethernet socket abstraction.
  */
 
 /* -------------------------- Development history -------------------------- */
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  DaBa  Dario Baliña       db@vortexmakes.com
+ *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
+#include "eth.h"
 #include "rkh.h"
 #include "rkhfwk_pubsub.h"
 #include "rkhfwk_dynevt.h"
@@ -20,25 +22,25 @@
 #include "config.h"
 #include "ConMgrEth.h"
 
-#include <winsock.h>
 #include <stdint.h>
-#include <iphlpapi.h>
+#include <unistd.h>
+#include <string.h>
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
-#pragma comment(lib, "IPHLPAPI.lib")
 
 RKH_THIS_MODULE
 
+/* ----------------------------- Local macros ------------------------------ */
 #define MALLOC(x) HeapAlloc(GetProcessHeap(), 0, (x))
 #define FREE(x) HeapFree(GetProcessHeap(), 0, (x))
-
-/* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
 enum
 {
     Unplugged_st, Plugged_st
 };
-
+//#define ETH_THREAD_DEBUG
+static const int SLEEP_LAPSE_ETH_THREAD = 10;
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
@@ -60,6 +62,7 @@ static RKH_ROM_STATIC_EVENT(e_disconnected, evDisconnected);
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
+#ifdef OLD
 static void
 print_adapterInfo(PIP_ADAPTER_INFO p)
 {
@@ -188,112 +191,182 @@ print_adapterInfo(PIP_ADAPTER_INFO p)
     }
     printf("\n");
 }
-
+#endif
 void
-check_adapterStatus(PIP_ADAPTER_INFO p, unsigned int i)
+plugAdapter(struct ifaddrs * p, int i)
 {
-    if ((p->IpAddressList.IpAddress.String != NULL) &&
-        (strcmp(p->IpAddressList.IpAddress.String, "0.0.0.0") != 0) &&
-        (p->GatewayList.IpAddress.String != NULL) &&
-        (strcmp(p->GatewayList.IpAddress.String, "0.0.0.0") != 0)
-        )
-    {
-        if (adapter[i] == Unplugged_st)
-        {
-            adapter[i] = Plugged_st;
-            RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
-                                                    &e_linkConnected), &eth);
-            RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
-                                                    &e_ipStatus), &eth);
-            printf("Using Ethernet Adapter: %d\n", i);
-            print_adapterInfo(p);
-        }
-    }
-    else
-    {
-        if (adapter[i] == Plugged_st)
-        {
-            adapter[i] = Unplugged_st;
-            RKH_SMA_POST_FIFO(conMgrEth,
-                              RKH_UPCAST(RKH_EVT_T, &e_linkDisconnect),
-                              &eth);
-        }
-    }
+	if (adapter[i] == Unplugged_st)
+	{
+		adapter[i] = Plugged_st;
+		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
+				&e_linkConnected), &eth);
+		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
+				&e_ipStatus), &eth);
+		printf("Using Ethernet Adapter: %d:%s\n", i, p->ifa_name);
+#ifdef ETH_THREAD_DEBUG
+		char host[NI_MAXHOST];
+		s = getnameinfo(p->ifa_addr,
+				(p->ifa_addr->sa_family == AF_INET) ? sizeof(struct sockaddr_in) :
+						sizeof(struct sockaddr_in6),
+						host, NI_MAXHOST,
+						NULL, 0, NI_NUMERICHOST);
+		printf("\t\taddres: <%s>\n", host);
+#endif
+//TODO            print_adapterInfo(p);
+	}
+}
+void
+unplugAdapter(int i)
+{
+	if (adapter[i] == Plugged_st)
+	{
+		adapter[i] = Unplugged_st;
+		RKH_SMA_POST_FIFO(conMgrEth,
+				RKH_UPCAST(RKH_EVT_T, &e_linkDisconnect),
+				&eth);
+		printf("Unplugged Adapter: %d\n", i);
+	}
+}
+void
+check_AdapterStatus(struct if_nameindex *if_ni, struct ifaddrs *pAdapterInfo)
+{
+	int family, n, currentIndex, plugged;
+	struct ifaddrs *pCurrentAdapter;
+	struct if_nameindex *intf;
+
+	for (intf = if_ni; intf->if_index != 0 || intf->if_name != NULL; intf++)
+	{
+
+		plugged = Unplugged_st;
+		for (pCurrentAdapter = pAdapterInfo, n = 0;
+				pCurrentAdapter != NULL;
+				pCurrentAdapter = pCurrentAdapter->ifa_next, n++)
+		{
+			if (pCurrentAdapter->ifa_addr != NULL)
+			{
+				family = pCurrentAdapter->ifa_addr->sa_family;
+				currentIndex = if_nametoindex(pCurrentAdapter->ifa_name);
+				if ( (intf->if_index == currentIndex) &&
+						((AF_INET == family)) //||(AF_INET6 == family)))
+						&& (strcmp("lo",pCurrentAdapter->ifa_name)) )
+				{
+#ifdef ETH_THREAD_DEBUG
+					printf("%-8s %s (%d)\n",
+							pCurrentAdapter->ifa_name,
+							(family == AF_INET) ? "AF_INET" :
+									(family == AF_INET6) ? "AF_INET6" : "???",
+											family);
+#endif
+					plugged = Plugged_st;
+					plugAdapter(pCurrentAdapter, currentIndex);
+				}
+			}
+		}
+		if (Unplugged_st == plugged)
+		{
+			unplugAdapter(intf->if_index);
+		}
+	}
+}
+static
+void *
+ethThread(void* par)
+{
+#ifdef ETH_THREAD_DEBUG
+	printf("\nehtThread started\n");
+#endif
+	struct if_nameindex *if_ni;
+	struct ifaddrs *pAdapterInfo;
+	int dwRetVal;
+
+	while (running)
+	{
+		sleep(SLEEP_LAPSE_ETH_THREAD);
+		if_ni = if_nameindex();
+		if (if_ni != NULL) {
+#ifdef ETH_THREAD_DEBUG
+			struct if_nameindex *intf;
+			printf("\nAvailable interfaces:\n");
+			for (intf = if_ni; intf->if_index != 0 || intf->if_name != NULL; intf++)
+			{
+				printf("\t%s\n", intf->if_name);
+			}
+			printf("\n")
+#endif
+			if ((dwRetVal = getifaddrs(&pAdapterInfo)) == 0)
+			{
+				check_AdapterStatus(if_ni, pAdapterInfo);
+				freeifaddrs(pAdapterInfo);
+			}
+			else
+			{
+				printf("getifaddrs failed with error: %d\n", dwRetVal);
+			}
+			if_freenameindex(if_ni);
+		}
+		else
+		{
+			perror("if_nameindex");
+		}
+	}
+
+	return NULL;
 }
 
-static
-DWORD WINAPI
-ethThread(LPVOID par)
+int
+sendall(int s, char *buf, ruint *len)
 {
-    (void)par;
-
-    PIP_ADAPTER_INFO pAdapterInfo;
-    PIP_ADAPTER_INFO pAdapter = NULL;
-    LONG ulOutBufLen = sizeof (IP_ADAPTER_INFO);
-    DWORD dwRetVal = 0;
-    unsigned int i = 0;
-
-    pAdapterInfo = (IP_ADAPTER_INFO *) MALLOC(sizeof (IP_ADAPTER_INFO));
-    if (pAdapterInfo == NULL)
-    {
-        printf("Error allocating memory needed to call GetAdaptersinfo\n");
-        exit(EXIT_FAILURE);
-    }
-
-    if (GetAdaptersInfo(pAdapterInfo,
-                        (PULONG)&ulOutBufLen) == ERROR_BUFFER_OVERFLOW)
-    {
-        FREE(pAdapterInfo);
-        pAdapterInfo = (IP_ADAPTER_INFO *) MALLOC(ulOutBufLen);
-        if (pAdapterInfo == NULL)
-        {
-            printf("Error allocating memory needed to call GetAdaptersinfo\n");
-            exit(EXIT_FAILURE);
-        }
-    }
-
-    while (running)
-    {
-        Sleep(1000);
-        if ((dwRetVal =
-                 GetAdaptersInfo(pAdapterInfo,
-                                 (PULONG)&ulOutBufLen)) == NO_ERROR)
-        {
-            pAdapter = pAdapterInfo;
-            i = 0;
-
-            while (pAdapter)
-            {
-                check_adapterStatus(pAdapter, i++);
-                pAdapter = pAdapter->Next;
-            }
-        }
-        else
-        {
-            printf("GetAdaptersInfo failed with error: %d\n", dwRetVal);
-        }
-    }
-
-    if (pAdapterInfo)
-    {
-        FREE(pAdapterInfo);
-    }
-
-    return 0;
+	/*From Beej's Guide*/
+	int total = 0; // how many bytes we've sent
+	int bytesleft = *len; // how many we have left to send
+	int n;
+	while(total < *len) {
+		n = send(s, buf+total, bytesleft, 0);
+		if (n == -1) { break; }
+		total += n;
+		bytesleft -= n;
+	}
+	*len = total; // return number actually sent here
+	return n==-1?-1:0; // return -1 on failure, 0 on success
 }
 
 /* ---------------------------- Global functions --------------------------- */
 void
 eth_init(void)
 {
-    DWORD ethId;
-    HANDLE ethTh;
-
-    ethTh = CreateThread(NULL, 1024, &ethThread, 0, 0, &ethId);
-    RKH_ASSERT(ethTh != (HANDLE)0);
-    SetThreadPriority(ethTh, THREAD_PRIORITY_NORMAL);
+	int ret;
+	pthread_t ethId;
+	pthread_attr_t thAtt;
+	pthread_attr_init(&thAtt);
+	ret = pthread_attr_setstacksize(&thAtt, ETH_THREAD_STACK_SIZE);
+	if (EINVAL == ret)
+	{
+		printf("\nStack size is less than PTHREAD_STACK_MIN (16384) \
+or not a multiple of the system page size. Used default size.\n");
+	}
+	ret = pthread_create(&ethId, NULL, &ethThread, NULL);
+	switch (ret) {
+		case EAGAIN:
+			printf("Insufficient resources to create another thread.");
+			break;
+		case EINVAL:
+			printf("Invalid settings in attributes.");
+			break;
+		case EPERM:
+			printf("No permission to set the scheduling policy \
+and parameters specified in attributes.");
+			break;
+		default:
+			if (0 != ret)
+			{
+				printf("Couldn't create a new thread for unknown reasons");
+			}
+		break;
+	}
+	RKH_ASSERT(ethId != (pthread_t)0);
 
     running = 1;
+
 }
 
 void
@@ -305,42 +378,32 @@ eth_deinit(void)
 void
 eth_socketOpen(char *ip, char *port)
 {
-    WORD wVersionRequested;
-    WSADATA wsaData;
-    SOCKADDR_IN target;
-    unsigned short lport;
-    char *p;
-    int err;
+	int status;
+	struct addrinfo conf;
+	struct addrinfo *target;
+	memset(&conf, 0, sizeof conf);
 
-    wVersionRequested = MAKEWORD(1, 1);
-    err = WSAStartup(wVersionRequested, &wsaData);
-    s = INVALID_SOCKET;
+	conf.ai_family = AF_UNSPEC; 	// IPv6 friendly
+	conf.ai_socktype = SOCK_STREAM;
+	conf.ai_flags = AI_PASSIVE; 	// fill in my IP for me
+	conf.ai_protocol = IPPROTO_TCP;
+	if ((status = getaddrinfo(ip, port, &conf, &target)) != 0)
+	{
+		fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(status));
+		exit(EXIT_FAILURE);
+	}
 
-    if (err != 0)
+    s = socket (target->ai_family, target->ai_socktype, target->ai_protocol);
+    if (s == -1)
     {
-        printf("WSAStartup error %ld\n", WSAGetLastError());
-        WSACleanup();
-        exit(EXIT_FAILURE);
-    }
-
-    target.sin_family = AF_INET;
-    lport = (unsigned short)strtol(port, &p, 10);
-    target.sin_port = htons(lport);
-    target.sin_addr.s_addr = inet_addr(ip);
-
-    s = socket (AF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if (s == INVALID_SOCKET)
-    {
-        printf("socket error %ld\n", WSAGetLastError());
-        WSACleanup();
+        printf("socket error %d\n", errno);
         RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Error), &eth);
         return;
     }
 
-    if (connect(s, (SOCKADDR*)&target, sizeof(target)) == SOCKET_ERROR)
+    if (connect(s, target->ai_addr, target->ai_addrlen) == -1)
     {
-        printf("connect error %ld\n", WSAGetLastError());
-        WSACleanup();
+        printf("connect error %d\n", errno);
         RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Error), &eth);
         return;
     }
@@ -351,18 +414,16 @@ eth_socketOpen(char *ip, char *port)
 void
 eth_socketWrite(rui8_t *p, ruint size)
 {
-    u_long mode;
     int ret;
 
-    mode = 0;  /* 0 to enable blocking socket */
-    ioctlsocket(s, FIONBIO, &mode);
+    /* enable blocking socket */
+    /* Does it really need to block?*/
 
-    ret = send(s, (char *)p, size, 0);
-    if (ret == SOCKET_ERROR)
+    ret = sendall(s, (char *)p, &size);
+    if (ret < 0)
     {
-        printf("send failed with error: %d\n", WSAGetLastError());
-        closesocket(s);
-        WSACleanup();
+        printf("send failed with error: %d\n", errno);
+        close(s);
         RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, 
                                             &e_disconnected), &eth);
     }
@@ -376,10 +437,9 @@ ruint
 eth_socketRead(rui8_t *p, ruint size)
 {
     int ret;
-    u_long mode;
 
-    mode = 1;  /* 1 to enable non-blocking socket */
-    ioctlsocket(s, FIONBIO, &mode);
+    /* enable non-blocking socket */
+    fcntl(s, F_SETFL, fcntl(s, F_GETFL, 0) | O_NONBLOCK);
 
     ret = recv(s, (char *)p, size, 0);
     if (ret == 0)
@@ -388,12 +448,12 @@ eth_socketRead(rui8_t *p, ruint size)
                                                 &e_disconnected), &eth);
         return 0;
     }
-    else if (ret == SOCKET_ERROR)
+    else if (ret < 0 )
     {
-        ret = WSAGetLastError();
+        ret = errno;
         switch (ret)
         {
-            case WSAEWOULDBLOCK:
+            case EWOULDBLOCK:
                 RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
                 break;
 

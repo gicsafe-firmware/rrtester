@@ -14,7 +14,7 @@
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
 #include "rkh.h"
-#include "signal.h"
+#include "conMgrEth_signal.h"
 #include "ConMgrEth.h"
 #include "ConMgrEthAct.h"
 #include "bsp.h"

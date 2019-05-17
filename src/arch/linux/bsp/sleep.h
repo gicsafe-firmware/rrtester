@@ -1,6 +1,21 @@
+/*
+ *  --------------------------------------------------------------------------
+ *
+ *                               GICSAFe-Firmware
+ *                               ----------------
+ *
+ *                      Copyright (C) 2019 CONICET-GICSAFe
+ *          All rights reserved. Protected by international copyright laws.
+ *
+ *  Contact information:
+ *  site: https://github.com/gicsafe-firmware
+ *  e-mail: <someone>@<somewhere>
+ *  ---------------------------------------------------------------------------
+ */
+
 /**
- *  \file       ConMgrEthActRequired.h
- *  \brief
+ *  \file   sleep.h
+ *  \brief  Specifies this module.
  */
 
 /* -------------------------- Development history -------------------------- */
@@ -9,40 +24,41 @@
 
 /* -------------------------------- Authors -------------------------------- */
 /*
+ *  DaBa  Darío Baliña   db@vortexmakes.com
+ *  CaMa  Carlos Mancón  manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
 /* --------------------------------- Module -------------------------------- */
-#ifndef __CONMGRETHACTREQUIRED_H__
-#define __CONMGRETHACTREQUIRED_H__
+#ifndef __SLEEP_H__
+#define __SLEEP_H__
 
 /* ----------------------------- Include files ----------------------------- */
-#include "rkhtype.h"
-#include "events.h"
-#include "ConMgrEthActAccess.h"
-
+#ifdef __W32STVC__
+#include <windows.h>
+#endif
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
-	extern "C" {
+extern "C" {
 #endif
-
 /* --------------------------------- Macros -------------------------------- */
+#ifdef __LNXGNU__
+#define Sleep(x) usleep(x*1000)
+#endif
 /* -------------------------------- Constants ------------------------------ */
+#ifdef __W32STVC__
+#define _1SEC	(1000/SLEEP_BASE)
+#define SLEEP_BASE	1
+
+/*
+ * sleep: Performs a delay of msec in the execution
+ * 			msec must be especified as a multiplo of 
+ * 			RTI cadence MSEQBASE.
+ */
+#endif
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-#define init()                  conMgrEthActAccess_init(me)
-#define socketOpen(ip,port)     conMgrEthActAccess_socketOpen(ip,port)
-#define socketWrite()           conMgrEthActAccess_socketWrite(RKH_UPCAST(SendEvt, pe))
-#define socketRead()            conMgrEthActAccess_socketRead(me)
-#define socketConnected()       conMgrEthActAccess_socketConnected(me)
-#define socketDisconnected()    conMgrEthActAccess_socketDisconnected(me)
-
-void recvOk(void);
-void sendOk(void);
-void recvFail(void);
-void sendFail(void);
-
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus
 }

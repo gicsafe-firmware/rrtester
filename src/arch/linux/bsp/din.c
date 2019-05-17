@@ -1,73 +1,66 @@
 /**
- *  \file       config.c
- *  \brief      Implements configuration parameters.
+ *  \file       dIn.c
+ *  \brief      Implementation of Digital Inputs HAL and change detection.
  */
 
 /* -------------------------- Development history -------------------------- */
 /*
+ *  2018.05.17  DaBa  v1.0.00  Initial version
  */
 
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  DaBa  Dario Baliña       db@vortexmakes.com
- *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
-#include "config.h"
+#include "rkh.h"
+#include "ioChgDet.h"
+#include "din.h"
+#include "mTimeCfg.h"
 
 /* ----------------------------- Local macros ------------------------------ */
-#define CONFIG_FIELD(f,v) snprintf(f, sizeof(f), "%s", v)
-
 /* ------------------------------- Constants ------------------------------- */
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
-MQTTProtCfg mqttProtCfg =
-{
-    .clientId = MQTT_CLIENT_ID_DFT,
-    .topic = MQTT_TOPIC_ROOT MQTT_CLIENT_ID_DFT
-};
-
-MQTTBrokerCfg mqttBrokerCfg =
-{
-    .protocol = CONNECTION_PROT_DFT,
-    .address = CONNECTION_DOMAIN_DFT,
-    .port = CONNECTION_PORT_DFT
-};
-
 /* ---------------------------- Local variables ---------------------------- */
+static unsigned char dIns[NUM_DIN_SIGNALS];
+static unsigned char dInsKb[NUM_DIN_SIGNALS];
+
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
 /* ---------------------------- Global functions --------------------------- */
-void
-config_clientId(char *pid)
+void keyb_dIn_parser(char c)
 {
-    strncpy(mqttProtCfg.clientId, pid, sizeof(mqttProtCfg.clientId));
+	c = c - '0';
+
+	if (c > NUM_DIN_SIGNALS)
+		return;
+
+	dInsKb[c] ^= 1;
 }
 
 void
-config_topic(char *t)
+dIn_init(void)
 {
-    snprintf(mqttProtCfg.topic, sizeof(mqttProtCfg.topic), "%s%s",
-                    MQTT_TOPIC_ROOT, t);
+    memset(dIns, 0, sizeof(dIns));
+    memset(dInsKb, 0, sizeof(dIns));
 }
 
 void
-config_brokerProtocol(char *prot)
+dIn_scan(void)
 {
-    CONFIG_FIELD(mqttBrokerCfg.protocol, prot);
+    unsigned char i;
+
+    for(i=0; i < NUM_DIN_SIGNALS; ++i)
+    {
+        if(dIns[i] != dInsKb[i])
+        {
+            IOChgDet_put(i, dInsKb[i]);
+            dIns[i] = dInsKb[i];
+        }
+    }
 }
 
-void
-config_brokerAddress(char *address)
-{
-    CONFIG_FIELD(mqttBrokerCfg.address, address);
-}
-
-void
-config_brokerPort(char *port)
-{
-    CONFIG_FIELD(mqttBrokerCfg.port, port);
-}
-
+/* ------------------------------ End of file ------------------------------ */

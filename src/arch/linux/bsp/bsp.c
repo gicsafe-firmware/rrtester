@@ -13,18 +13,20 @@
 /*
  *  DaBa  Dario Baliña       db@vortexmakes.com
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
+ *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
 #include <stdio.h>
+#include <string.h>
 #include "rkh.h"
 #include "rkhfwk_pubsub.h"
 #include "bsp.h"
 #include "getopt.h"
 #include "trace_io_cfg.h"
-#include "wserial.h"
-#include "wserdefs.h"
+#include "serial.h"
+#include "sleep.h"
 
 #include "signals.h"
 #include "topics.h"
@@ -45,7 +47,7 @@ RKH_THIS_MODULE
 
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
-#define ESC                    0x1B
+#define ESC                 0x1B
 #define RRTESTER_CFG_OPTIONS   "st:f:p:b:q:m:h"
 
 #define TEST_TX_PACKET      "----o Ping"
@@ -55,7 +57,7 @@ RKH_THIS_MODULE
 /* ---------------------------- Global variables --------------------------- */
 SERIAL_T serials[ NUM_CHANNELS ] =
 {
-	{	"COM8",	19200, 8, PAR_NONE, STOP_1, 0 },	// COM1
+	{	"/dev/ttyUSB1",	19200, 8, PAR_NONE, STOP_1},
 };
 static FILE *fGsmLog = NULL;
 
@@ -98,7 +100,7 @@ printBanner(void)
     printf("Port version     = %s\n", rkhport_get_version());
     printf("Port description = %s\n\n", rkhport_get_desc());
 	printf("Description: \n\n"
-		"Sistema de monitoreo remoto de pasos a nivel\n");
+		"Sistema probador de relés ferroviarios\n");
 
     printf("1.- Press ESC to quit \n\n\n");
 }
@@ -116,7 +118,7 @@ processCmdLineOpts(int argc, char **argv)
                 break;
 
 			case 's':
-                trace_io_silence();
+				trace_io_silence();
 				break;
 
             case 'f':
@@ -207,8 +209,9 @@ bsp_init(int argc, char *argv[])
     modPwr_init();
     dIn_init();
 	anIn_init();
-
+#ifdef USE_ETH
     eth_init();
+#endif
 }
 
 void
@@ -251,11 +254,11 @@ bsp_keyParser(int c)
             break;
 
 		case 'j':
-			set_dtr(0);
+			modPwr_off();
 			break;
 
 		case 'k':
-			reset_dtr(0);
+			modPwr_on();
 			break;
 
         default:
