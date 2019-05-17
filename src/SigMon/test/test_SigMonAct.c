@@ -57,6 +57,7 @@
 #include "Mock_DigIn.h"
 #include "Mock_rkhassert.h"
 #include "Mock_rkhsma.h"
+#include "Mock_Relay.h"
 
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
@@ -118,6 +119,42 @@ test_Synchro(void)
     SigMon_SMActiveToSMActiveLoc2(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
     TEST_ASSERT_EQUAL(inSeqExpect, me->digIn);
     TEST_ASSERT_EQUAL(mapDigIn[inSeqExpect], me->evInObj.e);
+}
+
+void
+test_StartAdqCycle(void)
+{
+    Relay_getCurrent_ExpectAndReturn(0xdead);
+    Relay_getVoltage_ExpectAndReturn(0xbeaf);
+
+    SigMon_enSeq0(me);
+    TEST_ASSERT_EQUAL(1, me->nAnSmp);
+    TEST_ASSERT_EQUAL(0xdead, me->currVal);
+    TEST_ASSERT_EQUAL(0xbeaf, me->voltVal);
+}
+
+void
+test_AdquireSeq0(void)
+{
+    TEST_IGNORE();
+}
+
+void
+test_AdquireSeq1(void)
+{
+    TEST_IGNORE();
+}
+
+void
+test_AdquireSeq2(void)
+{
+    TEST_IGNORE();
+}
+
+void
+test_StopAdqCycle(void)
+{
+    TEST_IGNORE();
 }
 
 /* ------------------------------ End of file ------------------------------ */

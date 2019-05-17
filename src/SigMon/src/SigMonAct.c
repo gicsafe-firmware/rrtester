@@ -21,6 +21,7 @@
 #include "bsp.h"
 #include "SigMonActRequired.h"
 #include "DigIn.h"
+#include "Relay.h"
 #include "rkhassert.h"
 
 RKH_MODULE_NAME(SigMonAct)
@@ -93,7 +94,9 @@ SigMon_enSMActive(SigMon *const me)
 void 
 SigMon_enSeq0(SigMon *const me)
 {
-	me->digIn = 0;
+	me->nAnSmp = 1;
+    me->currVal = Relay_getCurrent();
+    me->voltVal = Relay_getVoltage();
 }
 
 /* ............................. Exit actions .............................. */

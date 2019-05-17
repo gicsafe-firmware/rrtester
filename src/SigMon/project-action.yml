@@ -9,5 +9,6 @@
     - src/SigMonAct.c
   :include:
     - ../DigIn/inc
+    - ../Relay/inc
   :support:
 

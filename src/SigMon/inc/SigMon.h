@@ -41,6 +41,9 @@ struct SigMon
                         /* digIn[2] : clock x 1 */
     SigMonTmEvt evSyncObj;
     RKH_EVT_T evInObj;
+    rInt nAnSmp;        /* number of analog samples to average */
+    rui16_t currVal;
+    rui16_t voltVal;
 };
 
 /* -------------------------- External variables --------------------------- */
