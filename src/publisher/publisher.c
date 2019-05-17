@@ -62,7 +62,7 @@ publishrrtester(AppData *appMsg)
     jwOpen( dataBuf, sizeof(dataBuf), JW_OBJECT, JW_COMPACT );
 
     
-    jwObj_int("id", atoi(MQTT_CLIENT_ID));
+    jwObj_int("id", atoi(mqttProtCfg.clientId));
     jwObj_int("sl", 11);
 
     n = anSampler_getSet(&anSet, NUM_AN_SAMPLES_GET);

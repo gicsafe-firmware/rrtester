@@ -23,7 +23,12 @@
 /* ------------------------------- Constants ------------------------------- */
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
-MQTTProtCfg mqttProtCfg;
+MQTTProtCfg mqttProtCfg =
+{
+    .clientId = MQTT_CLIENT_ID_DFT,
+    .topic = MQTT_TOPIC_ROOT MQTT_CLIENT_ID_DFT
+};
+
 MQTTBrokerCfg mqttBrokerCfg =
 {
     .protocol = CONNECTION_PROT_DFT,
@@ -44,7 +49,8 @@ config_clientId(char *pid)
 void
 config_topic(char *t)
 {
-    snprintf(mqttProtCfg.topic, sizeof(mqttProtCfg.topic), "/rrtester/%s", t);
+    snprintf(mqttProtCfg.topic, sizeof(mqttProtCfg.topic), "%s%s",
+                    MQTT_TOPIC_ROOT, t);
 }
 
 void

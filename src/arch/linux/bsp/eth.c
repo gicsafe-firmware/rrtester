@@ -279,9 +279,6 @@ ethThread(void* par)
 	struct ifaddrs *pAdapterInfo;
 	int dwRetVal;
 
-	config_clientId(MQTT_CLIENT_ID);
-	config_topic(MQTT_CLIENT_ID);
-
 	while (running)
 	{
 		sleep(SLEEP_LAPSE_ETH_THREAD);

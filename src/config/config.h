@@ -40,7 +40,8 @@ extern "C" {
 #define CONNECTION_DOMAIN_DFT    MOSQUITTO_SERVER
 #define CONNECTION_PORT_DFT      MOSQUITTO_PORT
 
-#define MQTT_CLIENT_ID          "3002334"
+#define MQTT_CLIENT_ID_DFT       "1234567"
+#define MQTT_TOPIC_ROOT          "/rrtester/"
 
 /* ------------------------------- Data types ------------------------------ */
 typedef struct MQTTBrokerCfg

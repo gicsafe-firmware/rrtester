@@ -252,9 +252,6 @@ ethThread(LPVOID par)
         }
     }
 
-    config_clientId(MQTT_CLIENT_ID);
-    config_topic(MQTT_CLIENT_ID);
-
     while (running)
     {
         Sleep(1000);
