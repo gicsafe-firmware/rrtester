@@ -6,7 +6,8 @@
 /* -------------------------- Development history -------------------------- */
 /* -------------------------------- Authors -------------------------------- */
 /*
- *  DaBa  Dario Bali�a       db@vortexmakes.com
+ *  DaBa  Dario Baliña       db@vortexmakes.com
+ *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -15,6 +16,8 @@
 #define __CONFIG_H__
 
 /* ----------------------------- Include files ----------------------------- */
+#include <stdio.h>
+#include <string.h>
 #include "mqttProt.h"
 
 /* ---------------------- External C language linkage ---------------------- */
@@ -40,13 +43,22 @@ extern "C" {
 #define MQTT_CLIENT_ID          "3002334"
 
 /* ------------------------------- Data types ------------------------------ */
+typedef
+    struct MQTTBrokerCfg
+{
+    char protocol[6];
+    char address[16];
+    char port[6];
+} MQTTBrokerCfg;
 /* -------------------------- External variables --------------------------- */
 extern MQTTProtCfg mqttProtCfg;
-
+extern MQTTBrokerCfg mqttBrokerCfg;
 /* -------------------------- Function prototypes -------------------------- */
 void config_clientId(char *pid);
 void config_topic(char *topic);
-
+void config_brokerProtocol(char *prot);
+void config_brokerAddress(char *address);
+void config_brokerPort(char *port);
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus
 }

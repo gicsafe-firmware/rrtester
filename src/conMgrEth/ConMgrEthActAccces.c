@@ -41,8 +41,8 @@ static ReceivedEvt e_Received;
 void
 conMgrEthActAccess_init(ConMgrEth *const me)
 {
-    me->ip = CONNECTION_DOMAIN;
-    me->port = CONNECTION_PORT;
+    me->ip = mqttBrokerCfg.address;
+    me->port = mqttBrokerCfg.port;
 
     ConnectionTopic_subscribe(conMgrEth);
     RKH_SET_STATIC_EVENT(RKH_UPCAST(RKH_EVT_T, &e_Received), evReceived);
