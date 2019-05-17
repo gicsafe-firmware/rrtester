@@ -58,6 +58,7 @@
 #include "Mock_rkhassert.h"
 #include "Mock_rkhsma.h"
 #include "Mock_Relay.h"
+#include "Mock_StoreTest.h"
 
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
@@ -79,11 +80,17 @@ void
 setUp(void)
 {
     me = RKH_DOWNCAST(SigMon, sigMon);
+    Mock_DigIn_Init();
+    Mock_Relay_Init();
 }
 
 void
 tearDown(void)
 {
+    Mock_DigIn_Verify();
+    Mock_DigIn_Destroy();
+    Mock_Relay_Verify();
+    Mock_Relay_Destroy();
 }
 
 void
@@ -136,25 +143,73 @@ test_StartAdqCycle(void)
 void
 test_AdquireSeq0(void)
 {
-    TEST_IGNORE();
+    Relay_getCurrent_ExpectAndReturn(2);
+    Relay_getVoltage_ExpectAndReturn(4);
+    Relay_getCurrent_ExpectAndReturn(2);
+    Relay_getVoltage_ExpectAndReturn(4);
+    Relay_getCurrent_ExpectAndReturn(2);
+    Relay_getVoltage_ExpectAndReturn(4);
+
+    SigMon_enSeq0(me);
+    SigMon_Seq0ToSeq0Loc4(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
+    SigMon_Seq0ToSeq0Loc4(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
+
+    TEST_ASSERT_EQUAL(3, me->nAnSmp);
+    TEST_ASSERT_EQUAL(2, me->currVal);
+    TEST_ASSERT_EQUAL(4, me->voltVal);
 }
 
 void
 test_AdquireSeq1(void)
 {
-    TEST_IGNORE();
+    Relay_getCurrent_ExpectAndReturn(2);
+    Relay_getVoltage_ExpectAndReturn(4);
+    Relay_getCurrent_ExpectAndReturn(2);
+    Relay_getVoltage_ExpectAndReturn(4);
+    Relay_getCurrent_ExpectAndReturn(2);
+    Relay_getVoltage_ExpectAndReturn(4);
+
+    SigMon_enSeq0(me);
+    SigMon_Seq1ToSeq1Loc6(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
+    SigMon_Seq1ToSeq1Loc6(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
+
+    TEST_ASSERT_EQUAL(3, me->nAnSmp);
+    TEST_ASSERT_EQUAL(2, me->currVal);
+    TEST_ASSERT_EQUAL(4, me->voltVal);
 }
 
 void
 test_AdquireSeq2(void)
 {
-    TEST_IGNORE();
+    Relay_getCurrent_ExpectAndReturn(2);
+    Relay_getVoltage_ExpectAndReturn(4);
+    Relay_getCurrent_ExpectAndReturn(2);
+    Relay_getVoltage_ExpectAndReturn(4);
+    Relay_getCurrent_ExpectAndReturn(2);
+    Relay_getVoltage_ExpectAndReturn(4);
+
+    SigMon_enSeq0(me);
+    SigMon_Seq2ToSeq2Loc5(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
+    SigMon_Seq2ToSeq2Loc5(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
+
+    TEST_ASSERT_EQUAL(3, me->nAnSmp);
+    TEST_ASSERT_EQUAL(2, me->currVal);
+    TEST_ASSERT_EQUAL(4, me->voltVal);
 }
 
 void
 test_StopAdqCycle(void)
 {
-    TEST_IGNORE();
+    StoreTest_setRelayParam_Expect(me->currVal, me->voltVal);
+    SigMon_Seq2ToSeq3Ext8(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
+}
+
+void
+test_Failure(void)
+{
+    StoreTest_setFailure_Expect();
+    SigMon_SMActiveToSigMon_FinalExt3(me, 
+                                      RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
 }
 
 /* ------------------------------ End of file ------------------------------ */

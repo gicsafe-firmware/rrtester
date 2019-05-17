@@ -15,6 +15,7 @@
 /* ----------------------------- Include files ----------------------------- */
 #include "rkh.h"
 #include "rkhfwk_cast.h"
+#include "rkhassert.h"
 #include "signal.h"
 #include "SigMon.h"
 #include "SigMonAct.h"
@@ -22,7 +23,7 @@
 #include "SigMonActRequired.h"
 #include "DigIn.h"
 #include "Relay.h"
-#include "rkhassert.h"
+#include "StoreTest.h"
 
 RKH_MODULE_NAME(SigMonAct)
 
@@ -38,17 +39,27 @@ static const RKH_SIG_T mapDigIn[7] =
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
+static void 
+calcAnSmp(SigMon *const me)
+{
+	++me->nAnSmp;
+    me->currVal += Relay_getCurrent();
+    me->currVal /= 2;
+    me->voltVal += Relay_getVoltage();
+    me->voltVal /= 2;
+}
+
 /* ............................ Effect actions ............................. */
 void 
 SigMon_SMActiveToSigMon_FinalExt3(SigMon *const me, RKH_EVT_T *pe)
 {
-	me->digIn = 0;
+    StoreTest_setFailure();
 }
 
 void 
 SigMon_Seq2ToSeq3Ext8(SigMon *const me, RKH_EVT_T *pe)
 {
-	me->digIn = 0;
+    StoreTest_setRelayParam(me->currVal, me->voltVal);
 }
 
 void 
@@ -64,19 +75,19 @@ SigMon_SMActiveToSMActiveLoc2(SigMon *const me, RKH_EVT_T *pe)
 void 
 SigMon_Seq0ToSeq0Loc4(SigMon *const me, RKH_EVT_T *pe)
 {
-	me->digIn = 0;
+    calcAnSmp(me);
 }
 
 void 
 SigMon_Seq2ToSeq2Loc5(SigMon *const me, RKH_EVT_T *pe)
 {
-	me->digIn = 0;
+    calcAnSmp(me);
 }
 
 void 
 SigMon_Seq1ToSeq1Loc6(SigMon *const me, RKH_EVT_T *pe)
 {
-	me->digIn = 0;
+    calcAnSmp(me);
 }
 
 /* ............................. Entry actions ............................. */
