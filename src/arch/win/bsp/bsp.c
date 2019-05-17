@@ -38,14 +38,15 @@
 #include "mTime.h"
 #include "publisher.h"
 #include "eth.h"
+#include "config.h"
 
 
 RKH_THIS_MODULE
 
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
-#define ESC                 0x1B
-#define RRTESTER_CFG_OPTIONS   "st:f:p:m:h"
+#define ESC                    0x1B
+#define RRTESTER_CFG_OPTIONS   "st:f:p:b:q:m:h"
 
 #define TEST_TX_PACKET      "----o Ping"
 #define TEST_RX_PACKET      "o---- Pong"
@@ -69,6 +70,8 @@ static const char *helpMessage =
     "\t -f File name for binary trace output\n"
     "\t -t ipaddr of TCP trace client\n"
     "\t -p port of TCP trace client\n"
+	"\t -b ipaddr of MQTT Broker\n"
+	"\t -q port of MQTT Broker\n"
     "\t -m GSM Module Serial Port\n"
     "\t -h (help)\n"
 };
@@ -127,6 +130,14 @@ processCmdLineOpts(int argc, char **argv)
             case 'p':
                 trace_io_setTcpPort((short)atoi(optarg));
                 break;
+
+            case 'b':
+            	config_brokerAddress(optarg);
+            	break;
+
+            case 'q':
+            	config_brokerPort(optarg);
+            	break;
 
             case '?':
             case 'h':

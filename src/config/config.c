@@ -19,20 +19,21 @@
 
 /* ----------------------------- Local macros ------------------------------ */
 #define CONFIG_FIELD(f,v) snprintf(f, sizeof(f), "%s", v)
+
 /* ------------------------------- Constants ------------------------------- */
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 MQTTProtCfg mqttProtCfg;
 MQTTBrokerCfg mqttBrokerCfg =
 {
-    .protocol = CONNECTION_PROT,
-    .address = CONNECTION_DOMAIN,
-    .port = CONNECTION_PORT
+    .protocol = CONNECTION_PROT_DFT,
+    .address = CONNECTION_DOMAIN_DFT,
+    .port = CONNECTION_PORT_DFT
 };
+
 /* ---------------------------- Local variables ---------------------------- */
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
-
 /* ---------------------------- Global functions --------------------------- */
 void
 config_clientId(char *pid)
@@ -64,4 +65,3 @@ config_brokerPort(char *port)
     CONFIG_FIELD(mqttBrokerCfg.port, port);
 }
 
-/* ------------------------------ End of file ------------------------------ */
