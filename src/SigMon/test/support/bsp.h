@@ -1,5 +1,20 @@
+/*
+ *  --------------------------------------------------------------------------
+ *
+ *                               GICSAFe-Firmware
+ *                               ----------------
+ *
+ *                      Copyright (C) 2019 CONICET-GICSAFe
+ *          All rights reserved. Protected by international copyright laws.
+ *
+ *  Contact information:
+ *  site: https://github.com/gicsafe-firmware
+ *  e-mail: <someone>@<somewhere>
+ *  ---------------------------------------------------------------------------
+ */
+
 /**
- *  \file       SigMonActRequired.h
+ *  \file   bsp.h
  *  \brief
  */
 
@@ -9,20 +24,18 @@
 
 /* -------------------------------- Authors -------------------------------- */
 /*
+ *  LeFr  Leandro Francucci lf@vortexmakes.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
 /* --------------------------------- Module -------------------------------- */
-#ifndef __SIGMONACTREQUIRED_H__
-#define __SIGMONACTREQUIRED_H__
+#ifndef __BSP_H__
+#define __BSP_H__
 
 /* ----------------------------- Include files ----------------------------- */
-#include "rkhtype.h"
-#include "SigMonActAccess.h"
-
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
-	extern "C" {
+extern "C" {
 #endif
 
 /* --------------------------------- Macros -------------------------------- */

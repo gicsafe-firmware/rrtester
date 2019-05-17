@@ -1,6 +1,6 @@
 #
 # Usage:
-#   $ sudo ceedling <clean> <clobber> options:project-action test:SigMonAct
+#   $ sudo ceedling [clean|clobber] options:project-action test:SigMonAct
 #
 
 :paths:
@@ -8,5 +8,6 @@
   :source:
     - src/SigMonAct.c
   :include:
+    - ../DigIn/inc
   :support:
 

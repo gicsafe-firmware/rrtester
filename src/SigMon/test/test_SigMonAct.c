@@ -49,19 +49,35 @@
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
 #include "unity.h"
+#include "SigMonAct.h"
+#include "SigMon.h"
+#include "signal.h"
+#include "rkhfwk_cast.h"
+#include "Mock_rkhtmr.h"
+#include "Mock_DigIn.h"
 #include "Mock_rkhassert.h"
+#include "Mock_rkhsma.h"
 
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
+RKH_SMA_CREATE(SigMon, sigMon, 0, HCAL, NULL, NULL, NULL);
+RKH_SMA_DEF_PTR(sigMon);
+static SigMon *me;
+static const RKH_SIG_T mapDigIn[7] = 
+{
+    evIn0, evIn1, evIn2, 0, evIn4, evIn5, evIn6
+};
+
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
 /* ---------------------------- Global functions --------------------------- */
 void
 setUp(void)
 {
+    me = RKH_DOWNCAST(SigMon, sigMon);
 }
 
 void
@@ -70,9 +86,38 @@ tearDown(void)
 }
 
 void
-test_TrnFirstStateAfterInit(void)
+test_StartSynchro(void)
 {
-    TEST_IGNORE();
+    rkh_tmr_init__Expect(&me->evSyncObj.tmr, (RKH_EVT_T *)&me->evSyncObj);
+    rkh_tmr_start_Expect(&me->evSyncObj.tmr, RKH_UPCAST(RKH_SMA_T, me), 
+                         SIGMON_SYNC_TIME);
+    SigMon_enSMActive(me);
+}
+
+void
+test_StopSynchro(void)
+{
+    rkh_tmr_stop_Expect(&me->evSyncObj.tmr);
+    SigMon_exSMActive(me);
+}
+
+void
+test_Synchro(void)
+{
+    DigIn status;
+    rInt inSeqExpect;
+
+    inSeqExpect = 0;
+    status.clk = 1;
+    status.clkX3 = 0;
+    status.clkX6 = 1;
+    inSeqExpect = ((status.clk << 2) | (status.clkX3 << 1) | status.clkX6);
+    DigIn_get_ExpectAndReturn(status);
+    rkh_sma_post_fifo_Expect(RKH_UPCAST(RKH_SMA_T, me), &me->evInObj, me);
+
+    SigMon_SMActiveToSMActiveLoc2(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
+    TEST_ASSERT_EQUAL(inSeqExpect, me->digIn);
+    TEST_ASSERT_EQUAL(mapDigIn[inSeqExpect], me->evInObj.e);
 }
 
 /* ------------------------------ End of file ------------------------------ */

@@ -5,6 +5,7 @@
 
 /* ----------------------------- Include files ----------------------------- */
 #include "rkhsma.h"
+#include "rkhtmr.h"
 
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
@@ -22,12 +23,24 @@ RKH_DCLR_COMP_STATE SMActive;
 RKH_DCLR_FINAL_STATE SigMon_Final;
 
 /* ------------------------------- Data types ------------------------------ */
+typedef struct SigMonTmEvt SigMonTmEvt;
+struct SigMonTmEvt 
+{
+    RKH_EVT_T evt;
+    RKH_TMR_T tmr;
+};
+
 /* ............................. Active object ............................. */
 typedef struct SigMon SigMon;
 struct SigMon
 {
     RKH_SMA_T sma;      /* base structure */
-    rInt digIn;
+    rInt digIn;         /* maintains the last digital input status */
+                        /* digIn[0] : clock x 6 */
+                        /* digIn[1] : clock x 3 */
+                        /* digIn[2] : clock x 1 */
+    SigMonTmEvt evSyncObj;
+    RKH_EVT_T evInObj;
 };
 
 /* -------------------------- External variables --------------------------- */
