@@ -741,7 +741,9 @@ socketOpen(ConMgrGsm *const me, RKH_EVT_T *pe)
     (void)me;
     (void)pe;
 
-    ModCmd_connect(CONNECTION_PROT, CONNECTION_DOMAIN, CONNECTION_PORT);
+    ModCmd_connect(mqttBrokerCfg.protocol,
+                   mqttBrokerCfg.address,
+                   mqttBrokerCfg.port);
 }
 
 static void
