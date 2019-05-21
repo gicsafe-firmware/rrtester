@@ -121,7 +121,7 @@ test_Synchro(void)
     status.clkX6 = 1;
     inSeqExpect = ((status.clk << 2) | (status.clkX3 << 1) | status.clkX6);
     DigIn_get_ExpectAndReturn(status);
-    rkh_sma_post_fifo_Expect(RKH_UPCAST(RKH_SMA_T, me), &me->evInObj, me);
+    rkh_sma_post_lifo_Expect(RKH_UPCAST(RKH_SMA_T, me), &me->evInObj, me);
 
     SigMon_SMActiveToSMActiveLoc2(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
     TEST_ASSERT_EQUAL(inSeqExpect, me->digIn);

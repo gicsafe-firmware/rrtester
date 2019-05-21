@@ -69,7 +69,7 @@ SigMon_SMActiveToSMActiveLoc2(SigMon *const me, RKH_EVT_T *pe)
 	me->digIn = ((status.clk << 2) | (status.clkX3 << 1) | status.clkX6);
     RKH_ENSURE(me->digIn < (1 << 3));
     me->evInObj.e = mapDigIn[me->digIn];
-    RKH_SMA_POST_FIFO(RKH_UPCAST(RKH_SMA_T, me), &me->evInObj, me);
+    RKH_SMA_POST_LIFO(RKH_UPCAST(RKH_SMA_T, me), &me->evInObj, me);
 }
 
 void 
