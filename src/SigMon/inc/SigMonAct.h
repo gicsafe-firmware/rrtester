@@ -28,7 +28,9 @@ extern "C" {
 
 /* --------------------------------- Macros -------------------------------- */
 /* -------------------------------- Constants ------------------------------ */
-#define SIGMON_SYNC_TIME    50  /* in [ms] */
+#define SIGMON_CLOCK_PER    500 /* in [ms] */
+#define SIGMON_DIGIN_TICKS  10
+#define SIGMON_SYNC_TIME    RKH_TIME_MS(SIGMON_CLOCK_PER/SIGMON_DIGIN_TICKS)
 
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */

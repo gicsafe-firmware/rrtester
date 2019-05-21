@@ -44,6 +44,7 @@ struct SigMon
     rInt nAnSmp;        /* number of analog samples to average */
     rui16_t currVal;
     rui16_t voltVal;
+    rInt nDigIn;        /* counter for storing digital inputs */
 };
 
 /* -------------------------- External variables --------------------------- */

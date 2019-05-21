@@ -70,6 +70,12 @@ SigMon_SMActiveToSMActiveLoc2(SigMon *const me, RKH_EVT_T *pe)
     RKH_ENSURE(me->digIn < (1 << 3));
     me->evInObj.e = mapDigIn[me->digIn];
     RKH_SMA_POST_LIFO(RKH_UPCAST(RKH_SMA_T, me), &me->evInObj, me);
+
+    --me->nDigIn;
+    if (me->nDigIn == 0)
+    {
+        me->nDigIn = SIGMON_DIGIN_TICKS;
+    }
 }
 
 void 
@@ -100,6 +106,7 @@ SigMon_enSMActive(SigMon *const me)
                  NULL);
     RKH_TMR_PERIODIC(&me->evSyncObj.tmr, RKH_UPCAST(RKH_SMA_T, me), 
                      SIGMON_SYNC_TIME, SIGMON_SYNC_TIME);
+	me->nDigIn = SIGMON_SYNC_TIME;
 }
 
 void 
