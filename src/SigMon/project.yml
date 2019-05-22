@@ -1,6 +1,7 @@
 ---
 #
-# RKH project YAML for ceedling test in module level
+# Usage:
+#   $ sudo ceedling [clean|clobber] options:project-sm test:SigMon
 #
 
 :project:

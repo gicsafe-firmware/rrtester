@@ -39,7 +39,6 @@ struct SigMon
     DigIn digIn;         /* maintains the last digital input status */
     SigMonTmEvt evSyncObj;
     RKH_EVT_T evInObj;
-    rInt nAnSmp;        /* number of analog samples to average */
     rui16_t currVal;
     rui16_t voltVal;
     rInt nDigIn;        /* counter for storing digital inputs */

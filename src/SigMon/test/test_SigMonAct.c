@@ -184,7 +184,6 @@ test_StartAdqCycle(void)
     Relay_getVoltage_ExpectAndReturn(0xbeaf);
 
     SigMon_enSeq0(me);
-    TEST_ASSERT_EQUAL(1, me->nAnSmp);
     TEST_ASSERT_EQUAL(0xdead, me->currVal);
     TEST_ASSERT_EQUAL(0xbeaf, me->voltVal);
 }
@@ -203,7 +202,6 @@ test_AdquireSeq0(void)
     SigMon_Seq0ToSeq0Loc4(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
     SigMon_Seq0ToSeq0Loc4(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
 
-    TEST_ASSERT_EQUAL(3, me->nAnSmp);
     TEST_ASSERT_EQUAL(2, me->currVal);
     TEST_ASSERT_EQUAL(4, me->voltVal);
 }
@@ -222,7 +220,6 @@ test_AdquireSeq1(void)
     SigMon_Seq1ToSeq1Loc6(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
     SigMon_Seq1ToSeq1Loc6(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
 
-    TEST_ASSERT_EQUAL(3, me->nAnSmp);
     TEST_ASSERT_EQUAL(2, me->currVal);
     TEST_ASSERT_EQUAL(4, me->voltVal);
 }
@@ -241,7 +238,6 @@ test_AdquireSeq2(void)
     SigMon_Seq2ToSeq2Loc5(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
     SigMon_Seq2ToSeq2Loc5(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
 
-    TEST_ASSERT_EQUAL(3, me->nAnSmp);
     TEST_ASSERT_EQUAL(2, me->currVal);
     TEST_ASSERT_EQUAL(4, me->voltVal);
 }

@@ -42,7 +42,6 @@ static const RKH_SIG_T mapDigIn[7] =
 static void 
 calcAnSmp(SigMon *const me)
 {
-	++me->nAnSmp;
     me->currVal += Relay_getCurrent();
     me->currVal /= 2;
     me->voltVal += Relay_getVoltage();
@@ -120,7 +119,6 @@ SigMon_enSMActive(SigMon *const me)
 void 
 SigMon_enSeq0(SigMon *const me)
 {
-	me->nAnSmp = 1;
     me->currVal = Relay_getCurrent();
     me->voltVal = Relay_getVoltage();
 }
