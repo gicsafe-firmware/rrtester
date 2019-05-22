@@ -47,6 +47,7 @@ struct DigIn
     unsigned clk : 1;
     unsigned clkX3 : 1;
     unsigned clkX6 : 1;
+    unsigned failure : 1;
 };
 
 /* -------------------------- External variables --------------------------- */

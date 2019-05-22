@@ -34,6 +34,7 @@
 
 /* ----------------------------- Include files ----------------------------- */
 #include "rkhtype.h"
+#include "DigIn.h"
 
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
@@ -47,7 +48,7 @@ extern "C" {
 /* -------------------------- Function prototypes -------------------------- */
 void StoreTest_setRelayParam(rui16_t currVal, rui16_t voltVal);
 void StoreTest_setFailure(void);
-void StoreTest_setDigIn(rInt digInStatus);
+void StoreTest_digIn(DigIn digIn);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus

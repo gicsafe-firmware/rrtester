@@ -6,6 +6,7 @@
 /* ----------------------------- Include files ----------------------------- */
 #include "rkhsma.h"
 #include "rkhtmr.h"
+#include "DigIn.h"
 
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
@@ -35,10 +36,7 @@ typedef struct SigMon SigMon;
 struct SigMon
 {
     RKH_SMA_T sma;      /* base structure */
-    rInt digIn;         /* maintains the last digital input status */
-                        /* digIn[0] : clock x 6 */
-                        /* digIn[1] : clock x 3 */
-                        /* digIn[2] : clock x 1 */
+    DigIn digIn;         /* maintains the last digital input status */
     SigMonTmEvt evSyncObj;
     RKH_EVT_T evInObj;
     rInt nAnSmp;        /* number of analog samples to average */

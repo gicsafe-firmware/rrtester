@@ -65,16 +65,24 @@ SigMon_Seq2ToSeq3Ext8(SigMon *const me, RKH_EVT_T *pe)
 void 
 SigMon_SMActiveToSMActiveLoc2(SigMon *const me, RKH_EVT_T *pe)
 {
-	DigIn status = DigIn_get();
-	me->digIn = ((status.clk << 2) | (status.clkX3 << 1) | status.clkX6);
-    RKH_ENSURE(me->digIn < (1 << 3));
-    me->evInObj.e = mapDigIn[me->digIn];
+    int clockVal;
+
+	me->digIn = DigIn_get();
+	clockVal = ((me->digIn.clk << 2) | 
+                (me->digIn.clkX3 << 1) | 
+                (me->digIn.clkX6));
+    RKH_ENSURE(clockVal < (1 << 3));
+    me->evInObj.e = mapDigIn[clockVal];
     RKH_SMA_POST_LIFO(RKH_UPCAST(RKH_SMA_T, me), &me->evInObj, me);
 
-    --me->nDigIn;
     if (me->nDigIn == 0)
     {
-        me->nDigIn = SIGMON_DIGIN_TICKS;
+        StoreTest_digIn(me->digIn);
+        me->nDigIn = SIGMON_DIGIN_TICKS - 1;
+    }
+    else
+    {
+        --me->nDigIn;
     }
 }
 
@@ -106,7 +114,7 @@ SigMon_enSMActive(SigMon *const me)
                  NULL);
     RKH_TMR_PERIODIC(&me->evSyncObj.tmr, RKH_UPCAST(RKH_SMA_T, me), 
                      SIGMON_SYNC_TIME, SIGMON_SYNC_TIME);
-	me->nDigIn = SIGMON_SYNC_TIME;
+	me->nDigIn = SIGMON_DIGIN_TICKS - 1;
 }
 
 void 

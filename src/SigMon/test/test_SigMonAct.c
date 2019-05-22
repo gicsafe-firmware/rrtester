@@ -100,7 +100,7 @@ test_StartSynchro(void)
     rkh_tmr_start_Expect(&me->evSyncObj.tmr, RKH_UPCAST(RKH_SMA_T, me), 
                          SIGMON_SYNC_TIME);
     SigMon_enSMActive(me);
-    TEST_ASSERT_EQUAL(SIGMON_SYNC_TIME, me->nDigIn);
+    TEST_ASSERT_EQUAL(SIGMON_DIGIN_TICKS - 1, me->nDigIn);
 }
 
 void
@@ -120,12 +120,16 @@ test_Synchro(void)
     status.clk = 1;
     status.clkX3 = 0;
     status.clkX6 = 1;
+    status.failure = 0;
     inSeqExpect = ((status.clk << 2) | (status.clkX3 << 1) | status.clkX6);
     DigIn_get_ExpectAndReturn(status);
     rkh_sma_post_lifo_Expect(RKH_UPCAST(RKH_SMA_T, me), &me->evInObj, me);
 
     SigMon_SMActiveToSMActiveLoc2(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
-    TEST_ASSERT_EQUAL(inSeqExpect, me->digIn);
+    TEST_ASSERT_EQUAL(status.clk, me->digIn.clk);
+    TEST_ASSERT_EQUAL(status.clkX3, me->digIn.clkX3);
+    TEST_ASSERT_EQUAL(status.clkX6, me->digIn.clkX6);
+    TEST_ASSERT_EQUAL(status.failure, me->digIn.failure);
     TEST_ASSERT_EQUAL(mapDigIn[inSeqExpect], me->evInObj.e);
 }
 
@@ -133,34 +137,44 @@ void
 test_StoreDigInput(void)
 {
     DigIn status;
-    int i, nTest;
+    int i, j, nTest;
 
     status.clk = 1;
     status.clkX3 = 0;
     status.clkX6 = 1;
+    status.failure = 0;
     DigIn_get_IgnoreAndReturn(status);
     rkh_sma_post_lifo_Ignore();
 
+    /* middle */
     for (me->nDigIn = SIGMON_DIGIN_TICKS - 1, i = 0, nTest = 3; i < nTest; ++i)
     {
         SigMon_SMActiveToSMActiveLoc2(me, 
                                       RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
     }
-    TEST_ASSERT_EQUAL(SIGMON_DIGIN_TICKS - 1 - nTest, me->nDigIn);
+    TEST_ASSERT_EQUAL(6, me->nDigIn);
 
-    for (me->nDigIn = SIGMON_DIGIN_TICKS - 1, i = 0, nTest = 10; i < nTest; ++i)
+    /* upper bound */
+    StoreTest_digIn_Expect(status);
+    for (me->nDigIn = SIGMON_DIGIN_TICKS - 1, i = 0, 
+         nTest = SIGMON_DIGIN_TICKS; 
+         i < nTest; ++i)
     {
         SigMon_SMActiveToSMActiveLoc2(me, 
                                       RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
     }
-    TEST_ASSERT_EQUAL(SIGMON_DIGIN_TICKS - 1, me->nDigIn);
+    TEST_ASSERT_EQUAL(9, me->nDigIn);
 
-    for (me->nDigIn = SIGMON_DIGIN_TICKS - 1, i = 0, nTest = 11; i < nTest; ++i)
+    /* beyond upper bound */
+    StoreTest_digIn_Expect(status);
+    for (me->nDigIn = SIGMON_DIGIN_TICKS - 1, i = 0, 
+         nTest = SIGMON_DIGIN_TICKS + 1; 
+         i < nTest; ++i)
     {
         SigMon_SMActiveToSMActiveLoc2(me, 
                                       RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
     }
-    TEST_ASSERT_EQUAL(SIGMON_DIGIN_TICKS - 1 - 1, me->nDigIn);
+    TEST_ASSERT_EQUAL(8, me->nDigIn);
 }
 
 void
