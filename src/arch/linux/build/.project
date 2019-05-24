@@ -70,6 +70,21 @@
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/MQTT-C/src/mqtt_pal.c</locationURI>
 		</link>
 		<link>
+			<name>rrtester/bsp/DigIn.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/DigIn.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/bsp/Relay.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/Relay.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/bsp/StoreTest.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/StoreTest.c</locationURI>
+		</link>
+		<link>
 			<name>rrtester/bsp/anin.c</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/anin.c</locationURI>
@@ -250,6 +265,26 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
+			<name>rrtester/src/DigIn</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/Relay</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/SigMon</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/StoreTest</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>rrtester/src/adconv</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
@@ -383,6 +418,51 @@
 			<name>rrtester/src/CirBuffer/CirBuffer.h</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/CirBuffer/inc/CirBuffer.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/DigIn/DigIn.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/DigIn/inc/DigIn.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/Relay/Relay.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Relay/inc/Relay.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/SigMon/SigMon.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/SigMon/src/SigMon.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/SigMon/SigMon.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/SigMon/inc/SigMon.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/SigMon/SigMonAct.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/SigMon/src/SigMonAct.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/SigMon/SigMonAct.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/SigMon/inc/SigMonAct.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/SigMon/SigMonActAccess.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/SigMon/inc/SigMonActAccess.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/SigMon/SigMonActRequired.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/SigMon/inc/SigMonActRequired.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/StoreTest/StoreTest.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/StoreTest/inc/StoreTest.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/adconv/adconv.c</name>
