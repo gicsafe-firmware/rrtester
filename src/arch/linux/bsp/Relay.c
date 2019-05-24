@@ -31,32 +31,39 @@
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
 #include "Relay.h"
+#include <stdlib.h>
+#include <time.h>
 
-#include "stdio.h"
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
+#define CURRENT_UPPER_VALUE 1024
+#define CURRENT_LOWER_VALUE 4
+#define VOLTAGE_UPPER_VALUE 1024
+#define VOLTAGE_LOWER_VALUE 4
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
 /* ----------------------- Local function prototypes ----------------------- */
+int generateRandom();
 /* ---------------------------- Local functions ---------------------------- */
+int
+generateRandom(int rangeLowerVal, int rangeUpperVal)
+{
+    srand(time(NULL));
+    return (rand() % (CURRENT_UPPER_VALUE - CURRENT_LOWER_VALUE + 1)) +
+           CURRENT_LOWER_VALUE;
+}
 /* ---------------------------- Global functions --------------------------- */
 
 rui16_t
 Relay_getCurrent(void)
 {
-    /*TODO*/
-    printf("Implementar Relay_getCurrent()");
-    fflush(stdout);
-    return 0;
+    return (rui16_t) generateRandom(CURRENT_LOWER_VALUE, CURRENT_UPPER_VALUE);
 }
 
 rui16_t
 Relay_getVoltage(void)
 {
-    /*TODO*/
-    printf("Implementar Relay_getVoltage()");
-    fflush(stdout);
-    return 0;
+    return (rui16_t) generateRandom(VOLTAGE_LOWER_VALUE, VOLTAGE_UPPER_VALUE);
 }
 /* ------------------------------ End of file ------------------------------ */
