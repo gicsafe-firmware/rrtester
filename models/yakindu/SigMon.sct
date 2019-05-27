@@ -3,7 +3,7 @@
   <sgraph:Statechart xmi:id="_yt0KkDjpEemSZunftq3MwQ" specification="interface:&#xA;var digIn: integer&#xA;&#xA;in event evSync&#xA;in event evEnable&#xA;in event evDisable&#xA;in event evFailure&#xA;in event evIn0&#xA;in event evIn1&#xA;in event evIn2&#xA;in event evIn4&#xA;in event evIn5&#xA;in event evIn6&#xA;&#xA;operation DigIn_get(): integer&#xA;operation selfDispatchDigIn(digIn : integer)" name="SigMon" documentation="- This model follows the logic states of both CLOCK_1S and CLOCK_3S digital signals.&#xD;&#xA;- While the relay validator works, the expected sequence of logic states is as follows: &quot;1,0,2,0,0,0&quot;. Each number is formed by CLOCK_1S | (CLOCK_3S &lt;&lt; 1)&#xD;&#xA;- The inputs of this model is provided by ClockSignal state machine on the falling edge of it.&#xD;&#xA;- The A/D converter is supposed to be in continuos mode.">
     <regions xmi:id="_yt2m0zjpEemSZunftq3MwQ" name="main region">
       <vertices xsi:type="sgraph:Entry" xmi:id="_yt7fUDjpEemSZunftq3MwQ">
-        <outgoingTransitions xmi:id="_yt97kzjpEemSZunftq3MwQ" specification="" target="_yt8GZzjpEemSZunftq3MwQ"/>
+        <outgoingTransitions xmi:id="_yt97kzjpEemSZunftq3MwQ" specification="/ digIn = 0" target="_yt8GZzjpEemSZunftq3MwQ"/>
       </vertices>
       <vertices xsi:type="sgraph:State" xmi:id="_yt8GZzjpEemSZunftq3MwQ" specification="" name="SMInactive" incomingTransitions="_yt97kzjpEemSZunftq3MwQ _GqM5MGtuEemQYMPp2sufPA">
         <outgoingTransitions xmi:id="_BGh1QGtuEemQYMPp2sufPA" specification="evEnable" target="_kk4PIGtsEemQYMPp2sufPA"/>
