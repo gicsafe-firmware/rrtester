@@ -15,6 +15,10 @@
 /* ----------------------------- Include files ----------------------------- */
 #include "rkh.h"
 #include "rkhfwk_cast.h"
+#include "rkhtrc.h"
+#include "rkhtrc_define.h"
+#include "rkhtrc_filter.h"
+#include "rkhtrc_record.h"
 #include "rkhassert.h"
 #include "signal.h"
 #include "SigMon.h"
