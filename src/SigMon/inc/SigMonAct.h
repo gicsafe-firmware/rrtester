@@ -36,6 +36,7 @@ extern "C" {
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
 /* ........................ Declares effect actions ........................ */
+void SigMon_ToSMInactiveExt0(SigMon *const me, RKH_EVT_T *pe);
 void SigMon_SMActiveToSigMon_FinalExt3(SigMon *const me, RKH_EVT_T *pe);
 void SigMon_Seq2ToSeq3Ext8(SigMon *const me, RKH_EVT_T *pe);
 void SigMon_SMActiveToSMActiveLoc2(SigMon *const me, RKH_EVT_T *pe);

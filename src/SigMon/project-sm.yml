@@ -11,3 +11,4 @@
     - ../../third-party/rkh/source/sm/src
   :include:
   :support:
+    - ../../third-party/rkh/source/trc/src

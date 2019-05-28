@@ -11,5 +11,6 @@
     - ../DigIn/inc
     - ../Relay/inc
     - ../StoreTest/inc
+    - ../../third-party/rkh/source/trc/inc
   :support:
 

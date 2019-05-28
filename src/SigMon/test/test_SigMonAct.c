@@ -54,6 +54,7 @@
 #include "signal.h"
 #include "rkhfwk_cast.h"
 #include "Mock_rkhtmr.h"
+#include "Mock_rkhtrc_record.h"
 #include "Mock_DigIn.h"
 #include "Mock_rkhassert.h"
 #include "Mock_rkhsma.h"
@@ -62,6 +63,11 @@
 
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
+RKHROM RKH_SBSC_T SMInactive, WaitSyncSeq, Seq0, Seq2, Seq3, Seq4, Seq5, 
+                  Seq11, OutOfSeq, Seq1, Seq10, Seq8, Seq7, Seq6, Seq9;
+RKHROM RKH_SCMP_T SMActive;
+RKHROM RKH_FINAL_T SigMon_Final;
+
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */

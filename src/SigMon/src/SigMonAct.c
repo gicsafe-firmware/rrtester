@@ -15,6 +15,10 @@
 /* ----------------------------- Include files ----------------------------- */
 #include "rkh.h"
 #include "rkhfwk_cast.h"
+#include "rkhtrc.h"
+#include "rkhtrc_define.h"
+#include "rkhtrc_filter.h"
+#include "rkhtrc_record.h"
 #include "rkhassert.h"
 #include "signals.h"
 #include "SigMon.h"
@@ -49,6 +53,51 @@ calcAnSmp(SigMon *const me)
 }
 
 /* ............................ Effect actions ............................. */
+void 
+SigMon_ToSMInactiveExt0(SigMon *const me, RKH_EVT_T *pe)
+{
+    RKH_TR_FWK_AO(me);
+    RKH_TR_FWK_QUEUE(&RKH_UPCAST(RKH_SMA_T, me)->equeue);
+    RKH_TR_FWK_STATE(me, &SMInactive);
+    RKH_TR_FWK_STATE(me, &SMActive);
+    RKH_TR_FWK_STATE(me, &WaitSyncSeq);
+    RKH_TR_FWK_STATE(me, &Seq0);
+    RKH_TR_FWK_STATE(me, &Seq2);
+    RKH_TR_FWK_STATE(me, &Seq3);
+    RKH_TR_FWK_STATE(me, &Seq4);
+    RKH_TR_FWK_STATE(me, &Seq5);
+    RKH_TR_FWK_STATE(me, &Seq11);
+    RKH_TR_FWK_STATE(me, &OutOfSeq);
+    RKH_TR_FWK_STATE(me, &Seq1);
+    RKH_TR_FWK_STATE(me, &Seq10);
+    RKH_TR_FWK_STATE(me, &Seq8);
+    RKH_TR_FWK_STATE(me, &Seq7);
+    RKH_TR_FWK_STATE(me, &Seq6);
+    RKH_TR_FWK_STATE(me, &Seq9);
+    RKH_TR_FWK_SIG(evSync);
+    RKH_TR_FWK_SIG(evEnable);
+    RKH_TR_FWK_SIG(evDisable);
+    RKH_TR_FWK_SIG(evFailure);
+    RKH_TR_FWK_SIG(evIn0);
+    RKH_TR_FWK_SIG(evIn1);
+    RKH_TR_FWK_SIG(evIn2);
+    RKH_TR_FWK_SIG(evIn4);
+    RKH_TR_FWK_SIG(evIn5);
+    RKH_TR_FWK_SIG(evIn6);
+#if 0
+    RKH_TR_FWK_OBJ_NAME(SigMon_ToSMInactiveExt0, "ToSMInactiveExt0");
+    RKH_TR_FWK_OBJ_NAME(SigMon_SMActiveToSigMon_FinalExt3, "SMActiveToSigMon_FinalExt3");
+    RKH_TR_FWK_OBJ_NAME(SigMon_Seq2ToSeq3Ext8, "Seq2ToSeq3Ext8");
+    RKH_TR_FWK_OBJ_NAME(SigMon_SMActiveToSMActiveLoc2, "SMActiveToSMActiveLoc2");
+    RKH_TR_FWK_OBJ_NAME(SigMon_Seq0ToSeq0Loc4, "Seq0ToSeq0Loc4");
+    RKH_TR_FWK_OBJ_NAME(SigMon_Seq2ToSeq2Loc5, "Seq2ToSeq2Loc5");
+    RKH_TR_FWK_OBJ_NAME(SigMon_Seq1ToSeq1Loc6, "Seq1ToSeq1Loc6");
+    RKH_TR_FWK_OBJ_NAME(SigMon_enSMActive, "enSMActive");
+    RKH_TR_FWK_OBJ_NAME(SigMon_enSeq0, "enSeq0");
+    RKH_TR_FWK_OBJ_NAME(SigMon_exSMActive, "exSMActive");
+#endif
+}
+
 void 
 SigMon_SMActiveToSigMon_FinalExt3(SigMon *const me, RKH_EVT_T *pe)
 {

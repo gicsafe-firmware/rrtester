@@ -76,6 +76,7 @@ static RKH_STATIC_EVENT(evIn2Obj, evIn2);
 static RKH_STATIC_EVENT(evIn4Obj, evIn4);
 static RKH_STATIC_EVENT(evIn5Obj, evIn5);
 static RKH_STATIC_EVENT(evIn6Obj, evIn6);
+extern const RKH_EVT_T evCreation;
 
 /* ---------------------------- Local data types --------------------------- */
 typedef void (*ActExp)(void);
@@ -230,6 +231,7 @@ test_TrnFirstStateAfterInit(void)
 {
     UtrzProcessOut *p;
 
+    SigMon_ToSMInactiveExt0_Expect((SigMon *)sigMon, (RKH_EVT_T *)&evCreation);
     expectedInitSm(sigMon, RKH_STATE_CAST(&SMInactive));
     rkh_sm_init((RKH_SM_T *)sigMon);
 
@@ -248,6 +250,7 @@ test_Enable(void)
     nExSt = 1;
     event.e = evEnable;
 
+    SigMon_ToSMInactiveExt0_Expect((SigMon *)sigMon, (RKH_EVT_T *)&evCreation);
     SigMon_enSMActive_Expect((SigMon *)sigMon);
     expectedInitSm((RKH_SMA_T *)sigMon, RKH_STATE_CAST(&SMInactive));
 	sm_dch_expect(event.e, RKH_STATE_CAST(&SMInactive));
@@ -279,6 +282,7 @@ test_Synchro(void)
     stateList_create(entryStates, 0);
     stateList_create(exitStates, 0);
 
+    SigMon_ToSMInactiveExt0_Expect((SigMon *)sigMon, (RKH_EVT_T *)&evCreation);
     SigMon_SMActiveToSMActiveLoc2_Expect(RKH_CAST(SigMon, sigMon), pEvt);
     setProfile(sigMon, 
                RKH_STATE_CAST(&SMInactive),
@@ -311,6 +315,7 @@ test_Failure(void)
     stateList_create(entryStates, 1, SigMon_Final);
     stateList_create(exitStates, 2, &WaitSyncSeq, &SMActive);
 
+    SigMon_ToSMInactiveExt0_Expect((SigMon *)sigMon, (RKH_EVT_T *)&evCreation);
     SigMon_exSMActive_Expect(RKH_CAST(SigMon, sigMon));
     SigMon_SMActiveToSigMon_FinalExt3_Expect(RKH_CAST(SigMon, sigMon), pEvt);
     setProfile(sigMon, 
