@@ -76,14 +76,12 @@ RKH_CREATE_TRANS_TABLE(Seq3)
 	RKH_TRREG(evIn1, NULL, NULL, &OutOfSeq),
 	RKH_TRREG(evIn4, NULL, NULL, &OutOfSeq),
 	RKH_TRREG(evIn5, NULL, NULL, &OutOfSeq),
-	RKH_TRREG(evIn6, NULL, NULL, &OutOfSeq),
 RKH_END_TRANS_TABLE
 
 RKH_CREATE_TRANS_TABLE(Seq4)
 	RKH_TRREG(evIn4, NULL, NULL, &Seq5),
 	RKH_TRREG(evIn0, NULL, NULL, &OutOfSeq),
 	RKH_TRREG(evIn1, NULL, NULL, &OutOfSeq),
-	RKH_TRREG(evIn2, NULL, NULL, &OutOfSeq),
 	RKH_TRREG(evIn5, NULL, NULL, &OutOfSeq),
 	RKH_TRREG(evIn6, NULL, NULL, &OutOfSeq),
 RKH_END_TRANS_TABLE
@@ -92,7 +90,6 @@ RKH_CREATE_TRANS_TABLE(Seq5)
 	RKH_TRREG(evIn0, NULL, NULL, &Seq6),
 	RKH_TRREG(evIn1, NULL, NULL, &OutOfSeq),
 	RKH_TRREG(evIn2, NULL, NULL, &OutOfSeq),
-	RKH_TRREG(evIn4, NULL, NULL, &OutOfSeq),
 	RKH_TRREG(evIn5, NULL, NULL, &OutOfSeq),
 	RKH_TRREG(evIn6, NULL, NULL, &OutOfSeq),
 RKH_END_TRANS_TABLE
@@ -162,7 +159,7 @@ RKH_END_TRANS_TABLE
 RKH_CREATE_FINAL_STATE(SigMon_Final, RKH_NULL);
 
 /* ............................. Active object ............................. */
-RKH_SMA_CREATE(SigMon, sigMon, 0, HCAL, &SMInactive, SigMon_ToSMInactiveExt0, NULL);
+RKH_SMA_CREATE(SigMon, sigMon, 4, HCAL, &SMInactive, SigMon_ToSMInactiveExt0, NULL);
 RKH_SMA_DEF_PTR(sigMon);
 
 /* ------------------------------- Constants ------------------------------- */
