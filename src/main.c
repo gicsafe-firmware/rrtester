@@ -35,11 +35,14 @@
 #include "CirBuffer.h"
 #include "publisher.h"
 
+#include "SigMon.h"
+
 /* ----------------------------- Local macros ------------------------------ */
 #define MQTTPROT_QSTO_SIZE  16
 #define CONMGRETH_QSTO_SIZE 8
 #define CONMGRGSM_QSTO_SIZE 8
 #define MODMGR_QSTO_SIZE    8
+#define SIGMON_QSTO_SIZE    8
 
 #define SIZEOF_EP0STO       16
 #define SIZEOF_EP0_BLOCK    sizeof(RKH_EVT_T)
@@ -54,11 +57,13 @@
 #define CONMGR_STK_SIZE         512
 #define MQTTPROT_STK_SIZE       512
 #define CONMGRETH_STK_SIZE      512
+#define SIGMON_STK_SIZE         512
 #else
 #define MODMGR_STK_SIZE         0
 #define CONMGR_STK_SIZE         0
 #define MQTTPROT_STK_SIZE       0
 #define ETHMGR_STK_SIZE         0
+#define SIGMON_STK_SIZE         0
 #endif
 
 /* ---------------------------- Local data types --------------------------- */
@@ -69,23 +74,27 @@ static RKH_THREAD_STK_TYPE ModMgrStack[MODMGR_STK_SIZE];
 static RKH_THREAD_STK_TYPE ConMgrStack[CONMGR_STK_SIZE];
 static RKH_THREAD_STK_TYPE ConMgrEthStack[CONMGRETH_STK_SIZE];
 static RKH_THREAD_STK_TYPE MQTTProtStack[MQTTPROT_STK_SIZE];
+static RKH_THREAD_STK_TYPE sigMonStack[SIGMON_STK_SIZE];
 #else
 #define ModMgrStack     0
 #define ConMgrStack     0
 #define EthMGRStack     0
 #define MQTTProtStack   0
+#define sigMonStack		0
 #endif
 
 static RKH_EVT_T *ModMgr_qsto[MODMGR_QSTO_SIZE];
 static RKH_EVT_T *ConMgrGsm_qsto[CONMGRGSM_QSTO_SIZE];
 static RKH_EVT_T *ConMgrEth_qsto[CONMGRETH_QSTO_SIZE];
 static RKH_EVT_T *MQTTProt_qsto[MQTTPROT_QSTO_SIZE];
+static RKH_EVT_T *sigMon_qsto[SIGMON_QSTO_SIZE];
 
 static rui8_t evPool0Sto[SIZEOF_EP0STO],
               evPool1Sto[SIZEOF_EP1STO],
               evPool2Sto[SIZEOF_EP2STO];
 
 static RKH_ROM_STATIC_EVENT(e_Open, evOpen);
+static RKH_ROM_STATIC_EVENT(e_Enable, evEnable);
 
 /* ----------------------- Local function prototypes ----------------------- */
 static void setupTraceFilters(void);
@@ -110,6 +119,7 @@ setupTraceFilters(void)
     RKH_FILTER_OFF_SMA(conMgrGsm);
     RKH_FILTER_OFF_SMA(conMgrEth);
     RKH_FILTER_OFF_SMA(mqttProt);
+    RKH_FILTER_OFF_SMA(sigMon);
     RKH_FILTER_OFF_ALL_SIGNALS();
 }
 
@@ -142,6 +152,13 @@ rrtesterStartup(void)
 #endif
     RKH_SMA_ACTIVATE(mqttProt, MQTTProt_qsto, MQTTPROT_QSTO_SIZE,
                      MQTTProtStack, MQTTPROT_STK_SIZE);
+
+    /* Activation of SigMon State Machine */
+    RKH_SMA_ACTIVATE(sigMon, sigMon_qsto, SIGMON_QSTO_SIZE,
+    		sigMonStack, SIGMON_STK_SIZE);
+
+    /* Posting Enable Event for SigMon SM */
+    RKH_SMA_POST_FIFO(sigMon, &e_Enable, 0);
 
     ConnectionTopic_publish(&e_Open, 0);
 }
