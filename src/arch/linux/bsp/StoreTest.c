@@ -45,21 +45,21 @@ void
 StoreTest_setRelayParam(rui16_t currVal, rui16_t voltVal)
 {
     /*TODO*/
-    printf("Implementar StoreTest_setRelayParam");
+    printf("Implementar StoreTest_setRelayParam()\n");
     fflush(stdout);
 }
 void
 StoreTest_setFailure(void)
 {
     /*TODO*/
-    printf("Implementar StoreTest_setFailure()");
+    printf("Implementar StoreTest_setFailure()\n");
     fflush(stdout);
 }
 void
 StoreTest_digIn(DigIn digIn)
 {
     /*TODO*/
-    printf("Implementar StoreTest_digIn()");
+    printf("Implementar StoreTest_digIn()\n");
     fflush(stdout);
 }
 /* ------------------------------ End of file ------------------------------ */
