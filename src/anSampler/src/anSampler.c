@@ -50,6 +50,7 @@ struct AnSampler
 {
     Epoch timeStamp;    /** Updated every sampling time */
     AnSampleBuffer anSignals[NUM_AN_SIGNALS];
+    GetSample getSampleOper;
 };
 
 /* ---------------------------- Global variables --------------------------- */
@@ -66,11 +67,12 @@ Spy_AnSampler_getAnSampler(void)
 
 /* ---------------------------- Global functions --------------------------- */
 int
-anSampler_init(void)
+anSampler_init(GetSample sampler)
 {
     int i, result = 0;
     AnSampleBuffer *pAnSig;
 
+    anSampler.getSampleOper = sampler;
     for (i = 0, pAnSig = anSampler.anSignals;
          (i < NUM_AN_SIGNALS) && (result == 0);
          ++i, ++pAnSig)
@@ -95,7 +97,7 @@ anSampler_put(void)
          (i < NUM_AN_SIGNALS) && (result == 0);
          ++i, ++pAnSig)
     {
-        value = ADConv_getSample(i);
+        value = (*anSampler.getSampleOper)(i);
         result = cirBuffer_put(&pAnSig->buffer, (unsigned char *)&value);
     }
     return result;
