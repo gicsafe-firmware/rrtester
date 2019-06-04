@@ -42,6 +42,7 @@
 #include "eth.h"
 #include "config.h"
 
+#include "mqttProt.h"
 
 RKH_THIS_MODULE
 
@@ -83,7 +84,10 @@ static RKH_ROM_STATIC_EVENT(e_Open, evOpen);
 static RKH_ROM_STATIC_EVENT(e_Close, evClose);
 static RKH_ROM_STATIC_EVENT(e_Ok, evOk);
 static RKH_ROM_STATIC_EVENT(e_Recv, evRecv);
+static RKH_ROM_STATIC_EVENT(e_connected, evEthLinkConnect);
+static RKH_ROM_STATIC_EVENT(e_disconnected, evEthLinkDisconnect);
 static SendEvt e_Send;
+static SendEvt e_publishTout;
 
 static void ser_rx_isr(unsigned char byte);
 static void ser_tx_isr(void);
@@ -224,13 +228,23 @@ bsp_keyParser(int c)
             break;
 
         case 'o':
+#ifdef USE_GSM
             printf("Open GPRS Socket\r\n");
             ConnectionTopic_publish(&e_Open, &bsp);
+#else
+            printf("Connect ConMgrEth\r\n");
+            ConnectionTopic_publish(&e_connected, &bsp);
+#endif
             break;
 
         case 'c':
+#ifdef USE_GSM
             printf("Close GPRS Socket\r\n");
             ConnectionTopic_publish(&e_Close, &bsp);
+#else
+            printf("Disconnect ConMgrEth\r\n");
+            ConnectionTopic_publish(&e_disconnected, &bsp);
+#endif
             break;
 
         case 'r':
@@ -249,6 +263,18 @@ bsp_keyParser(int c)
             ConnectionTopic_publish(&e_Send, &bsp);
             break;
 
+        case 'f':
+        	printf("Force Publication.\r\n");
+        	RKH_SET_STATIC_EVENT(RKH_UPCAST(RKH_EVT_T, &e_publishTout), evWaitPublishTout);
+        	RKH_SMA_POST_FIFO(mqttProt, &e_publishTout, &bsp);
+            break;
+        case 'q':
+        	printf("Force Publication & Disconnect.\r\n");
+        	RKH_SET_STATIC_EVENT(RKH_UPCAST(RKH_EVT_T, &e_publishTout), evWaitPublishTout);
+        	RKH_SMA_POST_FIFO(mqttProt, &e_publishTout, &bsp);
+        	Sleep(4000);
+        	eth_socketClose();
+            break;
         case 'a':
             send_signalsFrame();
             break;

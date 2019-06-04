@@ -412,6 +412,13 @@ eth_socketOpen(char *ip, char *port)
 }
 
 void
+eth_socketClose()
+{
+	close(s);
+	RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_disconnected), &eth);
+}
+
+void
 eth_socketWrite(rui8_t *p, ruint size)
 {
     int ret;
