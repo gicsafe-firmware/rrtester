@@ -83,6 +83,7 @@ static RKH_ROM_STATIC_EVENT(e_Open, evOpen);
 static RKH_ROM_STATIC_EVENT(e_Close, evClose);
 static RKH_ROM_STATIC_EVENT(e_Ok, evOk);
 static RKH_ROM_STATIC_EVENT(e_Recv, evRecv);
+static RKH_ROM_STATIC_EVENT(e_publishTout, evWaitPublishTout);
 static SendEvt e_Send;
 
 static void ser_rx_isr(unsigned char byte);
@@ -259,6 +260,12 @@ bsp_keyParser(int c)
 
 		case 'k':
 			modPwr_on();
+			break;
+
+		case 'f':
+			printf("Forcde Publication.\r\n");
+//            RKH_SET_STATIC_EVENTi(RKH_UPCAST(RKH_EVT_T, &e_publishTout), evWaitPublishTout);
+            RKH_SMA_POST_FIFO(mqttProt, &e_publishTout, &bsp);
 			break;
 
         default:
