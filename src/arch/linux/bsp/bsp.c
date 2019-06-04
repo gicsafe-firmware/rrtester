@@ -219,6 +219,37 @@ bsp_init(int argc, char *argv[])
 }
 
 void
+closeCommInterface()
+{
+#ifdef USE_GSM
+	printf("Close GPRS Socket\r\n");
+	ConnectionTopic_publish(&e_Close, &bsp);
+#else
+	printf("Disconnect ConMgrEth\r\n");
+	ConnectionTopic_publish(&e_disconnected, &bsp);
+#endif
+}
+
+void
+openCommInterface()
+{
+#ifdef USE_GSM
+	printf("Open GPRS Socket\r\n");
+	ConnectionTopic_publish(&e_Open, &bsp);
+#else
+	printf("Connect ConMgrEth\r\n");
+	ConnectionTopic_publish(&e_connected, &bsp);
+#endif
+}
+
+void forcePublication() {
+	printf("Force Publication.\r\n");
+	RKH_SET_STATIC_EVENT(RKH_UPCAST(RKH_EVT_T, &e_publishTout),
+			evWaitPublishTout);
+	RKH_SMA_POST_FIFO(mqttProt, &e_publishTout, &bsp);
+}
+
+void
 bsp_keyParser(int c)
 {
     switch(c)
@@ -228,23 +259,11 @@ bsp_keyParser(int c)
             break;
 
         case 'o':
-#ifdef USE_GSM
-            printf("Open GPRS Socket\r\n");
-            ConnectionTopic_publish(&e_Open, &bsp);
-#else
-            printf("Connect ConMgrEth\r\n");
-            ConnectionTopic_publish(&e_connected, &bsp);
-#endif
+        	openCommInterface();
             break;
 
         case 'c':
-#ifdef USE_GSM
-            printf("Close GPRS Socket\r\n");
-            ConnectionTopic_publish(&e_Close, &bsp);
-#else
-            printf("Disconnect ConMgrEth\r\n");
-            ConnectionTopic_publish(&e_disconnected, &bsp);
-#endif
+        	closeCommInterface();
             break;
 
         case 'r':
@@ -264,15 +283,12 @@ bsp_keyParser(int c)
             break;
 
         case 'f':
-        	printf("Force Publication.\r\n");
-        	RKH_SET_STATIC_EVENT(RKH_UPCAST(RKH_EVT_T, &e_publishTout), evWaitPublishTout);
-        	RKH_SMA_POST_FIFO(mqttProt, &e_publishTout, &bsp);
+        	forcePublication();
             break;
         case 'q':
-        	printf("Force Publication & Disconnect.\r\n");
-        	RKH_SET_STATIC_EVENT(RKH_UPCAST(RKH_EVT_T, &e_publishTout), evWaitPublishTout);
-        	RKH_SMA_POST_FIFO(mqttProt, &e_publishTout, &bsp);
-        	Sleep(4000);
+        	forcePublication();
+        	Sleep(4000);	// Wait until publication is made
+        	printf("Disconnect.\r\n");
         	eth_socketClose();
             break;
         case 'a':
