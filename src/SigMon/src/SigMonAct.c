@@ -52,6 +52,19 @@ calcAnSmp(SigMon *const me)
     me->voltVal /= 2;
 }
 
+static bool
+isDigInChanged(DigIn lastDigIn, DigIn newDigIn)
+{
+#if 1
+    return ((lastDigIn.clk != newDigIn.clk) ||
+            (lastDigIn.clkX3 != newDigIn.clkX3) ||
+            (lastDigIn.clkX6 != newDigIn.clkX6) ||
+            (lastDigIn.failure != newDigIn.failure));
+#else
+    return true;
+#endif
+}
+
 /* ............................ Effect actions ............................. */
 void 
 SigMon_ToSMInactiveExt0(SigMon *const me, RKH_EVT_T *pe)
@@ -97,6 +110,10 @@ SigMon_ToSMInactiveExt0(SigMon *const me, RKH_EVT_T *pe)
     RKH_TR_FWK_OBJ_NAME(SigMon_exSMActive, "exSMActive");
 #endif
     StoreTest_init();
+    me->digIn.clk = 0;
+    me->digIn.clkX3 = 0;
+    me->digIn.clkX6 = 0;
+    me->digIn.failure = 0;
 }
 
 void 
@@ -115,18 +132,30 @@ void
 SigMon_SMActiveToSMActiveLoc2(SigMon *const me, RKH_EVT_T *pe)
 {
     int clockVal;
+    DigIn digIn;
 
-	me->digIn = DigIn_get();
-	clockVal = ((me->digIn.clk << 2) | 
-                (me->digIn.clkX3 << 1) | 
-                (me->digIn.clkX6));
-    RKH_ENSURE(clockVal < (1 << 3));
-    me->evInObj.e = mapDigIn[clockVal];
+	digIn = DigIn_get();
+    if (digIn.failure == 0)
+    {
+        clockVal = ((digIn.clk << 2) | 
+                    (digIn.clkX3 << 1) | 
+                    (digIn.clkX6));
+        RKH_ENSURE(clockVal < (1 << 3));
+        me->evInObj.e = mapDigIn[clockVal];
+    }
+    else
+    {
+        me->evInObj.e = evFailure;
+    }
     RKH_SMA_POST_LIFO(RKH_UPCAST(RKH_SMA_T, me), &me->evInObj, me);
 
     if (me->nDigIn == 0)
     {
-        StoreTest_digIn(me->digIn);
+        if (isDigInChanged(me->digIn, digIn))
+        {
+            me->digIn = digIn;
+            StoreTest_digIn(digIn);
+        }
         me->nDigIn = SIGMON_DIGIN_TICKS - 1;
     }
     else

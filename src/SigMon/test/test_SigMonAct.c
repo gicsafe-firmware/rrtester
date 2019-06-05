@@ -111,6 +111,10 @@ test_Initialize(void)
     StoreTest_init_Expect();
 
     SigMon_ToSMInactiveExt0(me, evt);
+    TEST_ASSERT_EQUAL(0, me->digIn.clk);
+    TEST_ASSERT_EQUAL(0, me->digIn.clkX3);
+    TEST_ASSERT_EQUAL(0, me->digIn.clkX6);
+    TEST_ASSERT_EQUAL(0, me->digIn.failure);
 }
 
 void
@@ -137,15 +141,16 @@ test_Synchro(void)
     rInt inSeqExpect;
 
     inSeqExpect = 0;
-    status.clk = 1;
-    status.clkX3 = 0;
-    status.clkX6 = 1;
-    status.failure = 0;
+    me->digIn.clk = status.clk = 1;
+    me->digIn.clkX3 = status.clkX3 = 0;
+    me->digIn.clkX6 = status.clkX6 = 1;
+    me->digIn.failure = status.failure = 0;
     inSeqExpect = ((status.clk << 2) | (status.clkX3 << 1) | status.clkX6);
     DigIn_get_ExpectAndReturn(status);
     rkh_sma_post_lifo_Expect(RKH_UPCAST(RKH_SMA_T, me), &me->evInObj, me);
 
     SigMon_SMActiveToSMActiveLoc2(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
+
     TEST_ASSERT_EQUAL(status.clk, me->digIn.clk);
     TEST_ASSERT_EQUAL(status.clkX3, me->digIn.clkX3);
     TEST_ASSERT_EQUAL(status.clkX6, me->digIn.clkX6);
@@ -175,6 +180,10 @@ test_StoreDigInput(void)
     TEST_ASSERT_EQUAL(6, me->nDigIn);
 
     /* upper bound */
+    me->digIn.clk = 0;
+    me->digIn.clkX3 = 0;
+    me->digIn.clkX6 = 0;
+    me->digIn.failure = 0;
     StoreTest_digIn_Expect(status);
     for (me->nDigIn = SIGMON_DIGIN_TICKS - 1, i = 0, 
          nTest = SIGMON_DIGIN_TICKS; 
@@ -186,6 +195,10 @@ test_StoreDigInput(void)
     TEST_ASSERT_EQUAL(9, me->nDigIn);
 
     /* beyond upper bound */
+    me->digIn.clk = 0;
+    me->digIn.clkX3 = 0;
+    me->digIn.clkX6 = 0;
+    me->digIn.failure = 0;
     StoreTest_digIn_Expect(status);
     for (me->nDigIn = SIGMON_DIGIN_TICKS - 1, i = 0, 
          nTest = SIGMON_DIGIN_TICKS + 1; 
@@ -276,6 +289,7 @@ test_Failure(void)
 
     StoreTest_digIn_Expect(status);
     StoreTest_digIn_IgnoreArg_digIn();
+
     SigMon_SMActiveToSigMon_FinalExt3(me, 
                                       RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
 }
