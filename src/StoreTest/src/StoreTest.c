@@ -29,14 +29,73 @@
 
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
+#include "rkhassert.h"
 #include "StoreTest.h"
+#include "anSampler.h"
+#include "ioChgDet.h"
+
+RKH_MODULE_NAME(StoreTest)
 
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
 /* ---------------------------- Local data types --------------------------- */
+typedef struct Params Params;
+struct Params
+{
+    SampleValue current;
+    SampleValue voltage;
+    DigIn digIn;
+};
+
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
+static Params params;
+
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
+static SampleValue
+sampler(int channel)
+{
+    SampleValue value;
+
+    RKH_REQUIRE((unsigned int)channel < NUM_AN_SIGNALS);
+    if (channel == 0)
+    {
+        value = params.current;
+    }
+    else
+    {
+        value = params.voltage;
+    }
+    return value;
+}
+
 /* ---------------------------- Global functions --------------------------- */
+void 
+StoreTest_init(void)
+{
+    anSampler_init(sampler);
+    IOChgDet_init();
+}
+
+void 
+StoreTest_setRelayParam(rui16_t currVal, rui16_t voltVal)
+{
+    params.current = currVal;
+    params.voltage = voltVal;
+    anSampler_put();
+}
+
+void 
+StoreTest_digIn(DigIn digIn)
+{
+    unsigned char signal;
+
+	signal = ((digIn.failure << 3) | 
+              (digIn.clk << 2) | 
+              (digIn.clkX3 << 1) | 
+              (digIn.clkX6)); 
+    IOChgDet_put(0, signal);
+}
+
 /* ------------------------------ End of file ------------------------------ */

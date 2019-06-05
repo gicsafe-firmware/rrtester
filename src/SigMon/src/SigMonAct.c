@@ -96,12 +96,13 @@ SigMon_ToSMInactiveExt0(SigMon *const me, RKH_EVT_T *pe)
     RKH_TR_FWK_OBJ_NAME(SigMon_enSeq0, "enSeq0");
     RKH_TR_FWK_OBJ_NAME(SigMon_exSMActive, "exSMActive");
 #endif
+    StoreTest_init();
 }
 
 void 
 SigMon_SMActiveToSigMon_FinalExt3(SigMon *const me, RKH_EVT_T *pe)
 {
-    StoreTest_setFailure();
+    StoreTest_digIn(me->digIn);
 }
 
 void 

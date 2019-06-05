@@ -100,6 +100,20 @@ tearDown(void)
 }
 
 void
+test_Initialize(void)
+{
+    RKH_EVT_T *evt;
+
+    rkh_trc_ao_Ignore();
+    rkh_trc_obj_Ignore();
+    rkh_trc_state_Ignore();
+    rkh_trc_sig_Ignore();
+    StoreTest_init_Expect();
+
+    SigMon_ToSMInactiveExt0(me, evt);
+}
+
+void
 test_StartSynchro(void)
 {
     rkh_tmr_init__Expect(&me->evSyncObj.tmr, (RKH_EVT_T *)&me->evSyncObj);
@@ -258,7 +272,10 @@ test_StopAdqCycle(void)
 void
 test_Failure(void)
 {
-    StoreTest_setFailure_Expect();
+    DigIn status;
+
+    StoreTest_digIn_Expect(status);
+    StoreTest_digIn_IgnoreArg_digIn();
     SigMon_SMActiveToSigMon_FinalExt3(me, 
                                       RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
 }

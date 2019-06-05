@@ -46,8 +46,8 @@ extern "C" {
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
+void StoreTest_init(void);
 void StoreTest_setRelayParam(rui16_t currVal, rui16_t voltVal);
-void StoreTest_setFailure(void);
 void StoreTest_digIn(DigIn digIn);
 
 /* -------------------- External C language linkage end -------------------- */
