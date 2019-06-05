@@ -35,14 +35,31 @@
 #include "Spy_anSampler.h"
 #include "Mock_CirBuffer.h"
 #include "Mock_epoch.h"
-#include "Mock_adconv.h"
 
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
 /* ---------------------------- Local data types --------------------------- */
+typedef struct SamplerCallback SamplerCallback;
+struct SamplerCallback
+{
+    SampleValue sample;
+    bool cbCalled;
+};
+
 /* ---------------------------- Global variables --------------------------- */
+static SamplerCallback values[NUM_AN_SIGNALS];
+
 /* ---------------------------- Local variables ---------------------------- */
 /* ----------------------- Local function prototypes ----------------------- */
+static SampleValue
+sampler(int channel)
+{
+    TEST_ASSERT_TRUE(channel >= 0);
+    TEST_ASSERT_TRUE(channel < NUM_AN_SIGNALS);
+    values[channel].cbCalled = true;
+    return values[channel].sample;
+}
+
 /* ---------------------------- Local functions ---------------------------- */
 /* ---------------------------- Global functions --------------------------- */
 void
@@ -74,7 +91,7 @@ test_ClearAfterInit(void)
         cirBuffer_init_IgnoreArg_elemSize();
     }
 
-    result = anSampler_init();
+    result = anSampler_init(sampler);
     TEST_ASSERT_EQUAL(0, result);
 }
 
@@ -88,7 +105,7 @@ test_FailsOneAnSamplerOnInit(void)
     cirBuffer_init_IgnoreArg_sto();
     cirBuffer_init_IgnoreArg_elemSize();
 
-    result = anSampler_init();
+    result = anSampler_init(sampler);
     TEST_ASSERT_EQUAL(1, result);
 
     cirBuffer_init_ExpectAndReturn(0, 0, 0, MAX_AN_NUM_SAMPLES, 0);
@@ -100,7 +117,7 @@ test_FailsOneAnSamplerOnInit(void)
     cirBuffer_init_IgnoreArg_sto();
     cirBuffer_init_IgnoreArg_elemSize();
 
-    result = anSampler_init();
+    result = anSampler_init(sampler);
     TEST_ASSERT_EQUAL(1, result);
 }
 
@@ -115,15 +132,16 @@ test_StoreOneAnSample(void)
         cirBuffer_init_IgnoreArg_me();
         cirBuffer_init_IgnoreArg_sto();
         cirBuffer_init_IgnoreArg_elemSize();
+        values[i].sample = i;
+        values[i].cbCalled = false;
     }
 
-    result = anSampler_init();
+    result = anSampler_init(sampler);
     TEST_ASSERT_EQUAL(0, result);
 
     epoch_get_ExpectAndReturn(123456);
     for (i = 0; i < NUM_AN_SIGNALS; ++i)
     {
-        ADConv_getSample_ExpectAndReturn(i, 707);
         cirBuffer_put_ExpectAndReturn(0, 0, 0);
         cirBuffer_put_IgnoreArg_me();
         cirBuffer_put_IgnoreArg_elem();
@@ -131,6 +149,11 @@ test_StoreOneAnSample(void)
 
     result = anSampler_put();
     TEST_ASSERT_EQUAL(0, result);
+    for (i = 0; i < NUM_AN_SIGNALS; ++i)
+    {
+        TEST_ASSERT_EQUAL(i, values[i].sample);
+        TEST_ASSERT_EQUAL(true, values[i].cbCalled);
+    }
 }
 
 void
@@ -142,10 +165,10 @@ test_GetAnSampleSet(void)
     epoch_get_ExpectAndReturn(123456);
     for (i = 0; i < NUM_AN_SIGNALS; ++i)
     {
-        ADConv_getSample_ExpectAndReturn(i, 707);
         cirBuffer_put_ExpectAndReturn(0, 0, 0);
         cirBuffer_put_IgnoreArg_me();
         cirBuffer_put_IgnoreArg_elem();
+        values[i].sample = i;
     }
 
     anSampler_put();
@@ -178,7 +201,6 @@ test_GetTotalNumOfStoredSamples(void)
         epoch_get_ExpectAndReturn(123456);
         for (i = 0; i < NUM_AN_SIGNALS; ++i)
         {
-            ADConv_getSample_ExpectAndReturn(i, 707);
             cirBuffer_put_ExpectAndReturn(0, 0, 0);
             cirBuffer_put_IgnoreArg_me();
             cirBuffer_put_IgnoreArg_elem();

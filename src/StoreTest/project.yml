@@ -26,6 +26,22 @@
     - src
   :include:
     - inc
+    - ../CirBuffer/inc
+    - ../anSampler/inc
+    - ../DigIn/inc
+    - ../ioChgDet/inc
+    - ../epoch/inc
+    - ../anin
+    - ../MTime
+    - ../publisher
+    - ../mqttProt
+    - ../../third-party/rkh/source/fwk/inc
+    - ../../third-party/rkh/source/trc/inc
+    - ../../third-party/rkh/source/sma/inc
+    - ../../third-party/rkh/source/sm/inc
+    - ../../third-party/rkh/source/queue/inc
+    - ../../third-party/rkh/source/mempool/inc
+    - ../../third-party/rkh/source/tmr/inc
   :support:
     - test/support
 

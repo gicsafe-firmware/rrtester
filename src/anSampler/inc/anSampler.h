@@ -51,7 +51,7 @@ extern "C" {
     (MTIME_ANSAMPLE_PUT_PERIOD * MTIME_TIME_TICK) / \
     1000
 #define MAX_AN_NUM_SAMPLES   (32 << NUM_PUBTIME_STEPS)
-#define NUM_AN_SIGNALS       NUM_ANIN_SIGNALS
+#define NUM_AN_SIGNALS       2
 
 /* ................................ Signals ................................ */
 /* ........................ Declares active object ......................... */
@@ -65,9 +65,11 @@ struct AnSampleSet
     AnSignalValue anSignal[NUM_AN_SIGNALS];
 };
 
+typedef SampleValue (*GetSample)(int channel);
+
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-int anSampler_init(void);
+int anSampler_init(GetSample sampler);
 int anSampler_put(void);
 int anSampler_getSet(AnSampleSet *set, int nSamples);
 int anSampler_getNumSamples(void);
