@@ -52,7 +52,7 @@ calcAnSmp(SigMon *const me)
     me->voltVal /= 2;
 }
 
-static bool
+static rbool_t
 isDigInChanged(DigIn lastDigIn, DigIn newDigIn)
 {
 #if 1
