@@ -31,8 +31,8 @@
     - ../DigIn/inc
     - ../ioChgDet/inc
     - ../epoch/inc
-    - ../anin
-    - ../MTime
+    - ../anIn
+    - ../mTime
     - ../publisher
     - ../mqttProt
     - ../../third-party/rkh/source/fwk/inc

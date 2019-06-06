@@ -79,7 +79,7 @@ StoreTest_init(void)
 }
 
 void 
-StoreTest_setRelayParam(rui16_t currVal, rui16_t voltVal)
+StoreTest_saveRelayStatus(rui16_t currVal, rui16_t voltVal)
 {
     params.current = currVal;
     params.voltage = voltVal;
@@ -87,7 +87,7 @@ StoreTest_setRelayParam(rui16_t currVal, rui16_t voltVal)
 }
 
 void 
-StoreTest_digIn(DigIn digIn)
+StoreTest_saveDigInStatus(DigIn digIn)
 {
     unsigned char signal;
 
