@@ -42,24 +42,31 @@
 /* ---------------------------- Local functions ---------------------------- */
 /* ---------------------------- Global functions --------------------------- */
 void
-StoreTest_setRelayParam(rui16_t currVal, rui16_t voltVal)
+StoreTest_init(void)
 {
     /*TODO*/
-    printf("Implementar StoreTest_setRelayParam()\n");
+    printf("Implementar StoreTest_init()\r\n");
+    fflush(stdout);
+}
+void
+StoreTest_saveRelayStatus(rui16_t currVal, rui16_t voltVal)
+{
+    /*TODO*/
+    printf("Implementar StoreTest_saveRelayStatus()\r\n");
     fflush(stdout);
 }
 void
 StoreTest_setFailure(void)
 {
     /*TODO*/
-    printf("Implementar StoreTest_setFailure()\n");
+    printf("Implementar StoreTest_setFailure()\r\n");
     fflush(stdout);
 }
 void
-StoreTest_digIn(DigIn digIn)
+StoreTest_saveDigInStatus(DigIn digIn)
 {
     /*TODO*/
-    printf("Implementar StoreTest_digIn()\n");
+    printf("Implementar StoreTest_saveDigInStatus()\r\n");
     fflush(stdout);
 }
 /* ------------------------------ End of file ------------------------------ */
