@@ -39,13 +39,11 @@ static void(* const actions_100[])( void ) =
 
 static void(* const actions_1000[])( void ) =
 {
-	anIn_captureAndFilter, 
     NULL
 };
 
 static void(* const actions_10000[])( void ) =
 {
-	anIn_update, 
     NULL
 };
 

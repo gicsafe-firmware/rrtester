@@ -181,8 +181,6 @@ main(int argc, char *argv[])
 {
     bsp_init(argc, argv);
 
-    anSampler_init();
-    IOChgDet_init();
     epoch_init();
     mTime_init();
 
