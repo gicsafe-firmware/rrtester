@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include "publisher.h"
 #include "config.h"
-#include "ioChgDet.h"
+#include "IOSampler.h"
 #include "anSampler.h"
 #include "jWrite.h"
 
@@ -55,28 +55,25 @@ rui16_t
 publishrrtester(AppData *appMsg)
 {
     AnSampleSet anSet;
-    IOChg ioChg[NUM_DI_SAMPLES_GET];
+    IOChg ioChg;
     int n, i, j;
     double value;
 
     jwOpen( dataBuf, sizeof(dataBuf), JW_OBJECT, JW_COMPACT );
-
-    
     jwObj_int("id", atoi(mqttProtCfg.clientId));
     jwObj_int("sl", 11);
 
     n = anSampler_getSet(&anSet, NUM_AN_SAMPLES_GET);
-
-    if(n>0)
+    if(n > 0)
     {
         jwObj_object("anIn");
             jwObj_int("ts", anSet.timeStamp);
             jwObj_int("tsm", AN_SAMPLING_RATE_SEC);
             jwObj_array("an");
-            for(i=0; i < NUM_AN_SIGNALS; ++i)
+            for(i = 0; i < NUM_AN_SIGNALS; ++i)
             {
                 jwArr_array();
-                for(j=0; j<n; ++j)
+                for(j = 0; j < n; ++j)
                 {
                 	value = ((anSet.anSignal[i][j] & 0xFF00)>>8) * 100;
                     value += (anSet.anSignal[i][j] & 0x00FF);
@@ -89,23 +86,21 @@ publishrrtester(AppData *appMsg)
         jwEnd();
     }
 
-    n = IOChgDet_get(ioChg, NUM_DI_SAMPLES_GET);
+    n = IOSampler_get(&ioChg, NUM_DI_SAMPLES_GET);
     if(n > 0)
     {
-        jwObj_array("dInChg");
-        for(i=0; i < n; ++i)
-        {
-            jwArr_object();
-                jwObj_double("ts", ioChg[i].timeStamp);
-                jwObj_int("dIn", ioChg[i].signalId);
-                jwObj_int("val", ioChg[i].signalValue);
+        jwObj_object("dIn");
+            jwObj_int("ts", ioChg.timeStamp);
+            jwObj_array("values");
+            for(i = 0; i < n; ++i)
+            {
+                jwObj_int("val", ioChg.signalValue[i]);
+            }
             jwEnd();
-        }
         jwEnd();
     }
-    
-    jwClose();
 
+    jwClose();
     appMsg->data = (rui8_t *)dataBuf;
     appMsg->size = (rui16_t)strlen(dataBuf);
     return getNextPublishTime(anSampler_getNumSamples());

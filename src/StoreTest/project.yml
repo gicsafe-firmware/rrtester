@@ -29,7 +29,7 @@
     - ../CirBuffer/inc
     - ../anSampler/inc
     - ../DigIn/inc
-    - ../ioChgDet/inc
+    - ../IOSampler/inc
     - ../epoch/inc
     - ../anin
     - ../MTime
