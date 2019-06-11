@@ -3,7 +3,7 @@
 
 source_dir="../../src"
 ceedling_dir="tools/ceedling"
-modules="anSampler IOSampler epoch StoreTest"
+modules="anSampler IOSampler epoch StoreTest CirBuffer"
 
 #echo $PATH
 export PATH="$PATH:/home/travis/.rvm/gems/ruby-2.4.1/bin"
