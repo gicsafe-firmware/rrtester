@@ -51,7 +51,8 @@ ADConv_getSample(int channel)
 {
     ADCSampleUnit sample;
 
-    sample = anIn_get(channel);
+    //sample = anIn_get(channel);
+    sample = 0;
     return convertToSampleValue(sample);
 }
 
