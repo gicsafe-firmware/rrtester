@@ -52,7 +52,7 @@ calcAnSmp(SigMon *const me)
     me->voltVal /= 2;
 }
 
-static bool
+static rbool_t
 isDigInChanged(DigIn lastDigIn, DigIn newDigIn)
 {
 #if 1
@@ -119,13 +119,13 @@ SigMon_ToSMInactiveExt0(SigMon *const me, RKH_EVT_T *pe)
 void 
 SigMon_SMActiveToSigMon_FinalExt3(SigMon *const me, RKH_EVT_T *pe)
 {
-    StoreTest_digIn(me->digIn);
+    StoreTest_saveDigInStatus(me->digIn);
 }
 
 void 
 SigMon_Seq2ToSeq3Ext8(SigMon *const me, RKH_EVT_T *pe)
 {
-    StoreTest_setRelayParam(me->currVal, me->voltVal);
+    StoreTest_saveRelayStatus(me->currVal, me->voltVal);
 }
 
 void 
@@ -154,7 +154,7 @@ SigMon_SMActiveToSMActiveLoc2(SigMon *const me, RKH_EVT_T *pe)
         if (isDigInChanged(me->digIn, digIn))
         {
             me->digIn = digIn;
-            StoreTest_digIn(digIn);
+            StoreTest_saveDigInStatus(digIn);
         }
         me->nDigIn = SIGMON_DIGIN_TICKS - 1;
     }

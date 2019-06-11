@@ -184,7 +184,7 @@ test_StoreDigInput(void)
     me->digIn.clkX3 = 0;
     me->digIn.clkX6 = 0;
     me->digIn.failure = 0;
-    StoreTest_digIn_Expect(status);
+    StoreTest_saveDigInStatus_Expect(status);
     for (me->nDigIn = SIGMON_DIGIN_TICKS - 1, i = 0, 
          nTest = SIGMON_DIGIN_TICKS; 
          i < nTest; ++i)
@@ -199,7 +199,7 @@ test_StoreDigInput(void)
     me->digIn.clkX3 = 0;
     me->digIn.clkX6 = 0;
     me->digIn.failure = 0;
-    StoreTest_digIn_Expect(status);
+    StoreTest_saveDigInStatus_Expect(status);
     for (me->nDigIn = SIGMON_DIGIN_TICKS - 1, i = 0, 
          nTest = SIGMON_DIGIN_TICKS + 1; 
          i < nTest; ++i)
@@ -278,7 +278,7 @@ test_AdquireSeq2(void)
 void
 test_StopAdqCycle(void)
 {
-    StoreTest_setRelayParam_Expect(me->currVal, me->voltVal);
+    StoreTest_saveRelayStatus_Expect(me->currVal, me->voltVal);
     SigMon_Seq2ToSeq3Ext8(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
 }
 
@@ -287,8 +287,8 @@ test_Failure(void)
 {
     DigIn status;
 
-    StoreTest_digIn_Expect(status);
-    StoreTest_digIn_IgnoreArg_digIn();
+    StoreTest_saveDigInStatus_Expect(status);
+    StoreTest_saveDigInStatus_IgnoreArg_digIn();
 
     SigMon_SMActiveToSigMon_FinalExt3(me, 
                                       RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));

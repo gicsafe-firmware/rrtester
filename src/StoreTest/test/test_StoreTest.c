@@ -76,7 +76,7 @@ void
 test_StoreRelayParameters(void)
 {
     anSampler_put_ExpectAndReturn(0);
-    StoreTest_setRelayParam(0xdead, 0xbeaf);
+    StoreTest_saveRelayStatus(0xdead, 0xbeaf);
 }
 
 void
@@ -95,7 +95,7 @@ test_StoreDigitalInputStatus(void)
               (digIn.clkX6)); 
     IOSampler_put_ExpectAndReturn(signal, 0);
 
-    StoreTest_digIn(digIn);
+    StoreTest_saveDigInStatus(digIn);
 }
 
 /* ------------------------------ End of file ------------------------------ */
