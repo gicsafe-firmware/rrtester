@@ -26,6 +26,7 @@
     - src
   :include:
     - inc
+    - ../../third-party/rkh/source/fwk/inc
   :support:
     - test/support
 
