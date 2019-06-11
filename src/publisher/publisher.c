@@ -94,7 +94,7 @@ publishrrtester(AppData *appMsg)
             jwObj_array("values");
             for(i = 0; i < n; ++i)
             {
-                jwObj_int("val", ioChg.signalValue[i]);
+                jwArr_int(ioChg.signalValue[i]);
             }
             jwEnd();
         jwEnd();
