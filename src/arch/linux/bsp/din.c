@@ -16,7 +16,7 @@
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
 #include "rkh.h"
-#include "ioChgDet.h"
+#include "IOSampler.h"
 #include "din.h"
 #include "mTimeCfg.h"
 

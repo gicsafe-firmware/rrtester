@@ -31,7 +31,7 @@
 #include "mTime.h"
 #include "epoch.h"
 #include "anSampler.h"
-#include "ioChgDet.h"
+#include "IOSampler.h"
 #include "CirBuffer.h"
 #include "publisher.h"
 
@@ -180,7 +180,6 @@ int
 main(int argc, char *argv[])
 {
     bsp_init(argc, argv);
-
     epoch_init();
     mTime_init();
 

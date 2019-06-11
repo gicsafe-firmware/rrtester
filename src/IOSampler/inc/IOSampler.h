@@ -1,6 +1,6 @@
 /**
- *  \file       ioChgDet.h
- *  \brief      Specification of I/O change detector
+ *  \file       IOSampler.h
+ *  \brief      Specification of I/O sampler
  */
 
 /* -------------------------- Development history -------------------------- */
@@ -15,8 +15,8 @@
 
 /* --------------------------------- Notes --------------------------------- */
 /* --------------------------------- Module -------------------------------- */
-#ifndef __IOCHGDET_H__
-#define __IOCHGDET_H__
+#ifndef __IOSAMPLER_H__
+#define __IOSAMPLER_H__
 
 /* ----------------------------- Include files ----------------------------- */
 #include "epoch.h"
@@ -28,22 +28,24 @@ extern "C" {
 
 /* --------------------------------- Macros -------------------------------- */
 /* -------------------------------- Constants ------------------------------ */
-#define MAX_NUM_IO_CHANGES      512
+#define MAX_NUM_IO_SAMPLES          256
+#define IO_SAMPLING_RATE_PER_SEC    2   /* # of samples per second */
 
 /* ------------------------------- Data types ------------------------------ */
+typedef unsigned short IOSample;
 typedef struct IOChg IOChg;
 struct IOChg
 {
     Epoch timeStamp;
-    unsigned char signalId;
-    unsigned char signalValue;
+    IOSample signalValue[MAX_NUM_IO_SAMPLES];
 };
 
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-int IOChgDet_init(void);
-int IOChgDet_put(unsigned char signalId, unsigned char siganlValue);
-int IOChgDet_get(IOChg *destBlock, int nChanges);
+int IOSampler_init(void);
+int IOSampler_put(IOSample signalValue);
+int IOSampler_get(IOChg *set, int nSamples);
+int IOSampler_getNumSamples(void);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus

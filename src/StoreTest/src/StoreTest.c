@@ -32,7 +32,7 @@
 #include "rkhassert.h"
 #include "StoreTest.h"
 #include "anSampler.h"
-#include "ioChgDet.h"
+#include "IOSampler.h"
 
 RKH_MODULE_NAME(StoreTest)
 
@@ -75,7 +75,7 @@ void
 StoreTest_init(void)
 {
     anSampler_init(sampler);
-    IOChgDet_init();
+    IOSampler_init();
 }
 
 void 
@@ -95,7 +95,7 @@ StoreTest_saveDigInStatus(DigIn digIn)
               (digIn.clk << 2) | 
               (digIn.clkX3 << 1) | 
               (digIn.clkX6)); 
-    IOChgDet_put(0, signal);
+    IOSampler_put(signal);
 }
 
 /* ------------------------------ End of file ------------------------------ */

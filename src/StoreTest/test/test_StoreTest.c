@@ -32,7 +32,7 @@
 #include "unity.h"
 #include "StoreTest.h"
 #include "Mock_anSampler.h"
-#include "Mock_ioChgDet.h"
+#include "Mock_IOSampler.h"
 #include "Mock_rkhassert.h"
 
 /* ----------------------------- Local macros ------------------------------ */
@@ -47,7 +47,7 @@ void
 setUp(void)
 {
     Mock_anSampler_Init();
-    Mock_ioChgDet_Init();
+    Mock_IOSampler_Init();
     Mock_rkhassert_Init();
 }
 
@@ -55,10 +55,10 @@ void
 tearDown(void)
 {
     Mock_anSampler_Verify();
-    Mock_ioChgDet_Verify();
+    Mock_IOSampler_Verify();
     Mock_rkhassert_Verify();
     Mock_anSampler_Destroy();
-    Mock_ioChgDet_Destroy();
+    Mock_IOSampler_Destroy();
     Mock_rkhassert_Destroy();
 }
 
@@ -67,7 +67,7 @@ test_Init(void)
 {
     anSampler_init_ExpectAndReturn(0, 0);
     anSampler_init_IgnoreArg_sampler();
-    IOChgDet_init_ExpectAndReturn(0);
+    IOSampler_init_ExpectAndReturn(0);
 
     StoreTest_init();
 }
@@ -93,7 +93,7 @@ test_StoreDigitalInputStatus(void)
               (digIn.clk << 2) | 
               (digIn.clkX3 << 1) | 
               (digIn.clkX6)); 
-    IOChgDet_put_ExpectAndReturn(0, signal, 0);
+    IOSampler_put_ExpectAndReturn(signal, 0);
 
     StoreTest_saveDigInStatus(digIn);
 }

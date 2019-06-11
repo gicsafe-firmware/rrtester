@@ -33,7 +33,7 @@
 #include "din.h"
 #include "anin.h"
 #include "anSampler.h"
-#include "ioChgDet.h"
+#include "IOSampler.h"
 #include "epoch.h"
 #include "rtime.h"
 #include "eth.h"
