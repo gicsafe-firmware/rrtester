@@ -27,22 +27,20 @@ extern "C" {
 /* --------------------------------- Macros -------------------------------- */
 /* -------------------------------- Constants ------------------------------ */
 /* ------------------------------- Data types ------------------------------ */
-typedef enum anInSignalId
+typedef enum AnInSignalId AnInSignalId;
+enum AnInSignalId
 {
-    anIn0, anIn1, anIn2, anIn3,
+    AnIn0, AnIn1,
     NUM_ANIN_SIGNALS
-}anInSignalId;
+};
 
-typedef unsigned short adc_t;
+typedef unsigned short ADCSampleUnit;
 
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
 void anIn_init(void);
-
 void anIn_captureAndFilter(void);
-
-adc_t anIn_get(int channel);
-
+ADCSampleUnit anIn_get(AnInSignalId channel);
 void anIn_update(void);
 
 /* -------------------- External C language linkage end -------------------- */

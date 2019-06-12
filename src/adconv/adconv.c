@@ -23,14 +23,12 @@
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
 /* ---------------------------- Local data types --------------------------- */
-typedef unsigned short ADCSampleUnit;
-
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
 SampleValue 
-convertToSampleValue(ADCSampleUnit sample)
+convertToSampleValue(SampleValue sample)
 {
     double value;
     int whole, fraction, result;
@@ -47,9 +45,9 @@ convertToSampleValue(ADCSampleUnit sample)
 
 /* ---------------------------- Global functions --------------------------- */
 SampleValue
-ADConv_getSample(int channel)
+ADConv_getSample(AnInSignalId channel)
 {
-    ADCSampleUnit sample;
+    SampleValue sample;
 
     sample = anIn_get(channel);
     return convertToSampleValue(sample);

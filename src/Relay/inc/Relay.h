@@ -34,6 +34,7 @@
 
 /* ----------------------------- Include files ----------------------------- */
 #include "rkhtype.h"
+#include "anSampler.h"
 
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
@@ -45,8 +46,8 @@ extern "C" {
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-rui16_t Relay_getCurrent(void);
-rui16_t Relay_getVoltage(void);
+SampleValue Relay_getCurrent(void);
+SampleValue Relay_getVoltage(void);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus

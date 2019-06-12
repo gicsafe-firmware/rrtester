@@ -31,6 +31,7 @@
 /* ----------------------------- Include files ----------------------------- */
 #include "unity.h"
 #include "Relay.h"
+#include "Mock_adconv.h"
 
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
@@ -51,9 +52,23 @@ tearDown(void)
 }
 
 void
-test_Init(void)
+test_getCurrent(void)
 {
-    TEST_IGNORE_MESSAGE("Hello world!");
+    SampleValue sample;
+    
+    ADConv_getSample_ExpectAndReturn(AnIn0, 0xdead);
+    sample = Relay_getCurrent();
+    TEST_ASSERT_EQUAL(0xdead, sample);
+}
+
+void
+test_getVoltage(void)
+{
+    SampleValue sample;
+    
+    ADConv_getSample_ExpectAndReturn(AnIn1, 0xdead);
+    sample = Relay_getVoltage();
+    TEST_ASSERT_EQUAL(0xdead, sample);
 }
 
 /* ------------------------------ End of file ------------------------------ */

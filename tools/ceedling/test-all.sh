@@ -51,9 +51,9 @@ do
     echo "Run all test of "$sm "state machine"
     echo "-----------------------------------"
     cd $source_dir/$sm
-     if [[! -e "project.yml"] && 
-         [! -e "project-sm.yml"] && 
-         [ ! -e "project-action.yml"]]; then
+     if [ [ ! -e "project.yml" ] && 
+          [ ! -e "project-sm.yml" ] && 
+          [ ! -e "project-action.yml" ] ]; then
          echo "[ERROR] Ceedling project not found"
          exit 1
      else
