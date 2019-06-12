@@ -55,7 +55,7 @@ calcAnSmp(SigMon *const me)
 static rbool_t
 isDigInChanged(DigIn lastDigIn, DigIn newDigIn)
 {
-#if 1
+#if 0
     return ((lastDigIn.clk != newDigIn.clk) ||
             (lastDigIn.clkX3 != newDigIn.clkX3) ||
             (lastDigIn.clkX6 != newDigIn.clkX6) ||
