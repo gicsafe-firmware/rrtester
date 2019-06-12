@@ -4,6 +4,7 @@
 source_dir="../../src"
 ceedling_dir="tools/ceedling"
 modules="anSampler IOSampler epoch StoreTest CirBuffer"
+stateMachines="SigMon"
 
 #echo $PATH
 export PATH="$PATH:/home/travis/.rvm/gems/ruby-2.4.1/bin"
@@ -44,6 +45,28 @@ do
      fi
 done
 
+for sm in $stateMachines;
+do
+    echo ""
+    echo "Run all test of "$module "state machine"
+    echo "---------------------------------------"
+    cd $source_dir/$sm
+     if [ ! -e "project.yml" && 
+          -e "project-sm.yml" && 
+          -e "project-action.yml" ]; then
+         echo "[ERROR] Ceedling project not found"
+         exit 1
+     else
+         if [ $clobber == 0 ]; then
+             ceedling clean options:project-sm gcov:$sm
+             ceedling clean options:project-action gcov:$sm"Act"
+         else
+             ceedling clean clobber options:project-sm gcov:$sm
+             ceedling clean clobber options:project-action gcov:$sm"Act"
+         fi
+     fi
+done
+
 echo ""
 echo "Generating code coverage report"
 echo "-------------------------------"
@@ -62,6 +85,22 @@ do
 #   find build/gcov/out/ ! -name rkh$module*.gc* -type f | xargs sudo rm -f
 done
 
+echo ""
+echo "Generating code coverage report for state machines"
+echo "--------------------------------------------------"
+for sm in $stateMachines;
+do
+    cd $currdir
+    cd $source_dir/$sm
+    echo "sm ="$sm
+    lcov -e ../../$ceedling_dir/gcov/coverage-total.info "$(pwd)/src/$sm.c" -o ../../$ceedling_dir/gcov/$sm.info
+    lcov -e ../../$ceedling_dir/gcov/coverage-total.info "$(pwd)/src/$sm"Act".c" -o ../../$ceedling_dir/gcov/$sm"Act".info
+    add+=(-a $sm"Act"".info")
+done
+
+echo ""
+echo "Generating complete code coverage report"
+echo "----------------------------------------"
 cd ../../$ceedling_dir/gcov/
 lcov "${add[@]}" -o coverage.info
 genhtml coverage.info -o .
