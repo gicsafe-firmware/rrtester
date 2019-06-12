@@ -48,12 +48,12 @@ done
 for sm in $stateMachines;
 do
     echo ""
-    echo "Run all test of "$module "state machine"
-    echo "---------------------------------------"
+    echo "Run all test of "$sm "state machine"
+    echo "-----------------------------------"
     cd $source_dir/$sm
-     if [ ! -e "project.yml" && 
-          -e "project-sm.yml" && 
-          -e "project-action.yml" ]; then
+     if [[! -e "project.yml"] && 
+         [! -e "project-sm.yml"] && 
+         [ ! -e "project-action.yml"]]; then
          echo "[ERROR] Ceedling project not found"
          exit 1
      else
@@ -68,8 +68,8 @@ do
 done
 
 echo ""
-echo "Generating code coverage report"
-echo "-------------------------------"
+echo "Generating code coverage report for modules"
+echo "-------------------------------------------"
 cd ..
 lcov -c -d . -o ../$ceedling_dir/gcov/coverage-total.info
 add=()
@@ -92,8 +92,8 @@ for sm in $stateMachines;
 do
     cd $currdir
     cd $source_dir/$sm
-    echo "sm ="$sm
-    lcov -e ../../$ceedling_dir/gcov/coverage-total.info "$(pwd)/src/$sm.c" -o ../../$ceedling_dir/gcov/$sm.info
+    #lcov -e ../../$ceedling_dir/gcov/coverage-total.info "$(pwd)/src/$sm.c" -o ../../$ceedling_dir/gcov/$sm.info
+    #add+=(-a $sm".info")
     lcov -e ../../$ceedling_dir/gcov/coverage-total.info "$(pwd)/src/$sm"Act".c" -o ../../$ceedling_dir/gcov/$sm"Act".info
     add+=(-a $sm"Act"".info")
 done
