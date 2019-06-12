@@ -1,0 +1,19 @@
+codecov:
+    branch: signal-monitor
+    token: cdabe836-7f59-49ad-a630-d23484b9f57d
+
+ignore:
+    - "third-party"
+    - "third-party/LPCOpen/"
+    - "third-party/MQTT-C/"
+    - "third-party/amazon-freertos/"
+    - "third-party/ceedling/"
+    - "third-party/jWrite/"
+    - "third-party/lwip/"
+    - "third-party/rkh/"
+    - "third-party/sapi/"
+    - "third-party/sapi_rtos/"
+    - "third-party/ssp/"
+    - "source/portable"
+    - "src/**/test"
+
