@@ -178,12 +178,11 @@ send_signalsFrame(void)
         l += sprintf(p + l, "\r\n");
     }
 
-    n = IOChgDet_get(ioChg, NUM_DI_SAMPLES_GET);
+    n = IOSampler_get(ioChg, NUM_DI_SAMPLES_GET);
     
     for(i=0; i < n; ++i)
     {
-        l += sprintf(p + l, "ts:%u, DI[%d]:%d\r\n", ioChg[i].timeStamp,
-                                                    ioChg[i].signalId,
+        l += sprintf(p + l, "ts:%u, DI:%d\r\n", ioChg[i].timeStamp,
                                                     ioChg[i].signalValue );
     }
 

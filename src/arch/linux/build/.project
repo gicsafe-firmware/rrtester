@@ -260,6 +260,11 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
+			<name>rrtester/src/IOSampler</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>rrtester/src/Relay</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
@@ -326,11 +331,6 @@
 		</link>
 		<link>
 			<name>rrtester/src/epoch</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>rrtester/src/ioChgDet</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
@@ -413,6 +413,16 @@
 			<name>rrtester/src/DigIn/DigIn.h</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/DigIn/inc/DigIn.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/IOSampler/IOSampler.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/IOSampler/src/IOSampler.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/IOSampler/IOSampler.h</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/IOSampler/inc/IOSampler.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/Relay/Relay.h</name>
@@ -578,16 +588,6 @@
 			<name>rrtester/src/epoch/epoch.h</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/epoch/inc/epoch.h</locationURI>
-		</link>
-		<link>
-			<name>rrtester/src/ioChgDet/ioChgDet.c</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/ioChgDet/src/ioChgDet.c</locationURI>
-		</link>
-		<link>
-			<name>rrtester/src/ioChgDet/ioChgDet.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/ioChgDet/inc/ioChgDet.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/mTime/mTime.c</name>
