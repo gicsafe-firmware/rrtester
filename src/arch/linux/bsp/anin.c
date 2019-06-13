@@ -80,10 +80,18 @@ anIn_captureAndFilter(void)
 ADCSampleUnit
 anIn_get(AnInSignalId channel)
 {
-    if(channel > NUM_ANIN_SIGNALS)
-        return 0;
+	ADCSampleUnit ret;
 
-    return anIns[channel];
+    if (channel >= NUM_ANIN_SIGNALS)
+    {
+    	ret = 0;
+    }
+    else
+    {
+    	ret = anIns[channel];
+    }
+
+    return ret;
 }
 
 void
