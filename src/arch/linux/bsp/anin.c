@@ -36,21 +36,21 @@ static rui32_t l_rnd;  /* random seed */
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
-static rui32_t 
-lrand( void )
-{  
-    /* 
+static rui32_t
+lrand(void)
+{
+    /*
      * A very cheap pseudo-random-number generator.
      * "Super-Duper" Linear Congruential Generator (LCG)
      * LCG(2^32, 3*7*11*13*23, 0, seed) [MS]
      */
-    l_rnd = l_rnd * (3*7*11*13*23);
+    l_rnd = l_rnd * (3 * 7 * 11 * 13 * 23);
     return l_rnd >> 8;
 }
 
 ADCSampleUnit
 anIn_adcRead(int channel)
-{   
+{
     (void)channel;
 
     return anIns_simu[channel] + (lrand() % 10);
@@ -70,7 +70,7 @@ anIn_captureAndFilter(void)
     unsigned char i;
     int16_t value;
 
-    for(i=0; i < NUM_ANIN_SIGNALS; ++i)
+    for (i=0; i < NUM_ANIN_SIGNALS; ++i)
     {
         value = anIn_adcRead(i);
         anIns[i] = emaFilter_LowPass(value, anIns[i], ANINS_EMA_ALPHA);
@@ -80,15 +80,15 @@ anIn_captureAndFilter(void)
 ADCSampleUnit
 anIn_get(AnInSignalId channel)
 {
-	ADCSampleUnit ret;
+    ADCSampleUnit ret;
 
     if (channel >= NUM_ANIN_SIGNALS)
     {
-    	ret = 0;
+        ret = 0;
     }
     else
     {
-    	ret = anIns[channel];
+        ret = anIns[channel];
     }
 
     return ret;
@@ -97,7 +97,7 @@ anIn_get(AnInSignalId channel)
 void
 anIn_update(void)
 {
-   anSampler_put();
+    anSampler_put();
 }
 
 /* ------------------------------ End of file ------------------------------ */
