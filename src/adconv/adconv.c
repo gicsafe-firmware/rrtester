@@ -49,8 +49,7 @@ ADConv_getSample(AnInSignalId channel)
 {
     SampleValue sample;
 
-    //sample = anIn_get(channel);
-    sample = 0;
+    sample = anIn_get(channel);
     return convertToSampleValue(sample);
 }
 

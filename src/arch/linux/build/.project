@@ -75,9 +75,9 @@
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/DigIn.c</locationURI>
 		</link>
 		<link>
-			<name>rrtester/bsp/Relay.c</name>
+			<name>rrtester/bsp/anin.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/Relay.c</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/anin.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/assert.c</name>
@@ -423,6 +423,11 @@
 			<name>rrtester/src/IOSampler/IOSampler.h</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/IOSampler/inc/IOSampler.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/Relay/Relay.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Relay/src/Relay.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/Relay/Relay.h</name>
