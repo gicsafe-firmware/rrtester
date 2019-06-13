@@ -56,7 +56,7 @@ extern "C" {
 /* ................................ Signals ................................ */
 /* ........................ Declares active object ......................... */
 /* ------------------------------- Data types ------------------------------ */
-typedef unsigned short SampleValue;
+typedef ADCSampleUnit SampleValue;
 typedef SampleValue AnSignalValue[MAX_AN_NUM_SAMPLES];
 typedef struct AnSampleSet AnSampleSet;
 struct AnSampleSet

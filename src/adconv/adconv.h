@@ -20,6 +20,7 @@
 
 /* ----------------------------- Include files ----------------------------- */
 #include "anSampler.h"
+#include "anin.h"
 
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
@@ -36,7 +37,7 @@ extern "C" {
 
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
-SampleValue ADConv_getSample(int channel);
+SampleValue ADConv_getSample(AnInSignalId channel);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus

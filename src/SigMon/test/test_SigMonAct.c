@@ -224,55 +224,55 @@ test_StartAdqCycle(void)
 void
 test_AdquireSeq0(void)
 {
+    Relay_getCurrent_ExpectAndReturn(1);
+    Relay_getVoltage_ExpectAndReturn(1);
     Relay_getCurrent_ExpectAndReturn(2);
-    Relay_getVoltage_ExpectAndReturn(4);
-    Relay_getCurrent_ExpectAndReturn(2);
-    Relay_getVoltage_ExpectAndReturn(4);
-    Relay_getCurrent_ExpectAndReturn(2);
-    Relay_getVoltage_ExpectAndReturn(4);
+    Relay_getVoltage_ExpectAndReturn(2);
+    Relay_getCurrent_ExpectAndReturn(3);
+    Relay_getVoltage_ExpectAndReturn(3);
 
     SigMon_enSeq0(me);
     SigMon_Seq0ToSeq0Loc4(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
     SigMon_Seq0ToSeq0Loc4(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
 
-    TEST_ASSERT_EQUAL(2, me->currVal);
-    TEST_ASSERT_EQUAL(4, me->voltVal);
+    TEST_ASSERT_EQUAL(3, me->currVal);
+    TEST_ASSERT_EQUAL(3, me->voltVal);
 }
 
 void
 test_AdquireSeq1(void)
 {
+    Relay_getCurrent_ExpectAndReturn(1);
+    Relay_getVoltage_ExpectAndReturn(1);
     Relay_getCurrent_ExpectAndReturn(2);
-    Relay_getVoltage_ExpectAndReturn(4);
-    Relay_getCurrent_ExpectAndReturn(2);
-    Relay_getVoltage_ExpectAndReturn(4);
-    Relay_getCurrent_ExpectAndReturn(2);
-    Relay_getVoltage_ExpectAndReturn(4);
+    Relay_getVoltage_ExpectAndReturn(2);
+    Relay_getCurrent_ExpectAndReturn(3);
+    Relay_getVoltage_ExpectAndReturn(3);
 
     SigMon_enSeq0(me);
     SigMon_Seq1ToSeq1Loc6(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
     SigMon_Seq1ToSeq1Loc6(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
 
-    TEST_ASSERT_EQUAL(2, me->currVal);
-    TEST_ASSERT_EQUAL(4, me->voltVal);
+    TEST_ASSERT_EQUAL(3, me->currVal);
+    TEST_ASSERT_EQUAL(3, me->voltVal);
 }
 
 void
 test_AdquireSeq2(void)
 {
+    Relay_getCurrent_ExpectAndReturn(1);
+    Relay_getVoltage_ExpectAndReturn(1);
     Relay_getCurrent_ExpectAndReturn(2);
-    Relay_getVoltage_ExpectAndReturn(4);
-    Relay_getCurrent_ExpectAndReturn(2);
-    Relay_getVoltage_ExpectAndReturn(4);
-    Relay_getCurrent_ExpectAndReturn(2);
-    Relay_getVoltage_ExpectAndReturn(4);
+    Relay_getVoltage_ExpectAndReturn(2);
+    Relay_getCurrent_ExpectAndReturn(3);
+    Relay_getVoltage_ExpectAndReturn(3);
 
     SigMon_enSeq0(me);
     SigMon_Seq2ToSeq2Loc5(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
     SigMon_Seq2ToSeq2Loc5(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
 
-    TEST_ASSERT_EQUAL(2, me->currVal);
-    TEST_ASSERT_EQUAL(4, me->voltVal);
+    TEST_ASSERT_EQUAL(3, me->currVal);
+    TEST_ASSERT_EQUAL(3, me->voltVal);
 }
 
 void

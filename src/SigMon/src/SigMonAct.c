@@ -46,10 +46,8 @@ static const RKH_SIG_T mapDigIn[7] =
 static void 
 calcAnSmp(SigMon *const me)
 {
-    me->currVal += Relay_getCurrent();
-    me->currVal /= 2;
-    me->voltVal += Relay_getVoltage();
-    me->voltVal /= 2;
+    me->currVal = Relay_getCurrent();
+    me->voltVal = Relay_getVoltage();
 }
 
 static rbool_t

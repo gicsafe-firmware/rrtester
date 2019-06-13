@@ -11,6 +11,14 @@
     - ../DigIn/inc
     - ../Relay/inc
     - ../StoreTest/inc
+    - ../anSampler/inc
+    - ../CirBuffer/inc
+    - ../epoch/inc
+    - ../adconv
+    - ../anIn
+    - ../mTime
+    - ../publisher
+    - ../mqttProt
     - ../../third-party/rkh/source/trc/inc
   :support:
 
