@@ -37,8 +37,9 @@ static void(* const actions_100[])( void ) =
     NULL
 };
 
-static void(* const actions_1000[])( void ) =
+static void(* const actions_10[])( void ) =
 {
+    anIn_captureAndFilter,
     NULL
 };
 
@@ -50,7 +51,7 @@ static void(* const actions_10000[])( void ) =
 const timerChain_t timerChain[] =
 {
 	{ MTIME_EPOCH_UPD_PERIOD, actions_100 },
-	{ MTIME_ANIN_READANDFILTER_PERIOD, actions_1000 },
+	{ MTIME_ANIN_READANDFILTER_PERIOD, actions_10 },
 	{ MTIME_ANSAMPLE_PUT_PERIOD, actions_10000 }
 };
 

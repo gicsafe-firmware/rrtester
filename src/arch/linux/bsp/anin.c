@@ -83,8 +83,7 @@ anIn_get(AnInSignalId channel)
     if(channel > NUM_ANIN_SIGNALS)
         return 0;
 
-    return anIn_adcRead(channel);
-    //return anIns[channel];
+    return anIns[channel];
 }
 
 void
