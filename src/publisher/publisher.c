@@ -20,6 +20,7 @@
 #include "config.h"
 #include "IOSampler.h"
 #include "anSampler.h"
+#include "SigMonAct.h"
 #include "jWrite.h"
 
 /* ----------------------------- Local macros ------------------------------ */
@@ -91,6 +92,7 @@ publishrrtester(AppData *appMsg)
     {
         jwObj_object("dIn");
             jwObj_int("ts", ioChg.timeStamp);
+            jwObj_int("tsm", SIGMON_CLOCK_PER);
             jwObj_array("values");
             for(i = 0; i < n; ++i)
             {
