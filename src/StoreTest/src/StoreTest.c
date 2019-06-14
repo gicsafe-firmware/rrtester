@@ -59,7 +59,7 @@ sampler(int channel)
     SampleValue value;
 
     RKH_REQUIRE((unsigned int)channel < NUM_AN_SIGNALS);
-    if (channel == 0)
+    if (channel == AnIn0)
     {
         value = params.current;
     }

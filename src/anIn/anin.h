@@ -30,7 +30,8 @@ extern "C" {
 typedef enum AnInSignalId AnInSignalId;
 enum AnInSignalId
 {
-    AnIn0, AnIn1,
+    AnIn0,  /* current */
+    AnIn1,  /* voltage */
     NUM_ANIN_SIGNALS
 };
 

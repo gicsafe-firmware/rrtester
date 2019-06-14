@@ -23,17 +23,30 @@
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
 /* ---------------------------- Local data types --------------------------- */
+typedef struct ADConvFeature ADConvFeature;
+struct ADConvFeature
+{
+    int fullScale;
+};
+
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
+static ADConvFeature feature = 
+{
+    ADCONV_FULL_SCALE_ANI0, 
+    ADCONV_FULL_SCALE_ANI1
+};
+
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
-SampleValue 
-convertToSampleValue(SampleValue sample)
+static SampleValue 
+convertToSampleValue(AnInSignalId channel, SampleValue sample)
 {
     double value;
     int whole, fraction, result;
 
-    value = ((double)(sample * ADCONV_FULL_SCALE) / (1 << ADCONV_RESOLUTION));
+    value = ((double)(sample * feature[channel].fullScale) / 
+             (1 << ADCONV_RESOLUTION));
     whole = (int)value;
     fraction = (int)(value * ADCONV_DIG_FRACTION);
     fraction = fraction - (whole * ADCONV_DIG_FRACTION);
@@ -50,7 +63,7 @@ ADConv_getSample(AnInSignalId channel)
     SampleValue sample;
 
     sample = anIn_get(channel);
-    return convertToSampleValue(sample);
+    return convertToSampleValue(channel, sample);
 }
 
 /* ------------------------------ End of file ------------------------------ */
