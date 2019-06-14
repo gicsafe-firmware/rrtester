@@ -59,6 +59,9 @@ SERIAL_T serials[ NUM_CHANNELS ] =
 {
 	{	"/dev/ttyUSB1",	19200, 8, PAR_NONE, STOP_1},
 };
+
+int relayFailure = 0;
+
 static FILE *fGsmLog = NULL;
 
 /* ---------------------------- Local variables ---------------------------- */
@@ -194,6 +197,12 @@ send_signalsFrame(void)
     ConnectionTopic_publish(&e_Send, &bsp);
 }
 
+void
+toggleRelayFailure()
+{
+	relayFailure ^= 1;
+}
+
 /* ---------------------------- Global functions --------------------------- */
 void
 bsp_init(int argc, char *argv[])
@@ -259,6 +268,10 @@ bsp_keyParser(int c)
 
 		case 'k':
 			modPwr_on();
+			break;
+
+		case 'x':
+			toggleRelayFailure();
 			break;
 
         default:

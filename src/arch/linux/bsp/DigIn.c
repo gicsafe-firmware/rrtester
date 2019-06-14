@@ -50,6 +50,7 @@
 #define CLK6_BIT_POS        0
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
+extern int relayFailure;
 /* ---------------------------- Local variables ---------------------------- */
 static rui16_t callCount = 0;
 static rui8_t currState = 0;
@@ -65,7 +66,7 @@ DigIn_get(void)
     ret.clk = EXTRACT_BIT_FROM_SEQ(CLK_BIT_POS);
     ret.clkX3 = EXTRACT_BIT_FROM_SEQ(CLK3_BIT_POS);
     ret.clkX6 = EXTRACT_BIT_FROM_SEQ(CLK6_BIT_POS);
-    ret.failure = 0;
+    ret.failure = relayFailure;
 
     /* Increment call counter and determine in which half of the square wave
      * are we. Each new half is a new state of the sequence */
