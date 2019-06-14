@@ -11,6 +11,7 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  DaBa  Dario Baliña       db@vortexmakes.com
+ *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -92,12 +93,6 @@ anIn_get(AnInSignalId channel)
     }
 
     return ret;
-}
-
-void
-anIn_update(void)
-{
-    anSampler_put();
 }
 
 /* ------------------------------ End of file ------------------------------ */
