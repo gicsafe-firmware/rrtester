@@ -40,6 +40,7 @@
 /* ----------------------------- Include files ----------------------------- */
 #include "DigIn.h"
 #include "SigMonAct.h"
+#include "failure.h"
 
 /* ----------------------------- Local macros ------------------------------ */
 #define EXTRACT_BIT_FROM_SEQ(x) (sequence[currState] >> (x)) & 1
@@ -66,7 +67,7 @@ DigIn_get(void)
     ret.clk = EXTRACT_BIT_FROM_SEQ(CLK_BIT_POS);
     ret.clkX3 = EXTRACT_BIT_FROM_SEQ(CLK3_BIT_POS);
     ret.clkX6 = EXTRACT_BIT_FROM_SEQ(CLK6_BIT_POS);
-    ret.failure = relayFailure;
+    ret.failure = failure_get() & 1;
 
     /* Increment call counter and determine in which half of the square wave
      * are we. Each new half is a new state of the sequence */

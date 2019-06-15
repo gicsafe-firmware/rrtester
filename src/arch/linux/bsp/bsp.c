@@ -27,6 +27,7 @@
 #include "trace_io_cfg.h"
 #include "serial.h"
 #include "sleep.h"
+#include "failure.h"
 
 #include "signals.h"
 #include "topics.h"
@@ -59,8 +60,6 @@ SERIAL_T serials[ NUM_CHANNELS ] =
 {
 	{	"/dev/ttyUSB1",	19200, 8, PAR_NONE, STOP_1},
 };
-
-int relayFailure = 0;
 
 static FILE *fGsmLog = NULL;
 
@@ -201,7 +200,7 @@ send_signalsFrame(void)
 void
 toggleRelayFailure()
 {
-	relayFailure ^= 1;
+	failure_set(! failure_get());
 }
 
 /* ---------------------------- Global functions --------------------------- */
@@ -218,6 +217,7 @@ bsp_init(int argc, char *argv[])
     modPwr_init();
     dIn_init();
     anIn_init();
+    failure_init();
 
 #ifdef USE_ETH
     eth_init();
