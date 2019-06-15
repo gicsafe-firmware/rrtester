@@ -105,6 +105,16 @@
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/eth.h</locationURI>
 		</link>
 		<link>
+			<name>rrtester/bsp/failure.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/failure.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/bsp/failure.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/failure.h</locationURI>
+		</link>
+		<link>
 			<name>rrtester/bsp/hook.c</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/hook.c</locationURI>
