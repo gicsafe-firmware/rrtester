@@ -122,7 +122,7 @@ test_StartSynchro(void)
 {
     rkh_tmr_init__Expect(&me->evSyncObj.tmr, (RKH_EVT_T *)&me->evSyncObj);
     rkh_tmr_start_Expect(&me->evSyncObj.tmr, RKH_UPCAST(RKH_SMA_T, me), 
-                         SIGMON_SYNC_TIME);
+                         SIGMON_SYNC_TIME, SIGMON_SYNC_TIME);
     SigMon_enSMActive(me);
     TEST_ASSERT_EQUAL(SIGMON_DIGIN_TICKS - 1, me->nDigIn);
 }
@@ -130,7 +130,7 @@ test_StartSynchro(void)
 void
 test_StopSynchro(void)
 {
-    rkh_tmr_stop_Expect(&me->evSyncObj.tmr);
+    rkh_tmr_stop_ExpectAndReturn(&me->evSyncObj.tmr, true);
     SigMon_exSMActive(me);
 }
 
