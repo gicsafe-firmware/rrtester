@@ -20,7 +20,7 @@
 #include "rkhtrc_filter.h"
 #include "rkhtrc_record.h"
 #include "rkhassert.h"
-#include "signal.h"
+#include "signals.h"
 #include "SigMon.h"
 #include "SigMonAct.h"
 #include "bsp.h"

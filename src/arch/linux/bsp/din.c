@@ -57,7 +57,7 @@ dIn_scan(void)
     {
         if(dIns[i] != dInsKb[i])
         {
-            IOChgDet_put(i, dInsKb[i]);
+            IOSampler_put(dInsKb[i]);
             dIns[i] = dInsKb[i];
         }
     }

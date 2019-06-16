@@ -10,7 +10,8 @@
 
 /* -------------------------------- Authors -------------------------------- */
 /*
- *  DaBa  Dario Bali�a       db@vortexmakes.com
+ *  DaBa  Dario Baliña       db@vortexmakes.com
+ *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -42,7 +43,6 @@ typedef unsigned short ADCSampleUnit;
 void anIn_init(void);
 void anIn_captureAndFilter(void);
 ADCSampleUnit anIn_get(AnInSignalId channel);
-void anIn_update(void);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus

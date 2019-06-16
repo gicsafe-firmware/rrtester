@@ -14,7 +14,7 @@
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
 #include "rkhsma.h"
-#include "signal.h"
+#include "signals.h"
 #include "SigMon.h"
 #include "SigMonAct.h"
 

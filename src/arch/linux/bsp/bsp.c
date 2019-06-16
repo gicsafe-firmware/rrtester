@@ -27,6 +27,7 @@
 #include "trace_io_cfg.h"
 #include "serial.h"
 #include "sleep.h"
+#include "failure.h"
 
 #include "signals.h"
 #include "topics.h"
@@ -59,6 +60,7 @@ SERIAL_T serials[ NUM_CHANNELS ] =
 {
 	{	"/dev/ttyUSB1",	19200, 8, PAR_NONE, STOP_1},
 };
+
 static FILE *fGsmLog = NULL;
 
 /* ---------------------------- Local variables ---------------------------- */
@@ -179,12 +181,11 @@ send_signalsFrame(void)
         l += sprintf(p + l, "\r\n");
     }
 
-    n = IOChgDet_get(ioChg, NUM_DI_SAMPLES_GET);
+    n = IOSampler_get(ioChg, NUM_DI_SAMPLES_GET);
     
     for(i=0; i < n; ++i)
     {
-        l += sprintf(p + l, "ts:%u, DI[%d]:%d\r\n", ioChg[i].timeStamp,
-                                                    ioChg[i].signalId,
+        l += sprintf(p + l, "ts:%u, DI:%d\r\n", ioChg[i].timeStamp,
                                                     ioChg[i].signalValue );
     }
 
@@ -194,6 +195,12 @@ send_signalsFrame(void)
     printf("%s\r\n", e_Send.buf);
 
     ConnectionTopic_publish(&e_Send, &bsp);
+}
+
+void
+toggleRelayFailure()
+{
+	failure_set(! failure_get());
 }
 
 /* ---------------------------- Global functions --------------------------- */
@@ -209,7 +216,9 @@ bsp_init(int argc, char *argv[])
 
     modPwr_init();
     dIn_init();
-	anIn_init();
+    anIn_init();
+    failure_init();
+
 #ifdef USE_ETH
     eth_init();
 #endif
@@ -266,6 +275,10 @@ bsp_keyParser(int c)
 			printf("Forcde Publication.\r\n");
 //            RKH_SET_STATIC_EVENTi(RKH_UPCAST(RKH_EVT_T, &e_publishTout), evWaitPublishTout);
             RKH_SMA_POST_FIFO(mqttProt, &e_publishTout, &bsp);
+			break;
+
+		case 'x':
+			toggleRelayFailure();
 			break;
 
         default:

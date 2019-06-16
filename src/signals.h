@@ -86,6 +86,16 @@ enum Signals
     evRestart,
     evEthLinkConnect,
     evEthLinkDisconnect,
+    evEnable,
+    evDisable,
+    evFailure,
+    evSync,
+    evIn0,
+    evIn1,
+    evIn2,
+    evIn4,
+    evIn5,
+    evIn6,
 };
 
 /* ------------------------------- Data types ------------------------------ */

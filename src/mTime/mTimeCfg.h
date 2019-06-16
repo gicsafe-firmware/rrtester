@@ -1,6 +1,6 @@
 /**
  *  \file       mTimeCfg.h
- * 	\bried      Main timer definitions.
+ *  \bried      Main timer definitions.
  */
 
 /* -------------------------- Development history -------------------------- */
@@ -11,6 +11,7 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  DaBa  Dario Baliña       db@vortexmakes.com
+ *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -29,23 +30,23 @@ extern "C" {
 /* --------------------------------- Macros -------------------------------- */
 /* -------------------------------- Constants ------------------------------ */
 /*
- * 	Here define the time of interrupt in us
+ *  Here define the time of interrupt in us
  */
-#define MTIME_TIME_TICK			RKH_TICK_RATE_MS   /* Expressed in msec */
+#define MTIME_TIME_TICK         RKH_TICK_RATE_MS   /* Expressed in msec */
 
 /*
- * 	Number of slots in table 'timerChain'declared in 'mTimeTbl.h' and
+ *  Number of slots in table 'timerChain'declared in 'mTimeTbl.h' and
  *  user defined in 'mTimeTbl.c'.
  */
-#define NUM_TIMER_DIVISORS		3
+#define NUM_TIMER_DIVISORS      3
 
 /*
  * Scaled time slots constants
  */
-#define MTIME_MODPWR_BASE               (100/MTIME_TIME_TICK)
-#define MTIME_EPOCH_UPD_PERIOD			(100/MTIME_TIME_TICK)
-#define MTIME_ANIN_READANDFILTER_PERIOD (1000/MTIME_TIME_TICK)
-#define MTIME_ANSAMPLE_PUT_PERIOD       (10000/MTIME_TIME_TICK)
+#define MTIME_MODPWR_BASE               (100 / MTIME_TIME_TICK)
+#define MTIME_EPOCH_UPD_PERIOD          (100 / MTIME_TIME_TICK)
+#define MTIME_ANIN_READANDFILTER_PERIOD (10 / MTIME_TIME_TICK)
+#define MTIME_ANSAMPLE_PUT_PERIOD       (10000 / MTIME_TIME_TICK)
 
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */
@@ -60,6 +61,5 @@ extern "C" {
 
 /* ------------------------------ End of file ------------------------------ */
 /*
- * 	mTimeCfg.h
+ *  mTimeCfg.h
  */
-

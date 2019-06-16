@@ -1,0 +1,150 @@
+{
+  "$id": "rrtester.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$id": "/properties/id",
+      "type": "integer",
+      "title": "Device Identifier",
+      "description": "Identificador del equipo RRTESTER",
+      "default": 0,
+      "examples": [
+        740704
+      ],
+      "minimum": 0,
+      "maximum": 9999999
+    },
+    "anIn": {
+      "$id": "/properties/anIn",
+      "type": "object",
+      "properties": {
+        "ts": {
+          "$id": "/properties/anIn/properties/ts",
+          "type": "integer",
+          "title": "Time Stamp",
+          "description": "Epoch time stamp de la primera muestra de señal analógica contenida en el array an[i]",
+          "default": 0,
+          "examples": [
+            1530542040
+          ],
+          "minimum": 0,
+          "maximum": 2147483647
+        },
+        "tsm": {
+          "$id": "/properties/anIn/properties/tsm",
+          "type": "integer",
+          "title": "Sampling Time",
+          "description": "Período de muestreo [segundos] de las señales analógicas",
+          "default": 0,
+          "examples": [
+            10
+          ],
+          "minimum": 1,
+          "maximum": 120
+        },
+        "an": {
+          "$id": "/properties/anIn/properties/an",
+          "type": "array",
+          "maxItems": 2,
+          "minItems": 2,
+          "items": {
+            "$id": "/properties/anIn/properties/an/items",
+            "type": "array",
+            "maxItems": 255,
+            "minItems": 1,
+            "Curr": {
+              "$id": "/properties/anIn/properties/an/items/Curr",
+              "type": "integer",
+              "title": "Current Sample",
+              "description": "Valor de corriente en el Relay medido",
+              "default": 0,
+              "examples": [
+                1.23,
+                9.8,
+                0.6,
+                0.05
+              ]
+            },
+            "Volt": {
+              "$id": "/properties/anIn/properties/an/items/Volt",
+              "type": "integer",
+              "title": "Voltage Sample",
+              "description": "Valor de tensión en el Relay medido",
+              "default": 0,
+              "examples": [
+                1.23,
+                9.8,
+                0.6,
+                0.05
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "ts",
+        "tsm"
+      ]
+    },
+    "dIn": {
+      "$id": "/properties/dIn",
+      "type": "object",
+      "properties": {
+        "ts": {
+          "$id": "/properties/dIn/items/properties/ts",
+          "type": "integer",
+          "title": "Time Stamp",
+          "description": "Epoch Time stamp del instante de ocurrencia del cambio de estado en la señal de entrada digital",
+          "default": 0,
+          "examples": [
+            1530542061
+          ],
+          "minimum": 0,
+          "maximum": 2147483647
+        },
+        "tsm": {
+          "$id": "/properties/dIn/properties/tsm",
+          "type": "integer",
+          "title": "Sampling Time",
+          "description": "Período de muestreo [milisegundos] de las señales digitales",
+          "default": 0,
+          "examples": [
+            500
+          ],
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "values": {
+          "$id": "/properties/dIn/items/properties/values",
+          "type": "array",
+          "maxItems": 255,
+          "minItems": 1,
+          "items": {
+            "$id": "/properties/dIn/properties/values/items",
+            "type": "integer",
+            "title": "Sequence number",
+            "description": "Valor de la secuencia de testeo.",
+            "default": 0,
+            "examples": [
+			  0,
+			  2,
+			  0,
+			  0,
+			  0,
+			  1
+            ]
+		  },
+		},
+      },
+      "required": [
+        "ts",
+        "values"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "anIn",
+    "dIn"
+  ]
+}
