@@ -151,9 +151,6 @@
     <ClCompile Include="..\..\..\CirBuffer\src\CirBuffer.c">
       <Filter>src\CirBuffer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\DigIn\src\DigIn.c">
-      <Filter>src\DigIn</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\epoch\src\epoch.c">
       <Filter>src\epoch</Filter>
     </ClCompile>
@@ -174,6 +171,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\main.c">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsp\DigIn.c">
+      <Filter>bsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\linux\bsp\failure.c">
+      <Filter>bsp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

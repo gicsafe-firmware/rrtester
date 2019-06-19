@@ -122,7 +122,6 @@
     <ClCompile Include="..\..\..\conMgrEth\ConMgrEthActAccces.c" />
     <ClCompile Include="..\..\..\conMgrGsm\ConMgrGsm.c" />
     <ClCompile Include="..\..\..\date\date.c" />
-    <ClCompile Include="..\..\..\DigIn\src\DigIn.c" />
     <ClCompile Include="..\..\..\emaFilter\emaFilter.c" />
     <ClCompile Include="..\..\..\epoch\src\epoch.c" />
     <ClCompile Include="..\..\..\IOSampler\src\IOSampler.c" />
@@ -138,9 +137,11 @@
     <ClCompile Include="..\..\..\SigMon\src\SigMon.c" />
     <ClCompile Include="..\..\..\SigMon\src\SigMonAct.c" />
     <ClCompile Include="..\..\..\StoreTest\src\StoreTest.c" />
+    <ClCompile Include="..\..\linux\bsp\failure.c" />
     <ClCompile Include="..\bsp\anin.c" />
     <ClCompile Include="..\bsp\assert.c" />
     <ClCompile Include="..\bsp\bsp.c" />
+    <ClCompile Include="..\bsp\DigIn.c" />
     <ClCompile Include="..\bsp\dIn.c" />
     <ClCompile Include="..\bsp\eth.c" />
     <ClCompile Include="..\bsp\getopt.c" />
