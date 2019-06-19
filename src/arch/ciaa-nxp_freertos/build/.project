@@ -550,6 +550,16 @@
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi_rtos/src/sapi_adc.c</locationURI>
 		</link>
 		<link>
+			<name>rrtester/bsp/sapi_rtos/sapi_adc128d818.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/sapi_adc128d818.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/bsp/sapi_rtos/sapi_adc128d818.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/sapi_adc128d818.h</locationURI>
+		</link>
+		<link>
 			<name>rrtester/bsp/sapi_rtos/sapi_board.c</name>
 			<type>1</type>
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi_rtos/src/sapi_board.c</locationURI>
