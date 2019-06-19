@@ -25,6 +25,7 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci lf@vortexmakes.com
+ *  DaBa  Dario Baliña db@vortexmakes.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -43,13 +44,13 @@
 SampleValue 
 Relay_getCurrent(void)
 {
-    ADConv_getSample(AnIn0);
+    return ADConv_getSample(AnIn0);
 }
 
 SampleValue 
 Relay_getVoltage(void)
 {
-    ADConv_getSample(AnIn1);
+    return ADConv_getSample(AnIn1);
 }
 
 /* ------------------------------ End of file ------------------------------ */
