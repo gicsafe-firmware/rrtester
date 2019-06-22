@@ -12,7 +12,7 @@
 /*
  *  LeFr  Leandro Francucci lf@vortexmakes.com
  *  CaMa  Carlos Mancón     manconci@gmail.com
- *  DaBa  Dario Baluña      db@vortexmakes.com
+ *  DaBa  Dario Baliña      db@vortexmakes.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
