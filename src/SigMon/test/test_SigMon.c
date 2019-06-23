@@ -53,7 +53,7 @@
 #include <tzparse.h>
 #include "rkhsm.h"
 #include "common.h"
-#include "signal.h"
+#include "signals.h"
 #include "SigMon.h"
 #include "Mock_SigMonAct.h"
 #include "rkhport.h"
