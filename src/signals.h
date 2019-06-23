@@ -95,7 +95,7 @@ enum Signals
     evIn2,
     evIn4,
     evIn5,
-    evIn6,
+    evIn6
 };
 
 /* ------------------------------- Data types ------------------------------ */
