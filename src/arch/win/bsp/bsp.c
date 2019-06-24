@@ -25,6 +25,7 @@
 #include "trace_io_cfg.h"
 #include "wserial.h"
 #include "wserdefs.h"
+#include "failure.h"
 
 #include "signals.h"
 #include "topics.h"
@@ -99,7 +100,7 @@ printBanner(void)
     printf("Port version     = %s\n", rkhport_get_version());
     printf("Port description = %s\n\n", rkhport_get_desc());
 	printf("Description: \n\n"
-		"Sistema de monitoreo remoto de pasos a nivel\n");
+		"Sistema probador de relés ferroviarios\n");
 
     printf("1.- Press ESC to quit \n\n\n");
 }
@@ -177,12 +178,11 @@ send_signalsFrame(void)
         l += sprintf(p + l, "\r\n");
     }
 
-    n = IOChgDet_get(ioChg, NUM_DI_SAMPLES_GET);
+    n = IOSampler_get(ioChg, NUM_DI_SAMPLES_GET);
     
     for(i=0; i < n; ++i)
     {
-        l += sprintf(p + l, "ts:%u, DI[%d]:%d\r\n", ioChg[i].timeStamp,
-                                                    ioChg[i].signalId,
+        l += sprintf(p + l, "ts:%u, DI:%d\r\n", ioChg[i].timeStamp,
                                                     ioChg[i].signalValue );
     }
 
@@ -192,6 +192,12 @@ send_signalsFrame(void)
     printf("%s\r\n", e_Send.buf);
 
     ConnectionTopic_publish(&e_Send, &bsp);
+}
+
+void
+toggleRelayFailure()
+{
+    failure_set(! failure_get());
 }
 
 /* ---------------------------- Global functions --------------------------- */
@@ -208,6 +214,7 @@ bsp_init(int argc, char *argv[])
     modPwr_init();
     dIn_init();
 	anIn_init();
+	failure_init();
 
     eth_init();
 }
@@ -263,6 +270,10 @@ bsp_keyParser(int c)
 			printf("Forced Publication.\r\n");
             RKH_SMA_POST_FIFO(mqttProt, &e_publishTout, &bsp);
 			break;
+
+        case 'x':
+            toggleRelayFailure();
+            break;
 
         default:
             break;
