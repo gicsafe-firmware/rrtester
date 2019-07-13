@@ -159,7 +159,7 @@ RKH_END_TRANS_TABLE
 RKH_CREATE_FINAL_STATE(SigMon_Final, RKH_NULL);
 
 /* ............................. Active object ............................. */
-RKH_SMA_CREATE(SigMon, sigMon, 4, HCAL, &SMInactive, SigMon_ToSMInactiveExt0, NULL);
+RKH_SMA_CREATE(SigMon, sigMon, 5, HCAL, &SMInactive, SigMon_ToSMInactiveExt0, NULL);
 RKH_SMA_DEF_PTR(sigMon);
 
 /* ------------------------------- Constants ------------------------------- */

@@ -115,11 +115,11 @@ setupTraceFilters(void)
     /* RKH_FILTER_OFF_EVENT(RKH_TE_SMA_LIFO); */
     /* RKH_FILTER_OFF_EVENT(RKH_TE_SM_TS_STATE); */
     RKH_FILTER_OFF_EVENT(RKH_TE_SM_DCH);
-    RKH_FILTER_OFF_SMA(modMgr);
-    RKH_FILTER_OFF_SMA(conMgrGsm);
+    /* RKH_FILTER_OFF_SMA(modMgr); */
+    /* RKH_FILTER_OFF_SMA(conMgrGsm); */
     RKH_FILTER_OFF_SMA(conMgrEth);
     RKH_FILTER_OFF_SMA(mqttProt);
-    RKH_FILTER_OFF_SMA(sigMon);
+    /* RKH_FILTER_OFF_SMA(sigMon); */
     RKH_FILTER_OFF_ALL_SIGNALS();
 }
 
