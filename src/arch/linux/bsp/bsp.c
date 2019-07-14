@@ -86,6 +86,8 @@ static RKH_ROM_STATIC_EVENT(e_Close, evClose);
 static RKH_ROM_STATIC_EVENT(e_Ok, evOk);
 static RKH_ROM_STATIC_EVENT(e_Recv, evRecv);
 static RKH_ROM_STATIC_EVENT(e_publishTout, evWaitPublishTout);
+static RKH_ROM_STATIC_EVENT(e_connected, evEthLinkConnect);
+static RKH_ROM_STATIC_EVENT(e_disconnected, evEthLinkDisconnect);
 static SendEvt e_Send;
 
 static void ser_rx_isr(unsigned char byte);
@@ -197,10 +199,45 @@ send_signalsFrame(void)
     ConnectionTopic_publish(&e_Send, &bsp);
 }
 
+static
 void
-toggleRelayFailure()
+toggleRelayFailure(void)
 {
 	failure_set(! failure_get());
+}
+
+static
+void
+forcePublication(void)
+{
+	printf("Force Publication.\r\n");
+	RKH_SMA_POST_FIFO(mqttProt, &e_publishTout, &bsp);
+}
+
+static
+void
+closeCommInterface(void)
+{
+#ifdef USE_GSM
+    printf("Close GPRS Socket\r\n");
+    ConnectionTopic_publish(&e_Close, &bsp);
+#else
+    printf("Disconnect ConMgrEth\r\n");
+    ConnectionTopic_publish(&e_disconnected, &bsp);
+#endif
+}
+
+static
+void
+openCommInterface(void)
+{
+#ifdef USE_GSM
+    printf("Open GPRS Socket\r\n");
+    ConnectionTopic_publish(&e_Open, &bsp);
+#else
+    printf("Connect ConMgrEth\r\n");
+    ConnectionTopic_publish(&e_connected, &bsp);
+#endif
 }
 
 /* ---------------------------- Global functions --------------------------- */
@@ -234,13 +271,11 @@ bsp_keyParser(int c)
             break;
 
         case 'o':
-            printf("Open GPRS Socket\r\n");
-            ConnectionTopic_publish(&e_Open, &bsp);
+        	openCommInterface();
             break;
 
         case 'c':
-            printf("Close GPRS Socket\r\n");
-            ConnectionTopic_publish(&e_Close, &bsp);
+        	closeCommInterface();
             break;
 
         case 'r':
@@ -272,8 +307,7 @@ bsp_keyParser(int c)
 			break;
 
 		case 'f':
-			printf("Force Publication.\r\n");
-            RKH_SMA_POST_FIFO(mqttProt, &e_publishTout, &bsp);
+			forcePublication();
 			break;
 
 		case 'x':
@@ -281,9 +315,9 @@ bsp_keyParser(int c)
 			break;
 
         case 'q':
-        	printf("Force Publication & Disconnect.\r\n");
-        	RKH_SMA_POST_FIFO(mqttProt, &e_publishTout, &bsp);
-        	Sleep(4000);
+        	forcePublication();
+        	printf("Disconnect.\r\n");
+        	Sleep(4000);	/* Wait until publication is made */
         	eth_socketClose();
             break;
 

@@ -40,7 +40,7 @@ enum
     Unplugged_st, Plugged_st
 };
 //#define ETH_THREAD_DEBUG
-static const int SLEEP_LAPSE_ETH_THREAD = 10;
+static const int SLEEP_LAPSE_ETH_THREAD = 4;
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
@@ -425,7 +425,11 @@ eth_socketWrite(rui8_t *p, ruint size)
 
     /* enable blocking socket */
     /* Does it really need to block?*/
-
+    FILE *fETHLog = NULL;
+    if ((fETHLog = fopen("eth.log","a+")) == NULL)
+    		printf("Can't open eth log file for eth\n");
+    fwrite((char *)p, sizeof(char), (size_t)size, fETHLog);
+    fflush(fETHLog);
     ret = sendall(s, (char *)p, &size);
     if (ret < 0)
     {
@@ -438,6 +442,7 @@ eth_socketWrite(rui8_t *p, ruint size)
     {
         RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
     }
+    fclose(fETHLog);
 }
 
 ruint
