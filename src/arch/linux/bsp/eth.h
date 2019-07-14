@@ -57,6 +57,7 @@ typedef int SOCKET;
 void eth_init(void);
 void eth_deinit(void);
 void eth_socketOpen(char *ip, char *port);
+void eth_socketClose(void);
 void eth_socketWrite(rui8_t *p, ruint size);
 ruint eth_socketRead(rui8_t *p, ruint size);
 /* -------------------- External C language linkage end -------------------- */

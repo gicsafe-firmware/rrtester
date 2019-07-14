@@ -272,14 +272,20 @@ bsp_keyParser(int c)
 			break;
 
 		case 'f':
-			printf("Forcde Publication.\r\n");
-//            RKH_SET_STATIC_EVENTi(RKH_UPCAST(RKH_EVT_T, &e_publishTout), evWaitPublishTout);
+			printf("Force Publication.\r\n");
             RKH_SMA_POST_FIFO(mqttProt, &e_publishTout, &bsp);
 			break;
 
 		case 'x':
 			toggleRelayFailure();
 			break;
+
+        case 'q':
+        	printf("Force Publication & Disconnect.\r\n");
+        	RKH_SMA_POST_FIFO(mqttProt, &e_publishTout, &bsp);
+        	Sleep(4000);
+        	eth_socketClose();
+            break;
 
         default:
             break;
