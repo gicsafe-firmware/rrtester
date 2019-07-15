@@ -12,6 +12,7 @@
 /*
  *  LeFr  Leandro Francucci lf@vortexmakes.com
  *  CaMa  Carlos Mancón     manconci@gmail.com
+ *  DaBa  Dario Baliña      db@vortexmakes.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -31,7 +32,7 @@ struct ADConvFeature
 
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
-static ADConvFeature feature = 
+static ADConvFeature feature[] = 
 {
     ADCONV_FULL_SCALE_ANI0, 
     ADCONV_FULL_SCALE_ANI1

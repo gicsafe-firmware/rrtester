@@ -51,7 +51,7 @@
 #include "unity.h"
 #include "SigMonAct.h"
 #include "SigMon.h"
-#include "signal.h"
+#include "signals.h"
 #include "rkhfwk_cast.h"
 #include "Mock_rkhtmr.h"
 #include "Mock_rkhtrc_record.h"
