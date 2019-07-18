@@ -185,9 +185,24 @@
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/rtime.c</locationURI>
 		</link>
 		<link>
+			<name>rrtester/bsp/sapi_delay.c</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi/src/sapi_delay.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/bsp/sapi_delay.h</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi/inc/sapi_delay.h</locationURI>
+		</link>
+		<link>
 			<name>rrtester/bsp/sapi_rtos</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>rrtester/bsp/sapi_tick.h</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi/inc/sapi_tick.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/tcpecho.c</name>
@@ -465,6 +480,11 @@
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h</locationURI>
 		</link>
 		<link>
+			<name>rrtester/bsp/common/i2cm_18xx_43xx.c</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/i2cm_18xx_43xx.c</locationURI>
+		</link>
+		<link>
 			<name>rrtester/bsp/lpc_board/board.c</name>
 			<type>1</type>
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_board_ciaa_edu_4337/src/board.c</locationURI>
@@ -530,6 +550,11 @@
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/gpio_18xx_43xx.c</locationURI>
 		</link>
 		<link>
+			<name>rrtester/bsp/lpc_chip/i2c_18xx_43xx.c</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/i2c_18xx_43xx.c</locationURI>
+		</link>
+		<link>
 			<name>rrtester/bsp/lpc_chip/rtc_18xx_43xx.c</name>
 			<type>1</type>
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/rtc_18xx_43xx.c</locationURI>
@@ -578,6 +603,11 @@
 			<name>rrtester/bsp/sapi_rtos/sapi_gpio.c</name>
 			<type>1</type>
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi_rtos/src/sapi_gpio.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/bsp/sapi_rtos/sapi_i2c.c</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi_rtos/src/sapi_i2c.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/sapi_rtos/sapi_print.c</name>

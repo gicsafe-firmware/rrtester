@@ -1,4 +1,5 @@
 /* Copyright 2019, Gustavo Ramoscelli.
+ * Copyright 2019, Alejandro Permingeat.
  * Copyright 2016, Eric Pernia.
  * All rights reserved.
  *
@@ -43,11 +44,13 @@
 /*==================[macros and definitions]=================================*/
 
 #define MAX_ITER_NOT_READY 10
+#define ADC128D818_I2C_SPEED	100000 /*100 KHz*/
 
 /*==================[internal data declaration]==============================*/
 
 const int8_t ADC128D818_ADDR[] = {0x1d, 0x1e, 0x1f, 0x2d, 0x2e, 0x2f, 0x35, 0x36, 0x37};
 double my_ref_voltage[] = {2.56f, 2.56f, 2.56f, 2.56f, 2.56f, 2.56f, 2.56f, 2.56f, 2.56f};
+static uint8_t i2cInitialized = FALSE;
 
 /*==================[internal functions declaration]=========================*/
 
@@ -95,7 +98,7 @@ bool_t ADC128D818_setRegisterAddress(uint8_t address, uint8_t reg_addr)
 */
 bool_t ADC128D818_setRegister(uint8_t address, uint8_t reg_addr, uint8_t value) 
 {
-    int8_t data[2];
+    uint8_t data[2];
     data[0] = reg_addr;
     data[1] = value;
     return i2cWrite(I2C0, address, data, 2, 1);
@@ -158,70 +161,44 @@ bool_t ADC128D818_init(ADC128D818_ADDRESS address,
     * 8. Set the 'START' bit of the Configuration Register (address 00h, bit 0) to 1.
     * 9. Set the 'INT_Clear' bit (address 00h, bit 3) to 0. If needed, program the 'INT_Enable' bit (address 00h, bit 1) to 1 to enable the INT output.
     */
-
-    char line[1024];
-    
-    strcpy(line, "Start ADC128D818 on address ");
-    strcat(line, intToHex(address, 2));
-    strcat(line, "h");
-    log(line);
+	if (FALSE == i2cInitialized)
+	{
+		i2cConfig(I2C0, ADC128D818_I2C_SPEED);
+		i2cInitialized = TRUE;
+	}
+	delayInaccurate(35);
 
     uint8_t busy_reg = 0x00;
     int cont = 0;
     do {
         cont++;
         if (cont >= MAX_ITER_NOT_READY) {
-            logError("Wait for not busy ADC128D818 timeout");
             return FALSE; 
         }
-        
-        strcpy(line, "> Wait for device not busy. Trial #");
-        strcat(line, intToString(cont));
-        log(line);
-
-        delay(33);
+        delayInaccurate(35);
         busy_reg = ADC128D818_readRegister(address, ADC128D818_REG_Busy_Status_Register);
-        strcpy(line, ">>> Busy Status Register value: ");
-        strcat(line, intToHex(busy_reg, 2));
-        strcat(line, "h");
-        log(line);
 
     } while (busy_reg&( ADC128D818_STATUS_NOT_READY_BIT ));
 
-    
-    // program advanced config reg
-    log("> Setting Advanced Configuration Register");
-    switch (op_mode) {
-        case ADC128D818_OPERATION_MODE_0: log("    Single ended with temp.: IN0..IN6 plus temp"); break;
-        case ADC128D818_OPERATION_MODE_1: log("    Single ended: IN0..IN7"); break;
-        case ADC128D818_OPERATION_MODE_2: log("    Differential: IN0-IN1, IN3-IN2, IN4-IN5, IN7-IN6"); break;
-        case ADC128D818_OPERATION_MODE_3: log("    Mixed: IN0..IN3, IN4-IN5, IN7-IN6"); break;
-    }
-    if (ref_mode == ADC128D818_VREF_INT) {
-        log("    Internal Voltage Reference");
-    } else {
-        log("    External Voltage Reference");
-    }
+    /* reset chip to default */
+    ADC128D818_setRegister(address, ADC128D818_REG_Configuration_Register, 0x80);
+
+    /** Setting Advanced Configuration Register */
     ADC128D818_setRegister(address, ADC128D818_REG_Advanced_Configuration_Register, ref_mode | (op_mode << 1));
 
-    // program conversion rate regster
-    log("> Setting Convertion Rate");
-    switch (rate) {
-        case ADC128D818_RATE_LOW_POWER:  log("    Low Power"); break;
-        case ADC128D818_RATE_CONTINUOUS: log("    Continuous"); break;
-        case ADC128D818_RATE_ONE_SHOT:   log("    One Shot"); break;
-    }
+
+    /** program conversion rate register */
     ADC128D818_setRegister(address, ADC128D818_REG_Conversion_Rate_Register, rate);
 
-    // program enabled channels
+    /** program enabled channels */
     ADC128D818_setRegister(address, ADC128D818_REG_Channel_Disable_Register, enabled_mask);
 
     // program limit regs
     // currently noop!
 
-    // set start bit in configuration (interrupts disabled)
+    /* set start bit in configuration (interrupts disabled) */
     ADC128D818_setRegister(address, ADC128D818_REG_Configuration_Register, 1);
-    
+
     return TRUE;
 }
 

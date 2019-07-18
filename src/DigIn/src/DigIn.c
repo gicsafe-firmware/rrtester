@@ -39,4 +39,14 @@
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
 /* ---------------------------- Global functions --------------------------- */
+DigIn DigIn_get(void)
+{
+    DigIn aux;
+
+    aux.clk = 0;
+    aux.clkX3 = 0;
+    aux.clkX6 = 0;
+    aux.failure = 0;
+    return(aux);
+}
 /* ------------------------------ End of file ------------------------------ */

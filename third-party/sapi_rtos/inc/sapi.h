@@ -45,7 +45,7 @@
 
 // Peripheral Drivers
 #include "sapi_board.h"
-//#include "sapi_tick.h"
+#include "sapi_tick.h"
 #include "sapi_gpio.h"
 #include "sapi_uart.h"
 #include "sapi_adc.h"
@@ -60,7 +60,7 @@
 #include "sapi_debugPrint.h"        // Use Print module
 #include "sapi_consolePrint.h"      // Use Print module
 
-//#include "sapi_delay.h"             // Use Tick module
+#include "sapi_delay.h"             // Use Tick module
 #include "sapi_circularBuffer.h"
 //#include "sapi_pwm.h"               // Use SCT and GPIO modules
 
