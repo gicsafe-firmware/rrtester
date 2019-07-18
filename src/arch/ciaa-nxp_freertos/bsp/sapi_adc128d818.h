@@ -146,7 +146,7 @@ typedef enum {
 
 // Busy Status Register: Address 0x0C (see above)
 #define ADC128D818_STATUS_NOT_READY_BIT  0x01  // e.g. while power up chip
-#define ADC128D818_STATUS_BUSY_BIT       0x02  // e.g. STAUS = "Reading"
+#define ADC128D818_STATUS_BUSY_BIT       0x00  // e.g. STAUS = "Reading"
 
 
 /*==================[external data declaration]==============================*/

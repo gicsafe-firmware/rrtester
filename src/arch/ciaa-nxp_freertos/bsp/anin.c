@@ -107,7 +107,7 @@ anIn_captureAndFilter(void)
                                            anIns[currChannel],
                                            ANINS_EMA_ALPHA);
 
-    if (++currChannel > NUM_ANIN_SIGNALS)
+    if (++currChannel >= NUM_ANIN_SIGNALS)
     {
         currChannel = AnIn0;
     }

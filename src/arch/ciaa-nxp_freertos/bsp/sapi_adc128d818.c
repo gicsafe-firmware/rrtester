@@ -178,7 +178,7 @@ bool_t ADC128D818_init(ADC128D818_ADDRESS address,
         delayInaccurate(35);
         busy_reg = ADC128D818_readRegister(address, ADC128D818_REG_Busy_Status_Register);
 
-    } while (busy_reg&( ADC128D818_STATUS_NOT_READY_BIT ));
+    } while (busy_reg & ( 1 << ADC128D818_STATUS_NOT_READY_BIT ));
 
     /* reset chip to default */
     ADC128D818_setRegister(address, ADC128D818_REG_Configuration_Register, 0x80);
@@ -186,17 +186,35 @@ bool_t ADC128D818_init(ADC128D818_ADDRESS address,
     /** Setting Advanced Configuration Register */
     ADC128D818_setRegister(address, ADC128D818_REG_Advanced_Configuration_Register, ref_mode | (op_mode << 1));
 
+    /* shutdown the chip to allow changing the rage register */
+    ADC128D818_setRegister(address, ADC128D818_REG_Configuration_Register, 0);
 
-    /** program conversion rate register */
-    ADC128D818_setRegister(address, ADC128D818_REG_Conversion_Rate_Register, rate);
+	delayInaccurate(35);
+
+    switch (rate)
+    {
+    	case ADC128D818_RATE_LOW_POWER:
+    		/** program conversion rate register */
+    		ADC128D818_setRegister(address, ADC128D818_REG_Conversion_Rate_Register, 0x00);
+    		break;
+    	case ADC128D818_RATE_CONTINUOUS:
+    		/** program conversion rate register */
+			ADC128D818_setRegister(address, ADC128D818_REG_Conversion_Rate_Register, 0x01);
+			break;
+    	case ADC128D818_RATE_ONE_SHOT:
+    		/** program  One-Shot Register */
+    		ADC128D818_setRegister(address, ADC128D818_REG_One_Shot_Register, 0x01);
+    		break;
+
+    }
 
     /** program enabled channels */
     ADC128D818_setRegister(address, ADC128D818_REG_Channel_Disable_Register, enabled_mask);
 
-    // program limit regs
-    // currently noop!
+    /** program limit regs */
+    /** currently noop! */
 
-    /* set start bit in configuration (interrupts disabled) */
+    /** set start bit in configuration (interrupts disabled) */
     ADC128D818_setRegister(address, ADC128D818_REG_Configuration_Register, 1);
 
     return TRUE;
