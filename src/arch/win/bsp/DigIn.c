@@ -59,6 +59,11 @@ rui8_t sequence[DIGIN_STATES_QTY] = {4, 0, 6, 2, 4, 0, 4, 0, 4, 0, 5, 1};
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
 /* ---------------------------- Global functions --------------------------- */
+void
+DigIn_init(void)
+{
+}
+
 DigIn
 DigIn_get(void)
 {

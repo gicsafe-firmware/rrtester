@@ -40,6 +40,11 @@
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
 /* ---------------------------- Global functions --------------------------- */
+void
+DigIn_init(void)
+{
+}
+
 DigIn
 DigIn_get(void)
 {
