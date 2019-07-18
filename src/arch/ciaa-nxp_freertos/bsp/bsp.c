@@ -77,6 +77,7 @@ bsp_init(int argc, char *argv[])
     modPwr_init();
 
     dIn_init();
+    DigIn_init();
 
     anIn_init();
     rtime_init();
