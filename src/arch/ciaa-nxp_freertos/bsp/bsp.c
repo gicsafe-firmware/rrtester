@@ -14,6 +14,7 @@
 /*
  *  DaBa  Dario Baliña       db@vortexmakes.com
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
+ *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -31,6 +32,7 @@
 #include "CirBuffer.h"
 #include "mTime.h"
 #include "din.h"
+#include "DigIn.h"
 #include "anin.h"
 #include "anSampler.h"
 #include "IOSampler.h"

@@ -100,6 +100,11 @@
 			<locationURI>PARENT-4-PROJECT_LOC/third-party/MQTT-C/src/mqtt_pal.c</locationURI>
 		</link>
 		<link>
+			<name>rrtester/bsp/DigIn.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/DigIn.c</locationURI>
+		</link>
+		<link>
 			<name>rrtester/bsp/Endianness.h</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/Endianness.h</locationURI>
@@ -310,6 +315,31 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
+			<name>rrtester/src/DigIn</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/IOSampler</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/Relay</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/SigMon</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/StoreTest</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>rrtester/src/adconv</name>
 			<type>2</type>
 			<locationURI>PARENT-3-PROJECT_LOC/adconv</locationURI>
@@ -361,11 +391,6 @@
 		</link>
 		<link>
 			<name>rrtester/src/epoch</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>rrtester/src/ioChgDet</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
@@ -580,6 +605,36 @@
 			<locationURI>PARENT-3-PROJECT_LOC/CirBuffer/inc/CirBuffer.h</locationURI>
 		</link>
 		<link>
+			<name>rrtester/src/DigIn/DigIn.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/DigIn/src/DigIn.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/IOSampler/IOSampler.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/IOSampler/src/IOSampler.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/Relay/Relay.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/Relay/src/Relay.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/SigMon/SigMon.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/SigMon/src/SigMon.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/SigMon/SigMonAct.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/SigMon/src/SigMonAct.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/StoreTest/StoreTest.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/StoreTest/src/StoreTest.c</locationURI>
+		</link>
+		<link>
 			<name>rrtester/src/anSampler/anSampler.c</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/anSampler/src/anSampler.c</locationURI>
@@ -598,16 +653,6 @@
 			<name>rrtester/src/epoch/epoch.h</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/epoch/inc/epoch.h</locationURI>
-		</link>
-		<link>
-			<name>rrtester/src/ioChgDet/ioChgDet.c</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/ioChgDet/src/ioChgDet.c</locationURI>
-		</link>
-		<link>
-			<name>rrtester/src/ioChgDet/ioChgDet.h</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/ioChgDet/inc/ioChgDet.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/parser/sim900parser.c</name>

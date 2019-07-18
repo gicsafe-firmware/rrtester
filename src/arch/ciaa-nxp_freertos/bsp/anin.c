@@ -30,7 +30,7 @@
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
-static adc_t anIns[NUM_ANIN_SIGNALS];
+static ADCSampleUnit anIns[NUM_ANIN_SIGNALS];
 static const uint8_t chMap[NUM_ANIN_SIGNALS] = {AI0, AI1, AI2, AI3};
 static int currChannel;
 
@@ -70,7 +70,7 @@ anIn_init(void)
 {
     adcConfig(ADC_ENABLE);
 
-    currChannel = anIn0;
+    currChannel = AnIn0;
     anIn_adcStart(currChannel);
 }
 
@@ -84,29 +84,23 @@ anIn_captureAndFilter(void)
                                            anIns[currChannel],
                                            ANINS_EMA_ALPHA);
 
-    if (++currChannel > anIn3)
+    if (++currChannel >= NUM_ANIN_SIGNALS)
     {
-        currChannel = anIn0;
+        currChannel = AnIn0;
     }
 
     anIn_adcStart(currChannel);
 }
 
-adc_t
-anIn_get(int channel)
+ADCSampleUnit
+anIn_get(AnInSignalId channel)
 {
-    if (channel > NUM_ANIN_SIGNALS)
+    if (channel >= NUM_ANIN_SIGNALS)
     {
         return 0;
     }
 
     return anIns[channel];
-}
-
-void
-anIn_update(void)
-{
-    anSampler_put();
 }
 
 /* ------------------------------ End of file ------------------------------ */
