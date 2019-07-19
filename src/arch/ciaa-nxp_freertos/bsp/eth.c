@@ -328,6 +328,9 @@ eth_socketRead(rui8_t *p, ruint size)
 
 	int ret;
 
+	int opt = 100;
+	lwip_setsockopt(s, SOL_SOCKET, SO_RCVTIMEO, &opt, sizeof(int));
+
 	ret = lwip_read(s, (char *)p, size);
 	if (-1 == ret)
 	{
