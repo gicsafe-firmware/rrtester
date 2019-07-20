@@ -133,7 +133,7 @@ vSetupEthTask(void *pvParameters)
 
     /* Initialize and start applications */
     
-    tcpecho_init();
+//    tcpecho_init();
 //    tcptrace_init();
     //RKH_SMA_POST_FIFO(ethMgr, RKH_UPCAST(RKH_EVT_T, &e_Received), conMgr);
 
@@ -332,18 +332,22 @@ eth_socketRead(rui8_t *p, ruint size)
 	lwip_setsockopt(s, SOL_SOCKET, SO_RCVTIMEO, &opt, sizeof(int));
 
 	ret = lwip_read(s, (char *)p, size);
-	if (-1 == ret)
+/*	if (-1 == ret)
 	{
 		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
 				&e_disconnected), &eth);
 		return 0;
 	}
-	else if (ret < 0 )
+	else*/
+	if (ret < 0 )
 	{
-		ret = errno;
-		switch (ret)
+		int error;
+		u32_t optlen = sizeof(error);
+		lwip_getsockopt(s, SOL_SOCKET, SO_ERROR, &error, &optlen);
+
+		switch (error)
 		{
-		case EWOULDBLOCK:
+		case EWOULDBLOCK:	// Same as EAGAIN check for portability
 			RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
 			break;
 
