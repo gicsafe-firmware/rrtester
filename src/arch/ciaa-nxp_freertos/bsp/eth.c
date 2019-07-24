@@ -76,6 +76,34 @@ tcpip_init_done_signal(void *arg)
     *(s32_t *) arg = 1;
 }
 
+static void
+link_status_changed(struct netif *netif)
+{
+	if (netif->flags & NETIF_FLAG_LINK_UP)
+	{
+        RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
+        		&e_linkConnected), &eth);
+        RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
+        		&e_ipStatus), &eth);
+
+        RKH_TRC_USR_BEGIN(ETH_USR_TRACE)
+             RKH_TUSR_STR("Ethernet Link Connected");
+        RKH_TRC_USR_END();
+	}
+	else
+	{
+		lwip_close(s);
+		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
+				&e_disconnected), &eth);
+		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
+				&e_linkDisconnect), &eth);
+
+		RKH_TRC_USR_BEGIN(ETH_USR_TRACE)
+			RKH_TUSR_STR("Ethernet Link Disconnected");
+		RKH_TRC_USR_END();
+	}
+}
+
 /* LWIP kickoff and PHY link monitor thread */
 static void
 vSetupEthTask(void *pvParameters)
@@ -122,6 +150,8 @@ vSetupEthTask(void *pvParameters)
     }
     netif_set_default(&lpc_netif);
     netif_set_up(&lpc_netif);
+
+    netif_set_link_callback(&lpc_netif, (netif_status_callback_fn) link_status_changed);
 
     /* Enable MAC interrupts only after LWIP is ready */
     NVIC_SetPriority(ETHERNET_IRQn, config_ETHERNET_INTERRUPT_PRIORITY);
@@ -191,11 +221,6 @@ vSetupEthTask(void *pvParameters)
             DEBUGOUT("Link connect status: %d\r\n",
                      ((physts & PHY_LINK_CONNECTED) != 0));
 
-            RKH_TRC_USR_BEGIN(ETH_USR_TRACE)
-                 RKH_TUSR_STR("Ethernet Link ");
-                 RKH_TUSR_STR(((physts & PHY_LINK_CONNECTED) != 0 ? 
-                                    "Connected" : "Disconnected"));
-            RKH_TRC_USR_END();
             /* Delay for link detection (250mS) */
             vTaskDelay(configTICK_RATE_HZ / 4);
         }
@@ -229,11 +254,6 @@ vSetupEthTask(void *pvParameters)
                 	RKH_TUSR_STR(mask);
                     RKH_TUSR_STR(gw);
                 RKH_TRC_USR_END();
-
-                RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
-                		&e_linkConnected), &eth);
-                RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
-                		&e_ipStatus), &eth);
 
                 prt_ip = 1;
             }
@@ -288,9 +308,14 @@ eth_socketOpen(char *ip, char *port)
 		RKH_TRC_USR_BEGIN(ETH_USR_TRACE)
 			RKH_TUSR_STR("Socket Connected\r\n");
 		RKH_TRC_USR_END();
+
+		int opt = 100;
+		lwip_setsockopt(s, SOL_SOCKET, SO_RCVTIMEO, &opt, sizeof(int));
+		lwip_setsockopt(s, SOL_SOCKET, SO_SNDTIMEO, &opt, sizeof(int));
 	}
 	else
 	{
+		lwip_close(s);
 		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Error), &eth);
 
 		RKH_TRC_USR_BEGIN(ETH_USR_TRACE)
@@ -327,9 +352,6 @@ eth_socketRead(rui8_t *p, ruint size)
 	RKH_TRC_USR_END();
 
 	int ret;
-
-	int opt = 100;
-	lwip_setsockopt(s, SOL_SOCKET, SO_RCVTIMEO, &opt, sizeof(int));
 
 	ret = lwip_read(s, (char *)p, size);
 /*	if (-1 == ret)
