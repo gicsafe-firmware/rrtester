@@ -214,7 +214,7 @@ rkh_sma_activate(RKH_SMA_T *sma, const RKH_EVT_T **qs, RKH_QUENE_T qsize,
     sma->running = (rbool_t)1;
 
     TaskHandle = xTaskCreateStatic(thread_function,    /* function */
-                                   "freertos task",    /* name */
+                                   sma->sm.romrkh->name,    /* name */
                                    stksize,            /* stack size */
                                    sma,                /* function argument */
                                    prio,               /* priority */
