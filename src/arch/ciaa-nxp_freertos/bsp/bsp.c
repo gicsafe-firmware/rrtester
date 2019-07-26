@@ -39,6 +39,8 @@
 #include "epoch.h"
 #include "rtime.h"
 #include "eth.h"
+#include "emc.h"
+#include "cr_section_macros.h"
 
 RKH_THIS_MODULE
 
@@ -58,6 +60,9 @@ RKH_THIS_MODULE
 static RKH_TS_T tstamp;
 static ModCmdRcvHandler cmdParser;
 
+/* Example for SDRAM usage */
+__NOINIT(RAM_EXT) uint8_t data_buffer[1024];
+
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
 /* ---------------------------- Global functions --------------------------- */
@@ -68,6 +73,12 @@ bsp_init(int argc, char *argv[])
     (void)argv;
 
     boardConfig();
+    emc_pinInit();
+    emc_dramInit();
+    if(!emc_testRAM(CIAA_EMC_LPC43XX_SDRAM_BASE, CIAA_EMC_LPC43XX_SDRAM_SIZE))
+    {
+    	while (1);
+    }
     ModStatus_init();
     ModStatus(0);
     LinkStatus(UnregisteredSt);

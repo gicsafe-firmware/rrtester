@@ -145,6 +145,16 @@
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/din.c</locationURI>
 		</link>
 		<link>
+			<name>rrtester/bsp/emc.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/emc.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/bsp/emc.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/bsp/emc.h</locationURI>
+		</link>
+		<link>
 			<name>rrtester/bsp/eth.c</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/bsp/eth.c</locationURI>
