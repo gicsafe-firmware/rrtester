@@ -98,6 +98,101 @@
 #define LPC_EMC_CONF_LITTLE_ENDIAN_MSK  0
 #define LPC_EMC_CONF_BIG_ENDIAN_MSK     1
 
+/*
+ * All clock configuration registers
+ */
+#define LPC_CCU1_CLK_RUN_MSK    (1 << 0)
+/*
+ * CLK_M4_EMCDIV_CFG register
+ */
+/* Divider selector */
+#define LPC_CCU1_CLK_EMCDIV_CFG_DIV2    (1 << 5)
+
+/* EMC_CLK divided clock select */
+#define LPC_CREG_CREG6_EMCCLKSEL_MSK    (1 << 16)
+
+/*
+ * IS42S16400F SDRAM: 16-bit, 4 banks, 12 row bits, 8 column bits.
+ * See table 433 "Address mapping" on page 613 in the LPC43xx User Manual
+ * (UM10503 Rev. 2.3).
+ */
+#define LPC_EMC_AM      0x05
+
+/* Timings for 102 MHz SDRAM clock and IS42S16400F-6TL memory chip */
+
+/* Active to read/write delay (RAS latency) */
+#define SDRAM_RAS       2   /* tRCD = 18ns */
+/* CAS latency (CL) */
+#define SDRAM_CAS       2   /* CL = 2 */
+/* Command delayed strategy, using EMCCLKDELAY */
+#define SDRAM_RDCFG_RD  1
+/* Precharge command period (tRP) */
+#define SDRAM_T_RP      2   /* 18ns */
+/* Active to precharge command period (tRAS) */
+#define SDRAM_T_RAS     5   /* 42ns */
+/* Self-refresh exit time (tSREX) */
+#define SDRAM_T_SREX    7   /* We set this to the same as tXSR */
+/* Last-data-out to active command time (tAPR) */
+#define SDRAM_T_APR     6   /* Not found in the SDRAM datasheet */
+/* Data-in to active command (tDAL) */
+#define SDRAM_T_DAL     5   /* 5 cycles */
+/* Write recovery time (tWR) */
+#define SDRAM_T_WR      2   /* 2 cycles */
+/* Active to active command period (tRC) */
+#define SDRAM_T_RC      7   /* 60ns */
+/* Auto-refresh period and auto-refresh to active command period (tRFC) */
+#define SDRAM_T_RFC     7   /* 60ns */
+/* Exit self-refresh to active command time (tXSR) */
+#define SDRAM_T_XSR     7   /* 60ns */
+/* Active bank A to active bank B latency (tRRD) */
+#define SDRAM_T_RRD     2   /* 12ns */
+/* Load mode register to active command time (tMRD) */
+#define SDRAM_T_MRD     2   /* 2 cycles */
+
+/*
+ * Dynamic Memory Configuration register
+ */
+/* Address mapping */
+#define LPC_EMC_DYCFG_AM_BITS       7
+/* Buffer enable */
+#define LPC_EMC_DYCFG_B_MSK     (1 << 19)
+/*
+ * Dynamic Memory RAS & CAS Delay register
+ */
+/* RAS latency */
+#define LPC_EMC_DYRASCAS_RAS_BITS   0
+/* CAS latency */
+#define LPC_EMC_DYRASCAS_CAS_BITS   8
+
+/*
+ * Dynamic Memory Read Configuration register:
+ *     Read data strategy (RD)
+ */
+#define LPC_EMC_DYRDCFG_RD_BITS     0
+
+/*
+ * Dynamic Memory Control register
+ */
+/* Dynamic memory clock enable (CE) */
+#define LPC_EMC_DYCTRL_CE_MSK       (1 << 0)
+/* Dynamic memory clock control (CS) */
+#define LPC_EMC_DYCTRL_CS_MSK       (1 << 1)
+/* SDRAM initialization (I) */
+#define LPC_EMC_DYCTRL_I_BITS       7
+#define LPC_EMC_DYCTRL_I_NORMAL     0
+#define LPC_EMC_DYCTRL_I_MODE       1
+#define LPC_EMC_DYCTRL_I_PALL       2   /* precharge all */
+#define LPC_EMC_DYCTRL_I_NOP        3   /* no operation */
+
+/*
+ * Refresh timer.
+ * Indicates the multiple of 16 CCLKs between SDRAM refresh cycles.
+ */
+/* 99 = 64000000[64ms] / 4096[rows] / 9.80[ns] / 16; round down */
+#define SDRAM_REFRESH       99
+/* Only for initialization */
+#define SDRAM_REFRESH_FAST  1
+
 /* (2) Enumerations                                                          */
 /* (3) Local const modifier                                                  */
 typedef enum
@@ -319,5 +414,130 @@ emc_pinInit(void)
     {
         Chip_SCU_ClockPinMuxSet(j, (uint16_t) emcClockConfig[j].func);
     }
+}
+
+void
+emc_dramInit(void)
+{
+    /*
+     * EMC_CLK_DIV = M4_CLK / 2
+     *
+     * (M4_CLK/1 is not supported)
+     */
+    LPC_CCU1->CLKCCU[CLK_MX_EMC_DIV].CFG |=
+        (LPC_CCU1_CLK_RUN_MSK | LPC_CCU1_CLK_EMCDIV_CFG_DIV2);
+    /*
+     * If the EMC clock EMC_CCLK is configured for 1/2 == BASE_M4_CLK, the
+     * CLK_M4_EMC_DIV branch clock must be configured for half-frequency clock
+     * operation in both the CREG6 register and the CCU1 CLK_EMCDIV_CFG
+     * register.
+     */
+    LPC_CREG->CREG6 |= LPC_CREG_CREG6_EMCCLKSEL_MSK;
+
+    /* Enable EMC Clock */
+    LPC_CCU1->CLKCCU[CLK_MX_EMC].CFG |= LPC_CCU1_CLK_RUN_MSK;
+
+    /*
+     * Wait to CLK to run
+     */
+    while (!(LPC_CCU1->CLKCCU[CLK_MX_EMC_DIV].STAT & 1))
+        ;
+
+    /*
+     * Address mapping
+     */
+    LPC_EMC->DYNAMICCONFIG0 = (LPC_EMC_AM << LPC_EMC_DYCFG_AM_BITS);
+
+    /*
+     * Configure DRAM timing
+     */
+    LPC_EMC->DYNAMICRASCAS0 =
+        (SDRAM_RAS << LPC_EMC_DYRASCAS_RAS_BITS) |
+        (SDRAM_CAS << LPC_EMC_DYRASCAS_CAS_BITS);
+
+    /*Configures the dynamic memory read strategy.*/
+    LPC_EMC->DYNAMICREADCONFIG =
+        (SDRAM_RDCFG_RD << LPC_EMC_DYRDCFG_RD_BITS);
+
+    /* Dynamic Memory Precharge Command Period register */
+    LPC_EMC->DYNAMICRP = SDRAM_T_RP - 1;
+    /* Dynamic Memory Active to Precharge Command Period register */
+    LPC_EMC->DYNAMICRAS = SDRAM_T_RAS - 1;
+    /* Dynamic Memory Self-refresh Exit Time register */
+    LPC_EMC->DYNAMICSREX = SDRAM_T_SREX - 1;
+    /* Dynamic Memory Last Data Out to Active Time register */
+    LPC_EMC->DYNAMICAPR = SDRAM_T_APR - 1;
+    /* Dynamic Memory Data-in to Active Command Time register */
+    LPC_EMC->DYNAMICDAL = SDRAM_T_DAL;
+    /* Dynamic Memory Write Recovery Time register */
+    LPC_EMC->DYNAMICWR = SDRAM_T_WR - 1;
+    /* Dynamic Memory Active to Active Command Period register */
+    LPC_EMC->DYNAMICRC = SDRAM_T_RC - 1;
+    /* Dynamic Memory Auto-refresh Period register */
+    LPC_EMC->DYNAMICRFC = SDRAM_T_RFC - 1;
+    /* Dynamic Memory Exit Self-refresh register */
+    LPC_EMC->DYNAMICXSR = SDRAM_T_XSR - 1;
+    /* Dynamic Memory Active Bank A to Active Bank B Time register */
+    LPC_EMC->DYNAMICRRD = SDRAM_T_RRD - 1;
+    /* Dynamic Memory Load Mode register to Active Command Time */
+    LPC_EMC->DYNAMICMRD = SDRAM_T_MRD - 1;
+
+    /*--------------------------*/
+    /* Optional delay of 100ms	*/
+    /*--------------------------*/
+
+    /*
+     * Issue SDRAM NOP (no operation) command
+     */
+    LPC_EMC->DYNAMICCONTROL =
+        LPC_EMC_DYCTRL_CE_MSK | LPC_EMC_DYCTRL_CS_MSK |
+        (LPC_EMC_DYCTRL_I_NOP << LPC_EMC_DYCTRL_I_BITS);
+
+    /*--------------------------*/
+    /* Optional delay of 200ms	*/
+    /*--------------------------*/
+
+    /*
+     * Pre-charge all with fast refresh
+     */
+    LPC_EMC->DYNAMICCONTROL =
+        LPC_EMC_DYCTRL_CE_MSK | LPC_EMC_DYCTRL_CS_MSK |
+        (LPC_EMC_DYCTRL_I_PALL << LPC_EMC_DYCTRL_I_BITS);
+    LPC_EMC->DYNAMICREFRESH = SDRAM_REFRESH_FAST;
+
+    /*--------------------------*/
+    /* Optional delay of 1ms	*/
+    /*--------------------------*/
+
+    /*
+     * Set refresh period
+     */
+    LPC_EMC->DYNAMICREFRESH = SDRAM_REFRESH;
+
+    /*
+     * Load mode register
+     */
+    /*
+     * Original code had the following after the execution
+     * of the command:
+     * tmp32 = *(volatile u32 *)(CONFIG_SYS_RAM_BASE |
+     * (SDRAM_MODEREG_VALUE << LPC18XX_EMC_MODEREG_ADDR_SHIFT));
+     * */
+    LPC_EMC->DYNAMICCONTROL =
+        LPC_EMC_DYCTRL_CE_MSK | LPC_EMC_DYCTRL_CS_MSK |
+        (LPC_EMC_DYCTRL_I_MODE << LPC_EMC_DYCTRL_I_BITS);
+
+    /*
+     * Normal mode
+     */
+    LPC_EMC->DYNAMICCONTROL =
+        (LPC_EMC_DYCTRL_I_NORMAL << LPC_EMC_DYCTRL_I_BITS);
+
+    /*
+     * Enable DRAM buffer
+     */
+    LPC_EMC->DYNAMICCONFIG0 =
+        (LPC_EMC_AM << LPC_EMC_DYCFG_AM_BITS) |
+        LPC_EMC_DYCFG_B_MSK;
 }
 /* ------------------------------ End of file ------------------------------ */

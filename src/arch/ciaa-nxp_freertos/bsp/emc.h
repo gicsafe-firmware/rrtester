@@ -66,6 +66,7 @@ extern "C" {
 
 /* -------------------------- Function prototypes -------------------------- */
 void emc_pinInit(void);
+void emc_dramInit(void);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus
