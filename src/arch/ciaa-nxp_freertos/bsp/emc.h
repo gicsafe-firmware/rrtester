@@ -57,6 +57,14 @@ extern "C" {
 /* (1) Macro defines                                                         */
 /* (2) Enumerations                                                          */
 /* (3) Extern declaration of const objects defined in other files            */
+/*
+ * SDRAM Base Address
+ */
+#define CIAA_EMC_LPC43XX_SDRAM_BASE     0x28000000
+/*
+ * SDRAM Size (8 MBytes)
+ */
+#define CIAA_EMC_LPC43XX_SDRAM_SIZE     8 * (1024 * 1024)
 
 /* ------------------------------- Data types ------------------------------ */
 /* (1) typedefs                                                              */
@@ -67,6 +75,7 @@ extern "C" {
 /* -------------------------- Function prototypes -------------------------- */
 void emc_pinInit(void);
 void emc_dramInit(void);
+bool emc_testRAM(uint32_t baseAddress, uint32_t size);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus

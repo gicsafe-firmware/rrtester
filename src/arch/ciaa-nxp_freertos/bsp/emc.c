@@ -540,4 +540,54 @@ emc_dramInit(void)
         (LPC_EMC_AM << LPC_EMC_DYCFG_AM_BITS) |
         LPC_EMC_DYCFG_B_MSK;
 }
+
+bool
+emc_testRAM(uint32_t baseAddress, uint32_t size)
+{
+    int i = 0;
+    uint32_t fbytes = size, *addr = baseAddress;
+
+    /* Must be 32-bit algined */
+    if ((((uint32_t) addr & 0x3) != 0) || ((fbytes & 0x3) != 0))
+    {
+        return false;
+    }
+
+    /* Write walking 0 pattern */
+    while (fbytes > 0)
+    {
+        *addr = ~(1 << i);
+
+        addr++;
+        fbytes -= 4;
+        i++;
+        if (i >= 32)
+        {
+            i = 0;
+        }
+    }
+
+    /* Verify walking 0 pattern */
+    i = 0;
+    fbytes = size;
+    addr = baseAddress;
+    while (fbytes > 0)
+    {
+        if (*addr != ~(1 << i))
+        {
+            return false;
+        }
+
+        addr++;
+        fbytes -= 4;
+        i++;
+        if (i >= 32)
+        {
+            i = 0;
+        }
+    }
+
+    return true;
+}
+
 /* ------------------------------ End of file ------------------------------ */
