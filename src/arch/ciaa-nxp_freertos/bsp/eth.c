@@ -92,7 +92,6 @@ link_status_changed(struct netif *netif)
 	}
 	else
 	{
-		lwip_close(s);
 		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
 				&e_disconnected), &eth);
 		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
@@ -268,6 +267,7 @@ eth_init(void)
     xTaskCreate(vSetupEthTask, "SetupEth",
                 configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
                 (xTaskHandle *) NULL);
+    s = NULL;
 }
 
 void
@@ -290,6 +290,9 @@ eth_socketOpen(char *ip, char *port)
 	addr.sin_family = AF_INET;
 	addr.sin_port = PP_HTONS(1883);
 	addr.sin_addr.s_addr = inet_addr("18.195.250.188"); //HiveMQ
+
+	if(s != NULL)
+		lwip_close(s);
 
 	s = lwip_socket(AF_INET, SOCK_STREAM, 0);
 	if (s < 0)
@@ -334,7 +337,6 @@ eth_socketWrite(rui8_t *p, ruint size)
 	int ret = lwip_send(s, p, size, 0);
 	if (ret < 0)
 	{
-		lwip_close(s);
 		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
 				&e_disconnected), &eth);
 	}
