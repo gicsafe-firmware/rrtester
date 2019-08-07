@@ -53,7 +53,7 @@ calcAnSmp(SigMon *const me)
 static rbool_t
 isDigInChanged(DigIn lastDigIn, DigIn newDigIn)
 {
-#if 0
+#if 1
     return ((lastDigIn.clk != newDigIn.clk) ||
             (lastDigIn.clkX3 != newDigIn.clkX3) ||
             (lastDigIn.clkX6 != newDigIn.clkX6) ||
@@ -72,7 +72,6 @@ SigMon_ToSMInactiveExt0(SigMon *const me, RKH_EVT_T *pe)
     RKH_TR_FWK_STATE(me, &SMInactive);
     RKH_TR_FWK_STATE(me, &SMActive);
     RKH_TR_FWK_STATE(me, &WaitSyncSeq);
-    RKH_TR_FWK_STATE(me, &Seq0);
     RKH_TR_FWK_STATE(me, &Seq2);
     RKH_TR_FWK_STATE(me, &Seq3);
     RKH_TR_FWK_STATE(me, &Seq4);
@@ -147,19 +146,13 @@ SigMon_SMActiveToSMActiveLoc2(SigMon *const me, RKH_EVT_T *pe)
     }
     RKH_SMA_POST_LIFO(RKH_UPCAST(RKH_SMA_T, me), &me->evInObj, me);
 
-    if (me->nDigIn == 0)
+    if((digIn.clk == 1) && isDigInChanged(digIn, me->digIn))
     {
-        if (isDigInChanged(me->digIn, digIn))
-        {
-            me->digIn = digIn;
-            StoreTest_saveDigInStatus(digIn);
-        }
-        me->nDigIn = SIGMON_DIGIN_TICKS - 1;
+        StoreTest_saveDigInStatus(digIn);
     }
-    else
-    {
-        --me->nDigIn;
-    }
+    
+    me->digIn = digIn;
+
 }
 
 void 
@@ -190,7 +183,6 @@ SigMon_enSMActive(SigMon *const me)
                  NULL);
     RKH_TMR_PERIODIC(&me->evSyncObj.tmr, RKH_UPCAST(RKH_SMA_T, me), 
                      SIGMON_SYNC_TIME, SIGMON_SYNC_TIME);
-	me->nDigIn = SIGMON_DIGIN_TICKS - 1;
 }
 
 void 
