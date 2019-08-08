@@ -50,19 +50,6 @@ calcAnSmp(SigMon *const me)
     me->voltVal = Relay_getVoltage();
 }
 
-static rbool_t
-isDigInChanged(DigIn lastDigIn, DigIn newDigIn)
-{
-#if 1
-    return ((lastDigIn.clk != newDigIn.clk) ||
-            (lastDigIn.clkX3 != newDigIn.clkX3) ||
-            (lastDigIn.clkX6 != newDigIn.clkX6) ||
-            (lastDigIn.failure != newDigIn.failure));
-#else
-    return true;
-#endif
-}
-
 /* ............................ Effect actions ............................. */
 void 
 SigMon_ToSMInactiveExt0(SigMon *const me, RKH_EVT_T *pe)
@@ -120,6 +107,12 @@ SigMon_SMActiveToSigMon_FinalExt3(SigMon *const me, RKH_EVT_T *pe)
 }
 
 void 
+SigMon_Seq1ToSeq2Ext7(SigMon *const me, RKH_EVT_T *pe)
+{
+    calcAnSmp(me);
+}
+
+void 
 SigMon_Seq2ToSeq3Ext8(SigMon *const me, RKH_EVT_T *pe)
 {
     StoreTest_saveRelayStatus(me->currVal, me->voltVal);
@@ -146,19 +139,12 @@ SigMon_SMActiveToSMActiveLoc2(SigMon *const me, RKH_EVT_T *pe)
     }
     RKH_SMA_POST_LIFO(RKH_UPCAST(RKH_SMA_T, me), &me->evInObj, me);
 
-    if((digIn.clk == 1) && isDigInChanged(digIn, me->digIn))
+    if((digIn.clk == 1) && (digIn.clk != me->digIn.clk))
     {
         StoreTest_saveDigInStatus(digIn);
     }
     
     me->digIn = digIn;
-
-}
-
-void 
-SigMon_Seq0ToSeq0Loc4(SigMon *const me, RKH_EVT_T *pe)
-{
-    calcAnSmp(me);
 }
 
 void 
@@ -186,7 +172,7 @@ SigMon_enSMActive(SigMon *const me)
 }
 
 void 
-SigMon_enSeq0(SigMon *const me)
+SigMon_enSeq1(SigMon *const me)
 {
     me->currVal = Relay_getCurrent();
     me->voltVal = Relay_getVoltage();

@@ -38,15 +38,15 @@ extern "C" {
 /* ........................ Declares effect actions ........................ */
 void SigMon_ToSMInactiveExt0(SigMon *const me, RKH_EVT_T *pe);
 void SigMon_SMActiveToSigMon_FinalExt3(SigMon *const me, RKH_EVT_T *pe);
+void SigMon_Seq1ToSeq2Ext7(SigMon *const me, RKH_EVT_T *pe);
 void SigMon_Seq2ToSeq3Ext8(SigMon *const me, RKH_EVT_T *pe);
 void SigMon_SMActiveToSMActiveLoc2(SigMon *const me, RKH_EVT_T *pe);
-void SigMon_Seq0ToSeq0Loc4(SigMon *const me, RKH_EVT_T *pe);
 void SigMon_Seq2ToSeq2Loc5(SigMon *const me, RKH_EVT_T *pe);
 void SigMon_Seq1ToSeq1Loc6(SigMon *const me, RKH_EVT_T *pe);
 
 /* ......................... Declares entry actions ........................ */
 void SigMon_enSMActive(SigMon *const me);
-void SigMon_enSeq0(SigMon *const me);
+void SigMon_enSeq1(SigMon *const me);
 
 /* ......................... Declares exit actions ......................... */
 void SigMon_exSMActive(SigMon *const me);
