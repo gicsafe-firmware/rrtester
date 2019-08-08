@@ -128,7 +128,6 @@ loadStateMachineSymbols(void)
     RKH_TR_FWK_AO(sigMon);
     RKH_TR_FWK_STATE(sigMon, &SMInactive);
     RKH_TR_FWK_STATE(sigMon, &SMActive);
-    RKH_TR_FWK_STATE(sigMon, &Seq0);
     RKH_TR_FWK_STATE(sigMon, &Seq1);
     RKH_TR_FWK_STATE(sigMon, &Seq2);
     RKH_TR_FWK_STATE(sigMon, &Seq3);
@@ -179,19 +178,19 @@ filterTraceOn(void)
 static void
 actExp0(void)
 {
-    SigMon_enSeq0_Expect((SigMon *)sigMon);
+    SigMon_enSeq1_Expect((SigMon *)sigMon);
 }
 
 static void
 actExp1(void)
 {
-    SigMon_Seq0ToSeq0Loc4_Expect((SigMon *)sigMon, &evtObj);
+    SigMon_Seq1ToSeq1Loc6_Expect((SigMon *)sigMon, &evtObj);
 }
 
 static void
 actExp2(void)
 {
-    SigMon_Seq1ToSeq1Loc6_Expect((SigMon *)sigMon, &evtObj);
+    SigMon_Seq1ToSeq2Ext7_Expect((SigMon *)sigMon, &evtObj);
 }
 
 static void
@@ -350,21 +349,12 @@ test_InputSequence(void)
         {evIn4, &WaitSyncSeq,   NULL},
         {evIn0, &WaitSyncSeq,   NULL},
         {evIn5, &WaitSyncSeq,   NULL},
-        {evIn1, &Seq0,          actExp0},
-        {evIn1, &Seq0,          actExp1},
-        {evIn1, &Seq0,          actExp1},
-        {evIn1, &Seq0,          actExp1},
-        {evIn4, &Seq1,          NULL},
-        {evIn4, &Seq1,          actExp2},
-        {evIn4, &Seq1,          actExp2},
-        {evIn4, &Seq1,          actExp2},
-        {evIn4, &Seq1,          actExp2},
-        {evIn4, &Seq1,          actExp2},
-        {evIn4, &Seq1,          actExp2},
-        {evIn0, &Seq2,          NULL},
-        {evIn0, &Seq2,          actExp3},
-        {evIn0, &Seq2,          actExp3},
-        {evIn0, &Seq2,          actExp3},
+        {evIn1, &Seq1,          actExp0},
+        {evIn1, &Seq1,          actExp1},
+        {evIn1, &Seq1,          actExp1},
+        {evIn1, &Seq1,          actExp1},
+        {evIn1, &Seq1,          actExp1},
+        {evIn0, &Seq2,          actExp2},
         {evIn0, &Seq2,          actExp3},
         {evIn0, &Seq2,          actExp3},
         {evIn0, &Seq2,          actExp3},
@@ -378,7 +368,7 @@ test_InputSequence(void)
         {evIn4, &Seq9,          NULL},
         {evIn0, &Seq10,         NULL},
         {evIn5, &Seq11,         NULL},
-        {evIn1, &Seq0,          actExp0}
+        {evIn1, &Seq1,          actExp0}
     };
 
     filterTraceOn();
