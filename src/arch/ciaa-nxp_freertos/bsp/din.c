@@ -64,13 +64,13 @@ dIn_scan(void)
             (dInsSt[i] == 0))
         {
             dInsSt[i] = 1;
-            //IOChgDet_put(i, 1);
+            IOChgDet_put(i, 1);
         }
         else if ((dIns[i] == DEBOUNCE_NOT_CHG) && (din == DEBOUNCE_NOT_MASK) &&
                  (dInsSt[i] == 1))
         {
             dInsSt[i] = 0;
-            //IOChgDet_put(i, 0);
+            IOChgDet_put(i, 0);
         }
 
         dIns[i] = din;
