@@ -26,6 +26,7 @@
 /*
  *  LeFr  Leandro Francucci lf@vortexmakes.com
  *  CaMa  Carlos Mancón     manconci@gmail.com
+ *  DaBa  Dario Baliña      db@vortexmakes.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -44,18 +45,22 @@
 
 /* ----------------------------- Local macros ------------------------------ */
 #define EXTRACT_BIT_FROM_SEQ(x) (sequence[currState] >> (x)) & 1
+
 /* ------------------------------- Constants ------------------------------- */
 #define DIGIN_STATES_QTY    12
 #define CLK_BIT_POS         2
 #define CLK3_BIT_POS        1
 #define CLK6_BIT_POS        0
+
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 extern int relayFailure;
+
 /* ---------------------------- Local variables ---------------------------- */
 static rui16_t callCount = 0;
 static rui8_t currState = 0;
-rui8_t sequence[DIGIN_STATES_QTY] = {4, 0, 6, 2, 4, 0, 4, 0, 4, 0, 5, 1};
+rui8_t sequence[DIGIN_STATES_QTY] = {0, 6, 2, 4, 0, 4, 0, 4, 0, 5, 1};
+
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
 /* ---------------------------- Global functions --------------------------- */
@@ -87,4 +92,5 @@ DigIn_get(void)
 
     return ret;
 }
+
 /* ------------------------------ End of file ------------------------------ */
