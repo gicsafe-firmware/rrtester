@@ -117,7 +117,7 @@ anIn_captureAndFilter(void)
 ADCSampleUnit
 anIn_get(AnInSignalId channel)
 {
-    if (channel > NUM_ANIN_SIGNALS)
+    if (channel >= NUM_ANIN_SIGNALS)
     {
         return 0;
     }

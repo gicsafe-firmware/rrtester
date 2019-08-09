@@ -55,7 +55,7 @@
 #ifdef __NO_OFFICIAL_PORT__
 #define MODMGR_STK_SIZE         512
 #define CONMGR_STK_SIZE         512
-#define MQTTPROT_STK_SIZE       512
+#define MQTTPROT_STK_SIZE       1024
 #define CONMGRETH_STK_SIZE      512
 #define SIGMON_STK_SIZE         512
 #else

@@ -9,6 +9,8 @@
 
 /* -------------------------------- Authors -------------------------------- */
 /*
+ *  LeFr  Leandro Francucci  lf@vortexmakes.com
+ *  DaBa  Dario Baliña db@vortexmakes.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -22,14 +24,13 @@
 /* ........................ States and pseudostates ........................ */
 RKH_CREATE_BASIC_STATE(SMInactive, NULL, NULL, RKH_ROOT, NULL);
 RKH_CREATE_BASIC_STATE(WaitSyncSeq, NULL, NULL, &SMActive, NULL);
-RKH_CREATE_BASIC_STATE(Seq0, SigMon_enSeq0, NULL, &SMActive, NULL);
+RKH_CREATE_BASIC_STATE(Seq1, SigMon_enSeq1, NULL, &SMActive, NULL);
 RKH_CREATE_BASIC_STATE(Seq2, NULL, NULL, &SMActive, NULL);
 RKH_CREATE_BASIC_STATE(Seq3, NULL, NULL, &SMActive, NULL);
 RKH_CREATE_BASIC_STATE(Seq4, NULL, NULL, &SMActive, NULL);
 RKH_CREATE_BASIC_STATE(Seq5, NULL, NULL, &SMActive, NULL);
 RKH_CREATE_BASIC_STATE(Seq11, NULL, NULL, &SMActive, NULL);
 RKH_CREATE_BASIC_STATE(OutOfSeq, NULL, NULL, &SMActive, NULL);
-RKH_CREATE_BASIC_STATE(Seq1, NULL, NULL, &SMActive, NULL);
 RKH_CREATE_BASIC_STATE(Seq10, NULL, NULL, &SMActive, NULL);
 RKH_CREATE_BASIC_STATE(Seq8, NULL, NULL, &SMActive, NULL);
 RKH_CREATE_BASIC_STATE(Seq7, NULL, NULL, &SMActive, NULL);
@@ -49,16 +50,16 @@ RKH_CREATE_TRANS_TABLE(SMActive)
 RKH_END_TRANS_TABLE
 
 RKH_CREATE_TRANS_TABLE(WaitSyncSeq)
-	RKH_TRREG(evIn1, NULL, NULL, &Seq0),
+	RKH_TRREG(evIn1, NULL, NULL, &Seq1),
 RKH_END_TRANS_TABLE
 
-RKH_CREATE_TRANS_TABLE(Seq0)
-	RKH_TRREG(evIn4, NULL, NULL, &Seq1),
-	RKH_TRREG(evIn0, NULL, NULL, &OutOfSeq),
+RKH_CREATE_TRANS_TABLE(Seq1)
+	RKH_TRREG(evIn0, NULL, SigMon_Seq1ToSeq2Ext7, &Seq2),
 	RKH_TRREG(evIn2, NULL, NULL, &OutOfSeq),
+	RKH_TRREG(evIn4, NULL, NULL, &OutOfSeq),
 	RKH_TRREG(evIn5, NULL, NULL, &OutOfSeq),
 	RKH_TRREG(evIn6, NULL, NULL, &OutOfSeq),
-	RKH_TRINT(evIn1, NULL, SigMon_Seq0ToSeq0Loc4),
+	RKH_TRINT(evIn1, NULL, SigMon_Seq1ToSeq1Loc6),
 RKH_END_TRANS_TABLE
 
 RKH_CREATE_TRANS_TABLE(Seq2)
@@ -95,7 +96,7 @@ RKH_CREATE_TRANS_TABLE(Seq5)
 RKH_END_TRANS_TABLE
 
 RKH_CREATE_TRANS_TABLE(Seq11)
-	RKH_TRREG(evIn1, NULL, NULL, &Seq0),
+	RKH_TRREG(evIn1, NULL, NULL, &Seq1),
 	RKH_TRREG(evIn0, NULL, NULL, &OutOfSeq),
 	RKH_TRREG(evIn2, NULL, NULL, &OutOfSeq),
 	RKH_TRREG(evIn4, NULL, NULL, &OutOfSeq),
@@ -103,16 +104,7 @@ RKH_CREATE_TRANS_TABLE(Seq11)
 RKH_END_TRANS_TABLE
 
 RKH_CREATE_TRANS_TABLE(OutOfSeq)
-	RKH_TRREG(evIn1, NULL, NULL, &Seq0),
-RKH_END_TRANS_TABLE
-
-RKH_CREATE_TRANS_TABLE(Seq1)
-	RKH_TRREG(evIn0, NULL, NULL, &Seq2),
-	RKH_TRREG(evIn1, NULL, NULL, &OutOfSeq),
-	RKH_TRREG(evIn2, NULL, NULL, &OutOfSeq),
-	RKH_TRREG(evIn5, NULL, NULL, &OutOfSeq),
-	RKH_TRREG(evIn6, NULL, NULL, &OutOfSeq),
-	RKH_TRINT(evIn4, NULL, SigMon_Seq1ToSeq1Loc6),
+	RKH_TRREG(evIn1, NULL, NULL, &Seq1),
 RKH_END_TRANS_TABLE
 
 RKH_CREATE_TRANS_TABLE(Seq10)
@@ -154,7 +146,6 @@ RKH_CREATE_TRANS_TABLE(Seq9)
 	RKH_TRREG(evIn5, NULL, NULL, &OutOfSeq),
 	RKH_TRREG(evIn6, NULL, NULL, &OutOfSeq),
 RKH_END_TRANS_TABLE
-
 
 RKH_CREATE_FINAL_STATE(SigMon_Final, RKH_NULL);
 
