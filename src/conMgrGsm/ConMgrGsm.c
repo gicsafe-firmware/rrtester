@@ -425,7 +425,7 @@ typedef struct Operator
     Apn apn;
 }Operator;
 
-RKH_SMA_CREATE(ConMgrGsm, conMgrGsm, 1, HCAL, &ConMgrGsm_inactive, init, NULL);
+RKH_SMA_CREATE(ConMgrGsm, conMgrGsm, 3, HCAL, &ConMgrGsm_inactive, init, NULL);
 RKH_SMA_DEF_PTR(conMgrGsm);
 
 /* ------------------------------- Constants ------------------------------- */

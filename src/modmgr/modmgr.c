@@ -11,7 +11,7 @@
 
 /* -------------------------------- Authors -------------------------------- */
 /*
- *  DaBa  Dario Bali�a db@vortexmakes.com
+ *  DaBa  Dario Baliña db@vortexmakes.com
  *  LeFr  Leandro Francucci lf@vortexmakes.com
  */
 
@@ -109,7 +109,7 @@ struct ModMgr
     ModMgrEvt *pCmd;        /* stores a reference to current command */
 };
 
-RKH_SMA_CREATE(ModMgr, modMgr, 0, HCAL, &ModMgr_inactive, initialization, 
+RKH_SMA_CREATE(ModMgr, modMgr, 1, HCAL, &ModMgr_inactive, initialization, 
                NULL);
 RKH_SMA_DEF_PTR(modMgr);
 
