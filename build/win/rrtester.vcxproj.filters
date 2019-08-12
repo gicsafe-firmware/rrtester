@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_bittbl.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_dynevt.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_evtpool.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_sched.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_version.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\mempool\src\rkhmempool.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\portable\80x86\win32_st\vc\rkhport.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\queue\src\rkhqueue.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\sm\src\rkhsm.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\sma\src\rkhsma.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\sma\src\rkhsma_prio.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\sma\src\rkhsma_sync.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\tmr\src\rkhtmr.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\trc\src\rkhtrc_filter.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\trc\src\rkhtrc_record.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\trc\src\rkhtrc_stream.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsp\assert.c">
+      <Filter>bsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsp\bsp.c">
+      <Filter>bsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsp\getopt.c">
+      <Filter>bsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsp\hook.c">
+      <Filter>bsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsp\trace_io.c">
+      <Filter>bsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsp\trace_io_tcp.c">
+      <Filter>bsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\ssp\src\ssp.c">
+      <Filter>ssp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\modmgr\modmgr.c">
+      <Filter>src\modmgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\parser\sim900\sim900parser.c">
+      <Filter>src\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\modcmd\modcmdSim900.c">
+      <Filter>src\modcmd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\mqttProt\mqttProt.c">
+      <Filter>src\mqttProt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\MQTT-C\src\mqtt.c">
+      <Filter>MQTT-C</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\MQTT-C\src\mqtt_pal.c">
+      <Filter>MQTT-C</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsp\dIn.c">
+      <Filter>bsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\adconv\adconv.c">
+      <Filter>src\adconv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsp\rtime.c">
+      <Filter>bsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\mTime\mTime.c">
+      <Filter>src\mTime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\mTime\mTimeTbl.c">
+      <Filter>src\mTime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\emaFilter\emaFilter.c">
+      <Filter>src\emaFilter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsp\anin.c">
+      <Filter>bsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\date\date.c">
+      <Filter>src\date</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\jWrite\jWrite\jWrite.c">
+      <Filter>jWrite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\publisher\publisher.c">
+      <Filter>src\publisher</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsp\modpwr.c">
+      <Filter>bsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_rdygrp.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_pubsub.c">
+      <Filter>rkh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\conMgrEth\ConMgrEth.c">
+      <Filter>src\conMgrEth</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\conMgrEth\ConMgrEthAct.c">
+      <Filter>src\conMgrEth</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\conMgrEth\ConMgrEthActAccces.c">
+      <Filter>src\conMgrEth</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsp\eth.c">
+      <Filter>bsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\config\config.c">
+      <Filter>src\config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\conMgrGsm\ConMgrGsm.c">
+      <Filter>src\conMgrGsm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\anSampler\src\anSampler.c">
+      <Filter>src\anSampler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\CirBuffer\src\CirBuffer.c">
+      <Filter>src\CirBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\epoch\src\epoch.c">
+      <Filter>src\epoch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\IOSampler\src\IOSampler.c">
+      <Filter>src\IOSampler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Relay\src\Relay.c">
+      <Filter>src\Relay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\SigMon\src\SigMon.c">
+      <Filter>src\SigMon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\SigMon\src\SigMonAct.c">
+      <Filter>src\SigMon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\StoreTest\src\StoreTest.c">
+      <Filter>src\StoreTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\main.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bsp\DigIn.c">
+      <Filter>bsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\linux\bsp\failure.c">
+      <Filter>bsp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="rkh">
+      <UniqueIdentifier>{da2fd889-7548-4bad-8240-8c34034e9a1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bsp">
+      <UniqueIdentifier>{d13793e5-b7aa-446b-aff6-ffe09fcdbce0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bsp\serial">
+      <UniqueIdentifier>{4f531c09-358a-4882-bbc3-2a86fd008922}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ssp">
+      <UniqueIdentifier>{86704938-4163-4798-ab82-811df96cd54d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{569708bf-8a07-44eb-af49-1b64ee9a9e98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\modmgr">
+      <UniqueIdentifier>{c1a6b20c-627f-4c68-a831-9222b6abc2a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\modcmd">
+      <UniqueIdentifier>{ce828ad4-e2e1-4623-88a3-f1d4386844fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\parser">
+      <UniqueIdentifier>{fe14fea3-8785-4a4d-8be0-f5e70d94a5f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\mqttProt">
+      <UniqueIdentifier>{ea3a0de7-30de-4c7a-a2b3-da537c3bbe1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MQTT-C">
+      <UniqueIdentifier>{3eb97c3d-dd65-405e-bc99-f43ad7a1d496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jWrite">
+      <UniqueIdentifier>{42f3281a-e58f-47d5-bfbe-8ead80daf14c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\conMgrEth">
+      <UniqueIdentifier>{236c7aef-8f71-4e6b-9098-5ed1f2d40bfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\conMgrGsm">
+      <UniqueIdentifier>{6c74171c-7547-4bab-8478-d886a7adb11a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\adconv">
+      <UniqueIdentifier>{4cbb6727-a6d1-4cc6-9a47-737445cbb205}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\anIn">
+      <UniqueIdentifier>{c555b45a-7b36-4b1c-a26a-91719334b1da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\anSampler">
+      <UniqueIdentifier>{de085a5b-dce9-4ebf-86f9-60f33f89646b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\CirBuffer">
+      <UniqueIdentifier>{f2753174-01f3-46ef-8428-1567a8d16e46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\config">
+      <UniqueIdentifier>{abb466bb-f57a-42ea-a855-a94bcb65a16f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\date">
+      <UniqueIdentifier>{ecb85ffd-0c8c-4f42-bae5-2ddd9d91249c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DigIn">
+      <UniqueIdentifier>{f0274842-d1b9-4f36-8920-a22e3f792b85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\emaFilter">
+      <UniqueIdentifier>{ed3d27f4-8d26-4731-b2fa-25519912d539}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\dIn">
+      <UniqueIdentifier>{79b01003-8d30-4e84-9794-1fb45747a2a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\epoch">
+      <UniqueIdentifier>{3a8f0033-1394-4456-bd18-accc47185a5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\IOSampler">
+      <UniqueIdentifier>{dc870036-62fd-480d-994f-48ff03d1d3bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\mTime">
+      <UniqueIdentifier>{3fe071f9-30e9-44f6-b455-66e9857303d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\publisher">
+      <UniqueIdentifier>{dfd773b9-6e97-48f1-a9d9-c4f5fcaebfa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Relay">
+      <UniqueIdentifier>{a4bf539f-9f01-4483-b80a-07b8466ee00c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\rtime">
+      <UniqueIdentifier>{58631172-abf3-4c69-ac90-8a967ac17772}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\SigMon">
+      <UniqueIdentifier>{b813ce21-0952-4a59-9313-73b11d051a26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\StoreTest">
+      <UniqueIdentifier>{c4d4dfb1-60b8-4bc4-bfd4-39e40ed92ff5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\eth">
+      <UniqueIdentifier>{be0bdfce-4655-4d02-b21c-c7a192f6c56c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\rkhcfg.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\bsp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\mTime\mTime.h">
+      <Filter>src\mTime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\mTime\mTimeCfg.h">
+      <Filter>src\mTime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\emaFilter\emaFilter.h">
+      <Filter>src\emaFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\third-party\jWrite\jWrite\jWrite.h">
+      <Filter>jWrite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\publisher\publisher.h">
+      <Filter>src\publisher</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\conMgrEth\ConMgrEth.h">
+      <Filter>src\conMgrEth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\conMgrEth\ConMgrEthAct.h">
+      <Filter>src\conMgrEth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\conMgrEth\ConMgrEthActRequired.h">
+      <Filter>src\conMgrEth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\conMgrEth\ConMgrEthActAccess.h">
+      <Filter>src\conMgrEth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\config\config.h">
+      <Filter>src\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\eth\eth.h">
+      <Filter>src\eth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\anIn\anin.h">
+      <Filter>src\anIn</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\anSampler\inc\anSampler.h">
+      <Filter>src\anSampler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\CirBuffer\inc\CirBuffer.h">
+      <Filter>src\CirBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\DigIn\inc\DigIn.h">
+      <Filter>src\DigIn</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\dIn\din.h">
+      <Filter>src\dIn</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\epoch\inc\epoch.h">
+      <Filter>src\epoch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\IOSampler\inc\IOSampler.h">
+      <Filter>src\IOSampler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Relay\inc\Relay.h">
+      <Filter>src\Relay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\rtime\rtime.h">
+      <Filter>src\rtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\SigMon\inc\SigMon.h">
+      <Filter>src\SigMon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\SigMon\inc\SigMonAct.h">
+      <Filter>src\SigMon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\SigMon\inc\SigMonActAccess.h">
+      <Filter>src\SigMon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\SigMon\inc\SigMonActRequired.h">
+      <Filter>src\SigMon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\StoreTest\inc\StoreTest.h">
+      <Filter>src\StoreTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sspcfg.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\signals.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\bsp\serial\winbsp.lib">
+      <Filter>bsp\serial</Filter>
+    </Library>
+  </ItemGroup>
+</Project>
