@@ -1137,7 +1137,7 @@
  * whenever the link changes (i.e., link down)
  */
 #ifndef LWIP_NETIF_LINK_CALLBACK
-#define LWIP_NETIF_LINK_CALLBACK        0
+#define LWIP_NETIF_LINK_CALLBACK        1
 #endif
 
 /**
@@ -1457,7 +1457,7 @@
  * SO_SNDTIMEO processing.
  */
 #ifndef LWIP_SO_SNDTIMEO
-#define LWIP_SO_SNDTIMEO                0
+#define LWIP_SO_SNDTIMEO                1
 #endif
 
 /**
@@ -1465,7 +1465,7 @@
  * SO_RCVTIMEO processing.
  */
 #ifndef LWIP_SO_RCVTIMEO
-#define LWIP_SO_RCVTIMEO                0
+#define LWIP_SO_RCVTIMEO                1
 #endif
 
 /**

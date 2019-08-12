@@ -38,12 +38,12 @@
 
 /* -------------------------- Development history -------------------------- */
 /*
- *  2016.12.15  LeFr  v2.4.05  ---
  */
 
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
+ *  DaBa  Dario Baliña db@vortexmakes.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -81,6 +81,29 @@ static const RKH_SIG_T mapDigIn[7] =
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
+static void
+storeDigInPrepareAndExecute(unsigned int state, int mustStore)
+{
+    DigIn status;
+    int i;
+
+    status.clk = (state >> 2) & 0x01;
+    status.clkX3 = (state >> 1) & 0x01;
+    status.clkX6 = (state >> 0) & 0x01;
+    status.failure = 0;
+    DigIn_get_IgnoreAndReturn(status);
+    rkh_sma_post_lifo_Ignore();
+    
+    if(mustStore)
+    {
+        StoreTest_saveDigInStatus_Expect(status);
+    }
+
+    SigMon_SMActiveToSMActiveLoc2(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
+ 
+    TEST_ASSERT_EQUAL_MEMORY(&status, &me->digIn, sizeof(DigIn));
+}
+
 /* ---------------------------- Global functions --------------------------- */
 void
 setUp(void)
@@ -124,7 +147,6 @@ test_StartSynchro(void)
     rkh_tmr_start_Expect(&me->evSyncObj.tmr, RKH_UPCAST(RKH_SMA_T, me), 
                          SIGMON_SYNC_TIME, SIGMON_SYNC_TIME);
     SigMon_enSMActive(me);
-    TEST_ASSERT_EQUAL(SIGMON_DIGIN_TICKS - 1, me->nDigIn);
 }
 
 void
@@ -161,53 +183,20 @@ test_Synchro(void)
 void
 test_StoreDigInput(void)
 {
-    DigIn status;
-    int i, j, nTest;
-
-    status.clk = 1;
-    status.clkX3 = 0;
-    status.clkX6 = 1;
-    status.failure = 0;
-    DigIn_get_IgnoreAndReturn(status);
-    rkh_sma_post_lifo_Ignore();
-
-    /* middle */
-    for (me->nDigIn = SIGMON_DIGIN_TICKS - 1, i = 0, nTest = 3; i < nTest; ++i)
-    {
-        SigMon_SMActiveToSMActiveLoc2(me, 
-                                      RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
-    }
-    TEST_ASSERT_EQUAL(6, me->nDigIn);
-
-    /* upper bound */
-    me->digIn.clk = 0;
-    me->digIn.clkX3 = 0;
-    me->digIn.clkX6 = 0;
-    me->digIn.failure = 0;
-    StoreTest_saveDigInStatus_Expect(status);
-    for (me->nDigIn = SIGMON_DIGIN_TICKS - 1, i = 0, 
-         nTest = SIGMON_DIGIN_TICKS; 
-         i < nTest; ++i)
-    {
-        SigMon_SMActiveToSMActiveLoc2(me, 
-                                      RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
-    }
-    TEST_ASSERT_EQUAL(9, me->nDigIn);
-
-    /* beyond upper bound */
-    me->digIn.clk = 0;
-    me->digIn.clkX3 = 0;
-    me->digIn.clkX6 = 0;
-    me->digIn.failure = 0;
-    StoreTest_saveDigInStatus_Expect(status);
-    for (me->nDigIn = SIGMON_DIGIN_TICKS - 1, i = 0, 
-         nTest = SIGMON_DIGIN_TICKS + 1; 
-         i < nTest; ++i)
-    {
-        SigMon_SMActiveToSMActiveLoc2(me, 
-                                      RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
-    }
-    TEST_ASSERT_EQUAL(8, me->nDigIn);
+    storeDigInPrepareAndExecute(1, 0);
+    storeDigInPrepareAndExecute(0, 0);
+    storeDigInPrepareAndExecute(6, 1);
+    storeDigInPrepareAndExecute(2, 0);
+    storeDigInPrepareAndExecute(4, 1);
+    storeDigInPrepareAndExecute(0, 0);
+    storeDigInPrepareAndExecute(4, 1);
+    storeDigInPrepareAndExecute(0, 0);
+    storeDigInPrepareAndExecute(4, 1);
+    storeDigInPrepareAndExecute(0, 0);
+    storeDigInPrepareAndExecute(5, 1);
+    storeDigInPrepareAndExecute(1, 0);
+    storeDigInPrepareAndExecute(0, 0);
+    storeDigInPrepareAndExecute(6, 1);
 }
 
 void
@@ -216,27 +205,9 @@ test_StartAdqCycle(void)
     Relay_getCurrent_ExpectAndReturn(0xdead);
     Relay_getVoltage_ExpectAndReturn(0xbeaf);
 
-    SigMon_enSeq0(me);
+    SigMon_enSeq1(me);
     TEST_ASSERT_EQUAL(0xdead, me->currVal);
     TEST_ASSERT_EQUAL(0xbeaf, me->voltVal);
-}
-
-void
-test_AdquireSeq0(void)
-{
-    Relay_getCurrent_ExpectAndReturn(1);
-    Relay_getVoltage_ExpectAndReturn(1);
-    Relay_getCurrent_ExpectAndReturn(2);
-    Relay_getVoltage_ExpectAndReturn(2);
-    Relay_getCurrent_ExpectAndReturn(3);
-    Relay_getVoltage_ExpectAndReturn(3);
-
-    SigMon_enSeq0(me);
-    SigMon_Seq0ToSeq0Loc4(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
-    SigMon_Seq0ToSeq0Loc4(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
-
-    TEST_ASSERT_EQUAL(3, me->currVal);
-    TEST_ASSERT_EQUAL(3, me->voltVal);
 }
 
 void
@@ -249,9 +220,9 @@ test_AdquireSeq1(void)
     Relay_getCurrent_ExpectAndReturn(3);
     Relay_getVoltage_ExpectAndReturn(3);
 
-    SigMon_enSeq0(me);
+    SigMon_enSeq1(me);
     SigMon_Seq1ToSeq1Loc6(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
-    SigMon_Seq1ToSeq1Loc6(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
+    SigMon_Seq1ToSeq2Ext7(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
 
     TEST_ASSERT_EQUAL(3, me->currVal);
     TEST_ASSERT_EQUAL(3, me->voltVal);
@@ -264,15 +235,12 @@ test_AdquireSeq2(void)
     Relay_getVoltage_ExpectAndReturn(1);
     Relay_getCurrent_ExpectAndReturn(2);
     Relay_getVoltage_ExpectAndReturn(2);
-    Relay_getCurrent_ExpectAndReturn(3);
-    Relay_getVoltage_ExpectAndReturn(3);
 
-    SigMon_enSeq0(me);
     SigMon_Seq2ToSeq2Loc5(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
     SigMon_Seq2ToSeq2Loc5(me, RKH_UPCAST(RKH_EVT_T, &me->evSyncObj));
 
-    TEST_ASSERT_EQUAL(3, me->currVal);
-    TEST_ASSERT_EQUAL(3, me->voltVal);
+    TEST_ASSERT_EQUAL(2, me->currVal);
+    TEST_ASSERT_EQUAL(2, me->voltVal);
 }
 
 void

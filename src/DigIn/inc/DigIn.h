@@ -52,6 +52,7 @@ struct DigIn
 
 /* -------------------------- External variables --------------------------- */
 /* -------------------------- Function prototypes -------------------------- */
+void DigIn_init(void);
 DigIn DigIn_get(void);
 
 /* -------------------- External C language linkage end -------------------- */

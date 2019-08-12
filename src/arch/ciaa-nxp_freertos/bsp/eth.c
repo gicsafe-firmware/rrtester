@@ -11,12 +11,15 @@
 /* -------------------------------- Authors -------------------------------- */
 /*
  *  DaBa  Dario Baliña       db@vortexmakes.com
+ *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
 #include "rkh.h"
 #include "bsp.h"
+#include "ConMgrEth.h"
+#include "signals.h"
 
 #include "lwip/init.h"
 #include "lwip/opt.h"
@@ -26,6 +29,7 @@
 #include "lwip/ip_addr.h"
 #include "lwip/netif.h"
 #include "lwip/timers.h"
+#include "lwip/sockets.h"
 #include "netif/etharp.h"
 
 #if LWIP_DHCP
@@ -46,6 +50,16 @@
 /* ---------------------------- Local variables ---------------------------- */
 static struct netif lpc_netif;
 
+static rui8_t eth;
+static int s;
+
+static RKH_ROM_STATIC_EVENT(e_Ok, evOk);
+static RKH_ROM_STATIC_EVENT(e_Error, evError);
+static RKH_ROM_STATIC_EVENT(e_linkConnected, evEthLinkConnect);
+static RKH_ROM_STATIC_EVENT(e_linkDisconnect, evEthLinkDisconnect);
+static RKH_ROM_STATIC_EVENT(e_ipStatus, evIPStatus);
+static RKH_ROM_STATIC_EVENT(e_connected, evConnected);
+static RKH_ROM_STATIC_EVENT(e_disconnected, evDisconnected);
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
 void
@@ -60,6 +74,33 @@ tcpip_init_done_signal(void *arg)
 {
     /* Tell main thread TCP/IP init is done */
     *(s32_t *) arg = 1;
+}
+
+static void
+link_status_changed(struct netif *netif)
+{
+	if (netif->flags & NETIF_FLAG_LINK_UP)
+	{
+        RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
+        		&e_linkConnected), &eth);
+        RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
+        		&e_ipStatus), &eth);
+
+        RKH_TRC_USR_BEGIN(ETH_USR_TRACE)
+             RKH_TUSR_STR("Ethernet Link Connected");
+        RKH_TRC_USR_END();
+	}
+	else
+	{
+		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
+				&e_disconnected), &eth);
+		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
+				&e_linkDisconnect), &eth);
+
+		RKH_TRC_USR_BEGIN(ETH_USR_TRACE)
+			RKH_TUSR_STR("Ethernet Link Disconnected");
+		RKH_TRC_USR_END();
+	}
 }
 
 /* LWIP kickoff and PHY link monitor thread */
@@ -109,6 +150,8 @@ vSetupEthTask(void *pvParameters)
     netif_set_default(&lpc_netif);
     netif_set_up(&lpc_netif);
 
+    netif_set_link_callback(&lpc_netif, (netif_status_callback_fn) link_status_changed);
+
     /* Enable MAC interrupts only after LWIP is ready */
     NVIC_SetPriority(ETHERNET_IRQn, config_ETHERNET_INTERRUPT_PRIORITY);
     NVIC_EnableIRQ(ETHERNET_IRQn);
@@ -119,7 +162,7 @@ vSetupEthTask(void *pvParameters)
 
     /* Initialize and start applications */
     
-    tcpecho_init();
+//    tcpecho_init();
 //    tcptrace_init();
     //RKH_SMA_POST_FIFO(ethMgr, RKH_UPCAST(RKH_EVT_T, &e_Received), conMgr);
 
@@ -177,11 +220,6 @@ vSetupEthTask(void *pvParameters)
             DEBUGOUT("Link connect status: %d\r\n",
                      ((physts & PHY_LINK_CONNECTED) != 0));
 
-            RKH_TRC_USR_BEGIN(ETH_USR_TRACE)
-                 RKH_TUSR_STR("Ethernet Link ");
-                 RKH_TUSR_STR(((physts & PHY_LINK_CONNECTED) != 0 ? 
-                                    "Connected" : "Disconnected"));
-            RKH_TRC_USR_END();
             /* Delay for link detection (250mS) */
             vTaskDelay(configTICK_RATE_HZ / 4);
         }
@@ -229,6 +267,7 @@ eth_init(void)
     xTaskCreate(vSetupEthTask, "SetupEth",
                 configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
                 (xTaskHandle *) NULL);
+    s = NULL;
 }
 
 void
@@ -239,16 +278,114 @@ eth_deinit(void)
 void
 eth_socketOpen(char *ip, char *port)
 {
+	RKH_TRC_USR_BEGIN(ETH_USR_TRACE)
+		RKH_TUSR_STR("CALLED socketOpen\r\n");
+	RKH_TRC_USR_END();
+
+
+	struct sockaddr_in addr;
+	/* set up address to connect to */
+	memset(&addr, 0, sizeof(addr));
+	addr.sin_len = sizeof(addr);
+	addr.sin_family = AF_INET;
+	addr.sin_port = PP_HTONS(1883);
+	addr.sin_addr.s_addr = inet_addr("18.195.250.188"); //HiveMQ
+
+	if(s != NULL)
+		lwip_close(s);
+
+	s = lwip_socket(AF_INET, SOCK_STREAM, 0);
+	if (s < 0)
+	{
+		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Error), &eth);
+
+		RKH_TRC_USR_BEGIN(ETH_USR_TRACE)
+			RKH_TUSR_STR("lwip_socket < 0\r\n");
+		RKH_TRC_USR_END();
+	}
+	int ret = lwip_connect(s, (struct sockaddr*)&addr, sizeof(addr));
+	if (ret == 0)
+	{
+		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_connected), &eth);
+
+		RKH_TRC_USR_BEGIN(ETH_USR_TRACE)
+			RKH_TUSR_STR("Socket Connected\r\n");
+		RKH_TRC_USR_END();
+
+		int opt = 100;
+		lwip_setsockopt(s, SOL_SOCKET, SO_RCVTIMEO, &opt, sizeof(int));
+		lwip_setsockopt(s, SOL_SOCKET, SO_SNDTIMEO, &opt, sizeof(int));
+	}
+	else
+	{
+		lwip_close(s);
+		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Error), &eth);
+
+		RKH_TRC_USR_BEGIN(ETH_USR_TRACE)
+			RKH_TUSR_STR("lwip_connect < 0\r\n");
+		RKH_TRC_USR_END();
+	}
 }
 
 void
 eth_socketWrite(rui8_t *p, ruint size)
 {
+	RKH_TRC_USR_BEGIN(ETH_USR_TRACE)
+		RKH_TUSR_STR("CALLED socketWrite\r\n");
+	RKH_TRC_USR_END();
+
+	int ret = lwip_send(s, p, size, 0);
+	if (ret < 0)
+	{
+		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
+				&e_disconnected), &eth);
+	}
+	else
+	{
+		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
+	}
 }
 
 ruint
 eth_socketRead(rui8_t *p, ruint size)
 {
+	RKH_TRC_USR_BEGIN(ETH_USR_TRACE)
+		RKH_TUSR_STR("CALLED socketRead\r\n");
+	RKH_TRC_USR_END();
+
+	int ret;
+
+	ret = lwip_read(s, (char *)p, size);
+/*	if (-1 == ret)
+	{
+		RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
+				&e_disconnected), &eth);
+		return 0;
+	}
+	else*/
+	if (ret < 0 )
+	{
+		int error;
+		u32_t optlen = sizeof(error);
+		lwip_getsockopt(s, SOL_SOCKET, SO_ERROR, &error, &optlen);
+
+		switch (error)
+		{
+		case EWOULDBLOCK:	// Same as EAGAIN check for portability
+			RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
+			break;
+
+		default:
+			RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T,
+					&e_Error), &eth);
+			break;
+		}
+		return 0;
+	}
+
+	RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
+
+	return ret;
 }
 
 /* ------------------------------ End of file ------------------------------ */

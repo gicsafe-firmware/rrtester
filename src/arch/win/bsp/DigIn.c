@@ -26,6 +26,7 @@
 /*
  *  LeFr  Leandro Francucci lf@vortexmakes.com
  *  CaMa  Carlos Mancón     manconci@gmail.com
+ *  DaBa  Dario Baliña      db@vortexmakes.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -55,10 +56,15 @@ extern int relayFailure;
 /* ---------------------------- Local variables ---------------------------- */
 static rui16_t callCount = 0;
 static rui8_t currState = 0;
-rui8_t sequence[DIGIN_STATES_QTY] = {4, 0, 6, 2, 4, 0, 4, 0, 4, 0, 5, 1};
+rui8_t sequence[DIGIN_STATES_QTY] = {0, 6, 2, 4, 0, 4, 0, 4, 0, 5, 1};
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
 /* ---------------------------- Global functions --------------------------- */
+void
+DigIn_init(void)
+{
+}
+
 DigIn
 DigIn_get(void)
 {
