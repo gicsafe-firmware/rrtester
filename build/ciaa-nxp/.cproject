@@ -22,7 +22,7 @@
 							<builder buildPath="${workspace_loc:/rrtester_freertos}/Debug" id="cdt.managedbuild.target.gnu.builder.base.47024403" keepEnvironmentInBuildfile="false" name="Gnu Make Builder" parallelBuildOn="true" parallelizationNumber="optimal" superClass="cdt.managedbuild.target.gnu.builder.base"/>
 							<tool id="com.crt.advproject.cpp.exe.debug.761011699" name="MCU C++ Compiler" superClass="com.crt.advproject.cpp.exe.debug">
 								<option id="com.crt.advproject.cpp.hdrlib.1024914225" name="Library headers" superClass="com.crt.advproject.cpp.hdrlib" useByScannerDiscovery="false"/>
-								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.compiler.option.preprocessor.def.2013685740" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false" valueType="definedSymbols">
+								<option id="gnu.cpp.compiler.option.preprocessor.def.2013685740" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__MULTICORE_NONE"/>
 								</option>
 								<option id="com.crt.advproject.cpp.fpu.1412683016" name="Floating point" superClass="com.crt.advproject.cpp.fpu" useByScannerDiscovery="false"/>
@@ -30,7 +30,7 @@
 							<tool command="arm-none-eabi-gcc" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="com.crt.advproject.gcc.exe.debug.110044005" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.debug">
 								<option id="com.crt.advproject.gcc.thumb.575732171" name="Thumb mode" superClass="com.crt.advproject.gcc.thumb" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option id="com.crt.advproject.gcc.arch.120943196" name="Architecture" superClass="com.crt.advproject.gcc.arch" useByScannerDiscovery="false" value="com.crt.advproject.gcc.target.cm4" valueType="enumerated"/>
-								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.c.compiler.option.preprocessor.def.symbols.1582073693" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
+								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1582073693" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__CODE_RED"/>
 									<listOptionValue builtIn="false" value="CORE_M4"/>
 									<listOptionValue builtIn="false" value="__LPC43XX__"/>
@@ -50,60 +50,60 @@
 								<option id="com.crt.advproject.gcc.hdrlib.554398315" name="Library headers" superClass="com.crt.advproject.gcc.hdrlib" useByScannerDiscovery="false" value="com.crt.advproject.gcc.hdrlib.codered" valueType="enumerated"/>
 								<option id="com.crt.advproject.gcc.specs.129604829" name="Specs" superClass="com.crt.advproject.gcc.specs" useByScannerDiscovery="false" value="com.crt.advproject.gcc.specs.codered" valueType="enumerated"/>
 								<option id="com.crt.advproject.gcc.fpu.2107142452" name="Floating point" superClass="com.crt.advproject.gcc.fpu" useByScannerDiscovery="false" value="com.crt.advproject.gcc.fpu.fpv4" valueType="enumerated"/>
-								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.c.compiler.option.include.paths.117219667" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../bsp&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../StoreTest/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../Relay/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../DigIn/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../SigMon/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../bsp/rkhport&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/LPCOpen/lpc_chip_43xx/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/LPCOpen/lpc_board_ciaa_edu_4337/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/sapi_rtos/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/ssp/src&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../conMgrGsm&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../modcmd&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../modmgr&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../IOSampler/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../mqttProt&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/fwk/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/mempool/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/queue/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/sm/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/sma/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/tmr/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/trc/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../parser/sim900&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../adconv&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../anIn&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../anSampler/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../CirBuffer/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../dIn&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../emaFilter&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../epoch/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../mTime&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../rtime&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../modpwr&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../date&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../publisher&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../config&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../eth&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/MQTT-C/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/jWrite/jWrite&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/amazon-freertos/lib/FreeRTOS/portable/GCC/ARM_CM4F&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/amazon-freertos/lib/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/amazon-freertos/lib/include/private&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../conMgrEth&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/lwip/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/lwip/include/ipv4&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../bsp/common&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../IOSampler/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../SigMon/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../DigIn/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../StoreTest/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../Relay/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/sapi/inc&quot;"/>
+								<option id="gnu.c.compiler.option.include.paths.117219667" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/bsp/ciaa_nxp&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/StoreTest/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/Relay/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/DigIn/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/SigMon/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/bsp/ciaa_nxp/rkhport&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/LPCOpen/lpc_chip_43xx/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/LPCOpen/lpc_board_ciaa_edu_4337/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/sapi_rtos/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/ssp/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/conMgrGsm&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/modcmd&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/modmgr&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/IOSampler/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/mqttProt&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/fwk/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/mempool/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/queue/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/sm/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/sma/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/tmr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/trc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/parser/sim900&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/adconv&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/anIn&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/anSampler/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/CirBuffer/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/dIn&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/emaFilter&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/epoch/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/mTime&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/rtime&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/modpwr&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/date&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/publisher&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/config&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/eth&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/MQTT-C/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/jWrite/jWrite&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/amazon-freertos/lib/FreeRTOS/portable/GCC/ARM_CM4F&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/amazon-freertos/lib/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/amazon-freertos/lib/include/private&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/conMgrEth&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/lwip/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/lwip/include/ipv4&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/bsp/ciaa_nxp/common&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/IOSampler/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/SigMon/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/DigIn/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/StoreTest/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/Relay/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/sapi/inc&quot;"/>
 								</option>
 								<inputType id="com.crt.advproject.compiler.input.1047996959" superClass="com.crt.advproject.compiler.input"/>
 							</tool>
@@ -114,13 +114,13 @@
 								<option id="com.crt.advproject.gas.hdrlib.1026732074" name="Library headers" superClass="com.crt.advproject.gas.hdrlib" useByScannerDiscovery="false" value="Redlib" valueType="enumerated"/>
 								<option id="com.crt.advproject.gas.specs.1291695495" name="Specs" superClass="com.crt.advproject.gas.specs" useByScannerDiscovery="false" value="com.crt.advproject.gas.specs.codered" valueType="enumerated"/>
 								<option id="com.crt.advproject.gas.fpu.1034818175" name="Floating point" superClass="com.crt.advproject.gas.fpu" useByScannerDiscovery="false" value="com.crt.advproject.gas.fpu.fpv4" valueType="enumerated"/>
-								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.both.asm.option.include.paths.190556574" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../IOSampler/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../SigMon/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../DigIn/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../StoreTest/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../Relay/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/sapi/inc&quot;"/>
+								<option id="gnu.both.asm.option.include.paths.190556574" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/IOSampler/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/SigMon/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/DigIn/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/StoreTest/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/Relay/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/sapi/inc&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.238297740" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 								<inputType id="com.crt.advproject.assembler.input.1254139952" name="Additional Assembly Source Files" superClass="com.crt.advproject.assembler.input"/>
@@ -133,12 +133,12 @@
 								<option id="com.crt.advproject.link.thumb.1675130573" name="Thumb mode" superClass="com.crt.advproject.link.thumb" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option id="com.crt.advproject.link.memory.heapAndStack.317637294" name="Heap and Stack options" superClass="com.crt.advproject.link.memory.heapAndStack" useByScannerDiscovery="false" value="&amp;Heap:RamLoc40;Start;0xa000&amp;Stack:RamLoc32;End;0x1000" valueType="string"/>
 								<option id="com.crt.advproject.link.gcc.multicore.master.1443381831" name="Multicore master" superClass="com.crt.advproject.link.gcc.multicore.master" useByScannerDiscovery="false"/>
-								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="true" id="com.crt.advproject.link.gcc.multicore.master.userobjs.1061522281" name="Slave Objects (not visible)" superClass="com.crt.advproject.link.gcc.multicore.master.userobjs" useByScannerDiscovery="false" valueType="userObjs"/>
+								<option id="com.crt.advproject.link.gcc.multicore.master.userobjs.1061522281" name="Slave Objects (not visible)" superClass="com.crt.advproject.link.gcc.multicore.master.userobjs" useByScannerDiscovery="false" valueType="userObjs"/>
 								<option id="com.crt.advproject.link.arch.2015653506" name="Architecture" superClass="com.crt.advproject.link.arch" useByScannerDiscovery="false" value="com.crt.advproject.link.target.cm4" valueType="enumerated"/>
 								<option id="com.crt.advproject.link.script.1980150676" name="Linker script" superClass="com.crt.advproject.link.script" useByScannerDiscovery="false" value="&quot;rrtester_freertos_Debug.ld&quot;" valueType="string"/>
 								<option id="com.crt.advproject.link.manage.570933948" name="Manage linker script" superClass="com.crt.advproject.link.manage" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option id="gnu.c.link.option.nostdlibs.1734164758" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.c.link.option.other.1370005670" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" useByScannerDiscovery="false" valueType="stringList">
+								<option id="gnu.c.link.option.other.1370005670" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" useByScannerDiscovery="false" valueType="stringList">
 									<listOptionValue builtIn="false" value="-Map=&quot;${BuildArtifactFileBaseName}.map&quot;"/>
 									<listOptionValue builtIn="false" value="--gc-sections"/>
 									<listOptionValue builtIn="false" value="-print-memory-usage"/>
@@ -150,13 +150,82 @@
 								<option defaultValue="com.crt.advproject.heapAndStack.lpcXpressoStyle" id="com.crt.advproject.link.memory.heapAndStack.style.1248651648" name="Heap and Stack placement" superClass="com.crt.advproject.link.memory.heapAndStack.style" useByScannerDiscovery="false" value="com.crt.advproject.heapAndStack.mcuXpressoStyle" valueType="enumerated"/>
 								<option id="com.crt.advproject.link.memory.load.image.907301736" name="Plain load image" superClass="com.crt.advproject.link.memory.load.image" useByScannerDiscovery="false" value="" valueType="string"/>
 								<option id="com.crt.advproject.link.memory.data.83189042" name="Global data placement" superClass="com.crt.advproject.link.memory.data" useByScannerDiscovery="false" value="" valueType="string"/>
-								<option id="com.crt.advproject.link.memory.sections.411623374" name="Extra linker script input sections" superClass="com.crt.advproject.link.memory.sections" useByScannerDiscovery="false" valueType="stringList"/>
+								<option id="com.crt.advproject.link.memory.sections.411623374" name="Extra linker script input sections" superClass="com.crt.advproject.link.memory.sections" useByScannerDiscovery="false"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.238585915" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
 								</inputType>
 							</tool>
-							<tool id="com.crt.advproject.tool.debug.debug.1345173750" name="MCU Debugger" superClass="com.crt.advproject.tool.debug.debug"/>
+						</toolChain>
+					</folderInfo>
+					<folderInfo id="com.crt.advproject.config.exe.debug.1287796118.2014436861" name="/" resourcePath="rrtester">
+						<toolChain id="com.crt.advproject.toolchain.exe.debug.305675922" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.debug" unusedChildren="">
+							<tool id="com.crt.advproject.cpp.exe.debug.856648758" name="MCU C++ Compiler" superClass="com.crt.advproject.cpp.exe.debug.761011699"/>
+							<tool id="com.crt.advproject.gcc.exe.debug.181287141" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.debug.110044005">
+								<option id="gnu.c.compiler.option.include.paths.1488214811" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/bsp/ciaa_nxp&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/StoreTest/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/Relay/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/DigIn/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/SigMon/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/bsp/ciaa_nxp/rkhport&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/bsp/&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/LPCOpen/lpc_chip_43xx/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/LPCOpen/lpc_board_ciaa_edu_4337/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/sapi_rtos/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/ssp/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/conMgrGsm&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/modcmd&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/modmgr&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/IOSampler/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/mqttProt&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/fwk/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/mempool/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/queue/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/sm/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/sma/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/tmr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/trc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/parser/sim900&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/adconv&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/anIn&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/anSampler/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/CirBuffer/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/dIn&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/emaFilter&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/epoch/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/mTime&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/rtime&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/modpwr&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/date&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/publisher&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/config&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/eth&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/MQTT-C/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/jWrite/jWrite&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/amazon-freertos/lib/FreeRTOS/portable/GCC/ARM_CM4F&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/amazon-freertos/lib/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/amazon-freertos/lib/include/private&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/conMgrEth&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/lwip/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/lwip/include/ipv4&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/bsp/ciaa_nxp/common&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/IOSampler/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/SigMon/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/DigIn/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/StoreTest/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/Relay/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/sapi/inc&quot;"/>
+								</option>
+								<inputType id="com.crt.advproject.compiler.input.1795175618" superClass="com.crt.advproject.compiler.input"/>
+							</tool>
+							<tool id="com.crt.advproject.gas.exe.debug.159688635" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.debug.693662540">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1009366015" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+								<inputType id="com.crt.advproject.assembler.input.1878056449" name="Additional Assembly Source Files" superClass="com.crt.advproject.assembler.input"/>
+							</tool>
+							<tool id="com.crt.advproject.link.cpp.exe.debug.1468015516" name="MCU C++ Linker" superClass="com.crt.advproject.link.cpp.exe.debug.976839549"/>
+							<tool id="com.crt.advproject.link.exe.debug.1939380947" name="MCU Linker" superClass="com.crt.advproject.link.exe.debug.2119364975"/>
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
@@ -189,7 +258,7 @@
 							<tool id="com.crt.advproject.gcc.exe.release.66117631" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
 								<option id="com.crt.advproject.gcc.thumb.499395876" name="Thumb mode" superClass="com.crt.advproject.gcc.thumb" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option id="com.crt.advproject.gcc.arch.825510719" name="Architecture" superClass="com.crt.advproject.gcc.arch" useByScannerDiscovery="false" value="com.crt.advproject.gcc.target.cm4" valueType="enumerated"/>
-								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.c.compiler.option.preprocessor.def.symbols.1000227059" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
+								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1000227059" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__CODE_RED"/>
 									<listOptionValue builtIn="false" value="CORE_M4"/>
 									<listOptionValue builtIn="false" value="__LPC43XX__"/>
@@ -209,56 +278,56 @@
 								<option id="com.crt.advproject.gcc.hdrlib.1549842938" name="Library headers" superClass="com.crt.advproject.gcc.hdrlib" useByScannerDiscovery="false" value="com.crt.advproject.gcc.hdrlib.codered" valueType="enumerated"/>
 								<option id="com.crt.advproject.gcc.specs.528004089" name="Specs" superClass="com.crt.advproject.gcc.specs" useByScannerDiscovery="false" value="com.crt.advproject.gcc.specs.codered" valueType="enumerated"/>
 								<option id="com.crt.advproject.gcc.fpu.597330360" name="Floating point" superClass="com.crt.advproject.gcc.fpu" useByScannerDiscovery="false" value="com.crt.advproject.gcc.fpu.fpv4" valueType="enumerated"/>
-								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.c.compiler.option.include.paths.1075921380" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../bsp&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../bsp/rkhport&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/LPCOpen/lpc_chip_43xx/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/LPCOpen/lpc_board_ciaa_edu_4337/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/sapi_rtos/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/ssp/src&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../conMgrGsm&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../modcmd&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../modmgr&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../mqttProt&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/fwk/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/mempool/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/queue/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/sm/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/sma/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/tmr/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/rkh/source/trc/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../parser/sim900&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../adconv&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../anIn&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../anSampler/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../CirBuffer/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../dIn&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../emaFilter&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../epoch/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../ioChgDet/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../mTime&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../rtime&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../modpwr&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../date&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../publisher&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../config&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../eth&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/MQTT-C/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/jWrite/jWrite&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/amazon-freertos/lib/FreeRTOS/portable/GCC/ARM_CM4F&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/amazon-freertos/lib/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/amazon-freertos/lib/include/private&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../conMgrEth&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/lwip/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/lwip/include/ipv4&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../bsp/common&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../IOSampler/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../SigMon/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../DigIn/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../StoreTest/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../Relay/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/sapi/inc&quot;"/>
+								<option id="gnu.c.compiler.option.include.paths.1075921380" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/bsp/ciaa_nxp&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/bsp/ciaa_nxp/rkhport&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/LPCOpen/lpc_chip_43xx/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/LPCOpen/lpc_board_ciaa_edu_4337/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/sapi_rtos/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/ssp/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/conMgrGsm&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/modcmd&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/modmgr&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/mqttProt&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/fwk/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/mempool/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/queue/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/sm/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/sma/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/tmr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/trc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/parser/sim900&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/adconv&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/anIn&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/anSampler/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/CirBuffer/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/dIn&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/emaFilter&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/epoch/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/ioChgDet/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/mTime&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/rtime&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/modpwr&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/date&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/publisher&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/config&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/eth&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/MQTT-C/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/jWrite/jWrite&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/amazon-freertos/lib/FreeRTOS/portable/GCC/ARM_CM4F&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/amazon-freertos/lib/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/amazon-freertos/lib/include/private&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/conMgrEth&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/lwip/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/lwip/include/ipv4&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/bsp/ciaa_nxp/common&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/IOSampler/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/SigMon/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/DigIn/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/StoreTest/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/Relay/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/sapi/inc&quot;"/>
 								</option>
 								<inputType id="com.crt.advproject.compiler.input.1126606754" superClass="com.crt.advproject.compiler.input"/>
 							</tool>
@@ -269,13 +338,13 @@
 								<option id="com.crt.advproject.gas.hdrlib.1901122935" name="Library headers" superClass="com.crt.advproject.gas.hdrlib" useByScannerDiscovery="false" value="com.crt.advproject.gas.hdrlib.codered" valueType="enumerated"/>
 								<option id="com.crt.advproject.gas.specs.761937829" name="Specs" superClass="com.crt.advproject.gas.specs" useByScannerDiscovery="false" value="com.crt.advproject.gas.specs.codered" valueType="enumerated"/>
 								<option id="com.crt.advproject.gas.fpu.1497831544" name="Floating point" superClass="com.crt.advproject.gas.fpu" useByScannerDiscovery="false" value="com.crt.advproject.gas.fpu.fpv4" valueType="enumerated"/>
-								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.both.asm.option.include.paths.1569218400" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../IOSampler/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../SigMon/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../DigIn/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../StoreTest/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../Relay/inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../../third-party/sapi/inc&quot;"/>
+								<option id="gnu.both.asm.option.include.paths.1569218400" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/IOSampler/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/SigMon/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/DigIn/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/StoreTest/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/Relay/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/sapi/inc&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.201823258" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 								<inputType id="com.crt.advproject.assembler.input.1178298719" name="Additional Assembly Source Files" superClass="com.crt.advproject.assembler.input"/>
@@ -285,12 +354,12 @@
 								<option id="com.crt.advproject.link.thumb.829603185" name="Thumb mode" superClass="com.crt.advproject.link.thumb" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option id="com.crt.advproject.link.memory.heapAndStack.682461649" name="Heap and Stack options" superClass="com.crt.advproject.link.memory.heapAndStack" useByScannerDiscovery="false" value="&amp;Heap:Default;Post Data;Default&amp;Stack:Default;End;Default" valueType="string"/>
 								<option id="com.crt.advproject.link.gcc.multicore.master.1300725781" name="Multicore master" superClass="com.crt.advproject.link.gcc.multicore.master" useByScannerDiscovery="false"/>
-								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="true" id="com.crt.advproject.link.gcc.multicore.master.userobjs.761860408" name="Slave Objects (not visible)" superClass="com.crt.advproject.link.gcc.multicore.master.userobjs" useByScannerDiscovery="false" valueType="userObjs"/>
+								<option id="com.crt.advproject.link.gcc.multicore.master.userobjs.761860408" name="Slave Objects (not visible)" superClass="com.crt.advproject.link.gcc.multicore.master.userobjs" useByScannerDiscovery="false" valueType="userObjs"/>
 								<option id="com.crt.advproject.link.arch.1185060931" name="Architecture" superClass="com.crt.advproject.link.arch" useByScannerDiscovery="false" value="com.crt.advproject.link.target.cm4" valueType="enumerated"/>
 								<option id="com.crt.advproject.link.script.1821745044" name="Linker script" superClass="com.crt.advproject.link.script" useByScannerDiscovery="false" value="&quot;rrtester_Release.ld&quot;" valueType="string"/>
 								<option id="com.crt.advproject.link.manage.1429101189" name="Manage linker script" superClass="com.crt.advproject.link.manage" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option id="gnu.c.link.option.nostdlibs.1992524094" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.c.link.option.other.1432597896" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" useByScannerDiscovery="false" valueType="stringList">
+								<option id="gnu.c.link.option.other.1432597896" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" useByScannerDiscovery="false" valueType="stringList">
 									<listOptionValue builtIn="false" value="-Map=&quot;${BuildArtifactFileBaseName}.map&quot;"/>
 									<listOptionValue builtIn="false" value="--gc-sections"/>
 									<listOptionValue builtIn="false" value="-print-memory-usage"/>
@@ -301,13 +370,82 @@
 								<option id="com.crt.advproject.link.gcc.multicore.slave.2040645549" name="Multicore configuration" superClass="com.crt.advproject.link.gcc.multicore.slave" useByScannerDiscovery="false"/>
 								<option id="com.crt.advproject.link.memory.load.image.122593039" name="Plain load image" superClass="com.crt.advproject.link.memory.load.image" value="" valueType="string"/>
 								<option id="com.crt.advproject.link.memory.data.573729112" name="Global data placement" superClass="com.crt.advproject.link.memory.data" value="" valueType="string"/>
-								<option id="com.crt.advproject.link.memory.sections.884843569" name="Extra linker script input sections" superClass="com.crt.advproject.link.memory.sections" valueType="stringList"/>
+								<option id="com.crt.advproject.link.memory.sections.884843569" name="Extra linker script input sections" superClass="com.crt.advproject.link.memory.sections"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.1990670045" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
 								</inputType>
 							</tool>
-							<tool id="com.crt.advproject.tool.debug.release.2083741912" name="MCU Debugger" superClass="com.crt.advproject.tool.debug.release"/>
+						</toolChain>
+					</folderInfo>
+					<folderInfo id="com.crt.advproject.config.exe.release.587497307.1904493235" name="/" resourcePath="rrtester">
+						<toolChain id="com.crt.advproject.toolchain.exe.release.782375339" name="NXP MCU Tools" superClass="com.crt.advproject.toolchain.exe.release" unusedChildren="">
+							<tool id="com.crt.advproject.cpp.exe.release.718298524" name="MCU C++ Compiler" superClass="com.crt.advproject.cpp.exe.release.1071872915"/>
+							<tool id="com.crt.advproject.gcc.exe.release.1009491806" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release.66117631">
+								<option id="gnu.c.compiler.option.include.paths.864421930" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/bsp/ciaa_nxp&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/StoreTest/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/Relay/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/DigIn/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/SigMon/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/bsp/ciaa_nxp/rkhport&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/bsp/&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/LPCOpen/lpc_chip_43xx/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/LPCOpen/lpc_board_ciaa_edu_4337/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/sapi_rtos/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/ssp/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/conMgrGsm&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/modcmd&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/modmgr&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/IOSampler/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/mqttProt&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/fwk/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/mempool/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/queue/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/sm/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/sma/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/tmr/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/rkh/source/trc/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/parser/sim900&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/adconv&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/anIn&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/anSampler/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/CirBuffer/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/dIn&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/emaFilter&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/epoch/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/mTime&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/rtime&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/modpwr&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/date&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/publisher&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/config&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/eth&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/MQTT-C/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/jWrite/jWrite&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/amazon-freertos/lib/FreeRTOS/portable/GCC/ARM_CM4F&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/amazon-freertos/lib/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/amazon-freertos/lib/include/private&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/conMgrEth&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/lwip/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/lwip/include/ipv4&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/bsp/ciaa_nxp/common&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/IOSampler/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/SigMon/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/DigIn/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/StoreTest/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/Relay/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../third-party/sapi/inc&quot;"/>
+								</option>
+								<inputType id="com.crt.advproject.compiler.input.806528318" superClass="com.crt.advproject.compiler.input"/>
+							</tool>
+							<tool id="com.crt.advproject.gas.exe.release.1216363093" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release.1296001641">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.2051429647" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+								<inputType id="com.crt.advproject.assembler.input.1955567644" name="Additional Assembly Source Files" superClass="com.crt.advproject.assembler.input"/>
+							</tool>
+							<tool id="com.crt.advproject.link.cpp.exe.release.1460798797" name="MCU C++ Linker" superClass="com.crt.advproject.link.cpp.exe.release.1647397405"/>
+							<tool id="com.crt.advproject.link.exe.release.1643129045" name="MCU Linker" superClass="com.crt.advproject.link.exe.release.1179485892"/>
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
@@ -433,10 +571,10 @@
 		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.debug.1287796118;com.crt.advproject.config.exe.debug.1287796118.;com.crt.advproject.gcc.exe.debug.110044005;com.crt.advproject.compiler.input.1047996959">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.crt.advproject.GCCManagedMakePerProjectProfile"/>
 		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.release.587497307;com.crt.advproject.config.exe.release.587497307.;com.crt.advproject.gas.exe.release.1296001641;com.crt.advproject.assembler.input.1178298719">
+		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.release.587497307;com.crt.advproject.config.exe.release.587497307.;com.crt.advproject.gcc.exe.release.66117631;com.crt.advproject.compiler.input.1126606754">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.crt.advproject.GCCManagedMakePerProjectProfile"/>
 		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.release.587497307;com.crt.advproject.config.exe.release.587497307.;com.crt.advproject.gcc.exe.release.66117631;com.crt.advproject.compiler.input.1126606754">
+		<scannerConfigBuildInfo instanceId="com.crt.advproject.config.exe.release.587497307;com.crt.advproject.config.exe.release.587497307.;com.crt.advproject.gas.exe.release.1296001641;com.crt.advproject.assembler.input.1178298719">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.crt.advproject.GCCManagedMakePerProjectProfile"/>
 		</scannerConfigBuildInfo>
 	</storageModule>

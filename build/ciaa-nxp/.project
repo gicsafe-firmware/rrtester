@@ -42,7 +42,7 @@
 		<link>
 			<name>rrtester/lwip</name>
 			<type>2</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/lwip</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/lwip</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh</name>
@@ -62,112 +62,112 @@
 		<link>
 			<name>rrtester/FreeRTOS/event_groups.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/event_groups.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/event_groups.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/FreeRTOS/list.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/list.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/list.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/FreeRTOS/queue.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/queue.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/queue.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/FreeRTOS/stream_buffer.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/stream_buffer.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/stream_buffer.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/FreeRTOS/tasks.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/tasks.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/tasks.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/FreeRTOS/timers.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/timers.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/timers.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/MQTT-C/mqtt.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/MQTT-C/src/mqtt.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/MQTT-C/src/mqtt.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/MQTT-C/mqtt_pal.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/MQTT-C/src/mqtt_pal.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/MQTT-C/src/mqtt_pal.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/DigIn.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/DigIn.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/DigIn.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/Endianness.h</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/Endianness.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/Endianness.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/FreeRTOSConfig.h</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/FreeRTOSConfig.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/FreeRTOSConfig.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/FreeRTOSHooks.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/FreeRTOSHooks.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/FreeRTOSHooks.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/anin.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/anin.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/anin.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/assert.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/assert.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/assert.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/bsp.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/bsp.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/bsp.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/common</name>
 			<type>2</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/common</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/common</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/din.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/din.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/din.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/emc.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/emc.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/emc.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/emc.h</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/emc.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/emc.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/eth.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/eth.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/eth.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/hook.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/hook.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/hook.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_18xx43xx_emac_config.h</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/lpc_18xx43xx_emac_config.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/lpc_18xx43xx_emac_config.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_board</name>
@@ -182,32 +182,32 @@
 		<link>
 			<name>rrtester/bsp/lwipopts.h</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/lwipopts.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/lwipopts.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/modpwr.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/modpwr.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/modpwr.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/rkhport</name>
 			<type>2</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/rkhport</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/rkhport</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/rtime.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/rtime.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/rtime.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/sapi_delay.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi/src/sapi_delay.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/sapi/src/sapi_delay.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/sapi_delay.h</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi/inc/sapi_delay.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/sapi/inc/sapi_delay.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/sapi_rtos</name>
@@ -217,122 +217,122 @@
 		<link>
 			<name>rrtester/bsp/sapi_tick.h</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi/inc/sapi_tick.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/sapi/inc/sapi_tick.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/tcpecho.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/tcpecho.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/tcpecho.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/tcpecho.h</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/tcpecho.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/tcpecho.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/trace_io.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/trace_io.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/trace_io.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/uartisr.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/uartisr.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/uartisr.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/uartisr.h</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/uartisr.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/uartisr.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/jWrite/jWrite.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/jWrite/jWrite/jWrite.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/jWrite/jWrite/jWrite.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhfwk_bittbl.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_bittbl.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_bittbl.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhfwk_dynevt.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_dynevt.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_dynevt.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhfwk_evtpool.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_evtpool.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_evtpool.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhfwk_pubsub.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_pubsub.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_pubsub.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhfwk_rdygrp.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_rdygrp.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_rdygrp.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhfwk_sched.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_sched.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_sched.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhfwk_version.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_version.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/fwk/src/rkhfwk_version.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhmempool.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/mempool/src/rkhmempool.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/mempool/src/rkhmempool.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhqueue.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/queue/src/rkhqueue.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/queue/src/rkhqueue.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhsm.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/sm/src/rkhsm.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/sm/src/rkhsm.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhsma.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/sma/src/rkhsma.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/sma/src/rkhsma.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhsma_prio.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/sma/src/rkhsma_prio.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/sma/src/rkhsma_prio.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhsma_sync.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/sma/src/rkhsma_sync.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/sma/src/rkhsma_sync.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhtmr.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/tmr/src/rkhtmr.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/tmr/src/rkhtmr.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhtrc_filter.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/trc/src/rkhtrc_filter.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/trc/src/rkhtrc_filter.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhtrc_record.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/trc/src/rkhtrc_record.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/trc/src/rkhtrc_record.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/rkh/rkhtrc_stream.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/rkh/source/trc/src/rkhtrc_stream.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/rkh/source/trc/src/rkhtrc_stream.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/CirBuffer</name>
@@ -367,12 +367,12 @@
 		<link>
 			<name>rrtester/src/adconv</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/adconv</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/adconv</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/anIn</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/anIn</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/anIn</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/anSampler</name>
@@ -382,37 +382,37 @@
 		<link>
 			<name>rrtester/src/bsp.h</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/bsp.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/bsp.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/conMgrEth</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/conMgrEth</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/conMgrEth</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/conMgrGsm</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/conMgrGsm</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/conMgrGsm</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/config</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/config</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/config</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/dIn</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/dIn</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/dIn</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/date</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/date</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/date</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/emaFilter</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/emaFilter</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/emaFilter</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/epoch</name>
@@ -422,27 +422,27 @@
 		<link>
 			<name>rrtester/src/mTime</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/mTime</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/mTime</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/main.c</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/main.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/main.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/modcmd</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/modcmd</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/modcmd</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/modmgr</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/modmgr</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/modmgr</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/mqttProt</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/mqttProt</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/mqttProt</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/parser</name>
@@ -452,267 +452,267 @@
 		<link>
 			<name>rrtester/src/publisher</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/publisher</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/publisher</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/rkhcfg.h</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/rkhcfg.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/rkhcfg.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/rtime</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/rtime</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/rtime</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/signals.h</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/signals.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/signals.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/sspcfg.h</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/sspcfg.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/sspcfg.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/ssp/ssp.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/ssp/src/ssp.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/ssp/src/ssp.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/FreeRTOS/portable/heap_3.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/portable/MemMang/heap_3.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/portable/MemMang/heap_3.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/FreeRTOS/portable/port.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/portable/GCC/ARM_CM4F/port.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/portable/GCC/ARM_CM4F/port.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/FreeRTOS/portable/portmacro.h</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/amazon-freertos/lib/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/common/i2cm_18xx_43xx.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/i2cm_18xx_43xx.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/i2cm_18xx_43xx.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_board/board.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_board_ciaa_edu_4337/src/board.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_board_ciaa_edu_4337/src/board.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_board/board_sysinit.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_board_ciaa_edu_4337/src/board_sysinit.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_board_ciaa_edu_4337/src/board_sysinit.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_board/cr_startup_lpc43xx.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_board_ciaa_edu_4337/src/cr_startup_lpc43xx.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_board_ciaa_edu_4337/src/cr_startup_lpc43xx.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_board/crp.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_board_ciaa_edu_4337/src/crp.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_board_ciaa_edu_4337/src/crp.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_board/lpc_phy_smsc87x0.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_board_ciaa_edu_4337/src/lpc_phy_smsc87x0.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_board_ciaa_edu_4337/src/lpc_phy_smsc87x0.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_board/sysinit.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_board_ciaa_edu_4337/src/sysinit.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_board_ciaa_edu_4337/src/sysinit.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_chip/adc_18xx_43xx.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/adc_18xx_43xx.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/adc_18xx_43xx.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_chip/chip_18xx_43xx.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/chip_18xx_43xx.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/chip_18xx_43xx.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_chip/clock_18xx_43xx.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/clock_18xx_43xx.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/clock_18xx_43xx.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_chip/dac_18xx_43xx.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/dac_18xx_43xx.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/dac_18xx_43xx.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_chip/enet_18xx_43xx.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/enet_18xx_43xx.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/enet_18xx_43xx.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_chip/fpu_init.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/fpu_init.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/fpu_init.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_chip/gpio_18xx_43xx.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/gpio_18xx_43xx.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/gpio_18xx_43xx.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_chip/i2c_18xx_43xx.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/i2c_18xx_43xx.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/i2c_18xx_43xx.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_chip/rtc_18xx_43xx.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/rtc_18xx_43xx.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/rtc_18xx_43xx.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_chip/sysinit_18xx_43xx.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/sysinit_18xx_43xx.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/sysinit_18xx_43xx.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/lpc_chip/uart_18xx_43xx.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/uart_18xx_43xx.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/LPCOpen/lpc_chip_43xx/src/uart_18xx_43xx.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/sapi_rtos/sapi_adc.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi_rtos/src/sapi_adc.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/sapi_rtos/src/sapi_adc.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/sapi_rtos/sapi_adc128d818.c</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/sapi_adc128d818.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/sapi_adc128d818.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/sapi_rtos/sapi_adc128d818.h</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/bsp/sapi_adc128d818.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxpsapi_adc128d818.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/sapi_rtos/sapi_board.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi_rtos/src/sapi_board.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/sapi_rtos/src/sapi_board.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/sapi_rtos/sapi_dac.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi_rtos/src/sapi_dac.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/sapi_rtos/src/sapi_dac.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/sapi_rtos/sapi_datatypes.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi_rtos/src/sapi_datatypes.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/sapi_rtos/src/sapi_datatypes.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/sapi_rtos/sapi_gpio.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi_rtos/src/sapi_gpio.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/sapi_rtos/src/sapi_gpio.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/sapi_rtos/sapi_i2c.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi_rtos/src/sapi_i2c.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/sapi_rtos/src/sapi_i2c.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/sapi_rtos/sapi_print.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi_rtos/src/sapi_print.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/sapi_rtos/src/sapi_print.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/sapi_rtos/sapi_rtc.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi_rtos/src/sapi_rtc.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/sapi_rtos/src/sapi_rtc.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/sapi_rtos/sapi_sleep.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi_rtos/src/sapi_sleep.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/sapi_rtos/src/sapi_sleep.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/bsp/sapi_rtos/sapi_uart.c</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/third-party/sapi_rtos/src/sapi_uart.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/third-party/sapi_rtos/src/sapi_uart.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/CirBuffer/CirBuffer.c</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/CirBuffer/src/CirBuffer.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/CirBuffer/src/CirBuffer.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/CirBuffer/CirBuffer.h</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/CirBuffer/inc/CirBuffer.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/CirBuffer/inc/CirBuffer.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/DigIn/DigIn.c</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/DigIn/src/DigIn.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/DigIn/src/DigIn.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/IOSampler/IOSampler.c</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/IOSampler/src/IOSampler.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/IOSampler/src/IOSampler.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/Relay/Relay.c</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/Relay/src/Relay.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/Relay/src/Relay.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/SigMon/SigMon.c</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/SigMon/src/SigMon.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/SigMon/src/SigMon.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/SigMon/SigMonAct.c</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/SigMon/src/SigMonAct.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/SigMon/src/SigMonAct.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/StoreTest/StoreTest.c</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/StoreTest/src/StoreTest.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/StoreTest/src/StoreTest.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/anSampler/anSampler.c</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/anSampler/src/anSampler.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/anSampler/src/anSampler.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/anSampler/anSampler.h</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/anSampler/inc/anSampler.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/anSampler/inc/anSampler.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/epoch/epoch.c</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/epoch/src/epoch.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/epoch/src/epoch.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/epoch/epoch.h</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/epoch/inc/epoch.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/epoch/inc/epoch.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/parser/sim900parser.c</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/parser/sim900/sim900parser.c</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/parser/sim900/sim900parser.c</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/parser/sim900parser.h</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/parser/sim900/sim900parser.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/parser/sim900/sim900parser.h</locationURI>
 		</link>
 	</linkedResources>
 	<variableList>
