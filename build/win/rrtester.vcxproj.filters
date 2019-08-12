@@ -1,181 +1,181 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_bittbl.c">
+    <ClCompile Include="..\..\third-party\rkh\source\fwk\src\rkhfwk_bittbl.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_dynevt.c">
+    <ClCompile Include="..\..\third-party\rkh\source\fwk\src\rkhfwk_dynevt.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_evtpool.c">
+    <ClCompile Include="..\..\third-party\rkh\source\fwk\src\rkhfwk_evtpool.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_sched.c">
+    <ClCompile Include="..\..\third-party\rkh\source\fwk\src\rkhfwk_sched.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_version.c">
+    <ClCompile Include="..\..\third-party\rkh\source\fwk\src\rkhfwk_version.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\mempool\src\rkhmempool.c">
+    <ClCompile Include="..\..\third-party\rkh\source\mempool\src\rkhmempool.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\portable\80x86\win32_st\vc\rkhport.c">
+    <ClCompile Include="..\..\third-party\rkh\source\portable\80x86\win32_st\vc\rkhport.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\queue\src\rkhqueue.c">
+    <ClCompile Include="..\..\third-party\rkh\source\queue\src\rkhqueue.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\sm\src\rkhsm.c">
+    <ClCompile Include="..\..\third-party\rkh\source\sm\src\rkhsm.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\sma\src\rkhsma.c">
+    <ClCompile Include="..\..\third-party\rkh\source\sma\src\rkhsma.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\sma\src\rkhsma_prio.c">
+    <ClCompile Include="..\..\third-party\rkh\source\sma\src\rkhsma_prio.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\sma\src\rkhsma_sync.c">
+    <ClCompile Include="..\..\third-party\rkh\source\sma\src\rkhsma_sync.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\tmr\src\rkhtmr.c">
+    <ClCompile Include="..\..\third-party\rkh\source\tmr\src\rkhtmr.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\trc\src\rkhtrc_filter.c">
+    <ClCompile Include="..\..\third-party\rkh\source\trc\src\rkhtrc_filter.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\trc\src\rkhtrc_record.c">
+    <ClCompile Include="..\..\third-party\rkh\source\trc\src\rkhtrc_record.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\trc\src\rkhtrc_stream.c">
+    <ClCompile Include="..\..\third-party\rkh\source\trc\src\rkhtrc_stream.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\bsp\assert.c">
+    <ClCompile Include="..\..\src\bsp\win\assert.c">
       <Filter>bsp</Filter>
     </ClCompile>
-    <ClCompile Include="..\bsp\bsp.c">
+    <ClCompile Include="..\..\src\bsp\win\bsp.c">
       <Filter>bsp</Filter>
     </ClCompile>
-    <ClCompile Include="..\bsp\getopt.c">
+    <ClCompile Include="..\..\src\bsp\win\getopt.c">
       <Filter>bsp</Filter>
     </ClCompile>
-    <ClCompile Include="..\bsp\hook.c">
+    <ClCompile Include="..\..\src\bsp\win\hook.c">
       <Filter>bsp</Filter>
     </ClCompile>
-    <ClCompile Include="..\bsp\trace_io.c">
+    <ClCompile Include="..\..\src\bsp\win\trace_io.c">
       <Filter>bsp</Filter>
     </ClCompile>
-    <ClCompile Include="..\bsp\trace_io_tcp.c">
+    <ClCompile Include="..\..\src\bsp\win\trace_io_tcp.c">
       <Filter>bsp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\ssp\src\ssp.c">
+    <ClCompile Include="..\..\third-party\ssp\src\ssp.c">
       <Filter>ssp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\modmgr\modmgr.c">
+    <ClCompile Include="..\..\src\modmgr\modmgr.c">
       <Filter>src\modmgr</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\parser\sim900\sim900parser.c">
+    <ClCompile Include="..\..\src\parser\sim900\sim900parser.c">
       <Filter>src\parser</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\modcmd\modcmdSim900.c">
+    <ClCompile Include="..\..\src\modcmd\modcmdSim900.c">
       <Filter>src\modcmd</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\mqttProt\mqttProt.c">
+    <ClCompile Include="..\..\src\mqttProt\mqttProt.c">
       <Filter>src\mqttProt</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\MQTT-C\src\mqtt.c">
+    <ClCompile Include="..\..\third-party\MQTT-C\src\mqtt.c">
       <Filter>MQTT-C</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\MQTT-C\src\mqtt_pal.c">
+    <ClCompile Include="..\..\third-party\MQTT-C\src\mqtt_pal.c">
       <Filter>MQTT-C</Filter>
     </ClCompile>
-    <ClCompile Include="..\bsp\dIn.c">
+    <ClCompile Include="..\..\src\bsp\win\dIn.c">
       <Filter>bsp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\adconv\adconv.c">
+    <ClCompile Include="..\..\src\adconv\adconv.c">
       <Filter>src\adconv</Filter>
     </ClCompile>
-    <ClCompile Include="..\bsp\rtime.c">
+    <ClCompile Include="..\..\src\bsp\win\rtime.c">
       <Filter>bsp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\mTime\mTime.c">
+    <ClCompile Include="..\..\src\mTime\mTime.c">
       <Filter>src\mTime</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\mTime\mTimeTbl.c">
+    <ClCompile Include="..\..\src\mTime\mTimeTbl.c">
       <Filter>src\mTime</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\emaFilter\emaFilter.c">
+    <ClCompile Include="..\..\src\emaFilter\emaFilter.c">
       <Filter>src\emaFilter</Filter>
     </ClCompile>
-    <ClCompile Include="..\bsp\anin.c">
+    <ClCompile Include="..\..\src\bsp\win\anin.c">
       <Filter>bsp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\date\date.c">
+    <ClCompile Include="..\..\src\date\date.c">
       <Filter>src\date</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\jWrite\jWrite\jWrite.c">
+    <ClCompile Include="..\..\third-party\jWrite\jWrite\jWrite.c">
       <Filter>jWrite</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\publisher\publisher.c">
+    <ClCompile Include="..\..\src\publisher\publisher.c">
       <Filter>src\publisher</Filter>
     </ClCompile>
-    <ClCompile Include="..\bsp\modpwr.c">
+    <ClCompile Include="..\..\src\bsp\win\modpwr.c">
       <Filter>bsp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_rdygrp.c">
+    <ClCompile Include="..\..\third-party\rkh\source\fwk\src\rkhfwk_rdygrp.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\third-party\rkh\source\fwk\src\rkhfwk_pubsub.c">
+    <ClCompile Include="..\..\third-party\rkh\source\fwk\src\rkhfwk_pubsub.c">
       <Filter>rkh</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\conMgrEth\ConMgrEth.c">
+    <ClCompile Include="..\..\src\conMgrEth\ConMgrEth.c">
       <Filter>src\conMgrEth</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\conMgrEth\ConMgrEthAct.c">
+    <ClCompile Include="..\..\src\conMgrEth\ConMgrEthAct.c">
       <Filter>src\conMgrEth</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\conMgrEth\ConMgrEthActAccces.c">
+    <ClCompile Include="..\..\src\conMgrEth\ConMgrEthActAccces.c">
       <Filter>src\conMgrEth</Filter>
     </ClCompile>
-    <ClCompile Include="..\bsp\eth.c">
+    <ClCompile Include="..\..\src\bsp\win\eth.c">
       <Filter>bsp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\config\config.c">
+    <ClCompile Include="..\..\src\config\config.c">
       <Filter>src\config</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\conMgrGsm\ConMgrGsm.c">
+    <ClCompile Include="..\..\src\conMgrGsm\ConMgrGsm.c">
       <Filter>src\conMgrGsm</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\anSampler\src\anSampler.c">
+    <ClCompile Include="..\..\src\anSampler\src\anSampler.c">
       <Filter>src\anSampler</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\CirBuffer\src\CirBuffer.c">
+    <ClCompile Include="..\..\src\CirBuffer\src\CirBuffer.c">
       <Filter>src\CirBuffer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\epoch\src\epoch.c">
+    <ClCompile Include="..\..\src\epoch\src\epoch.c">
       <Filter>src\epoch</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\IOSampler\src\IOSampler.c">
+    <ClCompile Include="..\..\src\IOSampler\src\IOSampler.c">
       <Filter>src\IOSampler</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Relay\src\Relay.c">
+    <ClCompile Include="..\..\src\Relay\src\Relay.c">
       <Filter>src\Relay</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\SigMon\src\SigMon.c">
+    <ClCompile Include="..\..\src\SigMon\src\SigMon.c">
       <Filter>src\SigMon</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\SigMon\src\SigMonAct.c">
+    <ClCompile Include="..\..\src\SigMon\src\SigMonAct.c">
       <Filter>src\SigMon</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\StoreTest\src\StoreTest.c">
+    <ClCompile Include="..\..\src\StoreTest\src\StoreTest.c">
       <Filter>src\StoreTest</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\main.c">
+    <ClCompile Include="..\..\src\main.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\bsp\DigIn.c">
+    <ClCompile Include="..\..\src\bsp\win\DigIn.c">
       <Filter>bsp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\linux\bsp\failure.c">
+    <ClCompile Include="..\..\src\bsp\win\failure.c">
       <Filter>bsp</Filter>
     </ClCompile>
   </ItemGroup>
@@ -275,96 +275,96 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\rkhcfg.h">
+    <ClInclude Include="..\..\src\rkhcfg.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\bsp.h">
+    <ClInclude Include="..\..\src\bsp\bsp.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\mTime\mTime.h">
+    <ClInclude Include="..\..\src\mTime\mTime.h">
       <Filter>src\mTime</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\mTime\mTimeCfg.h">
+    <ClInclude Include="..\..\src\mTime\mTimeCfg.h">
       <Filter>src\mTime</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\emaFilter\emaFilter.h">
+    <ClInclude Include="..\..\src\emaFilter\emaFilter.h">
       <Filter>src\emaFilter</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\third-party\jWrite\jWrite\jWrite.h">
+    <ClInclude Include="..\..\third-party\jWrite\jWrite\jWrite.h">
       <Filter>jWrite</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\publisher\publisher.h">
+    <ClInclude Include="..\..\src\publisher\publisher.h">
       <Filter>src\publisher</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\conMgrEth\ConMgrEth.h">
+    <ClInclude Include="..\..\src\conMgrEth\ConMgrEth.h">
       <Filter>src\conMgrEth</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\conMgrEth\ConMgrEthAct.h">
+    <ClInclude Include="..\..\src\conMgrEth\ConMgrEthAct.h">
       <Filter>src\conMgrEth</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\conMgrEth\ConMgrEthActRequired.h">
+    <ClInclude Include="..\..\src\conMgrEth\ConMgrEthActRequired.h">
       <Filter>src\conMgrEth</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\conMgrEth\ConMgrEthActAccess.h">
+    <ClInclude Include="..\..\src\conMgrEth\ConMgrEthActAccess.h">
       <Filter>src\conMgrEth</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\config\config.h">
+    <ClInclude Include="..\..\src\config\config.h">
       <Filter>src\config</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\eth\eth.h">
+    <ClInclude Include="..\..\src\eth\eth.h">
       <Filter>src\eth</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\anIn\anin.h">
+    <ClInclude Include="..\..\src\anIn\anin.h">
       <Filter>src\anIn</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\anSampler\inc\anSampler.h">
+    <ClInclude Include="..\..\src\anSampler\inc\anSampler.h">
       <Filter>src\anSampler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\CirBuffer\inc\CirBuffer.h">
+    <ClInclude Include="..\..\src\CirBuffer\inc\CirBuffer.h">
       <Filter>src\CirBuffer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\DigIn\inc\DigIn.h">
+    <ClInclude Include="..\..\src\DigIn\inc\DigIn.h">
       <Filter>src\DigIn</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\dIn\din.h">
+    <ClInclude Include="..\..\src\dIn\din.h">
       <Filter>src\dIn</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\epoch\inc\epoch.h">
+    <ClInclude Include="..\..\src\epoch\inc\epoch.h">
       <Filter>src\epoch</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\IOSampler\inc\IOSampler.h">
+    <ClInclude Include="..\..\src\IOSampler\inc\IOSampler.h">
       <Filter>src\IOSampler</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Relay\inc\Relay.h">
+    <ClInclude Include="..\..\src\Relay\inc\Relay.h">
       <Filter>src\Relay</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\rtime\rtime.h">
+    <ClInclude Include="..\..\src\rtime\rtime.h">
       <Filter>src\rtime</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\SigMon\inc\SigMon.h">
+    <ClInclude Include="..\..\src\SigMon\inc\SigMon.h">
       <Filter>src\SigMon</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\SigMon\inc\SigMonAct.h">
+    <ClInclude Include="..\..\src\SigMon\inc\SigMonAct.h">
       <Filter>src\SigMon</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\SigMon\inc\SigMonActAccess.h">
+    <ClInclude Include="..\..\src\SigMon\inc\SigMonActAccess.h">
       <Filter>src\SigMon</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\SigMon\inc\SigMonActRequired.h">
+    <ClInclude Include="..\..\src\SigMon\inc\SigMonActRequired.h">
       <Filter>src\SigMon</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\StoreTest\inc\StoreTest.h">
+    <ClInclude Include="..\..\src\StoreTest\inc\StoreTest.h">
       <Filter>src\StoreTest</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\sspcfg.h">
+    <ClInclude Include="..\..\src\sspcfg.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\signals.h">
+    <ClInclude Include="..\..\src\signals.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\bsp\serial\winbsp.lib">
+    <Library Include="..\..\src\bsp\win\serial\winbsp.lib">
       <Filter>bsp\serial</Filter>
     </Library>
   </ItemGroup>
