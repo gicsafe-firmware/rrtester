@@ -73,12 +73,16 @@ bsp_init(int argc, char *argv[])
     (void)argv;
 
     boardConfig();
+
+#ifdef  __SDRAM_TEST__
     emc_pinInit();
     emc_dramInit();
     if(!emc_testRAM(CIAA_EMC_LPC43XX_SDRAM_BASE, CIAA_EMC_LPC43XX_SDRAM_SIZE))
     {
     	while (1);
     }
+#endif
+
     ModStatus_init();
     ModStatus(0);
     LinkStatus(UnregisteredSt);
