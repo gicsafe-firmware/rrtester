@@ -66,81 +66,6 @@ __NOINIT(RAM_EXT) uint8_t data_buffer[1024];
 
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
-static
-uint32_t
-readUID(uint32_t uid[])
-{
-    /* Chip_IAP_ReadUID() implementation from LPCOpen 3.02
-     * current version (v2.16) has a known bug
-     * */
-    uint32_t command[5], result[5];
-    uint32_t i;
-
-    command[0] = IAP_READ_UID_CMD;
-    iap_entry(command, result);
-
-    for (i=0; i < 4; i++)
-        uid[i] = result[i + 1];
-
-    return result[0];
-}
-
-static
-uint32_t
-rc_crc32(uint32_t crc, char *buf, size_t len)
-{
-    /* From rosettacode.org */
-    static uint32_t table[256];
-    uint32_t rem;
-    uint8_t octet;
-    int i, j;
-    const char *p, *q;
-
-    /* Calculate CRC table. */
-    for (i = 0; i < 256; i++)
-    {
-        rem = i;  /* remainder from polynomial division */
-        for (j = 0; j < 8; j++)
-        {
-            if (rem & 1)
-            {
-                rem >>= 1;
-                rem ^= 0xedb88320;
-            }
-            else
-            {
-                rem >>= 1;
-            }
-        }
-        table[i] = rem;
-    }
-
-    crc = ~crc;
-    q = buf + len;
-    for (p = buf; p < q; p++)
-    {
-        octet = *p;  /* Cast to unsigned octet. */
-        crc = (crc >> 8) ^ table[(crc & 0xff) ^ octet];
-    }
-    return ~crc;
-}
-
-static
-void
-setDeviceID(void)
-{
-    uint32_t array[4];
-    uint32_t crc;
-    char id[9];
-    if (0 == readUID(array))
-    {
-        crc = rc_crc32(0, (char *) &array, 16);
-        snprintf(id, 9, "%X", crc);
-        config_clientId(id);
-        config_topic(id);
-    }
-}
-
 /* ---------------------------- Global functions --------------------------- */
 void
 bsp_init(int argc, char *argv[])
@@ -158,8 +83,6 @@ bsp_init(int argc, char *argv[])
     	while (1);
     }
 #endif
-
-    setDeviceID();
 
     ModStatus_init();
     ModStatus(0);

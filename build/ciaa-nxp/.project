@@ -85,6 +85,11 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
+			<name>rrtester/src/calc</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>rrtester/src/conMgrEth</name>
 			<type>2</type>
 			<locationURI>PARENT-2-PROJECT_LOC/src/conMgrEth</locationURI>
@@ -403,6 +408,26 @@
 			<name>rrtester/src/bsp/uartisr.h</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/uartisr.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/bsp/uniqueID.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/uniqueID.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/bsp/uniqueID.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/uniqueID.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/calc/calc.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/src/calc/src/calc.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/calc/calc.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/src/calc/inc/calc.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/epoch/epoch.c</name>

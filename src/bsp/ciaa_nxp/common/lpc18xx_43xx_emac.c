@@ -870,14 +870,14 @@ void lpc_emac_set_speed(int mbs_100)
 err_t lpc_enetif_init(struct netif *netif)
 {
 	err_t err;
-	extern void Board_ENET_GetMacADDR(u8_t *mcaddr);
+	extern void eth_getMacAddr(uint8_t *mcaddr);
 
 	LWIP_ASSERT("netif != NULL", (netif != NULL));
 
 	lpc_enetdata.netif = netif;
 
 	/* set MAC hardware address */
-	Board_ENET_GetMacADDR(netif->hwaddr);
+	eth_getMacAddr(netif->hwaddr);
 	netif->hwaddr_len = ETHARP_HWADDR_LEN;
 
 	/* maximum transfer unit */
@@ -896,7 +896,7 @@ err_t lpc_enetif_init(struct netif *netif)
 
 #if LWIP_NETIF_HOSTNAME
 	/* Initialize interface hostname */
-	netif->hostname = "lwiplpc";
+	netif->hostname = "GICSAFe-RRTESTER";
 #endif /* LWIP_NETIF_HOSTNAME */
 
 	netif->name[0] = 'e';

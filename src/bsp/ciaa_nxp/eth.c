@@ -21,6 +21,10 @@
 #include "ConMgrEth.h"
 #include "signals.h"
 
+#include "sapi_i2c.h"
+#include "config.h"
+#include "calc/inc/calc.h"
+
 #include "lwip/init.h"
 #include "lwip/opt.h"
 #include "lwip/sys.h"
@@ -45,10 +49,16 @@
 
 /* ----------------------------- Local macros ------------------------------ */
 /* ------------------------------- Constants ------------------------------- */
+#define HWADDR_LEN  6
+#define EEPROM_24AA025E48_CLOCK 100000
+#define EEPROM_24AA025E48_ADDRESS   0x51
+#define EEPROM_24AA025E48_MAC_REGISTER  0xFA
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
 static struct netif lpc_netif;
+/* Previously used(board.c) hardcoded MAC Address. Left as a fallback */
+static uint8_t macAddress[HWADDR_LEN] = {0x00, 0x60, 0x37, 0x12, 0x34, 0x56};
 
 static rui8_t eth;
 static int s;
@@ -62,6 +72,17 @@ static RKH_ROM_STATIC_EVENT(e_connected, evConnected);
 static RKH_ROM_STATIC_EVENT(e_disconnected, evDisconnected);
 /* ----------------------- Local function prototypes ----------------------- */
 /* ---------------------------- Local functions ---------------------------- */
+static
+bool
+getMACfromEEPROM(void)
+{
+    uint8_t macRegister = EEPROM_24AA025E48_MAC_REGISTER;
+    i2cConfig(I2C0, EEPROM_24AA025E48_CLOCK);
+    return i2cRead(I2C0, EEPROM_24AA025E48_ADDRESS, &macRegister, 1, TRUE,
+                   macAddress,
+                   HWADDR_LEN, TRUE);
+}
+
 void
 msDelay(uint32_t ms)
 {
@@ -264,6 +285,16 @@ vSetupEthTask(void *pvParameters)
 void
 eth_init(void)
 {
+    if (TRUE == getMACfromEEPROM())
+    {
+        uint32_t crc;
+        char id[9];
+        crc = rc_crc32(0, (char *) &macAddress, HWADDR_LEN);
+        snprintf(id, 9, "%X", crc);
+        config_clientId(id);
+        config_topic(id);
+    }
+
     xTaskCreate(vSetupEthTask, "SetupEth",
                 configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
                 (xTaskHandle *) NULL);
@@ -289,7 +320,7 @@ eth_socketOpen(char *ip, char *port)
 	addr.sin_len = sizeof(addr);
 	addr.sin_family = AF_INET;
 	addr.sin_port = PP_HTONS(1883);
-	addr.sin_addr.s_addr = inet_addr("18.195.250.188"); //HiveMQ
+	addr.sin_addr.s_addr = inet_addr("18.194.98.249"); //HiveMQ
 
 	if(s != NULL)
 		lwip_close(s);
@@ -386,6 +417,12 @@ eth_socketRead(rui8_t *p, ruint size)
 	RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
 
 	return ret;
+}
+
+void
+eth_getMacAddr(uint8_t *mcaddr)
+{
+    memcpy(mcaddr, macAddress, 6);
 }
 
 /* ------------------------------ End of file ------------------------------ */
