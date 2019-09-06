@@ -23,7 +23,7 @@
 
 #include "sapi_i2c.h"
 #include "config.h"
-#include "calc/inc/calc.h"
+#include "calc.h"
 
 #include "lwip/init.h"
 #include "lwip/opt.h"
