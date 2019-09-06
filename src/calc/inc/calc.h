@@ -37,6 +37,7 @@
 
 /* ----------------------------- Include files ----------------------------- */
 #include <stdint.h>
+#include <stddef.h>
 
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
