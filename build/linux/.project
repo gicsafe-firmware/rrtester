@@ -90,6 +90,11 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
+			<name>rrtester/src/calc</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>rrtester/src/conMgrEth</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
@@ -398,6 +403,16 @@
 			<name>rrtester/src/bsp/trace_io_tcp.h</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/linux/trace_io_tcp.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/calc/calc.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/src/calc/src/calc.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/calc/calc.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/src/calc/inc/calc.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/conMgrEth/ConMgrEth.c</name>

@@ -42,6 +42,7 @@
 #include "publisher.h"
 #include "eth.h"
 #include "config.h"
+#include "calc.h"
 
 
 RKH_THIS_MODULE
@@ -201,46 +202,6 @@ void
 toggleRelayFailure()
 {
 	failure_set(! failure_get());
-}
-
-static
-uint32_t
-rc_crc32(uint32_t crc, char *buf, size_t len)
-{
-    /* From rosettacode.org */
-    static uint32_t table[256];
-    uint32_t rem;
-    uint8_t octet;
-    int i, j;
-    const char *p, *q;
-
-    /* Calculate CRC table. */
-    for (i = 0; i < 256; i++)
-    {
-        rem = i;  /* remainder from polynomial division */
-        for (j = 0; j < 8; j++)
-        {
-            if (rem & 1)
-            {
-                rem >>= 1;
-                rem ^= 0xedb88320;
-            }
-            else
-            {
-                rem >>= 1;
-            }
-        }
-        table[i] = rem;
-    }
-
-    crc = ~crc;
-    q = buf + len;
-    for (p = buf; p < q; p++)
-    {
-        octet = *p;  /* Cast to unsigned octet. */
-        crc = (crc >> 8) ^ table[(crc & 0xff) ^ octet];
-    }
-    return ~crc;
 }
 
 static
