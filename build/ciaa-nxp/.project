@@ -702,7 +702,7 @@
 		<link>
 			<name>rrtester/src/bsp/sapi_rtos/sapi_adc128d818.h</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxpsapi_adc128d818.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/sapi_adc128d818.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/bsp/sapi_rtos/sapi_board.c</name>
