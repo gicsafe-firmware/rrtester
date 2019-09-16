@@ -465,6 +465,7 @@ eth_getMACaddress(char macBuff[])
     {
         FREE(pAdapterInfo);
     }
+	return 0;
 }
 
 /* ------------------------------ End of file ------------------------------ */
