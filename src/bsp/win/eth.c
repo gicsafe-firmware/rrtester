@@ -252,6 +252,8 @@ ethThread(LPVOID par)
         }
     }
 
+	Sleep(5000);
+
     while (running)
     {
         Sleep(1000);
@@ -418,6 +420,8 @@ eth_getMACaddress(char macBuff[])
     PIP_ADAPTER_INFO pAdapter = NULL;
     LONG ulOutBufLen = sizeof (IP_ADAPTER_INFO);
     DWORD dwRetVal = 0;
+    int success = 0;
+
     pAdapterInfo = (IP_ADAPTER_INFO *) MALLOC(sizeof (IP_ADAPTER_INFO));
     if (pAdapterInfo == NULL)
     {
@@ -452,6 +456,7 @@ eth_getMACaddress(char macBuff[])
                 {
                     macBuff[i] = pAdapter->Address[i];
                 }
+                success = 1;
                 break;
             }
             pAdapter = pAdapter->Next;
@@ -465,7 +470,8 @@ eth_getMACaddress(char macBuff[])
     {
         FREE(pAdapterInfo);
     }
-	return 0;
+
+    return success;
 }
 
 /* ------------------------------ End of file ------------------------------ */
