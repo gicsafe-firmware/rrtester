@@ -160,9 +160,6 @@
     <ClCompile Include="..\..\src\Relay\src\Relay.c">
       <Filter>src\Relay</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\calc\src\calc.c">
-      <Filter>src\calc</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\SigMon\src\SigMon.c">
       <Filter>src\SigMon</Filter>
     </ClCompile>
@@ -180,6 +177,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\bsp\win\failure.c">
       <Filter>src\bsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calc\src\calc.c">
+      <Filter>src\calc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -246,9 +246,6 @@
     <Filter Include="src\Relay">
       <UniqueIdentifier>{a4bf539f-9f01-4483-b80a-07b8466ee00c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\calc">
-      <UniqueIdentifier>{a4bf539f-9f01-4483-b80a-07b8466ee00d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\rtime">
       <UniqueIdentifier>{58631172-abf3-4c69-ac90-8a967ac17772}</UniqueIdentifier>
     </Filter>
@@ -281,6 +278,9 @@
     </Filter>
     <Filter Include="third-party\ssp">
       <UniqueIdentifier>{86704938-4163-4798-ab82-811df96cd54d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\calc">
+      <UniqueIdentifier>{925790ee-56d0-4d74-8ae5-3be7bff94836}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -347,9 +347,6 @@
     <ClInclude Include="..\..\src\Relay\inc\Relay.h">
       <Filter>src\Relay</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\calc\inc\calc.h">
-      <Filter>src\calc</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\rtime\rtime.h">
       <Filter>src\rtime</Filter>
     </ClInclude>
@@ -373,6 +370,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\signals.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calc\inc\calc.h">
+      <Filter>src\calc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
