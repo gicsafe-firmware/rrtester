@@ -12,7 +12,6 @@
 
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
-#include "eth.h"
 #include "rkh.h"
 #include "rkhfwk_pubsub.h"
 #include "rkhfwk_dynevt.h"
@@ -21,6 +20,7 @@
 #include "topics.h"
 #include "config.h"
 #include "ConMgrEth.h"
+#include "eth.h"
 
 #include <stdint.h>
 #include <unistd.h>
@@ -29,6 +29,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/ioctl.h>
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <net/if.h>
+#include <fcntl.h>
+#include <netdb.h>
+#include <ifaddrs.h>
+#include <limits.h>
 
 RKH_THIS_MODULE
 
@@ -42,6 +50,9 @@ enum
 };
 //#define ETH_THREAD_DEBUG
 static const int SLEEP_LAPSE_ETH_THREAD = 10;
+
+#define ETH_THREAD_STACK_SIZE PTHREAD_STACK_MIN
+
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */

@@ -130,6 +130,11 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
+			<name>rrtester/src/eth</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>rrtester/src/mTime</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
@@ -340,11 +345,6 @@
 			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/linux/eth.c</locationURI>
 		</link>
 		<link>
-			<name>rrtester/src/bsp/eth.h</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/linux/eth.h</locationURI>
-		</link>
-		<link>
 			<name>rrtester/src/bsp/failure.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/linux/failure.c</locationURI>
@@ -508,6 +508,11 @@
 			<name>rrtester/src/epoch/epoch.h</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/src/epoch/inc/epoch.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/eth/eth.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/src/eth/eth.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/mTime/mTime.c</name>

@@ -55,6 +55,7 @@
 #define __TRACE_IO_TCP_H__
 
 /* ----------------------------- Include files ----------------------------- */
+#include "bsp.h"
 #include "eth.h"
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus
@@ -80,4 +81,3 @@ void trace_io_tcp_close(int s);
 #endif
 
 /* ------------------------------ File footer ------------------------------ */
-
