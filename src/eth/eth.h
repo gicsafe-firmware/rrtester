@@ -34,6 +34,7 @@ void eth_socketConnected(void);
 void eth_socketDisconnected(void);
 void eth_socketWrite(rui8_t *p, ruint size);
 ruint eth_socketRead(rui8_t *p, ruint size);
+ruint eth_getMACaddress(char macBuff[]);
 
 /* -------------------- External C language linkage end -------------------- */
 #ifdef __cplusplus

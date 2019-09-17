@@ -178,6 +178,9 @@
     <ClCompile Include="..\..\src\bsp\win\failure.c">
       <Filter>src\bsp</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\calc\src\calc.c">
+      <Filter>src\calc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -276,6 +279,9 @@
     <Filter Include="third-party\ssp">
       <UniqueIdentifier>{86704938-4163-4798-ab82-811df96cd54d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\calc">
+      <UniqueIdentifier>{925790ee-56d0-4d74-8ae5-3be7bff94836}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\rkhcfg.h">
@@ -364,6 +370,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\signals.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calc\inc\calc.h">
+      <Filter>src\calc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

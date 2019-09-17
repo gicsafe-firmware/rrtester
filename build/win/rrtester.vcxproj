@@ -54,7 +54,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\third-party\rkh\source\fwk\inc;$(ProjectDir)..\..\third-party\rkh\source\mempool\inc;$(ProjectDir)..\..\third-party\rkh\source\queue\inc;$(ProjectDir)..\..\third-party\rkh\source\sm\inc;$(ProjectDir)..\..\third-party\rkh\source\sma\inc;$(ProjectDir)..\..\third-party\rkh\source\tmr\inc;$(ProjectDir)..\..\third-party\rkh\source\trc\inc;$(ProjectDir)..\..\third-party\rkh\source\portable\80x86\win32_st\vc\;$(ProjectDir)..\..\third-party\jWrite\jWrite;$(ProjectDir)..\..\third-party\ssp\src;$(ProjectDir)..\..\src\bsp;$(ProjectDir)..\..\src\bsp\win;$(ProjectDir)..\..\src\bsp\win\serial;$(ProjectDir)..\..\src;$(ProjectDir)..\..\src\parser\sim900;$(ProjectDir)..\..\src\DigIn\inc;$(ProjectDir)..\..\src\dIn;$(ProjectDir)..\..\src\anIn;$(ProjectDir)..\..\src\anSampler\inc;$(ProjectDir)..\..\src\adconv;$(ProjectDir)..\..\src\modpwr;$(ProjectDir)..\..\src\modcmd;$(ProjectDir)..\..\src\ConMgrGsm;$(ProjectDir)..\..\src\publisher;$(ProjectDir)..\..\src\mqttProt;$(ProjectDir)..\..\src\IOSampler\inc;$(ProjectDir)..\..\src\epoch\inc;$(ProjectDir)..\..\src\StoreTest\inc;$(ProjectDir)..\..\src\SigMon\inc;$(ProjectDir)..\..\src\Relay\inc;$(ProjectDir)..\..\src\date;$(ProjectDir)..\..\src\CirBuffer\inc;$(ProjectDir)..\..\src\config;$(ProjectDir)..\..\src\eth;$(ProjectDir)..\..\src\rtime;$(ProjectDir)..\..\src\mTime;$(ProjectDir)..\..\src\emaFilter;$(ProjectDir)..\..\src\conMgrEth;$(ProjectDir)..\..\src\modmgr;$(ProjectDir)..\..\third-party\MQTT-C\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\third-party\rkh\source\fwk\inc;$(ProjectDir)..\..\third-party\rkh\source\mempool\inc;$(ProjectDir)..\..\third-party\rkh\source\queue\inc;$(ProjectDir)..\..\third-party\rkh\source\sm\inc;$(ProjectDir)..\..\third-party\rkh\source\sma\inc;$(ProjectDir)..\..\third-party\rkh\source\tmr\inc;$(ProjectDir)..\..\third-party\rkh\source\trc\inc;$(ProjectDir)..\..\third-party\rkh\source\portable\80x86\win32_st\vc\;$(ProjectDir)..\..\third-party\jWrite\jWrite;$(ProjectDir)..\..\third-party\ssp\src;$(ProjectDir)..\..\src\bsp;$(ProjectDir)..\..\src\bsp\win;$(ProjectDir)..\..\src\bsp\win\serial;$(ProjectDir)..\..\src;$(ProjectDir)..\..\src\parser\sim900;$(ProjectDir)..\..\src\DigIn\inc;$(ProjectDir)..\..\src\calc\inc;$(ProjectDir)..\..\src\dIn;$(ProjectDir)..\..\src\anIn;$(ProjectDir)..\..\src\anSampler\inc;$(ProjectDir)..\..\src\adconv;$(ProjectDir)..\..\src\modpwr;$(ProjectDir)..\..\src\modcmd;$(ProjectDir)..\..\src\ConMgrGsm;$(ProjectDir)..\..\src\publisher;$(ProjectDir)..\..\src\mqttProt;$(ProjectDir)..\..\src\IOSampler\inc;$(ProjectDir)..\..\src\epoch\inc;$(ProjectDir)..\..\src\StoreTest\inc;$(ProjectDir)..\..\src\SigMon\inc;$(ProjectDir)..\..\src\Relay\inc;$(ProjectDir)..\..\src\date;$(ProjectDir)..\..\src\CirBuffer\inc;$(ProjectDir)..\..\src\config;$(ProjectDir)..\..\src\eth;$(ProjectDir)..\..\src\rtime;$(ProjectDir)..\..\src\mTime;$(ProjectDir)..\..\src\emaFilter;$(ProjectDir)..\..\src\conMgrEth;$(ProjectDir)..\..\src\modmgr;$(ProjectDir)..\..\third-party\MQTT-C\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;__W32STVC__;CIPSHUT_ON_INIT;MODPWR_CTRL_ENABLE;GPRS_QUICK_SEND;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -91,6 +91,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\calc\src\calc.c" />
     <ClCompile Include="..\..\third-party\jWrite\jWrite\jWrite.c" />
     <ClCompile Include="..\..\third-party\MQTT-C\src\mqtt.c" />
     <ClCompile Include="..\..\third-party\MQTT-C\src\mqtt_pal.c" />
@@ -152,6 +153,7 @@
     <ClCompile Include="..\..\src\bsp\win\trace_io_tcp.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\calc\inc\calc.h" />
     <ClInclude Include="..\..\third-party\jWrite\jWrite\jWrite.h" />
     <ClInclude Include="..\..\src\anIn\anin.h" />
     <ClInclude Include="..\..\src\anSampler\inc\anSampler.h" />

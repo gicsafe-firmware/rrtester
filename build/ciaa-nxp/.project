@@ -85,6 +85,11 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
+			<name>rrtester/src/calc</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>rrtester/src/conMgrEth</name>
 			<type>2</type>
 			<locationURI>PARENT-2-PROJECT_LOC/src/conMgrEth</locationURI>
@@ -405,6 +410,26 @@
 			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/uartisr.h</locationURI>
 		</link>
 		<link>
+			<name>rrtester/src/bsp/uniqueID.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/uniqueID.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/bsp/uniqueID.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/uniqueID.h</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/calc/calc.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/src/calc/src/calc.c</locationURI>
+		</link>
+		<link>
+			<name>rrtester/src/calc/calc.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/src/calc/inc/calc.h</locationURI>
+		</link>
+		<link>
 			<name>rrtester/src/epoch/epoch.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/src/epoch/src/epoch.c</locationURI>
@@ -677,7 +702,7 @@
 		<link>
 			<name>rrtester/src/bsp/sapi_rtos/sapi_adc128d818.h</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxpsapi_adc128d818.h</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/src/bsp/ciaa_nxp/sapi_adc128d818.h</locationURI>
 		</link>
 		<link>
 			<name>rrtester/src/bsp/sapi_rtos/sapi_board.c</name>

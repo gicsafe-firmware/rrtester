@@ -252,6 +252,8 @@ ethThread(LPVOID par)
         }
     }
 
+	Sleep(5000);
+
     while (running)
     {
         Sleep(1000);
@@ -408,6 +410,68 @@ eth_socketRead(rui8_t *p, ruint size)
     RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
 
     return ret;
+}
+
+ruint
+eth_getMACaddress(char macBuff[])
+{
+    int i;
+    PIP_ADAPTER_INFO pAdapterInfo;
+    PIP_ADAPTER_INFO pAdapter = NULL;
+    LONG ulOutBufLen = sizeof (IP_ADAPTER_INFO);
+    DWORD dwRetVal = 0;
+    int success = 0;
+
+    pAdapterInfo = (IP_ADAPTER_INFO *) MALLOC(sizeof (IP_ADAPTER_INFO));
+    if (pAdapterInfo == NULL)
+    {
+        printf("Error allocating memory needed to call GetAdaptersinfo\n");
+        exit(EXIT_FAILURE);
+    }
+    if (GetAdaptersInfo(pAdapterInfo,
+                        (PULONG)&ulOutBufLen) == ERROR_BUFFER_OVERFLOW)
+    {
+        FREE(pAdapterInfo);
+        pAdapterInfo = (IP_ADAPTER_INFO *) MALLOC(ulOutBufLen);
+        if (pAdapterInfo == NULL)
+        {
+            printf("Error allocating memory needed to call GetAdaptersinfo\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+    dwRetVal = GetAdaptersInfo(pAdapterInfo, (PULONG)&ulOutBufLen);
+    if (dwRetVal == NO_ERROR)
+    {
+        pAdapter = pAdapterInfo;
+        while (pAdapter)
+        {
+            if ((pAdapter->IpAddressList.IpAddress.String != NULL) &&
+                (strcmp(pAdapter->IpAddressList.IpAddress.String,
+                        "0.0.0.0") != 0) &&
+                (pAdapter->GatewayList.IpAddress.String != NULL) &&
+                (strcmp(pAdapter->GatewayList.IpAddress.String, "0.0.0.0") != 0)
+                )
+            {
+                for (i = 0; i < 6; i++) /* If its IPv6, trucate it */
+                {
+                    macBuff[i] = pAdapter->Address[i];
+                }
+                success = 1;
+                break;
+            }
+            pAdapter = pAdapter->Next;
+        }
+    }
+    else
+    {
+        printf("GetAdaptersInfo failed with error: %d\n", dwRetVal);
+    }
+    if (pAdapterInfo)
+    {
+        FREE(pAdapterInfo);
+    }
+
+    return success;
 }
 
 /* ------------------------------ End of file ------------------------------ */

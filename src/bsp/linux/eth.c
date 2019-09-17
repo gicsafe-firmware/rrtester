@@ -12,7 +12,6 @@
 
 /* --------------------------------- Notes --------------------------------- */
 /* ----------------------------- Include files ----------------------------- */
-#include "eth.h"
 #include "rkh.h"
 #include "rkhfwk_pubsub.h"
 #include "rkhfwk_dynevt.h"
@@ -21,6 +20,7 @@
 #include "topics.h"
 #include "config.h"
 #include "ConMgrEth.h"
+#include "eth.h"
 
 #include <stdint.h>
 #include <unistd.h>
@@ -28,6 +28,15 @@
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/ioctl.h>
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <net/if.h>
+#include <fcntl.h>
+#include <netdb.h>
+#include <ifaddrs.h>
+#include <limits.h>
 
 RKH_THIS_MODULE
 
@@ -41,6 +50,9 @@ enum
 };
 //#define ETH_THREAD_DEBUG
 static const int SLEEP_LAPSE_ETH_THREAD = 10;
+
+#define ETH_THREAD_STACK_SIZE PTHREAD_STACK_MIN
+
 /* ---------------------------- Local data types --------------------------- */
 /* ---------------------------- Global variables --------------------------- */
 /* ---------------------------- Local variables ---------------------------- */
@@ -468,6 +480,54 @@ eth_socketRead(rui8_t *p, ruint size)
     RKH_SMA_POST_FIFO(conMgrEth, RKH_UPCAST(RKH_EVT_T, &e_Ok), &eth);
 
     return ret;
+}
+
+ruint
+eth_getMACaddress(char macBuff[])
+{
+    struct ifreq ifr;
+    struct ifconf ifc;
+    char buf[1024];
+    int success = 0;
+
+    int sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_IP);
+    if (sock == -1)
+    {
+        /* handle error*/
+    }
+
+    ifc.ifc_len = sizeof(buf);
+    ifc.ifc_buf = buf;
+    if (ioctl(sock, SIOCGIFCONF, &ifc) == -1)
+    {
+        /* handle error */
+    }
+
+    struct ifreq* it = ifc.ifc_req;
+    const struct ifreq* const end = it + (ifc.ifc_len / sizeof(struct ifreq));
+
+    for (; it != end; ++it)
+    {
+        strcpy(ifr.ifr_name, it->ifr_name);
+        if (ioctl(sock, SIOCGIFFLAGS, &ifr) == 0)
+        {
+            if (!(ifr.ifr_flags & IFF_LOOPBACK))  /* don't count loopback */
+            {
+                if (ioctl(sock, SIOCGIFHWADDR, &ifr) == 0)
+                {
+                    memcpy(macBuff, ifr.ifr_hwaddr.sa_data, 6);
+                    success = 1;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            /* handle error */
+        }
+    }
+
+    return success;
 }
 
 /* ------------------------------ End of file ------------------------------ */

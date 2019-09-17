@@ -25,6 +25,7 @@
 #include "uartisr.h"
 #include "bsp.h"
 
+#include "config.h"
 #include "signals.h"
 #include "modpwr.h"
 #include "modmgr.h"

@@ -9,7 +9,8 @@
 
 /* -------------------------------- Authors -------------------------------- */
 /*
- *  DaBa  Dario Bali�a db@vortexmakes.com
+ *  DaBa  Dario Baliña  db@vortexmakes.com
+ *  CaMa  Carlos Mancón manconci@gmail.com
  */
 
 /* --------------------------------- Notes --------------------------------- */
@@ -20,6 +21,8 @@
 /* ----------------------------- Include files ----------------------------- */
 #include "rkhevt.h"
 #include "epoch.h"
+#include "rkhitl.h"
+#include "rkhtmr.h"
 
 /* ---------------------- External C language linkage ---------------------- */
 #ifdef __cplusplus

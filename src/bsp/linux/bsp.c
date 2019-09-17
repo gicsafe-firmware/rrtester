@@ -42,6 +42,7 @@
 #include "publisher.h"
 #include "eth.h"
 #include "config.h"
+#include "calc.h"
 
 
 RKH_THIS_MODULE
@@ -203,6 +204,22 @@ toggleRelayFailure()
 	failure_set(! failure_get());
 }
 
+static
+void
+setDeviceID(void)
+{
+    char macAddress[6];
+    uint32_t crc;
+    char id[9];
+    if (eth_getMACaddress(macAddress))
+    {
+        crc = rc_crc32(0, (char *) &macAddress, 6);
+        snprintf(id,9,"%X",crc);
+        config_clientId(id);
+        config_topic(id);
+    }
+}
+
 /* ---------------------------- Global functions --------------------------- */
 void
 bsp_init(int argc, char *argv[])
@@ -213,6 +230,8 @@ bsp_init(int argc, char *argv[])
     printBanner();
 
     processCmdLineOpts(argc, argv);
+
+    setDeviceID();
 
     modPwr_init();
     dIn_init();

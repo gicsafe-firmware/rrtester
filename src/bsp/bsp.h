@@ -14,6 +14,7 @@
 /*
  *  DaBa  Dario Baliña       db@vortexmakes.com
  *  LeFr  Leandro Francucci  lf@vortexmakes.com
+ *  CaMa  Carlos Mancón      manconci@gmail.com
  */
 
 /* --------------------------------- Module -------------------------------- */
@@ -73,6 +74,13 @@ typedef enum
     GSMNetwork,
     ETHNetwork
 } NetType_t;
+
+/*
+ * Linux socket type
+ * */
+#ifdef __LNXGNU__
+#define SOCKET int
+#endif
 
 /* ------------------------------- Data types ------------------------------ */
 /* -------------------------- External variables --------------------------- */

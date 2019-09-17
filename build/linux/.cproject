@@ -46,6 +46,7 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/dIn&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/emaFilter&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/epoch/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/calc/inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/eth&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/IOSampler/inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../src/modcmd&quot;"/>
